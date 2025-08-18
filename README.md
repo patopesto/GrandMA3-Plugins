@@ -2,16 +2,18 @@
 
 A collection of GrandMA3 plugins and experiments
 
-## Plugins
-
-[[_TOC_]]
-
 
 ## Plugins
 
-### [ScreenSwap](./ScreenSwap)
+- [ViewScaler](#ViewScaler): Scale a display's content to fit the available space.
+- [ScreenSwap](#ScreenSwap): Swap the ViewButtons between 2 displays
+
+
+### [ViewScaler](./ViewScaler)
 
 ::include{file=./ViewScaler/PLUGIN.md}
+
+### [ScreenSwap](./ScreenSwap)
 
 
 
