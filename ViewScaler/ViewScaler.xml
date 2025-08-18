@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GMA3 DataVersion="2.0.2.0">
-  <UserPlugin Name="ViewScaler" Author="Alban Moreon" Version="v0.1.0.0" Path="ViewScaler">
+  <UserPlugin Name="ViewScaler" Author="Alban Moreon" Version="0.1.0.0" Path="ViewScaler">
     <ComponentLua Name="ViewScaler" FileName="ViewScaler.lua"/>
   </UserPlugin>
 </GMA3>
