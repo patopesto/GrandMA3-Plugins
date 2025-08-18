@@ -9,10 +9,10 @@ A collection of GrandMA3 plugins and experiments
 ## Installation
 
 - Download latest version from the [Package Registry](https://gitlab.com/patopest/grandma3-plugins/-/packages) or the [Releases](https://gitlab.com/patopest/grandma3-plugins/-/releases) page.
-- Unzip the `gma3_library/datapools/plugins/` folder in your MA installation:
-    - macOS: `~/MALightingTechnology/gma3_library/datapools/plugins/`
-    - Windows: `C:\ProgramData\MALightingTechnology\gma3_library/datapools\plugins\`
-    - USB key: `/grandMA3/gma3_library/datapools/plugins/`
+- Unzip the file in the `gma3_library/datapools/plugins/` folder of your MA installation:
+    - macOS: `~/MALightingTechnology/...`
+    - Windows: `C:\ProgramData\MALightingTechnology\...`
+    - USB key: `/grandMA3/...`
 - In your showfile, import the plugin in a new `Plugin` pool object.
 
 
