@@ -11,6 +11,8 @@ variables:
 
 prep:
   stage: prep
+  rules:
+    - if: $CI_COMMIT_TAG
   script:
     - echo "PLUGIN_NAME=$(echo $CI_COMMIT_TAG | awk -F '_v' '{print $1}')" >> vars.env
     - echo "PLUGIN_VERSION=$(echo $CI_COMMIT_TAG | awk -F '_v' '{print $2}')" >> vars.env
@@ -32,7 +34,7 @@ build:
     - apk add go-task
     - apk add xmlstarlet
   script:
-    - task release GIT_TAG=$CI_COMMIT_TAG
+    - go-task release GIT_TAG=$CI_COMMIT_TAG
   artifacts:
     paths:
       - $BUILD_DIR/*
