@@ -9,11 +9,11 @@ A collection of GrandMA3 plugins and experiments
 - [ScreenSwap](#ScreenSwap): Swap the ViewButtons between 2 displays
 
 
-### [ViewScaler](./ViewScaler)
+### ViewScaler [source](./ViewScaler) [download](https://%{gitlab_server}/%{project_path}/-/packages/44195933)
 
 ::include{file=./ViewScaler/PLUGIN.md}
 
-### [ScreenSwap](./ScreenSwap)
+### ScreenSwap [source](./ScreenSwap)
 
 
 
