@@ -9,6 +9,8 @@ A collection of GrandMA3 plugins and experiments
 
 ### [ViewScaler](./ViewScaler)
 
+::include{file=./ViewScaler/README.md}
+
 
 
 
