@@ -2,18 +2,29 @@
 
 A collection of GrandMA3 plugins and experiments
 
+- [ViewScaler](#viewscaler): Scale a display's content to fit the available space.
+- [ScreenSwap](#screenswap): Swap the ViewButtons between 2 displays
+
+
+## Installation
+
+- Download latest version from the [Package Registry](https://gitlab.com/patopest/grandma3-plugins/-/packages) or the [Releases](https://gitlab.com/patopest/grandma3-plugins/-/releases) page.
+- Unzip the `gma3_library/datapools/plugins/` folder in your MA installation:
+    - macOS: `~/MALightingTechnology/gma3_library/datapools/plugins/`
+    - Windows: `C:\ProgramData\MALightingTechnology\gma3_library/datapools\plugins\`
+    - USB key: `/grandMA3/gma3_library/datapools/plugins/`
+- In your showfile, import the plugin in a new `Plugin` pool object.
+
+
+
 
 ## Plugins
 
-- [ViewScaler](#ViewScaler): Scale a display's content to fit the available space.
-- [ScreenSwap](#ScreenSwap): Swap the ViewButtons between 2 displays
-
-
-### ViewScaler [source](./ViewScaler) [download](https://%{gitlab_server}/%{project_path}/-/packages/44195933)
+### [ViewScaler]()
 
 ::include{file=./ViewScaler/PLUGIN.md}
 
-### ScreenSwap [source](./ScreenSwap)
+### [ScreenSwap]()
 
 
 
