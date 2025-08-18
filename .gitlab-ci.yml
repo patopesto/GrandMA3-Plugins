@@ -63,12 +63,13 @@ release:
   script:
     - echo "Running release job"
   release:
-    name: $PLUGIN_NAME $PLUGIN_VERSION
-    description: Release for $PLUGIN_NAME $PLUGIN_VERSION
+    name: $PLUGIN_NAME v$PLUGIN_VERSION
+    description: Release for $PLUGIN_NAME v$PLUGIN_VERSION
     tag_name: $CI_COMMIT_TAG
     ref: $CI_COMMIT_TAG
     assets:
       links:
         - name: $PLUGIN_FILE
           filepath: "/plugin"
-          url: "$PACKAGE_REGISTRY_URL/$PLUGIN_FILE"
+          link_type: package
+          url: "$PACKAGE_REGISTRY_URL/$PLUGIN_NAME/$PLUGIN_VERSION/$PLUGIN_FILE"
