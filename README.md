@@ -2,14 +2,16 @@
 
 A collection of GrandMA3 plugins and experiments
 
+## Plugins
+
+[[_TOC_]]
+
 
 ## Plugins
 
 ### [ScreenSwap](./ScreenSwap)
 
-### [ViewScaler](./ViewScaler)
-
-::include{file=./ViewScaler/README.md}
+::include{file=./ViewScaler/PLUGIN.md}
 
 
 
