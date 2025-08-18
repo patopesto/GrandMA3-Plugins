@@ -1,0 +1,55 @@
+# https://taskfile.dev/
+
+version: '3'
+
+vars:
+  BUILD_DIR: build
+
+tasks:
+  release:
+    desc: "Package plugin from git tag"
+    vars:
+      GIT_TAG:
+        sh: git describe --exact-match --tags || echo $GIT_TAG
+      GIT_PLUGIN:
+        sh: echo {{ .GIT_TAG }} | awk -F '_v' '{print $1}'
+      GIT_VERSION:
+        sh: echo {{ .GIT_TAG }} | awk -F '_v' '{print $2}'
+    cmds:
+      - echo {{ .GIT_TAG }}
+      - task: package
+        vars:
+          PLUGIN: '{{.GIT_PLUGIN}}'
+          VERSION: '{{.GIT_VERSION}}'
+
+
+  package:
+    desc: "Package plugin"
+    requires:
+        vars: [PLUGIN, VERSION]
+    cmds:
+      - task: package:version
+        vars:
+          PLUGIN: '{{.PLUGIN}}'
+          VERSION: '{{.VERSION}}'
+      - task: package:zip
+        vars:
+          PLUGIN: '{{.PLUGIN}}'
+          VERSION: '{{.VERSION}}'
+
+  package:version:
+    internal: true
+    dir: '{{.PLUGIN}}'
+    cmd: xml edit --inplace --update GMA3/UserPlugin/@Version -v {{.VERSION}} {{.PLUGIN}}.xml
+    preconditions:
+      - which xml
+
+  package:zip:
+    internal: true
+    dir: '{{.PLUGIN}}'
+    vars:
+      OUTPUT_DIR: '{{.USER_WORKING_DIR}}/{{.BUILD_DIR}}'
+      OUTPUT_FILE: '{{.PLUGIN}}_v{{.VERSION}}.zip'
+    cmd: zip -o {{.OUTPUT_DIR}}/{{.OUTPUT_FILE}} *.xml *.lua
+    preconditions:
+      - test -d {{.OUTPUT_DIR}} || mkdir {{.OUTPUT_DIR}}
