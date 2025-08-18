@@ -1,0 +1,74 @@
+stages:
+  - prep
+  - build
+  - release
+
+
+variables:
+  BUILD_DIR: build
+  PACKAGE_REGISTRY_URL: "$(CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic"
+
+
+prep:
+  stage: prep
+  script:
+    - echo "PLUGIN_NAME=$(echo $CI_COMMIT_TAG | awk -F '_v' '{print $1}')" >> vars.env
+    - echo "PLUGIN_VERSION=$(echo $CI_COMMIT_TAG | awk -F '_v' '{print $2}')" >> vars.env
+    - echo "PLUGIN_FILE=$CI_COMMIT_TAG.zip" >> vars.env
+  artifacts:
+    reports:
+      dotenv: vars.env
+
+
+build:
+  stage: build
+  tags:
+    - docker
+  image: alpine:3.22.1
+  rules:
+    - if: $CI_COMMIT_TAG
+  before_script:
+    - apk add zip
+    - apk add go-task
+    - apk add xmlstarlet
+  script:
+    - task release GIT_TAG=$CI_COMMIT_TAG
+  artifacts:
+    paths:
+      - $BUILD_DIR/*
+
+
+upload:
+  stage: release
+  tags:
+    - docker
+  image: curlimages/curl:8.15.0
+  rules:
+    - if: $CI_COMMIT_TAG
+  before_script:
+    - echo "$PLUGIN_NAME $PLUGIN_VERSION"
+  script:
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
+       --upload-file $BUILD_DIR/$PLUGIN_FILE \
+       "$PACKAGE_REGISTRY_URL/$PLUGIN_NAME/$PLUGIN_VERSION/$PLUGIN_FILE"
+    - |
+      echo "Uploaded: $CI_COMMIT_TAG.zip"
+
+release:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  rules:
+    - if: $CI_COMMIT_TAG
+  script:
+    - echo "Running release job"
+  release:
+    name: $PLUGIN_NAME $PLUGIN_VERSION
+    description: Release for $PLUGIN_NAME $PLUGIN_VERSION
+    tag_name: $CI_COMMIT_TAG
+    ref: $CI_COMMIT_TAG
+    assets:
+      links:
+        - name: $CI_COMMIT_TAG.zip
+          filepath: /plugin
+          url: "$PACKAGE_REGISTRY_URL/$PLUGIN_FILE"
