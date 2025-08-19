@@ -12,17 +12,19 @@ local screen2 = 2
 function ScreenSwap(displayHandle, args)
 
     -- Parse arguments: "/Screen X /Screen Y /Buttons Z"
-    _, j, arg1 = string.find(args, "/Screen (%d+)")
-    if arg1 ~= nil then
-        screen1 = tonumber(arg1)
-    end
-    _, j, arg2 = string.find(args, "/Screen (%d+)", j) -- start where we left off
-    if arg2 ~= nil then
-        screen2 = tonumber(arg2)
-    end
-    _, _, arg3 = string.find(args, "/Buttons (%d+)")
-    if arg3 ~= nil then
-        numButtons = tonumber(arg3)
+    if args ~= nil then
+        _, j, arg1 = string.find(args, "/Screen (%d+)")
+        if arg1 ~= nil then
+            screen1 = tonumber(arg1)
+        end
+        _, j, arg2 = string.find(args, "/Screen (%d+)", j) -- start where we left off
+        if arg2 ~= nil then
+            screen2 = tonumber(arg2)
+        end
+        _, _, arg3 = string.find(args, "/Buttons (%d+)")
+        if arg3 ~= nil then
+            numButtons = tonumber(arg3)
+        end
     end
 
     Printf("Swapping ViewButtons between Displays %d <-> %d", screen1, screen2)
