@@ -26,6 +26,8 @@ A collection of GrandMA3 plugins and experiments
 
 ### [ScreenSwap]()
 
+::include{file=./ScreenSwap/PLUGIN.md}
+
 
 
 

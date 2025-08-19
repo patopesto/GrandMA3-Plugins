@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GMA3 DataVersion="2.0.2.0">
+  <UserPlugin Name="ScreenSwap" Author="Alban Moreon" Version="1.0.0.0" Path="ScreenSwap">
+    <ComponentLua Name="ScreenSwap" FileName="ScreenSwap.lua"/>
+  </UserPlugin>
+</GMA3>

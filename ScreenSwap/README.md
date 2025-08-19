@@ -1,11 +1,18 @@
-# GrandMA3 ScreenSwap plugin
+# ScreenSwap
 
-A Lua plugin to swap all the `ViewButtons` between 2 screens
+::include{file=PLUGIN.md}
+
 
 ## Usage
 
-Arguments: The 2 screens to swap (Default: 1 and 2)
+Arguments:
+
+- `/Screen X`: First screen (optional, default: 1)
+- `/Screen Y`: Second screen (optional, default: 2)
+- `/Buttons Z`: The number of `ViewButtons` to swap (optional, default: 10)
+
+Example:
 
 ```lua
-Plugin "SwapScreens" "/Screen 1 /Screen 2"
+Plugin "ScreenSwap" "/Screen 1 /Screen 2 /Buttons 10"
 ```
