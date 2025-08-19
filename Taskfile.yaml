@@ -40,7 +40,9 @@ tasks:
   package:version:
     internal: true
     dir: '{{.PLUGIN}}'
-    cmd: xml edit --inplace --update GMA3/UserPlugin/@Version -v {{.VERSION}} {{.PLUGIN}}.xml
+    cmds: 
+      - xml edit --inplace --update GMA3/UserPlugin/@Version -v {{.VERSION}} {{.PLUGIN}}.xml
+      - xml edit --inplace --update GMA3/UserPlugin/@Path -v {{.PLUGIN}}_v{{.VERSION}} {{.PLUGIN}}.xml
     preconditions:
       - which xml
 
