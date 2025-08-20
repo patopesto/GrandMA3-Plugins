@@ -11,7 +11,7 @@ Swap `ViewButtons` between 2 screens.
 - Access views stored on unavailable displays in your showfile. ex: Showfile was built on Full Console but currently running on Lite Console and missing Display 3.
 
 
-![ScreenSwap Demo Video](../assets/ScreenSwap_demo.gif "ScreenSwap Demo")
+![ScreenSwap Demo Video](../assets/ScreenSwap_demo.gif)
 
 
 ## Usage
