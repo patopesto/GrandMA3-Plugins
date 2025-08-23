@@ -66,15 +66,13 @@ function ScreenSwap(displayHandle, args)
         elseif i1 <= #viewbuttons1 and viewbuttons1[i1].index == i then
             src  = "ViewButton " .. screen1 .. "." .. viewbuttons1[i1].index
             dest = "ViewButton " .. screen2 .. "." .. viewbuttons1[i1].index
-            Cmd("Copy " .. src .. " at " .. dest)
-            Cmd("Delete " .. src)
+            Cmd("Move " .. src .. " at " .. dest)
             i1 = i1 + 1
         -- No viewbutton on screen 1
         elseif i2 <= #viewbuttons2 and viewbuttons2[i2].index == i then
             src  = "ViewButton " .. screen2 .. "." .. viewbuttons2[i2].index
             dest = "ViewButton " .. screen1 .. "." .. viewbuttons2[i2].index
-            Cmd("Copy " .. src .. " at " .. dest)
-            Cmd("Delete " .. src)
+            Cmd("Move " .. src .. " at " .. dest)
             i2 = i2 + 1
         end
 
