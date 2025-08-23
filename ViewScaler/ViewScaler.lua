@@ -45,6 +45,12 @@ function ViewScaler(displayHandle, args)
 
     -- Get the index of the display in focus.
     local displayIndex = Obj.Index(GetFocusDisplay())
+    if args ~= nil then
+        _, _, screen = string.find(args, "/Screen (%d+)")
+        if screen ~= nil then
+            displayIndex = tonumber(screen)
+        end
+    end
     DebugF("Display: %d", displayIndex)
 
     local display = GetDisplayByIndex(displayIndex)
