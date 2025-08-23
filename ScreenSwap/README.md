@@ -18,12 +18,28 @@ Swap `ViewButtons` between 2 screens.
 
 Arguments:
 
-- `/Screen X`: First screen (optional, default: 1)
-- `/Screen Y`: Second screen (optional, default: 2)
-- `/Buttons Z`: The number of `ViewButtons` to swap (optional, default: 10)
+- `/Screen A`: First screen (optional, default: 1)
+- `/Screen B`: Second screen (optional, default: 2)
+- `/Buttons X Thru Y`: The range of `ViewButtons` to swap (optional, default: "1 Thru 10")
 
-Example:
+Examples:
+
+- Swap buttons 1 to 10 between screen 1 and 2:
 
 ```lua
-Plugin "ScreenSwap" "/Screen 1 /Screen 2 /Buttons 10"
+Plugin "ScreenSwap"
+-- OR
+Plugin "ScreenSwap" "/Screen 1 /Screen 2 /Buttons 1 Thru 10"
+```
+
+- Swap all buttons starting from #5 onwards between display 1 and 2:
+
+```lua
+Plugin "ScreenSwap" "/Buttons 5 Thru"
+```
+
+- Swap all visible buttons (1 to 10 on Lite/Full console) between display 2 and 3
+
+```lua
+Plugin "ScreenSwap" "/Screen 2 /Screen 3"
 ```

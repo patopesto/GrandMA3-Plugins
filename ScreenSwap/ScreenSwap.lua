@@ -3,13 +3,13 @@ local componentName = select(2, ...)
 local signalTable = select(3, ...)
 local myHandle = select(4, ...)
 
--- Parameters
-local numButtons = 10
-local screen1 = 1
-local screen2 = 2
-
 
 function ScreenSwap(displayHandle, args)
+
+    -- Parameters
+    local screen1 = 1
+    local screen2 = 2
+    local buttons = "1 Thru 10"
 
     -- Parse arguments: "/Screen X /Screen Y /Buttons Z"
     if args ~= nil then
@@ -21,17 +21,17 @@ function ScreenSwap(displayHandle, args)
         if arg2 ~= nil then
             screen2 = tonumber(arg2)
         end
-        _, _, arg3 = string.find(args, "/Buttons (%d+)")
+        _, _, arg3 = string.find(args, "/Buttons ([%a%d%s]+)")
         if arg3 ~= nil then
-            numButtons = tonumber(arg3)
+            buttons = arg3
         end
     end
 
-    Printf("Swapping ViewButtons between Displays %d <-> %d", screen1, screen2)
+    Printf("Swapping ViewButtons %s between Displays %d <-> %d", buttons, screen1, screen2)
 
     -- Get assigned viewbuttons for each screen
-    viewbuttons1 = ObjectList("ViewButton " .. screen1 ..".1 thru " .. numButtons)
-    viewbuttons2 = ObjectList("ViewButton " .. screen2 ..".1 thru " .. numButtons)
+    viewbuttons1 = ObjectList("ViewButton " .. screen1 .."." .. buttons)
+    viewbuttons2 = ObjectList("ViewButton " .. screen2 .."." .. buttons)
 
     -- Echo("Screen %d", screen1)
     -- for i = 1, #viewbuttons1 do
@@ -42,9 +42,17 @@ function ScreenSwap(displayHandle, args)
     --     Echo("\t ViewButton %d.%d: '%s' -> %s", screen2, viewbuttons2[i].index, viewbuttons2[i].name, tostring(viewbuttons2[i].object))
     -- end
 
+    local startIndex = 1
+    _, j, match = string.find(buttons, "(%d+) thru %d*")
+    if match ~= nil then
+        startIndex = tonumber(match)
+    end
+
+    local endIndex = math.max(viewbuttons1[#viewbuttons1].index, viewbuttons2[#viewbuttons2].index)
+
     i1 = 1
     i2 = 1
-    for i = 1, numButtons do
+    for i = startIndex, endIndex do
         -- Both screens have a view button assigned
         if i1 <= #viewbuttons1 and viewbuttons1[i1].index == i and i2 <= #viewbuttons2 and viewbuttons2[i2].index == i then
             -- swapping the object assigned to each viewbutton
