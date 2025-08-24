@@ -1,10 +1,11 @@
-local pluginName = select(1, ...)
-local componentName = select(2, ...)
-local signalTable = select(3, ...)
-local myHandle = select(4, ...)
+local plugin_name = select(1, ...)
+local component_name = select(2, ...)
+local signal_table = select(3, ...)
+local handle = select(4, ...)
 
 
-function ScreenSwap(displayHandle, args)
+-- Main Function
+function ScreenSwap(display_handle, args)
 
     -- Parameters
     local screen1 = 1
@@ -42,21 +43,21 @@ function ScreenSwap(displayHandle, args)
     --     Echo("\t ViewButton %d.%d: '%s' -> %s", screen2, viewbuttons2[i].index, viewbuttons2[i].name, tostring(viewbuttons2[i].object))
     -- end
 
-    local startIndex = 1
+    local start_index = 1
     _, j, match = string.find(buttons, "(%d+) thru %d*")
     if match ~= nil then
-        startIndex = tonumber(match)
+        start_index = tonumber(match)
     end
 
-    local endIndex = math.max(viewbuttons1[#viewbuttons1].index, viewbuttons2[#viewbuttons2].index)
+    local end_index = math.max(viewbuttons1[#viewbuttons1].index, viewbuttons2[#viewbuttons2].index)
 
-    i1 = 1
-    i2 = 1
-    for i = startIndex, endIndex do
+    local i1 = 1
+    local i2 = 1
+    for i = start_index, end_index do
         -- Both screens have a view button assigned
         if i1 <= #viewbuttons1 and viewbuttons1[i1].index == i and i2 <= #viewbuttons2 and viewbuttons2[i2].index == i then
             -- swapping the object assigned to each viewbutton
-            temp = viewbuttons1[i1].object
+            local temp = viewbuttons1[i1].object
             viewbuttons1[i1].object = viewbuttons2[i2].object
             viewbuttons2[i2].object = temp
 
@@ -64,14 +65,14 @@ function ScreenSwap(displayHandle, args)
             i2 = i2 + 1
         -- No viewbutton on screen 2
         elseif i1 <= #viewbuttons1 and viewbuttons1[i1].index == i then
-            src  = "ViewButton " .. screen1 .. "." .. viewbuttons1[i1].index
-            dest = "ViewButton " .. screen2 .. "." .. viewbuttons1[i1].index
+            local src  = "ViewButton " .. screen1 .. "." .. viewbuttons1[i1].index
+            local dest = "ViewButton " .. screen2 .. "." .. viewbuttons1[i1].index
             Cmd("Move " .. src .. " at " .. dest)
             i1 = i1 + 1
         -- No viewbutton on screen 1
         elseif i2 <= #viewbuttons2 and viewbuttons2[i2].index == i then
-            src  = "ViewButton " .. screen2 .. "." .. viewbuttons2[i2].index
-            dest = "ViewButton " .. screen1 .. "." .. viewbuttons2[i2].index
+            local src  = "ViewButton " .. screen2 .. "." .. viewbuttons2[i2].index
+            local dest = "ViewButton " .. screen1 .. "." .. viewbuttons2[i2].index
             Cmd("Move " .. src .. " at " .. dest)
             i2 = i2 + 1
         end
@@ -80,6 +81,7 @@ function ScreenSwap(displayHandle, args)
 
 end
 
--- Run the plugin.
+
+-- Run the plugin
 return ScreenSwap
     
