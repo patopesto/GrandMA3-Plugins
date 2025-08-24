@@ -3,5 +3,5 @@ build
 *.zip
 
 # WIP
-examples
+examples/stringSend.lua
 MA Tools
