@@ -2,7 +2,24 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { ParseJson } from './grandma3-json-parser.js'
+import { RateLimiter } from "limiter";
+import { Agent } from "undici";
+
+
+// Rate-limit requests to MA's docs to 10 requests every 100ms
+const limiter = new RateLimiter({ tokensPerInterval: 10, interval: 100 });
+
+async function check_docs_exists(url) {
+  try {
+    const remaining_tokens = await limiter.removeTokens(1);
+    const res = await fetch(url, { method: 'HEAD', dispatcher: new Agent({ connectTimeout: 30 * 1000 }) });
+    return res.ok;
+  } catch (e) {
+    console.log('Error for fetch: ', url, e)
+    return false;
+  }
+}
+
 
 
 // Split a comma‑separated list ignoring commas that are inside {} or ().
@@ -90,7 +107,7 @@ function parse_arguments(str) {
     }
 
     const [type, name] = split_arg_type(arg);
-    
+
     if (type !== "nothing") {
       args.push({
         raw: part,
@@ -113,10 +130,11 @@ function parse_function(name, data) {
     signature: signature,
     arguments: parse_arguments(args.trim()),
     returns: parse_arguments(returns.trim()),
+    docs: false,
   }
 
-  console.log(name);
-  console.log(parsed);
+  // console.log(name);
+  // console.log(parsed);
   return parsed;
 }
 
@@ -169,10 +187,12 @@ function function_to_markdown(name, func, markdown) {
 
 
 // Main 
-export function GenerateFunctionsMarkDown(version = "v2.0") {
+export async function GenerateFunctionsMarkDown(version = "v2.0", check_docs = true) {
   const DIR = `src/content/docs/grandma3/${version}`;
   const input_file = path.resolve(DIR, 'data', 'grandMA3_lua_functions.json');
   const output_file = path.resolve(DIR, 'api.mdx');
+  const version_short = version.replace(/^v/, '');
+  const DOCS_BASE_URL = `https://help.malighting.com/grandMA3/${version_short}/HTML/`;
 
   if (!fs.existsSync(input_file)) {
     console.error(`❌ Input file not found: ${input_file}`);
@@ -194,6 +214,25 @@ export function GenerateFunctionsMarkDown(version = "v2.0") {
     for (const [name, data] of Object.entries(funcs[section])) {
       functions[section][name] = parse_function(name, data);
     }
+  }
+
+  const make_doc_url = (section, func) => {
+    const section_slug = section.toLowerCase().replace('-', '').split(' ')[0]; // "Object-Free API" becomes "objectfree"
+    const url = `${DOCS_BASE_URL}lua_${section_slug}_${func.toLowerCase().trim()}.html`;
+    return url;
+  }
+
+  // Check if official docs for each function exists.
+  if (check_docs) {
+    const doc_checks = Object.keys(functions).map(async (section) => {
+      await Promise.all(Object.keys(functions[section]).map(async (fn_name) => {
+        const url = make_doc_url(section, fn_name);
+        const exists = await check_docs_exists(url);
+
+        functions[section][fn_name].docs = exists ? url : false;
+      }));
+    });
+    await Promise.all(doc_checks);
   }
 
   let markdown = `
