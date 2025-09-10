@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GMA3 DataVersion="2.0.2.0">
+  <UserPlugin Name="APIDump" Author="Alban Moreon" Version="0.0.0.0" Path="APIDump">
+    <ComponentLua Name="APIDump" FileName="APIDump.lua"/>
+  </UserPlugin>
+</GMA3>

@@ -1,0 +1,32 @@
+# https://taskfile.dev/
+
+version: '3'
+
+tasks:
+  dev:
+    desc: "Setup environment"
+    cmd: npm install
+
+  run:
+    desc: "Run development server"
+    cmd: npm run dev
+
+  build:
+    desc: "Build production website"
+    cmd: npm run build
+
+  preview:
+    desc: "Preview production website"
+    cmd: npm run preview
+
+  copy:
+    desc: "Copy the exported files in the proper location [VERSION=required]"
+    requires:
+        vars: [VERSION]
+    cmds:
+      - cp -v ~/MALightingTechnology/gma3_library/*.json src/content/docs/grandma3/{{.VERSION}}/data/
+      - cp -v ~/MALightingTechnology/gma3_library/*.txt src/content/docs/grandma3/{{.VERSION}}/data/
+
+  generate:
+    desc: "Generate the grandMA3 reference docs from the dumped .json files"
+    cmd: npm run generate

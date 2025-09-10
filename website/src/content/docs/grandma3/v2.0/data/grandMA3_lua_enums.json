@@ -1,0 +1,5651 @@
+
+{
+	WindowCategories:{
+		Data Pool:3
+		All:6
+		Viewers and Editors:9
+		Programmer Tools:8
+		Info and System:12
+		Show Data:0
+		Dynamic:4
+		Sheets:7
+		Bars:10
+		User Profile:2
+		Playback:11
+		Feature Group:5
+		Media:1
+	}
+	AutoCreateSource:{
+		ChannelSets:1
+		FixtureType Presets:0
+	}
+	EncoderFunction:{
+		PresetTiming3:4
+		MIB:6
+		Cmd:8
+		PresetTiming2:3
+		CueTiming:1
+		Data Edit:9
+		PresetTiming1:2
+		CueSettings:0
+	}
+	MeasurementInterpolation:{
+		Step:1
+		Log:2
+		Linear:0
+	}
+	RDMParameterType:{
+		Fixture:2
+		FixtureType:1
+		Rdm:0
+	}
+	SCVirtualKeyCode:{
+		UNKNOWN:0
+		NUM6:73
+		FREEZE:12
+		ENCODER_INSIDE5:97
+		OFF:47
+		DOWN:8
+		ENCODER_OUTSIDE3:94
+		HIGHLIGHT:10
+		X13:31
+		MOVE:48
+		NUM8:75
+		ESC:88
+		ONPC_SCREEN7:132
+		SOLO:11
+		STOMP:52
+		SET:5
+		PREV_STEP:118
+		FIXTURE:56
+		PAGE_DOWN:17
+		PHASER:141
+		GROUP:58
+		VIEW:139
+		RESET_MATRICKS:126
+		NEXT_Y:120
+		ENCODER_INSIDE4:95
+		NUM7:74
+		PREV:3
+		RECORD:114
+		ENCODER_INSIDE3:93
+		ENCODER_OUTSIDE1:90
+		LIST:18
+		NEXT:4
+		PRESET:61
+		ONPC_SCREEN4:129
+		DEF_PAUSE:38
+		XKEYS:15
+		GOBACKFAST:44
+		AT:82
+		X7:25
+		DMX:140
+		ASSIGN:63
+		UP:6
+		DOT:80
+		X12:30
+		DOUBLE_SPEED:113
+		SEQUENCE:59
+		ONPC_SCREEN5:130
+		CHANNEL:57
+		NEXT_X:119
+		TOP:107
+		X8:26
+		X10:28
+		ENCODER_INSIDE2:91
+		X15:33
+		EXECUTOR:144
+		HALF_SPEED:112
+		EXEC:35
+		PLEASE:84
+		PAUSE:40
+		KILL:103
+		MACRO:142
+		NUM2:69
+		ASTERISK:133
+		LOWLIGHT:109
+		BLIND:14
+		ONPC_SCREEN3:128
+		ENCODER_OUTSIDE5:98
+		IF:81
+		X5:23
+		X11:29
+		STORE:66
+		LEARN:43
+		X14:32
+		MINUS:79
+		DELETE:50
+		TIMECODE:138
+		:0
+		DEF_GOBACK:39
+		LOAD:108
+		COPY:49
+		PREV_Z:117
+		CLONE:135
+		X6:24
+		X9:27
+		X4:22
+		SELFIX:7
+		NUM9:76
+		UPDATE:65
+		SELECT:54
+		X2:20
+		TOGGLE_MATRICKS:125
+		PREV_X:115
+		X1:19
+		USER2:100
+		STEP:123
+		SWAP:111
+		USER1:99
+		HELP:53
+		GO:42
+		PAGE_UP:16
+		GOSTEP:110
+		RATE1:104
+		MA1:1
+		THRU:78
+		ENCODER_INSIDE1:89
+		GOFAST:45
+		PLUS:77
+		ENCODER_OUTSIDE4:96
+		FADER:36
+		FLASH:101
+		LAYOUT:137
+		EDIT:62
+		ENCODER_OUTSIDE2:92
+		PAGE:143
+		ALIGN:51
+		NUM4:71
+		NUM5:72
+		MA2:2
+		FULL:85
+		TEMP:105
+		NEXT_Z:121
+		CLEAR:87
+		NUM3:70
+		TOGGLE:106
+		TIME:64
+		ONPC_SCREEN6:131
+		ON:46
+		GOBACK:41
+		DEF_GO:37
+		BLACK:102
+		CUE:60
+		OOPS:86
+		UNDO:86
+		NUM1:68
+		GOTO:55
+		NEXT_STEP:122
+		X16:34
+		PREV_Y:116
+		FIX:134
+		ONPC_SCREEN2:127
+		GRID:136
+		MENU:9
+		PREVIEW:13
+		X3:21
+		SLASH:83
+		NUM0:67
+		TOGGLE_STEP:124
+	}
+	SelectedSelection:{
+		1:0
+		2:1
+	}
+	ColorSource:{
+		Blue:2
+		Const:5
+		Intensity:4
+		Green:1
+		Alpha:3
+		Red:0
+	}
+	UndefinedMax:{
+		-:32767
+	}
+	ActiveDisplay:{
+		Sound:1
+		Wave:0
+		Beat:2
+	}
+	TotalReferenceUpdateStatus:{
+		UpdatePresets:4
+		GeneratorCleanup:6
+		RecursionTest:7
+		TrackingConversion:5
+		CollectCues:2
+		Idle:0
+		CollectPresets:1
+		SortHandles:3
+	}
+	OnOffStatus:{
+		Toggle:2
+		Off:0
+		Undefined:3
+		On:1
+	}
+	TimerMode:{
+		Stopwatch:1
+		Countdown:0
+	}
+	AssignmentGrandMasterButtonFunctions:{
+		Flash:1
+		:0
+		Temp:13
+		Black:2
+		Empty:0
+	}
+	DriveType:{
+		RemoteDrive:4
+		Internal:1
+		Removeable:2
+		OldVersion:3
+		Invalid:0
+	}
+	ProgUpdateCueMode:{
+		LastGo:2
+		Selected:1
+		All:0
+	}
+	DebugUsbDataSection:{
+		Smpte:4
+		DmxIn:1
+		RTC:18
+		All:0
+		Button:8
+		Digital:7
+		Led:11
+		Analog:6
+		Ups:5
+		Protocol:13
+		DmxOut:2
+		Text:17
+		Software:15
+		Encoder:9
+		Capabilities:19
+		Sync:12
+		Midi:3
+		Fader:10
+		HeartBeat:14
+		NotifierLayer:16
+	}
+	StoreDisplayNumber:{
+		7:6
+		6:5
+		5:4
+		4:3
+		3:2
+		2:1
+		1:0
+	}
+	RealtimeCmdSource:{
+		Local:1
+		Original:0
+		Network:2
+	}
+	PluginPlacement:{
+		Single:0
+		ForceMulti:2
+		Multi:1
+	}
+	StoremodeRadio:{
+		Overwrite:1
+		Remove:3
+		Merge:2
+		Release:4
+		Ask:-1
+	}
+	CuePartAppearance:{
+		Num+Name:2
+		All:3
+		Off:0
+		Number:1
+	}
+	FixtureTypeXYZStatus:{
+		Yes:2
+		Partial:1
+		No:0
+	}
+	KnobUIStyle:{
+		Rotate:0
+		Drag:1
+	}
+	BeamModePatch:{
+		Line:1
+		Simple:2
+	}
+	CameraType:{
+		Back/Left:4
+		Front:1
+		Back:5
+		Front/Left:2
+		Front/Right:8
+		Right:7
+		Top:9
+		Auto:0
+		Back/Right:6
+		Left:3
+	}
+	MatricksBlockNone:{
+		None:0
+		No Block:-1
+	}
+	RDMNotificationThresholdOperator:{
+		Greate:3
+		IsNot:2
+		Less:4
+		Is:1
+		:0
+	}
+	StrictNormalMode:{
+		Strict:1
+		Normal:0
+	}
+	TrackingShield:{
+		DAZ:2
+		DimmerAboveZero:2
+		^0:1
+		DRZ:1
+		>0:2
+		Off:0
+		DimmerRisingFromZero:1
+	}
+	KeyAction:{
+		Press:1
+		Click:5
+		DoublePress:3
+		ReleaseAfterHold:4
+		Hold:2
+		Release:0
+	}
+	CmdEventStatus:{
+		On:1
+		Off:0
+	}
+	FocusPriority:{
+		CanHaveFocus:2
+		InitialFocus:4
+		TabOnly:1
+		Never:0
+		WantsFocus:3
+	}
+	HostOs:{
+		Linux:1
+		Windows:2
+		Mac:3
+		Rtos:4
+		Undefined:0
+	}
+	FixtureAppearanceMode:{
+		Enabled:1
+		Graphic:2
+		None:0
+	}
+	GridTool:{
+		Align:4
+		RemoveGaps:5
+		RemoveOffset:6
+		Linearize:0
+		Multiply:8
+		Divide:9
+		UseMatricksPositions:11
+		Transpose:1
+		MakeSymmetrical:10
+		Newline:7
+		Flip:3
+		Rotate:2
+	}
+	PresetModeDefault:{
+		ForceGlobal:5
+		Universal:3
+		Auto:0
+		Selective:1
+		Global:2
+	}
+	ShaperControlMode:{
+		Ins+Rot:0
+		A+B:1
+	}
+	GrandKnob:{
+		None:-1
+		GrandKnob:100
+	}
+	FixturGraphicSource:{
+		Value:1
+		Auto:0
+		DMX:3
+		Output:2
+	}
+	TimeDisplayFormat:{
+		251h23m45:1
+		10d11h23m45:0
+		251:23:45:3
+		10.11:23:45:2
+	}
+	FocusReason:{
+		ViewChanged:2
+		ViewChangedLimited:1
+		UserClick:3
+		None:0
+		Lua:6
+		UserKeyTab:5
+		UserClickTitle:4
+		RestoreAfterModal:7
+	}
+	MacroLineWait:{
+		Follow:0
+		Go:-1
+	}
+	SplitterH_LeftRight:{
+		Right:0
+		Left:1
+	}
+	ShadowMode:{
+		Enabled:1
+		Disabled:0
+	}
+	CountdownAlertType:{
+		Command &
+Pop-Up:3
+		Command:2
+		Pop-Up:1
+		None:0
+	}
+	RDMProductCategory:{
+		PRODUCT_CATEGORY_DATA_DISTRIBUTION:2049
+		PRODUCT_CATEGORY__MANUFACTORER_SPECIFIC:32768
+		PRODUCT_CATEGORY_AV_OTHER:2559
+		PRODUCT_CATEGORY_DATA_OTHER:2303
+		PRODUCT_CATEGORY_TEST_EQUIPMENT_OTHER:29183
+		PRODUCT_CATEGORY_CONTROL:28672
+		PRODUCT_CATEGORY_TEST_EQUIPMENT:28929
+		PRODUCT_CATEGORY_FIXTURE_MOVING_YOKE:258
+		PRODUCT_CATEGORY_FIXTURE_ACCESSORY_MIRROR:515
+		PRODUCT_CATEGORY_SCENIC_OTHER:2047
+		PRODUCT_CATEGORY_SCENIC_DRIVE:1793
+		PRODUCT_CATEGORY_ATMOSPHERIC_OTHER:1279
+		PRODUCT_CATEGORY_DIMMER_AC_FLUORESCENT:1282
+		PRODUCT_CATEGORY_ATMOSPHERIC:1024
+		PRODUCT_CATEGORY_SCENIC:1792
+		PRODUCT_CATEGORY_PROJECTOR_OTHER:1023
+		PRODUCT_CATEGORY_AV_AUDIO:2305
+		PRODUCT_CATEGORY_FIXTURE_ACCESSORY:512
+		PRODUCT_CATEGORY_FIXTURE_ACCESSORY_EFFECT:516
+		PRODUCT_CATEGORY_PROJECTOR_MOVING_YOKE:770
+		PRODUCT_CATEGORY_MONITOR:2560
+		PRODUCT_CATEGORY_PROJECTOR_MOVING_MIRROR:771
+		PRODUCT_CATEGORY_FIXTURE:256
+		PRODUCT_CATEGORY_AV:2304
+		PRODUCT_CATEGORY_FIXTURE_ACCESSORY_COLOR:513
+		PRODUCT_CATEGORY_ATMOSPHERIC_PYRO:1026
+		PRODUCT_CATEGORY_AV_VIDEO:2306
+		PRODUCT_CATEGORY_DIMMER_AC_OTHER:1286
+		PRODUCT_CATEGORY_CONTROL_CONTROLLER:28673
+		PRODUCT_CATEGORY_FIXTURE_ACCESSORY_BEAM:517
+		PRODUCT_CATEGORY_OTHER:32767
+		PRODUCT_CATEGORY_PROJECTOR_FIXED:769
+		PRODUCT_CATEGORY_PROJECTOR:768
+		PRODUCT_CATEGORY_DATA_CONVERSION:2050
+		PRODUCT_CATEGORY_POWER_SOURCE:1538
+		PRODUCT_CATEGORY_FIXTURE_ACCESSORY_YOKE:514
+		PRODUCT_CATEGORY_CONTROL_OTHER:28927
+		PRODUCT_CATEGORY_DIMMER_DC_LEVEL:1287
+		PRODUCT_CATEGORY_FIXTURE_FIXED:257
+		PRODUCT_CATEGORY_NOT_DECLARED:0
+		PRODUCT_CATEGORY_DIMMER_AC_NONDIM:1284
+		PRODUCT_CATEGORY_DIMMER_AC_ELV:1285
+		PRODUCT_CATEGORY_POWER_CONTROL:1537
+		PRODUCT_CATEGORY_DIMMER_DC_PWM:1288
+		PRODUCT_CATEGORY_POWER:1536
+		PRODUCT_CATEGORY_CONTROL_BACKUPDEVICE:28674
+		PRODUCT_CATEGORY_MONITOR_ACLINEPOWER:2561
+		PRODUCT_CATEGORY_ATMOSPHERIC_EFFECT:1025
+		PRODUCT_CATEGORY_MONITOR_OTHER:2815
+		PRODUCT_CATEGORY_MONITOR_ENVIRONMENTAL:2563
+		PRODUCT_CATEGORY_DATA:2048
+		PRODUCT_CATEGORY_DIMMER_OTHER:1535
+		PRODUCT_CATEGORY_FIXTURE_MOVING_MIRROR:259
+		PRODUCT_CATEGORY_POWER_OTHER:1791
+		PRODUCT_CATEGORY_FIXTURE_ACCESSORY_OTHER:767
+		PRODUCT_CATEGORY_TEST:28928
+		PRODUCT_CATEGORY_MONITOR_DCPOWER:2562
+		PRODUCT_CATEGORY_DIMMER_AC_COLDCATHODE:1283
+		PRODUCT_CATEGORY_DIMMER_AC_INCANDESCENT:1281
+		PRODUCT_CATEGORY_DIMMER:1280
+		PRODUCT_CATEGORY_DIMMER_CS_LED:1289
+		PRODUCT_CATEGORY_FIXTURE_OTHER:511
+	}
+	RowFilter:{
+		Selection:3
+		All:0
+		Used:1
+		Unused:2
+	}
+	ConnectionLimitOnPC:{
+		5:5
+		4:4
+		3:3
+		2:2
+		1:1
+	}
+	SectionCount:{
+		3:3
+		2:2
+		1:1
+		Auto:0
+	}
+	TimecodeSlot:{
+		TCSlot 2:1
+		TCSlot 6:5
+		TCSlot 5:4
+		<Selected>:255
+		TCSlot 4:3
+		TCSlot 3:2
+		TCSlot 1:0
+		TCSlot 7:6
+		TCSlot 8:7
+	}
+	AssignmentTimecodeFunctions:{
+		Go-:4
+		Goto:16
+		Speed1:12
+		Black:2
+		Kill:29
+		Temp:13
+		HalfSpeed:26
+		>>>:5
+		Off:8
+		Call:106
+		Toggle:14
+		Empty:0
+		:0
+		On:7
+		LearnSpeed:10
+		Swap:25
+		SelectFixtures:116
+		Select:24
+		Rate1:11
+		Flash:1
+		Pause:18
+		DoubleSpeed:27
+		Top:15
+		<<<:6
+		Go+:3
+		Load:17
+	}
+	PresetIsPlayback:{
+		On:1
+		Auto:0
+	}
+	PathContentType:{
+		User:1
+		System:0
+		Mixed:2
+	}
+	KeyFunctions:{
+		Goto:16
+		GoBack:4
+		Speed1:12
+		Black:2
+		Time:22
+		Kill:29
+		Lowlight:20
+		Highlight:19
+		LearnCueTiming:9
+		Swap:25
+		Off:8
+		Pause:18
+		Temp:13
+		Toggle:14
+		Learn:10
+		Select:24
+		On:7
+		HS:26
+		Step:23
+		Rate1:11
+		Record:28
+		DS:27
+		Flash:1
+		Go:3
+		GoFast:5
+		Top:15
+		GoBackFast:6
+		Solo:21
+		Load:17
+	}
+	PresetDisplayMode:{
+		Text and
+Symbol:0
+		Auto:3
+		Symbol:2
+		Text:1
+	}
+	WeekDayShort:{
+		Mon:0
+		Sat:5
+		Wed:2
+		Fri:4
+		Thu:3
+		Sun:6
+		Tue:1
+	}
+	SMPTEMode:{
+		Out:1
+		In:0
+	}
+	RDMPidValueDisplayInvert:{
+		Off:0
+		Auto:2
+		On:1
+	}
+	DynamicPresetPool:{
+		Dynamic:-1
+	}
+	AssignmentFaderFunctionsNone:{
+		:0
+		Empty:0
+	}
+	FixtureTypeSourceImport:{
+		User:3
+		Shares:4
+		grandMA3:0
+		grandMA2:1
+	}
+	ExecEditorTab:{
+		Handle:1
+		Edit
+Setting:2
+		Object:0
+		Edit:3
+		LastTab:4
+	}
+	ButtonHeight:{
+		20:20
+		30:30
+		40:40
+		Default:50
+		35:35
+		25:25
+		55:55
+		45:45
+		50:50
+		60:60
+	}
+	CuePartTextures:{
+		IconCooking:0
+	}
+	AssignmentQuickeyFunctions:{
+		Go+:3
+		:0
+		Empty:0
+	}
+	DmxSheetSettingsLevelbar:{
+		Background:1
+		Off:0
+		Bar:2
+	}
+	EncoderResolutionType:{
+		Fast:1
+		Slow:0
+	}
+	AssignmentFaderFunctions:{
+		XB:35
+		:0
+		Rate:37
+		X:33
+		Master:32
+		Speed:38
+		XA:34
+		Time:42
+		Temp:36
+		Empty:0
+	}
+	CueAssert:{
+		Assert:1
+		X-Assert:2
+		:0
+		None:0
+	}
+	MibMode:{
+		Late:5
+		Defined:2
+		Default:0
+		None:1
+		Early:3
+		UponGo:4
+	}
+	VerifyResult:{
+		NotVerified:0
+		Valid:1
+		Expired:2
+	}
+	BodyQuality3dPatch:{
+		Standard:4
+		Ultra:6
+		Box:1
+	}
+	HostSubType:{
+		Wing-onPCXT:95
+		IONodeDIN:76
+		Medium:40
+		onPC2Port:60
+		LightCRV:23
+		Wing-onPCFader:96
+		Node2Port:63
+		Node4PortDIN:68
+		onPC2PortDIN:70
+		Node2PortDIN:67
+		Node8Port:65
+		Node4Port:64
+		MediaServer:79
+		CompactXT:25
+		Visualizer:74
+		onPCRackUnit:97
+		MA-Net3-duct:77
+		onPC4Port:61
+		onPC8Port:62
+		onPC4PortDIN:71
+		onPC8PortDIN:72
+		XLarge:42
+		FullSize:20
+		Wing-Extension:94
+		Wing-onPC:93
+		Wing-MFX:91
+		Node8PortDIN:69
+		FullSizeCRV:21
+		Node2PortWM:66
+		Light:22
+		Large:41
+		Compact:24
+		MAkerStation:98
+		Wing-MFE:92
+		RPU:26
+		IONode:75
+		Vis+Dongle:73
+		Undefined:0
+		Recovery:1
+		TrackingServer:78
+		Wing-MM:90
+	}
+	ALSideSizeSpecial:{
+		Hybrid:-1
+		Auto:0
+	}
+	DmxState:{
+		RDM:5
+		Off:0
+		In:2
+		Out:1
+	}
+	DmxPrio:{
+		Prog:112
+		Highest:64
+		HTP:80
+		Lowest:0
+		LTP:32
+		Low:16
+		Swap:96
+		Super:128
+		High:48
+	}
+	MessageCategory:{
+		Power:3
+		Manet:4
+		USB:5
+		Chat:6
+		System:1
+		Cmdline:2
+		Undefined:0
+	}
+	CookMode:{
+		MergeLowPriority:2
+		Remove:4
+		Abort:0
+		Overwrite:1
+		Merge:3
+		Ask:-1
+	}
+	SpecialValueTypes:{
+		Sound:0
+		Generators:1
+		Specials:2
+		None:255
+	}
+	IgnoreFT:{
+		Ignore FT:-2
+		:-1
+		Follow FT:-1
+	}
+	ChannelSetReadoutMode:{
+		Value:0
+		Value+Name:1
+		Name:2
+	}
+	DisplayNone:{
+		None:-1
+	}
+	ChannelFilterMode:{
+		Active For Selected:2
+		All:5
+		Active:4
+		All For Selected:3
+	}
+	CopyCueOnlyPopup:{
+		Tracking:0
+		Cue Only:2
+		Dimmer
+Cue Only:4
+	}
+	RecordGo:{
+		as Goto (Status):1
+		as Go:0
+	}
+	DispView:{
+		Details:8
+		Timing:1
+		Realtime:0
+		CPU:2
+		Memory:3
+		Sys Temp:6
+		Network:10
+		GPU Temp:5
+		Fan:7
+		HDD:9
+		CPU Temp:4
+	}
+	CueTrigger:{
+		Sound:3
+		Follow:2
+		BPM:4
+		Go:0
+		Time:1
+	}
+	ColorMixMode:{
+		Fixture Type:0
+		Rec.709:1
+		Standard:3
+		Rec.2020:2
+	}
+	GelSortType:{
+		None:0
+		Key:2
+		Name:1
+	}
+	RDMSlotId:{
+		SD_COLOR_SUB_CYAN:514
+		SD_COLOR_ADD_RED:517
+		SD_COLOR_SUB_YELLOW:515
+		SD_COLOR_ADD_WHITE:530
+		SD_INTENSITY_MASTER:2
+		SD_COLOR_SATURATION:535
+		SD_HEATER_CONTROL:1287
+		SD_SHUTTER_ROTATE:1031
+		SD_COLOR_ADD_GREEN:518
+		SD_STATIC_GOBO_WHEEL:769
+		SD_FROST:1027
+		SD_EFFECTS_WHEEL:772
+		SD_COLOR_SUB_UV:533
+		SD_COLOR_ADD_AMBER:529
+		SD_COLOR_CORRECTION:520
+		SD_ZOOM:1029
+		SD_MACRO:1284
+		SD_FRAMING_SHUTTER:1030
+		SD_COLOR_SCROLL:521
+		SD_COLOR_WHEEL:513
+		SD_INTENSITY:1
+		SD_BEAM_SIZE_IRIS:1025
+		SD_TILT:258
+		SD_BARN_DOOR:1033
+		SD_PRISM_WHEEL:771
+		SD_LAMP_CONTROL:1281
+		SD_FAN_CONTROL:1286
+		SD_COLOR_SEMAPHORE:528
+		SD_FIXTURE_SPEED:1283
+		SD_COLOR_ADD_BLUE:519
+		SD_COLOR_HUE:534
+		SD_POWER_CONTROL:1285
+		SD_PAN:257
+		SD_FIXTURE_CONTROL:1282
+		SD_ROTO_GOBO_WHEEL:770
+		SD_STROBE:1028
+		SD_FOUNTAIN_CONTROL:1288
+		SD_UNDEFINED:65535
+		SD_DOUSER:1032
+		SD_COLOR_ADD_COOL_WHITE:532
+		SD_EDGE:1026
+		SD_COLOR_ADD_WARM_WHITE:531
+		SD_COLOR_SUB_MAGENTA:516
+	}
+	CameraMode:{
+		2D_Back:5
+		2D_Top:3
+		3D:0
+		2D_Front:1
+		2D_Left:2
+		2D_Right:4
+	}
+	WingType:{
+		grandMA3 Compact:4
+		grandMA3 Fader Module Crossfader (MFX):1
+		grandMA3 Master Module (MM):0
+		grandMA3 TEST:3
+		grandMA3 Fader Module Encoder (MFE):2
+	}
+	AssignmentButtonFunctionsGroup:{
+		Flash:1
+		:0
+		Temp:13
+		SelectFixtures:116
+		Black:2
+		Empty:0
+	}
+	CuePartMode:{
+		Default:-1
+	}
+	RDMSensorType:{
+		SENS_MASS:6
+		SENS_COUNTER_16BIT:32
+		SENS_DENSITY:10
+		SENS_FREQUENCY:3
+		SENS_LUMINOUS_FLUX:23
+		SENS_POSITION_X:18
+		SENS_CONTACTS:28
+		SENS_AREA:8
+		SENS_ILLUMINANCE:24
+		SENS_CHROMINANCE_GREEN:26
+		SENS_HUMIDITY:31
+		SENS_RESISTANCE:4
+		SENS_OTHER:127
+		SENS_POWER:5
+		SENS_ANGULAR_VELOCITY:21
+		SENS_ANGLE:17
+		SENS_LENGTH:7
+		SENS_CHROMINANCE_BLUE:27
+		SENS_CHROMINANCE_RED:25
+		SENS_PRESSURE:15
+		SENS_VOLTAGE:1
+		SENS_TEMPERATURE:0
+		SENS_VOLUME:9
+		SENS_TIME:16
+		SENS_POSITION_Y:19
+		SENS_LUMINOUS_INTENSITY:22
+		SENS_VELOCITY:11
+		SENS_MS:128
+		SENS_POSITION_Z:20
+		SENS_CURRENT:2
+		SENS_ENERGY:14
+		SENS_ITEMS:30
+		SENS_MEMORY:29
+		SENS_ACCELERATION:12
+		SENS_FORCE:13
+	}
+	ColorDisplayMode:{
+		CMY:2
+		RGB:1
+	}
+	ReductionPolicy:{
+		EqualFirst:4
+		PreferLast:2
+		None:0
+		PreferFirst:1
+		EqualLast:5
+		Equal:3
+	}
+	EncoderBarContext:{
+		Default:0
+		Overlay:2
+		Window:1
+	}
+	ScrollReason:{
+		User:1
+		Automatic:0
+	}
+	LayoutLassoSelectionFilter:{
+		Fixtures:1
+		All:0
+		Others:2
+	}
+	FixtureGraphicMode:{
+		Simple:2
+		Gobo:3
+		Flip:1
+		None:0
+	}
+	FaderFunctions:{
+		XFadeB:35
+		Rate:37
+		Time:42
+		Master:32
+		Lowlight:40
+		XFade:33
+		XFadeA:34
+		Temp:36
+		Speed:38
+		Solo:41
+		Highlight:39
+	}
+	ValueReadoutModeAuto:{
+		Natural:9
+		Physical:2
+		Auto:-1
+		Percent:0
+		Decimal24:5
+		Hex8:6
+		PercentFine:1
+		Hex24:8
+		Decimal8:3
+		Hex16:7
+		Decimal16:4
+	}
+	CueOnlyPopup:{
+		Tracking:0
+		Cue Only:1
+		Dimmer
+Cue Only:3
+	}
+	CountdownAlertRange:{
+		All Stations:1
+		Local:0
+	}
+	CueOnly:{
+		On:1
+		DimmerOnlyDefaultNew:4
+		DimmerOnly:3
+		OnDefaultNew:2
+		Off:0
+	}
+	ProgLayerAuto:{
+		Absolute:10
+		DMX:19
+		Fade:2
+		Accel:12
+		Decel:13
+		Speed:4
+		CueAbs:17
+		CueRel:18
+		Auto:-1
+		Output:20
+		Phase:6
+		SpeedMaster:5
+		Relative:11
+		GridPos:7
+		Delay:3
+		Width:15
+		Transition:14
+		Measure:8
+	}
+	CueOperationMode:{
+		Tracking:1
+		Cue Only:0
+	}
+	WhiteListPacketNamesBefore_1_7:{
+		npu_compat:1166
+		xport_compat:1982
+		xport:1982
+		gma2_ffmpeg:1166
+		pu:1166
+		gma2_compat:1166
+		viz_key:1182
+		web_daemon:1166
+		onpc_windows:1166
+		wing:1982
+		console:1166
+		utils:1166
+		system_x64:1166
+		luatest:1166
+		third_party:1166
+		onpc_mac:1166
+		updater_arm:1982
+		resource:1982
+		manuals:1166
+		unittest:1166
+		updater_x64:1166
+		bootloader_x64:1166
+		system_arm:1982
+		resource_usb:1182
+		gdtf_mvr_addon:1166
+		gma2_resource:1166
+		demoshows:1166
+		worldserver:1166
+		gma2_manuals:1166
+		fixtures:1166
+		ndi_addon:1166
+	}
+	ChannelFrequency:{
+		30:1
+		Slow1:3
+		15:2
+		60:0
+		Slow3:5
+		Slow2:4
+	}
+	OutputDelay:{
+		Max:30
+		None:0
+	}
+	BodyQuality3d:{
+		Box:1
+		Ultra:6
+		None:0
+		Simple:3
+		High:5
+		Standard:4
+		Low:2
+	}
+	FlipOption:{
+		Y:1
+		X:0
+	}
+	CalculatorMode:{
+		Hex:2
+		fps24:17
+		Double:0
+		JointTime:16
+		Decimal:1
+		Hex8:12
+		fps25:18
+		SpeedBPM:7
+		fps60:20
+		Seconds:5
+		Dec24:11
+		fps30:19
+		Dec16:10
+		SpeedSec:8
+		Dec8:9
+		Hex24:14
+		Percent:15
+		Hex16:13
+		SpeedHz:6
+	}
+	GenVirtualDimmer:{
+		Yes:1
+		No:0
+	}
+	WeekOfMonth:{
+		First Week:0
+		Third Week:2
+		Sixth Week:5
+		Fifth Week:4
+		Fourth Week:3
+		Second Week:1
+	}
+	TestBlockType:{
+		lua:3
+		root:1
+		rt:2
+		ui:0
+	}
+	InputControl3d:{
+		Camera Orbit:2
+		Select:0
+		Camera Zoom:3
+		Camera Set Pivot:6
+		Follow:1
+		Camera Move:5
+		Focus:7
+		Camera Pivot:4
+	}
+	AssignmentButtonFunctionsWorld:{
+		Flash:1
+		:0
+		Temp:13
+		SelectFixtures:116
+		Black:2
+		Empty:0
+	}
+	DmxTesterMode:{
+		All:0
+		Patched:1
+		Unpatched:2
+	}
+	AssignmentFaderFunctionsMasterOnly:{
+		Master:32
+		:0
+		Empty:0
+	}
+	FixtureSheetHeaderType:{
+		SelectedInverted:2
+		Selected:1
+		:0
+		PartlySelected:3
+	}
+	SpeedScale:{
+		Mul8:3
+		Mul16:4
+		Mul64:6
+		Div2:-1
+		Div64:-6
+		Mul32:5
+		Div32:-5
+		Div16:-4
+		Div256:-8
+		Mul2:1
+		Mul128:7
+		Div8:-3
+		Div128:-7
+		One:0
+		Mul256:8
+		Div4:-2
+		Mul4:2
+	}
+	UsbProductID:{
+		grandMA3 Fader Wing:46541
+		grandMA3 Fader Module Encoder (MFE):46533
+		grandMA3 Control Module:46530
+		grandMA3 xPort node:46537
+		MA NPU 3 DMX Module:46529
+		grandMA3 MA-Key (Blank):46352
+		grandMA3 DMX Module:46528
+		grandMA3 Compact XT:46535
+		grandMA3 Compact:46534
+		grandMA3 DIN-Rail node:46538
+		grandMA3 CommandWing:46536
+		grandMA3 IO Node:46539
+		grandMA3 Master Module (MM):46531
+		grandMA3 IO Node DIN Rail:46540
+		grandMA3 MA-Key (Viz-Key):46353
+		grandMA3 Fader Module Crossfader (MFX):46532
+	}
+	SheetMode:{
+		Dimmer+:2
+		Fixture:0
+		Channel:1
+		Sheet/Filter:3
+	}
+	PresetValuesMode:{
+		Default:1
+		Highlight:2
+		Lowlight:3
+		Normal:0
+	}
+	TimecodeSingleUserRecord:{
+		Single User:1
+		All Users:0
+	}
+	AssignmentProgExecButtonFunctions:{
+		Toggle:14
+		:0
+		On:7
+		Off:8
+		Empty:0
+	}
+	DatumMode:{
+		Full:0
+		Date:1
+		Time:2
+	}
+	AgendaMode:{
+		Absolute:0
+		Dawn:1
+		Sunset:3
+		Sunrise:2
+		Dusk:4
+	}
+	LicenseRequest:{
+		Off:2
+		Auto:0
+		On:1
+	}
+	WhiteListPacketNames:{
+		npu_compat:1166
+		gma2_ffmpeg:1166
+		onpc_windows:1158
+		wing:1974
+		system_x64:1166
+		updater_arm:1974
+		manuals:1158
+		web_daemon:1158
+		viz_key:1174
+		worldserver:1158
+		unittest:1166
+		xport:1974
+		fixtures:1158
+		pu:1166
+		console:1158
+		utils:1166
+		force_arm:1974
+		luatest:1166
+		xport_compat:1974
+		ndi_addon:1166
+		resource:1982
+		demoshows:1158
+		force_all:1982
+		updater_x64:1166
+		bootloader_x64:1166
+		onpc_mac:1158
+		system_arm:1974
+		gma2_compat:1158
+		gma2_resource:1166
+		force_x64:1166
+		resource_usb:1174
+		gma2_manuals:1158
+		third_party:1166
+		gdtf_mvr_addon:1158
+	}
+	UseLeftOrRight:{
+		Use My:0
+		Use Other:1
+	}
+	SelectionViewFontSize:{
+		10:2
+		12:3
+		28:8
+		Default:1
+		14:4
+		24:7
+		16:5
+		32:9
+		18:6
+		Automatic:0
+	}
+	DisplayScales:{
+		1.5x:25165824
+		2.5x:41943040
+		1x:16777216
+		0.5x:8388608
+		1.25x:20971520
+		2x:33554432
+		1.75x:29360128
+		0.75x:12582912
+	}
+	PoolSizeFactor:{
+		Half:0
+		Normal:1
+		Double:2
+	}
+	Index:{
+		Illegal:-1
+	}
+	EncoderRing:{
+		Both:2
+		Outer:1
+		Inner:0
+	}
+	ExitCode:{
+		AutoPluginFailed:3
+		Normal:0
+		Restart:1
+		GeneralError:5
+		Reboot:2
+		PowerDown:4
+	}
+	PropertyRadioButtonListEnabledItems:{
+		AllEnabled:-1
+	}
+	GridCursorMovement:{
+		Newline:2
+		Append X:1
+		None:0
+	}
+	FaderEnable:{
+		Toggle:0
+		AlwaysOn:1
+		Disabled:2
+	}
+	WhiteListPacketIDs:{
+		third_party:1166
+		grandMA3_pu:1166
+		grandMA3_resource:1982
+		grandMA3_fixtures:1158
+		onpc_windows:1158
+		grandMA3_manuals:1158
+		system_x64:1166
+		onpc_mac:1158
+		grandMA2_manuals:1158
+		grandMA3_unittest:1166
+		web_daemon:1158
+		grandMA3_net_duct_mac:1174
+		demoshows:1158
+		worldserver:1158
+		grandMA2_resource:1166
+		system_arm:1974
+		grandMA3_wing:1974
+		grandMA3_res_usb:1174
+		grandMA3_net_duct_windows:1174
+		utils:1166
+		grandMA3_xport:1974
+		luatest:1166
+		grandMA2_npu_compat:1166
+		grandMA2_compat:1158
+		grandMA3_viz_key_windows:1174
+		grandMA2_xport_compat:1974
+		updater_windows:1158
+		force_all:1982
+		updater_x64:1166
+		bootloader_x64:1166
+		updater_arm:1974
+		gdtf_mvr_addon:1158
+		updater_mac:1158
+		grandMA3_console:1158
+		force_x64:1166
+		grandMA2_ffmpeg:1166
+		grandMA3_viz_key_mac:1174
+		force_arm:1974
+		ndi_addon:1166
+	}
+	PhaserAbsRelMode:{
+		Absolute:1
+		Abs+Rel:3
+		Relative:2
+	}
+	GoboMode:{
+		Animated:2
+		Enabled:1
+		Disabled:0
+	}
+	ValueRole:{
+		Default:0
+		DisplayShort:2
+		Display:1
+	}
+	EncoderLink:{
+		Single:0
+		AtFilter:2
+		Feature:1
+	}
+	AttriebuteEncoderResolution:{
+		Coarse:16777216
+		Fine:1677721
+		Native:-16777216
+		Increment:167772
+	}
+	FixedColumns:{
+		Auto:-1
+	}
+	RDMLampOnMode:{
+		LAMP_ON_MODE_AFTER_CAL:3
+		LAMP_ON_MODE_DMX:1
+		LAMP_ON_MODE_ON:2
+		LAMP_ON_MODE_OFF:0
+		Manufacturer-Specific Modes:128
+	}
+	AssignmentButtonFunctions:{
+		Go-:4
+		Goto:16
+		Speed1:12
+		Black:2
+		Kill:29
+		Temp:13
+		HalfSpeed:26
+		>>>:5
+		Off:8
+		Call:106
+		Toggle:14
+		Empty:0
+		:0
+		On:7
+		LearnSpeed:10
+		Swap:25
+		SelectFixtures:116
+		Select:24
+		Rate1:11
+		Flash:1
+		Pause:18
+		DoubleSpeed:27
+		Top:15
+		<<<:6
+		Go+:3
+		Load:17
+	}
+	TimerTriggerToken:{
+		Toggle:1
+		Flash:2
+		Go+:0
+		Temp:3
+	}
+	FixtureSheetFixedColumnType:{
+		SelectedEdge:6
+		InvalidGridPosition:4
+		MainMultiPatchSelected:5
+		SelectedInverted:2
+		Selected:1
+		:0
+		PartlySelected:3
+	}
+	SelectionMode:{
+		Linearize:1
+		2D Grid:0
+	}
+	AssignmentPlaybackMasterButtonFunctions:{
+		Toggle:14
+		:0
+		On:7
+		Black:2
+		Kill:29
+		Flash:1
+		Temp:13
+		Off:8
+		Go+:3
+		Empty:0
+	}
+	AssignmentButtonFunctionsSoundFile:{
+		Toggle:14
+		:0
+		On:7
+		Pause:18
+		Off:8
+		Go+:3
+		Empty:0
+	}
+	ColumnOrder:{
+		Left Right:0
+		Right Left:1
+	}
+	EC_AutoGrid:{
+		Manual:0
+		Auto:1
+	}
+	DmxSheetSettingsAddressMode:{
+		Absolute:1
+		Univ.addr:0
+	}
+	ProgValueSource:{
+		PlaybackOtherTracked:16
+		PlaybackOtherMIBFade:21
+		PlaybackOtherBlocked:17
+		SelectedPlaybackDownGoing:26
+		ActiveIntegrated:6
+		ProgValue:1
+		ProgOther:7
+		PlaybackBlocked:10
+		SelectedPlaybackUpGoing:25
+		SelectedPlaybackTracked:23
+		ProgPreset:2
+		PlaybackOtherDownGoing:19
+		PlaybackMIB:13
+		PlaybackOther:15
+		SelectedPlaybackMIBFade:28
+		SelectedPlaybackMIB:27
+		None:0
+		SelectedPlaybackBlocked:24
+		PlaybackUpGoing:11
+		ActiveValue:4
+		SelectedPlayback:22
+		PlaybackOtherUpGoing:18
+		ProgIntegrated:3
+		PlaybackDownGoing:12
+		PlaybackTracked:9
+		PlaybackMIBFade:14
+		Playback:8
+		ActivePreset:5
+		PlaybackOtherMIB:20
+	}
+	GridContentFilterMode:{
+		Or:1
+		And:0
+	}
+	AutoInterface:{
+		Auto:0
+	}
+	ImageResolution:{
+		128:128
+		64:64
+		256:256
+		Full:0
+		512:512
+	}
+	GridMergeMode:{
+		Append X:1
+		Off:0
+	}
+	AssignmentButtonFunctionsView:{
+		Go+:3
+		:0
+		Empty:0
+	}
+	InfoLinkMode:{
+		CurrentChild:1
+		Object:0
+		NextChild:2
+	}
+	DmxSheetHeaderType:{
+		:0
+	}
+	AttriebuteEncoderResolutionDefault:{
+		Coarse:16777216
+		Default:0
+		Fine:1677721
+		Native:-16777216
+		Increment:167772
+	}
+	SpecialWindowTab:{
+		Color:0
+		Shapers:1
+		None:2
+	}
+	AutoLayoutScrollType:{
+		Auto:2
+		Vertical:0
+		Horizontal:1
+	}
+	GridCursorMovementGroup:{
+		<Linked>:3
+		Newline:2
+		Append X:1
+		None:0
+	}
+	EncoderUIStyle:{
+		Rotate:1
+		Drag:2
+		None:0
+	}
+	FocusSearchPolicy:{
+		Default:0
+		Force:1
+		Suppress:2
+	}
+	AgendaViewMode:{
+		Week:3
+		Day:4
+		Month:2
+		Year:1
+		Sheet:0
+	}
+	ProgrammingLayerGroup:{
+		Phaser:1
+		Values:0
+		Steps:2
+	}
+	DMXBreak:{
+		Overwrite:-1
+	}
+	RDMPowerStateDefines:{
+		POWER_STATE_SHUTDOWN:1
+		POWER_STATE_FULL_OFF:0
+		POWER_STATE_NORMAL:255
+		POWER_STATE_STANDBY:2
+	}
+	TimeDisplayFormatSelected:{
+		251:23:45:4
+		10.11:23:45:3
+		Default:0
+		251h23m45:2
+		10d11h23m45:1
+	}
+	PhysicalUnit:{
+		Frequency:9
+		Angle:7
+		LuminousIntensity:6
+		Mass:3
+		Acceleration:17
+		Energy:13
+		Temperature:5
+		Area:14
+		Speed:16
+		AngularSpeed:18
+		AngularAccc:19
+		Force:8
+		None:0
+		Current:10
+		Volume:15
+		Power:12
+		Length:2
+		Voltage:11
+		Time:4
+		Percent:1
+		ColorComponent:21
+		WaveLength:20
+	}
+	CueZeroMode:{
+		Off:0
+		Only Used Dimmers:2
+		All Used Attributes:1
+	}
+	ShowPathType:{
+		Template:57
+		Backup:18
+		Demo:19
+		Show:17
+	}
+	LayoutGridStyle:{
+		Off:0
+		Dots:2
+		Lines:1
+	}
+	SequenceAction:{
+		Toggle:1
+		Temp:4
+		Flash:3
+		Go+:2
+		Select:0
+	}
+	GridSortOrder:{
+		Desc:2
+		Asc:1
+		None:0
+	}
+	ImageBackGroundMode:{
+		Center:4
+		Tile:3
+		Stretch:0
+		Bar:1
+		Crop:2
+	}
+	CueCopyDstCmd:{
+		Keep:0
+		ForceRelease:1
+		ForceDefault:2
+	}
+	TrackpadMode:{
+		Mouse:0
+		Pan/Tilt:1
+	}
+	LayoutOutputSelection:{
+		Value:0
+		DMX:1
+		Output:2
+	}
+	GestureResult:{
+		Ignore:0
+		FinishGesture:5
+		EventProcessed:1
+		MayBeGesture:2
+		CancelGesture:7
+		FinishGesturePassEvent:6
+		TriggerGesturePassEvent:4
+		TriggerGesture:3
+	}
+	PlaybackWindowExecFrom:{
+		01-05:1
+		31-35:7
+		36-40:8
+		06-10:2
+		71-75:15
+		76-80:16
+		26-30:6
+		66-70:14
+		11-15:3
+		None:0
+		21-25:5
+		41-45:9
+		86-90:16
+		81-85:15
+		46-50:10
+		51-55:11
+		56-60:12
+		61-65:13
+		16-20:4
+	}
+	ValueReadoutModeNatural:{
+		Hex16:7
+		Physical:2
+		Decimal16:4
+		Decimal24:5
+		Hex8:6
+		PercentFine:1
+		Hex24:8
+		Percent:0
+		Decimal8:3
+		Natural:9
+	}
+	MibMultiStep:{
+		Paused:1
+		Running:0
+	}
+	AutoSaveMode:{
+		60 Minutes:4
+		15 Minutes:2
+		120 Minutes:5
+		Off:0
+		30 Minutes:3
+		360 Minutes:6
+		5 Minutes:1
+	}
+	AssignmentRateButtonFunctions:{
+		Toggle:14
+		:0
+		On:7
+		Pause:18
+		Black:2
+		Temp:13
+		Highlight:19
+		Flash:1
+		Rate1:11
+		Lowlight:20
+		GoStep:23
+		Off:8
+		Solo:21
+		Empty:0
+	}
+	MatrixWidthAuto:{
+		No Width:-1
+		None:0
+	}
+	SignalOff:{
+		Off:-1
+	}
+	EncoderFactor:{
+		Div25:671088
+		Div2.55:6579300
+		Mul5:83886080
+		Div5:3355443
+		Div2:8388608
+		Mul2.55:42781900
+		Mul2:33554432
+		Mul25:419430400
+		Mul50:838860800
+		Disabled:0
+		One:16777216
+		Div50:335544
+		Div10:1677721
+		Mul10:167772160
+	}
+	PhaserTransformations:{
+		MirrorTimeStart:3
+		MirrorValues:1
+		None:0
+		MirrorTimeMiddle:2
+		SquashToOne:4
+	}
+	FontSizes:{
+		32:32
+		11:11
+		18:18
+		28:28
+		14:14
+		24:24
+		16:16
+		9:9
+		20:20
+	}
+	SequenceCountdown:{
+		All:2
+		Duration:1
+		Off:0
+	}
+	SpecialPurposeFT:{
+		MArker:1
+		BitmapController:2
+		None:0
+	}
+	AssignmentButtonFunctionsMacro:{
+		Go-:4
+		Pause:18
+		:0
+		<<<:6
+		>>>:5
+		Off:8
+		Go+:3
+		Empty:0
+	}
+	Month:{
+		April:3
+		January:0
+		March:2
+		December:11
+		September:8
+		July:6
+		May:4
+		June:5
+		November:10
+		August:7
+		February:1
+		October:9
+	}
+	GestureId:{
+		!Invalid!:32769
+		Click:2
+		Pan:0
+		Swipe:1
+		PanScrollArea:3
+	}
+	TCDuration:{
+		To End:0
+	}
+	TrackingShieldPopup:{
+		Off:0
+		^0:1
+		>0:2
+	}
+	None:{
+		:-1
+		None:-1
+	}
+	MIDIMode:{
+		In:0
+		Through:2
+		Out:1
+	}
+	PlaybackMaster:{
+		Playback20:19
+		Playback34:33
+		Playback35:34
+		Playback3:2
+		Playback22:21
+		Playback39:38
+		Playback31:30
+		Playback29:28
+		Playback18:17
+		Playback16:15
+		Playback46:45
+		Playback26:25
+		Playback19:18
+		Playback23:22
+		Playback10:9
+		Playback14:13
+		Playback48:47
+		Playback30:29
+		Playback42:41
+		Playback9:8
+		Playback28:27
+		Playback8:7
+		Playback41:40
+		Playback13:12
+		Playback21:20
+		Playback7:6
+		Playback6:5
+		Playback50:49
+		Playback1:0
+		Playback5:4
+		Playback17:16
+		Playback2:1
+		Playback47:46
+		Playback24:23
+		Playback40:39
+		Playback37:36
+		Playback45:44
+		Playback44:43
+		None:255
+		Playback43:42
+		Playback12:11
+		Playback25:24
+		Playback38:37
+		Playback36:35
+		Playback11:10
+		Playback33:32
+		Playback32:31
+		Playback49:48
+		Playback4:3
+		Playback15:14
+		Playback27:26
+	}
+	LayoutType:{
+		Line:0
+		Grid:1
+		Camera:3
+		Circle:2
+	}
+	BloomIntensity3d:{
+		On:1
+		Off:0
+	}
+	ReleaseType:{
+		Release:2
+		Alpha:0
+		Beta:1
+	}
+	ProgLayer:{
+		Absolute:10
+		Transition:14
+		Fade:2
+		Accel:12
+		Decel:13
+		Speed:4
+		CueAbs:17
+		CueRel:18
+		Output:20
+		Phase:6
+		SpeedMaster:5
+		Relative:11
+		GridPos:7
+		Delay:3
+		Width:15
+		Measure:8
+		DMX:19
+	}
+	PatchType:{
+		Coarse:1
+		Ultra:3
+		:0
+		Fine:2
+	}
+	Fade:{
+		None:-1
+	}
+	PresetReadoutMode:{
+		ID:3
+		Value:1
+		ID+Name:4
+		Name+Value:2
+		ID+Name+Value:5
+		Name:0
+	}
+	UndefinedMin:{
+		-:-32768
+	}
+	GeneratorLimits:{
+		14d:0
+	}
+	CueCopyDst:{
+		Retain:0
+		Replace with
+Default:2
+		Replace with
+Release:1
+	}
+	CueCopyDstMode:{
+		Merge:1
+		Overwrite:0
+	}
+	TotalUpdateType:{
+		References:2
+		OnlyNames:1
+		Content:3
+		None:0
+	}
+	MatricksGroupNone:{
+		None:0
+		No Group:-1
+	}
+	RestartOption:{
+		Reset:1
+		Continue:0
+	}
+	SignalSlot:{
+		Slot 2:1
+		Slot 7:6
+		Slot 1:0
+		Slot 8:7
+		Slot 3:2
+		Slot 4:3
+		Off:-1
+		Slot 5:4
+		Slot 6:5
+	}
+	UndefinedAnchors:{
+		Undefined:-1
+	}
+	LayoutElementAlignmentH:{
+		Center:0
+		Left:1
+		OutsideLeft:3
+		Right:2
+		OutsideRight:4
+	}
+	BackdropPatchType:{
+		Nine:0
+		ThreeVertical:2
+		ThreeHorizontal:3
+		Frame:1
+	}
+	TransitionMode:{
+		Slow:2
+		Sinus:1
+		Fast:3
+		Linear:0
+	}
+	ArrangementMarcType:{
+		Small:0
+		Dynamic:1
+	}
+	ContentSheetCueMode:{
+		Previous Cue:1
+		Current Cue:0
+		Next Cue:2
+		Manual:3
+	}
+	RDMCommandClass:{
+		SET:48
+		SET_RESP:49
+		DISCOVER:16
+		DISCOVER_RESP:17
+		GET_RESP:33
+		GET:32
+	}
+	ValueNone:{
+		None:2147483647
+	}
+	Roles:{
+		Display:1
+		Default:0
+		ObjectNoOnly:8
+		DisplayShort:2
+		Edit:4
+	}
+	ImageStoreSource:{
+		ScreenShot:0
+		NDI:1
+	}
+	DisplayTypePreference:{
+		Small:3
+		Long:2
+		LongOrSmall:6
+		BigOrLong:4
+		BigOrSmall:5
+		Big:1
+		BigLongSmall:7
+		Any:0
+	}
+	PhaserLineHeight:{
+		Auto:50
+	}
+	RDMSensorUnitPrefix:{
+		PREFIX_ZETTA:25
+		PREFIX_HECTO:18
+		PREFIX_PICO:6
+		PREFIX_KILO:19
+		PREFIX_MICRO:4
+		PREFIX_MILLI:3
+		PREFIX_NONE:0
+		PREFIX_DECA:17
+		PREFIX_MEGA:20
+		PREFIX_DECI:1
+		PREFIX_GIGA:21
+		PREFIX_ZEPTO:9
+		PREFIX_YOTTA:26
+		PREFIX_ATTO:8
+		PREFIX_YOCTO:10
+		PREFIX_TERRA:22
+		PREFIX_FEMPTO:7
+		PREFIX_CENTI:2
+		PREFIX_NANO:5
+		PREFIX_PETA:23
+		PREFIX_EXA:24
+	}
+	FixtureIdEnum:{
+		None:0
+	}
+	ExecDisplayMode:{
+		Both:2
+		Appearance
+only:1
+		Data only:0
+	}
+	ColorDisplayModeAuto:{
+		Auto:0
+		CMY:2
+		RGB:1
+	}
+	MultiLedBeamMode:{
+		Single Beam
+Dynamic Gobo:2
+		Separated
+Beams:0
+		Single Beam
+Mean Color:1
+	}
+	PhaserEncoderFunction:{
+		Move & Size:0
+	}
+	SelectionAlignment:{
+		Center:2
+		Left:1
+		Right:3
+		None:0
+	}
+	FilterAction:{
+		Call:1
+		Select:0
+	}
+	SplitterV_TopBottom:{
+		Bottom:0
+		Top:1
+	}
+	AssignmentButtonFunctionsScreenConfig:{
+		Call:106
+		:0
+		Empty:0
+	}
+	DeskLightChannel:{
+		ScreenExternal:10
+		LedOther:6
+		ScreenBig:7
+		LedKeyboard:5
+		DeskLights:1
+		LedFader:3
+		LedExec:4
+		LedEncoder:2
+		ScreenSmall:9
+		ScreenLetter:8
+	}
+	LayoutFitType:{
+		Both:2
+		Elements:0
+		Canvas:1
+	}
+	PhaseValueNone:{
+		360°:16777216
+		None:2147483647
+		180°:8388608
+		90°:4194304
+		270°:12582912
+	}
+	FixtureTypeSource:{
+		User:3
+		grandMA3:0
+		GDTF:2
+		Shares:4
+		grandMA2:1
+		In current show:5
+	}
+	TCViewMode:{
+		Both:2
+		Timeline:1
+		Text:0
+	}
+	MatricksShiftNone:{
+		None:0
+		No Shift:32768
+	}
+	DMXMergeMode:{
+		Prio:1
+		LowTP:3
+		HTP:2
+		Off:0
+	}
+	PrettyRDMSensorUnitPrefix:{
+		G:21
+		f:7
+		E:24
+		d:1
+		k:19
+		h:18
+		n:5
+		m:3
+		micro:4
+		da:17
+		P:23
+		:0
+		T:22
+		Z:25
+		Y:26
+		z:9
+		y:10
+		c:2
+		p:6
+		a:8
+		M:20
+	}
+	EC_NoGrid:{
+		:134217727
+		None:134217727
+	}
+	AlignmentH:{
+		Center:0
+		Left:1
+		Right:2
+	}
+	PresetLinkMode:{
+		Both:2
+		Referenced:0
+		Integrated:1
+		None:-1
+	}
+	VideoFileSource:{
+		File:0
+		NDI:1
+	}
+	ExtraStatusInfo:{
+		Join:1
+		:0
+		Create:2
+	}
+	MatricksInvertStyle:{
+		Tilt:1
+		P+T:2
+		Pan:0
+		All:3
+	}
+	DmxSheetSettingsShowField:{
+		Attribute:0
+		Id:1
+		Value:2
+	}
+	TimecodeTool:{
+		Delete:3
+		Select:1
+		Operate:0
+		Resize:5
+		Add:2
+		Move:4
+	}
+	ConnectionLimitConsole:{
+		1:1
+		2:2
+	}
+	VirtualKeyExecutionType:{
+		Background:3
+		ClearImmediate:2
+		Immediate:1
+		Normal:0
+		Release:4
+	}
+	ShowCreatorObjectType:{
+		Images:10
+		Worlds:30
+		Views:8
+		Videos:14
+		Users:6
+		Sequences:27
+		Encoder Bars:2
+		Timers:29
+		Meshes:11
+		Symbols:13
+		Gels:3
+		Bitmaps:16
+		Data Pools:15
+		Timecodes:28
+		UserProfiles:7
+		Pages:24
+		Gobos:9
+		Plugins:25
+		Generators:19
+		Filters:18
+		Executor Configurations:17
+		Render Qualities:4
+		Scribbles:5
+		Layouts:21
+		Macros:22
+		Appearances:0
+		Sounds:12
+		Groups:20
+		Cameras:1
+		Presets:26
+		MAtricks:23
+	}
+	DmxTesterAddressMode:{
+		Abs:1
+		Uni:0
+	}
+	FontSizeType:{
+		Pixel:1
+		Point:0
+	}
+	HostStatus:{
+		Startup:1
+		IdleMaster:5
+		Standalone:2
+		ErrorShutdown:8
+		LicenceInvalid:10
+		Undefined:0
+		UpdateMode:9
+		GlobalMaster:6
+		Connected:3
+		LocalMaster:4
+		NormalShutdown:7
+	}
+	TimecodeSelectionTarget:{
+		Events:0
+		TimeRanges:1
+	}
+	GenerateParmeters:{
+		DimmerIncrement:0
+		GelList:4
+		AmountSaturation:2
+		SortColor:3
+		AmountHue:1
+	}
+	TransitionType:{
+		Slow:1
+		Swing:7
+		Fast:3
+		Linear:0
+		Swing+:8
+		Slow+:2
+		Fast+:4
+		Swing-:6
+		SCurve:5
+	}
+	HostType:{
+		PluginSmall:8
+		Extension:9
+		Plugin:7
+		Undefined:0
+		UpdateMode:10
+		Switch:6
+		NetworkNode:4
+		onPC:2
+		PU:3
+		Console:1
+		InternalWing:5
+	}
+	EncoderLinkPhaser:{
+		Single:0
+		AtFilter:2
+		Feature:1
+	}
+	TrackEditApplyFor:{
+		Selected Part(s):0
+		All Parts in sel. Cue(s):1
+		All Cues/Parts:2
+	}
+	ExecConfigType:{
+		View:2
+		World:3
+		Preset:5
+		Macro:1
+		Timer:10
+		PlaybackMaster:13
+		SpeedMaster:12
+		Master:11
+		User:7
+		Sequence:0
+		Sound:8
+		Plugin:6
+		Group:4
+		ScreenConfig:9
+	}
+	AssignmentTimerFunctions:{
+		Toggle:14
+		:0
+		Pause:18
+		Black:2
+		Temp:13
+		Flash:1
+		Top:15
+		Off:8
+		Go+:3
+		Empty:0
+	}
+	PathType:{
+		ImageLibrary:34
+		VersionDir:4
+		InvalidCrashLogs:16
+		UserImageLibrary:61
+		UpdateDir:6
+		TemplateShowfiles:57
+		UserMacros:99
+		SymbolImageLibrary:33
+		GrandMA2Library:48
+		ExternalRoot:1
+		MADir:3
+		Keyboards:50
+		CustomPluginLibrary:96
+		Shaders:24
+		ShadersDG:25
+		UserStages:112
+		KeyboardShortcuts:51
+		UserKeyboardShortcuts:89
+		RenderQuality:32
+		WebResource:21
+		UserColorThemes:94
+		AgendaLibrary:37
+		Resource:20
+		VizLibrary:53
+		UserLayouts:97
+		VideoLibrary:35
+		UserBitmaps:109
+		Temp:12
+		UserWorlds:104
+		UserViews:84
+		UserVideoLibrary:60
+		GoboImageLibrary:28
+		Software:52
+		UserInOut:66
+		MatricksLibrary:43
+		Library:56
+		Backupfiles:18
+		UserGobos:77
+		UserTimecodes:107
+		UserSoundLibrary:59
+		UserSymbols:62
+		Fonts:27
+		DemoShowfiles:19
+		Textures:26
+		UserMatricks:100
+		WebDaemon:7
+		Config:10
+		MaterialLibrary:31
+		PresetLibrary:44
+		AppearanceLibrary:64
+		UserCameras:86
+		ViewButtonLibrary:85
+		UserOutputConfig:73
+		UserAgendas:92
+		UserUsers:82
+		UserRemotesMIDI:72
+		UserRemotesDMX:71
+		UserRemotesDC:70
+		CrashLog:14
+		UserMeshes:78
+		UserDeviceConfig:74
+		InstallationPackages:5
+		QuickeyLibrary:42
+		UserPatch:111
+		UserMvr:81
+		UserProfiles:83
+		UserMeshImages:79
+		UserMedia:58
+		MacroLibrary:41
+		UserFixtureTypeResources:76
+		UserScreenConfigurations:87
+		DmxCurvesLibrary:55
+		UserRenderQuality:88
+		SACN:68
+		UserGroups:102
+		UserCertificates:93
+		AddonLibrary:38
+		MenuLibrary:39
+		UserFixtures:75
+		Undo:13
+		UserDmxCurves:113
+		UserMaterials:80
+		GoboImageCache:29
+		UserExecutors:106
+		UserExecConfigs:98
+		GrandMA3Library:49
+		UserEncoderBars:91
+		UserDataPools:95
+		UserGenerators:110
+		UserGels:90
+		ColorTheme:23
+		UploadedCrashLogs:15
+		UserFilters:105
+		Usb:11
+		Data:8
+		GelLibrary:36
+		PluginLibrary:40
+		Shared:9
+		MvrLibrary:54
+		NetworkKeys:65
+		GeneratorsLibrary:45
+		FixtureLibrary:47
+		Mesh:30
+		ExternalPackages:2
+		OSC:67
+		UserPresets:101
+		UserSequences:103
+		ScribbleLibrary:63
+		BinaryDir:0
+		UserTimers:108
+		Showfiles:17
+		ArtNet:69
+		Language:22
+		BitmapsLibrary:46
+	}
+	GridModeAgenda:{
+		Day:2
+		Month:0
+		Week:1
+	}
+	CachedObjectSource:{
+		Showfile:2
+		Library:1
+		Resource:0
+	}
+	TimeCodeSource:{
+		Midi:0
+		Smpte:1
+	}
+	ClipMode:{
+		Wrap:2
+		Clip:1
+		None:0
+	}
+	AxisGroupType:{
+		XY:0
+		YZ:2
+		XZ:1
+	}
+	AssignmentButtonFunctionsPreset:{
+		Speed1:12
+		SelectFixtures:116
+		Kill:29
+		Temp:13
+		HalfSpeed:26
+		>>>:5
+		Off:8
+		Toggle:14
+		:0
+		On:7
+		LearnSpeed:10
+		At:45
+		Swap:25
+		Rate1:11
+		Black:2
+		DoubleSpeed:27
+		Pause:18
+		Flash:1
+		Go+:3
+		Empty:0
+	}
+	SpeedReadoutModeAuto:{
+		BPM:1
+		Auto:-1
+		Hertz:0
+		Seconds:2
+	}
+	PhaserMode1D:{
+		Transition:1
+		Value:0
+	}
+	WingID:{
+		Wing6:6
+		Wing3:3
+		Wing5:5
+		Wing2:2
+		Wing4:4
+		Wing1:1
+	}
+	EncoderLinkResolution:{
+		Single:0
+		FeatureGroup:1
+	}
+	SpecialCycle:{
+		Time:1
+		None:0
+		Channel:2
+		If:3
+	}
+	AttributeMode:{
+		XY:1
+		PanTilt:0
+		YZ:3
+		XZ:2
+	}
+	PropertyRadioButtonListSetType:{
+		Property:2
+		Direct:1
+		Set:0
+	}
+	ScrollParamEntity:{
+		Area:1
+		Item:0
+	}
+	ModalResult:{
+		Cancel:2
+		Ok:1
+		Confirm:3
+		None:0
+	}
+	ProgrammingLayer:{
+		Absolute:10
+		Transition:14
+		Phase:6
+		Accel:12
+		Decel:13
+		Measure:8
+		Delay:3
+		Relative:11
+		SpeedMaster:5
+		Speed:4
+		Width:15
+		GridPos:7
+		Fade:2
+	}
+	InfoAutoListRef:{
+		SelectedMacro:2
+		LastSelectedObject:3
+		SelectedSequence:1
+		None:0
+	}
+	AssignmentButtonFunctionsSequence:{
+		Go-:4
+		Goto:16
+		Speed1:12
+		Black:2
+		Kill:29
+		Temp:13
+		HalfSpeed:26
+		>>>:5
+		Off:8
+		Toggle:14
+		Empty:0
+		:0
+		On:7
+		LearnSpeed:10
+		Swap:25
+		SelectFixtures:116
+		Select:24
+		Rate1:11
+		Flash:1
+		Pause:18
+		DoubleSpeed:27
+		Top:15
+		<<<:6
+		Go+:3
+		Load:17
+	}
+	PlaybackSourceSubTypes:{
+		MIB:5
+		:0
+		UpGoing:3
+		Tracked:1
+		DownGoing:4
+		Blocked:2
+		MIBFade:6
+	}
+	KeyboardModifier:{
+		Shift:340
+		Ctrl:341
+		Alt:342
+		None:-1
+	}
+	RDMPidValueFactoryDefaults:{
+		False:0
+		True:1
+	}
+	BeamMode:{
+		Standard:2
+		No Beam:0
+		High Fancy:4
+		Line:1
+		High:3
+	}
+	MiniFadersMode:{
+		Rotation:3
+		Blades:2
+		Full:1
+		None:0
+	}
+	TimerAction:{
+		Toggle:0
+		Select:1
+	}
+	AutoStomp:{
+		Prio:1
+		Off:0
+		On:2
+	}
+	AssignmentButtonFunctionsUser:{
+		LogIn:70
+		:0
+		Empty:0
+	}
+	XFadeMode:{
+		AB:0
+		Split:1
+	}
+	RotationMode:{
+		Group:1
+		Single:0
+	}
+	DSCPLevel:{
+		Flash:120
+		:0
+		Critical:184
+		Priority:56
+		Immediate:88
+		FlashOverride:152
+	}
+	TimeKeyTarget:{
+		Fixture:1
+		Cue:0
+	}
+	MatricksInvert:{
+		:0
+		On:1
+	}
+	RemoteMidiType:{
+		Note:0
+		NoteAttack:1
+		Control:3
+		NoteAttackDecay:2
+	}
+	PresetFilterMode:{
+		Both:2
+		None:-1
+		Output:1
+		Input:0
+	}
+	TrackLayerAuto:{
+		Absolute:10
+		Transition:14
+		Fade:2
+		Width:15
+		Accel:12
+		Decel:13
+		Measure:8
+		Delay:3
+		SpeedMaster:5
+		Speed:4
+		Relative:11
+		Auto:-1
+		Phase:6
+		GridPos:7
+	}
+	GestureStatus:{
+		Updated:1
+		Finished:3
+		Canceled:4
+		None:0
+		Finishing:2
+	}
+	GeometryType:{
+		Display:10
+		FilterColor:3
+		MediaServerCamera:8
+		FilterBeam:5
+		Beam:2
+		FilterShaper:6
+		MediaServerMaster:9
+		None:0
+		Axis:1
+		MediaServerLayer:7
+		FilterGobo:4
+	}
+	FrameFormatClockSource:{
+		30 fps:30
+		60 fps:60
+		24 fps:24
+		25 fps:25
+		<Clock Source>:0
+		Seconds:100
+	}
+	DisplayType:{
+		Big:0
+		Small:2
+		Long:1
+	}
+	ShaperBarMode:{
+		Frame:1
+		Blades:0
+	}
+	TimecodeSlotShort:{
+		TCSlot 2:1
+		TCSlot 4:3
+		TCSlot 6:5
+		TCSlot 3:2
+		TCSlot 5:4
+		TCSlot 7:6
+		TCSlot 1:0
+		TCSlot 8:7
+	}
+	DmxSheetSettingsSelected:{
+		Selected:-1
+	}
+	AssignmentFaderFunctionsSubTrack:{
+		Master:1
+		Speed:7
+		XA:3
+		XB:4
+		Rate:6
+		X:2
+		Temp:5
+		Time:11
+	}
+	ImageMirror:{
+		Both:3
+		Vertical:2
+		None:0
+		Horizontal:1
+	}
+	ValueReadoutModeDefault:{
+		Decimal16:4
+		Default:-1
+		Physical:2
+		Decimal24:5
+		Hex8:6
+		PercentFine:1
+		Hex24:8
+		Percent:0
+		Hex16:7
+		Decimal8:3
+	}
+	StoreSource:{
+		Programmer:0
+		DMX:2
+		Output:1
+	}
+	RDMSensorUnit:{
+		UNITS_MS:128
+		UNITS_BYTE:28
+		UNITS_LUX:26
+		UNITS_SECOND:21
+		UNITS_IRE:27
+		UNITS_METERS_PER_SECOND_SQUARED:17
+		UNITS_METERS_CUBED:14
+		UNITS_METERS:12
+		UNITS_WATT:10
+		UNITS_CANDELA:24
+		UNITS_LUMEN:25
+		UNITS_VOLTS_DC:2
+		UNITS_JOULE:19
+		UNITS_VOLTS_AC_RMS:4
+		UNITS_VOLTS_AC_PEAK:3
+		UNITS_STERADIAN:23
+		UNITS_METERS_PER_SECOND:16
+		UNITS_OHM:9
+		UNITS_NONE:0
+		UNITS_METERS_SQUARED:13
+		UNITS_NEWTON:18
+		UNITS_CENTIGRADE:1
+		UNITS_PASCAL:20
+		UNITS_AMPERE_DC:5
+		UNITS_HERTZ:8
+		UNITS_AMPERE_AC_RMS:7
+		UNITS_DEGREE:22
+		UNITS_AMPERE_AC_PEAK:6
+		UNITS_KILOGRAMMES_PER_METER_CUBED:15
+		UNITS_KILOGRAM:11
+	}
+	NoName:[]
+	LayoutVisibility:{
+		Hidden:0
+		Visible:1
+	}
+	ShaperViewMode:{
+		Faders:1
+		Graphical:0
+	}
+	ShowUserEncoder:{
+		Default:0
+		Xkeys:2
+		Exec:1
+	}
+	SetupType:{
+		Undefined:0
+		Live:1
+		Edit:2
+	}
+	DMXValueReadoutMode:{
+		Decimal:1
+		Hex:2
+		Percent:0
+	}
+	CueCopySrc:{
+		Status:1
+		Content:0
+		Look:2
+	}
+	EncoderFunctionLayoutView:{
+		Arrangement:1
+		Position:0
+	}
+	SelectedEnvironment:{
+		Preview:1
+		Normal:0
+	}
+	MatricksShuffleNone:{
+		No Shuffle:32768
+		None:0
+	}
+	EventsPlaybackRecord:{
+		All Events:1
+		Manual Events:0
+	}
+	KeyboardCodes:{
+		kpAdd:334
+		RightCtrl:345
+		Minus:45
+		Comma:44
+		F6:295
+		LeftBracket:91
+		3:51
+		2:50
+		1:49
+		0:48
+		F11:300
+		Backslash:92
+		Enter:257
+		F12:301
+		Down:264
+		RightBracket:93
+		Tab:258
+		F7:296
+		CapsLock:280
+		F1:290
+		NumLock:282
+		Equal:61
+		GraveAccent:96
+		Left:263
+		kpSubtract:333
+		kpMultiply:332
+		Home:268
+		kpDecimal:330
+		kpDivide:331
+		End:269
+		Delete:261
+		RightAlt:346
+		World2:162
+		Right:262
+		4:52
+		World1:161
+		Slash:47
+		LeftCtrl:341
+		Semicolon:59
+		Up:265
+		F4:293
+		ScrollLock:281
+		PageUp:266
+		5:53
+		Space:32
+		F8:297
+		W:87
+		V:86
+		U:85
+		T:84
+		RightShift:344
+		Z:90
+		Y:89
+		X:88
+		Q:81
+		PrintScreen:283
+		Period:46
+		Backspace:259
+		LeftShift:340
+		F2:291
+		Apostrophe:39
+		Delta:349
+		G:71
+		F:70
+		E:69
+		D:68
+		K:75
+		J:74
+		I:73
+		H:72
+		O:79
+		N:78
+		M:77
+		F5:294
+		S:83
+		R:82
+		F9:298
+		P:80
+		7:55
+		6:54
+		LeftAlt:342
+		None:-1
+		Pause:284
+		F3:292
+		9:57
+		8:56
+		Escape:256
+		F10:299
+		Insert:260
+		L:76
+		C:67
+		B:66
+		A:65
+		PageDown:267
+	}
+	LinearizeOption:{
+		Numerical:1
+		LeftToRight:2
+		SelectionOrder:0
+		TopToBottom:3
+	}
+	ShuffleMode:{
+		Auto:0
+		Linked:1
+		Unlinked:2
+	}
+	Config:{
+		MaxMultiPatchPerFixture:1024
+		MaxElementsPerLayout:10000
+	}
+	CellGrouping:{
+		SizeDriven:-1
+	}
+	RDMParameterCommand:{
+		CC_GET:1
+		CC_SET:2
+		CC_GET_SET:3
+		None:0
+	}
+	ColorEncoderFunction:{
+		HSB:1
+		RGB:2
+		Auto:0
+		CIE:4
+		CMY:3
+	}
+	GridColumnFilterCollect:{
+		Full:0
+		Condensed:1
+	}
+	GridType:{
+		Fixture:0
+		FixtureType:1
+		FTPreset:4
+		ChannelSet:3
+		FixtureSource:2
+	}
+	SequenceLinkType:{
+		LastGo:2
+		Selected:1
+		Fixed:0
+	}
+	SeqRestartMode:{
+		First Cue:0
+		Current Cue:1
+		Next Cue:2
+	}
+	PhaserSheetMode:{
+		Layer Condensed:1
+		Step:0
+		Layer Expanded:2
+	}
+	MeasurementStatus:{
+		Measuring Fixture:0
+		Dark Calibration Failed:4
+		No Device Found:1
+		Idle:5
+		Dark Calibration Successful:3
+		Device Found:2
+	}
+	MoveValueToPart:{
+		Default:-1
+	}
+	FunctionMode:{
+		WM_Unknown:0
+		WM_Width:4
+		WM_2D:1
+		WM_1D:2
+		WM_Phase:3
+	}
+	TimecodeEncoderFunction:{
+		Edit:0
+	}
+	GlShaderTypes:{
+		TessEval:36487
+		Vertex:35633
+		Geometry:36313
+		TessCtrl:36488
+		Fragment:35632
+	}
+	BlinkingButtonMode:{
+		Exec:1
+		Prog:0
+	}
+	SpecialAttribute:{
+		PanTilt:4
+		ShaperRot:43
+		Color:10
+		CTB:29
+		Blade4A:40
+		IrisPulseOpen:46
+		Zoom:22
+		Focus:21
+		Iris:23
+		NoFeature:1
+		Dimmer:3
+		XYZ_Rot:6
+		XYZ_Pos:5
+		ShutterStrobeRandom:53
+		Blade4B:41
+		Blade2B:35
+		ShutterStrobeRandomPulseOpen:55
+		IrisRandomPulseClose:49
+		GoboPosShake:17
+		Gobo:12
+		Blade1A:31
+		ShutterStrobeRandomPulse:54
+		ShutterStrobePulseClose:52
+		ShutterStrobeRandomPulseClose:56
+		Dummy:2
+		Shutter:25
+		Blade1B:32
+		Blade2A:34
+		HSB:9
+		Video:57
+		ShutterStrobePulse:50
+		ColorRGB:8
+		CIE:27
+		ShutterStrobePulseOpen:51
+		ShutterStrobe:26
+		GoboWheelSpin:13
+		Frost:24
+		PrismPosRotate:20
+		PrismPos:19
+		IrisRandomPulseOpen:48
+		None:0
+		IrisPulseClose:45
+		XYZ_Scale:7
+		IrisStrobeRandom:47
+		IrisStrobe:44
+		GoboPosRotate:16
+		Blade1Rot:33
+		Prism:18
+		GoboSelectShake:14
+		Blade3B:38
+		Blade3Rot:39
+		Blade3A:37
+		Blade2Rot:36
+		GoboPos:15
+		CTO:28
+		ColorWheelSpin:11
+		Blade4Rot:42
+		CTC:30
+	}
+	LayoutSizePolicy:{
+		Stretch:1
+		Content:2
+		Fixed:0
+	}
+	DmxCurveEditTool:{
+		Delete:3
+		MoveArea:0
+		MoveSpline:5
+		MovePoint:4
+		AddAbsolute:2
+		Select:1
+	}
+	GroupMemoryType:{
+		Uncompressed:1
+		Compressed:0
+	}
+	ImageSource:{
+		Images:2
+		Gobos:0
+		Videos:3
+		Symbols:1
+	}
+	EmptyAsZeroFID:{
+		:0
+		None:0
+	}
+	EmptyAsZero:{
+		:0
+	}
+	BuildType:{
+		Debug:1
+		Asan:2
+		Release:0
+	}
+	ShowCreatorType:{
+		Import:4
+		AutoCreate:1
+		AutoStore:0
+		Groups:2
+		Export:5
+		Generate:3
+	}
+	PresetAction:{
+		SelFix/Extract:6
+		Flash:4
+		SelFix/At:0
+		Toggle:3
+		At:1
+		Go+:2
+		Temp:5
+	}
+	ScrollParamValueType:{
+		Absolute:1
+		Relative:0
+	}
+	OopsConfirmation:{
+		Always:2
+		Main:1
+		Never:0
+	}
+	PhaserFields:{
+		AbsPreset:0
+		Delay:3
+		Speed:4
+		Fade:2
+		RelPreset:1
+		Phase:5
+		Measure:7
+		GridPos:6
+	}
+	MasterReaction:{
+		Grand:2
+		Group:1
+		None:0
+	}
+	DMXVirtualResolution:{
+		24 bits:3
+		16 bits:2
+		8 bits:1
+	}
+	FrameFormat:{
+		30 fps:30
+		60 fps:60
+		24 fps:24
+		25 fps:25
+		Seconds:0
+	}
+	LastSelectedTab:{
+		CreateGroups:2
+		AutoStorePresets:5
+		Export:1
+		CreatePresets:3
+		AutoCreatePresets:4
+		Import:0
+	}
+	ShaperEncoderLinkMode:{
+		Parallel:2
+		All:1
+		Mirrored:3
+		None:0
+	}
+	SpecialExecutor:{
+		GrandKnob:4
+		ExecEncoder:29
+		SpeedBtn2:20
+		SpeedBtn1:10
+		ExecBtn2:31
+		ExecBtn1:30
+		XFade1Btn:2
+		ProgEncoder:39
+		RateBtn1:9
+		XFade1:0
+		XFade2Btn:3
+		XFade2:1
+		ExecBtn3:32
+		ProgBtn1:40
+		None:-1
+		ProgBtn2:41
+		RateBtn2:19
+		ProgBtn3:42
+	}
+	TimeNone:{
+		None:-1
+	}
+	WheelMode:{
+		Prop.-:3
+		Prop.+:2
+		Additive:0
+		Incremental:1
+	}
+	MibModeSequence:{
+		UponGo:4
+		Late:5
+		Early:3
+		None:1
+	}
+	StoreMode:{
+		CreateSecondCue:5
+		Remove:3
+		Release:4
+		Abort:0
+		Overwrite:1
+		Merge:2
+		Ask:-1
+	}
+	ShowFileSegmentsMask:{
+		OutputStations:4
+		Nothing:0
+		All:15
+		NoShowData:1
+		LocalSettings:2
+		DmxProtocols:8
+	}
+	SpecialValues:{
+		Hold:1
+		Release:0
+	}
+	TimeDisplayClockFormat:{
+		251:23:45:4
+		<Default>:0
+		10.11:23:45:3
+	}
+	RealtimeCmdType:{
+		Fader:1
+		DCRemote:7
+		Key:0
+		GeneratorControl:6
+		OwO:3
+		PSN:9
+		Midi:8
+		SoundToLight:5
+		Encoder:2
+		TimeCode:4
+	}
+	PhaserBars:{
+		PresetBar:2
+		PhaserBar:1
+		2DBar:0
+	}
+	AssignmentBlindButtonFunctions:{
+		Toggle:14
+		Flash:1
+		:0
+		On:7
+		Temp:13
+		Off:8
+		Black:2
+		Empty:0
+	}
+	ECPlay:{
+		:1
+		on:1
+		true:1
+		false:0
+		No:0
+		Yes:1
+		off:0
+		1:1
+		0:0
+	}
+	SyntaxState:{
+		DoIncrementReset:27
+		DoImport:11
+		DoPaste:20
+		DoShutdown:4
+		DoSetLanguage:7
+		DoPark:35
+		DoAlign:30
+		DoAlignTransition:31
+		DoAssign:29
+		DoDelete:22
+		DoIncrement:26
+		DoFader:2
+		DoChangeDestination:3
+		DoSelectFixtures:25
+		DoNotCare:44
+		DoSaveShowfile:10
+		DoLoadShowfile:9
+		DoSet:28
+		DoValueReadout:32
+		DoExchange:43
+		DoEdit:17
+		DoMove:21
+		SyntaxError:-1
+		DoEditUpdate:16
+		DoExport:12
+		DoFix:38
+		DoOops:15
+		DoSelect:37
+		DoType:39
+		DoGrid:42
+		DoCrashMe:24
+		DoDebug:40
+		DoUpdate:14
+		None:0
+		DoSetDMXReadout:8
+		DoLogin:5
+		DoPatch:34
+		DoList:41
+		DoLogout:6
+		DoStore:13
+		DoCut:18
+		DoCopy:19
+		DoLabel:33
+		DoLocking:36
+		DoExecute:1
+		DoCall:23
+	}
+	ToolbarScrollType:{
+		Vertical:0
+		Horizontal:1
+	}
+	DmxSheetFixedColumnType:{
+		Address2:1
+		Address:0
+	}
+	ColorPickerWindowMode:{
+		Fader:2
+		Book:3
+		CIE:0
+		HSB:1
+	}
+	ColorSpaceMode:{
+		ANSI:2
+		Custom:3
+		ProPhoto:1
+		sRGB:0
+	}
+	ValueLayer:{
+		Absolute:10
+		Delay:3
+		Relative:11
+		Fade:2
+	}
+	GridMatrixRotation:{
+		180:2
+		90:1
+		270:3
+		0:0
+	}
+	Orientation:{
+		Vertical:0
+		Horizontal:1
+	}
+	TimecodeSelectLastEventMode:{
+		Track:1
+		Off:0
+		All:2
+	}
+	Update:{
+		Original Content Only:0
+		Add New Content:1
+	}
+	ImageRotation:{
+		270°:3
+		90°:1
+		180°:2
+		None:0
+	}
+	PlaybackPriority:{
+		Highest:4
+		Super:0
+		LTP:6
+		Low:7
+		Swap:2
+		High:5
+		HTP:3
+		Lowest:8
+	}
+	CopyCueOnly:{
+		On
+(Default New):2
+		On:1
+		DimmerOnly:3
+		Off:0
+		DimmerOnly
+(Default New):4
+	}
+	RDMPidValueOnOff:{
+		On:1
+		Off:0
+	}
+	TrackEditGrouping:{
+		Selection:0
+		Activation Group:2
+		Feature:1
+		All Fixtures:3
+	}
+	LayoutElementAlignmentV:{
+		Above:3
+		Top:1
+		Below:4
+		Bottom:2
+		Center:0
+	}
+	AssignmentButtonFunctionsPlugin:{
+		Go-:4
+		Goto:16
+		Speed1:12
+		Black:2
+		Temp:13
+		HalfSpeed:26
+		>>>:5
+		Off:8
+		Call:106
+		Toggle:14
+		:0
+		On:7
+		LearnSpeed:10
+		Empty:0
+		Swap:25
+		Rate1:11
+		Flash:1
+		Pause:18
+		DoubleSpeed:27
+		Top:15
+		<<<:6
+		Go+:3
+		Load:17
+	}
+	UserRights:{
+		View:5
+		Setup:1
+		None:6
+		Program:2
+		Playback:4
+		Presets:3
+		Admin:0
+	}
+	SortColorBy:{
+		Hue:0
+		Saturation:1
+	}
+	MibEnableMode:{
+		Enabled:0
+		Force UponGo:3
+		Force Late:4
+		Never:1
+		Force Early:2
+	}
+	PresetMode:{
+		Global:2
+		Selective:1
+		Universal:3
+	}
+	LoopMode:{
+		Pause:1
+		Off:2
+		Loop:0
+	}
+	PhaserEditTool:{
+		MoveSpline:5
+		ChangeWidth:9
+		ChangeSpeed:11
+		AddAbsolute:2
+		ChangeSize:6
+		MoveArea:0
+		ChangeRotation:7
+		SelectForm:10
+		MovePoint:4
+		ChangePhase:8
+		AddRelative:3
+		Select:1
+	}
+	Master:{
+		Playback34:75
+		Playback35:76
+		Speed7:32
+		BPM:41
+		GrandSoundOut:23
+		DefaultTemp:4
+		Playback39:80
+		GrandProgramXFade:19
+		Playback1:42
+		DefaultLowlight:8
+		Playback46:87
+		DefaultSolo:9
+		Playback19:60
+		Playback10:51
+		Playback14:55
+		DefaultXFadeB:3
+		Playback30:71
+		Playback28:69
+		Playback41:82
+		GrandSpeed:17
+		GrandMaster:11
+		Playback5:46
+		GrandHighlight:13
+		DefaultXFadeA:2
+		Playback37:78
+		GrandSoundIn:24
+		GrandExecTime:20
+		Playback11:52
+		Playback32:73
+		Playback49:90
+		Playback20:61
+		DefaultXFade:1
+		Playback3:44
+		Playback22:63
+		GrandSolo:15
+		Speed8:33
+		Speed6:31
+		Playback9:50
+		Playback31:72
+		Playback29:70
+		Speed4:29
+		Speed3:28
+		Playback18:59
+		Speed2:27
+		Speed15:40
+		Speed14:39
+		Speed13:38
+		GrandRate:16
+		DefaultTime:10
+		Playback38:79
+		Playback48:89
+		DefaultMaster:0
+		DefaultHighlight:7
+		Speed11:36
+		Speed10:35
+		Speed1:26
+		Speed5:30
+		Playback8:49
+		Playback7:48
+		Playback42:83
+		Playback6:47
+		Playback36:77
+		GrandWorld:12
+		Playback50:91
+		Playback13:54
+		Playback21:62
+		Speed12:37
+		Playback47:88
+		Playback45:86
+		Playback26:67
+		Playback43:84
+		Playback17:58
+		Playback2:43
+		GrandExecXFade:21
+		Playback24:65
+		Playback40:81
+		Playback44:85
+		DefaultSpeed:6
+		Playback23:64
+		GrandProgramTime:18
+		Playback16:57
+		Playback12:53
+		None:255
+		Playback15:56
+		GrandSoundFade:25
+		DefaultRate:5
+		Playback33:74
+		GrandLowlight:14
+		Playback25:66
+		Playback4:45
+		Speed9:34
+		Playback27:68
+	}
+	RDMDataType:{
+		DS_UNSIGNED_BYTE:3
+		DS_SIGNED_WORD:6
+		DS_BIT_FIELD:1
+		DS_ASCII:2
+		DS_SIGNED_BYTE:4
+		DS_SIGNED_DWORD:8
+		DS_UNSIGNED_WORD:5
+		DS_UNSIGNED_DWORD:7
+		DS_NOT_DEFINED:0
+		DS_MS:128
+	}
+	MatricksIndexNone:{
+		None:-1
+		No XYZ:-2
+	}
+	MibTiming:{
+		Default:-1
+	}
+	BackupBrowserFilter:{
+		Backups:1
+		Templates:3
+		Shows:0
+		Demoshows:2
+	}
+	SoundValues:{
+		Band5:8
+		Band7:10
+		InvBass:12
+		Band3:6
+		InvBand2:16
+		Band2:5
+		InvAll:11
+		High:3
+		Band6:9
+		InvBand4:18
+		InvBand5:19
+		Band4:7
+		InvBand1:15
+		InvMid:13
+		Bass:1
+		InvBand3:17
+		InvBand7:21
+		InvBand6:20
+		All:0
+		Band1:4
+		InvHigh:14
+		Mid:2
+	}
+	TimeDefault:{
+		Default:-1
+	}
+	PUPriority:{
+		VeryLow:1
+		Normal:3
+		High:4
+		Low:2
+		Never:0
+	}
+	PhaserTransformationsShort:{
+		None:0
+		Mirror:1
+	}
+	OffCueTrigger:{
+		Sound:3
+		Go:0
+		No Trigger:5
+		BPM:4
+		:5
+		Follow:2
+		Time:1
+	}
+	DisplayNumber:{
+		TouchMapper:14
+		Extern4:3
+		Executors5:12
+		Intern1:0
+		Executors6:13
+		Small7:6
+		Small6:5
+		None:-1
+		Intern3:2
+		Executors3:10
+		Executors4:11
+		Extern5:4
+		Intern2:1
+		Executors1:8
+		Executors2:9
+		Encoders:7
+	}
+	ArtNetBroadcastThreshold:{
+		Default(5):5
+	}
+	LayoutTool:{
+		Delete:3
+		Select:1
+		Add:2
+		Resize:5
+		Operate:0
+		Auto:7
+		ResizeFixedRatio:6
+		Move:4
+	}
+	RemoteResolution:{
+		16bit:2
+		8bit:1
+		24bit:3
+	}
+	ArtNetDataMode:{
+		Unicast:1
+		Broadcast:0
+		Auto:2
+		Input:3
+	}
+	TimecodeSlotOff:{
+		Off:255
+	}
+	GelGridType:{
+		Big Icons:2
+		List:0
+		Small Icons:1
+	}
+	EncoderType:{
+		Inside1:5
+		Outside1:6
+		Inside3:9
+		Outside5:14
+		Outside3:10
+		Inside4:11
+		WheelMaster:0
+		ColorPicker:1
+		TiltTrackpad:4
+		Outside4:12
+		PanTiltFollow:2
+		Inside2:7
+		PanTrackpad:3
+		Outside2:8
+		Inside5:13
+		Executor:16
+	}
+	ECRec:{
+		:1
+		on:1
+		true:1
+		false:0
+		No:0
+		Yes:1
+		off:0
+		1:1
+		0:0
+	}
+	SpeedReadoutMode:{
+		BPM:1
+		Hertz:0
+		Seconds:2
+	}
+	RDMPidValueResetDevice:{
+		Warm:1
+		:0
+		Cold:255
+	}
+	SpecialWindowRememberedTab:{
+		Color:0
+		Shapers:1
+	}
+	LayoutStretch:{
+		Stretch:0
+		Bar:1
+		Crop:2
+	}
+	InfoWindowTab:{
+		Referenced By:0
+		Note:2
+		Depends On:1
+	}
+	WindowTypes:{
+		Pools:1
+		Sheets:0
+		Others:3
+		Presets:2
+	}
+	FixtureInvert:{
+		:0
+		No:1
+		Inverted:1
+		true:1
+		on:1
+		false:0
+		<Blank>:0
+		Yes:1
+		off:0
+		1:1
+		0:0
+	}
+	RDMPID:{
+		LAMP_STRIKES:1026
+		PERFORM_SELFTEST:4128
+		DISC_UN_MUTE:3
+		DEVICE_LABEL:130
+		DISC_UNIQUE_BRANCH:1
+		CAPTURE_PRESET:4144
+		LAMP_ON_MODE:1028
+		PAN_INVERT:1536
+		COMMS_STATUS:21
+		BOOT_SOFTWARE_VERSION_ID:193
+		TILT_INVERT:1537
+		DEVICE_POWER_CYCLES:1029
+		LANGUAGE:176
+		SUPPORTED_PARAMETERS:80
+		SUB_DEVICE_STATUS_REPORT_THRESHOLD:51
+		CLEAR_STATUS_ID:50
+		DISC_MUTE:2
+		DEVICE_MODEL_DESCRIPTION:128
+		LANGUAGE_CAPABILITIES:160
+		LAMP_STATE:1027
+		SLOT_INFO:288
+		PROXIED_DEVICE_COUNT:17
+		SLOT_DESCRIPTION:289
+		RESET_DEVICE:4097
+		LAMP_HOURS:1025
+		DISPLAY_INVERT:1280
+		SENSOR_VALUE:513
+		SENSOR_DEFINITION:512
+		DISPLAY_LEVEL:1281
+		DEVICE_HOURS:1024
+		RECORD_SENSORS:514
+		POWER_STATE:4112
+		DMX_PERSONALITY_DESCRIPTION:225
+		PAN_TILT_SWAP:1538
+		PARAMETER_DESCRIPTION:81
+		SOFTWARE_VERSION_LABEL:192
+		QUEUED_MESSAGE:32
+		REAL_TIME_CLOCK:1539
+		PROXIED_DEVICES:16
+		STATUS_ID_DESCRIPTION:49
+		None:0
+		PRESET_PLAYBACK:4145
+		BOOT_SOFTWARE_VERSION_LABEL:194
+		STATUS_MESSAGES:48
+		IDENTIFY_DEVICE:4096
+		DMX_START_ADDRESS:240
+		DEVICE_INFO:96
+		DMX_PERSONALITY:224
+		SELF_TEST_DESCRIPTION:4129
+		FACTORY_DEFAULTS:144
+		DEFAULT_SLOT_VALUE:290
+		MANUFACTURER_LABEL:129
+		PRODUCT_DETAIL_ID_LIST:112
+	}
+	InvalidFootprint:{
+		?:-1
+	}
+	RDMLampState:{
+		Manufacturer-Specific States:128
+		LAMP_STRIKE:2
+		LAMP_STANDBY:3
+		LAMP_ERROR:127
+		LAMP_OFF:0
+		LAMP_NOT_PRESENT:4
+		LAMP_ON:1
+	}
+	Patched:{
+		:-1
+	}
+	AlignMode:{
+		/:1
+		>:3
+		<:2
+		><:4
+		Off:0
+		<>:5
+	}
+	LineHeights:{
+		10:10
+		6:6
+		12:12
+		4:4
+		8:8
+		3:3
+		2:2
+		1:1
+		Auto:0
+	}
+	XYZMapping:{
+		Z:2
+		Y:1
+		X:0
+	}
+	ResolutionLimit:{
+		720p:2
+		Unlimited:0
+		1080p:3
+		480p:1
+	}
+	MasterPriority:{
+		VeryLow:1
+		Normal:3
+		High:4
+		Low:2
+		Never:0
+	}
+	RDMSlotType:{
+		ST_PRIMARY:0
+		ST_SEC_INDEX:5
+		ST_SEC_TIMING:2
+		ST_SEC_INDEX_ROTATE:7
+		ST_SEC_UNDEFINED:255
+		ST_SEC_SPEED:3
+		ST_SEC_CONTROL:4
+		ST_SEC_FINE:1
+		ST_SEC_ROTATION:6
+	}
+	FixtureSourceType:{
+		Layers:2
+		Classes:1
+		Fixture
+Types:0
+	}
+	ChangeLevel:{
+		Delete:6
+		Full:8
+		Layout:5
+		Property:11
+		Create:7
+		Move:4
+		FullWithoutContent:9
+		Exchange:3
+		Insert:2
+		Little:12
+		None:13
+		Remove:1
+		File:0
+		Structural:10
+	}
+	SyntaxResult:{
+		Execute:3
+		SyntaxError:-1
+		Ignore:5
+		AbortBefore:4
+		ExecuteBefore:1
+		Erase:6
+		ExecuteAfter:2
+		SyntaxOk:0
+	}
+	LayoutElementSelectionRelevance:{
+		Background:1
+		Off:0
+	}
+	RotateOption:{
+		Right:1
+		Left:0
+	}
+	SplineType:{
+		:0
+		None:0
+		Free:1
+		Proportional:2
+		Undefined:3
+	}
+	EncoderGroupType:{
+		Timing:0
+		Speed:0
+		Value:0
+	}
+	ClockSources:{
+		Session Time:0
+		Time Zone Clock:2
+		Timecode:1
+		Timer:3
+	}
+	EncoderLinkValues:{
+		Feature:1
+		Single:0
+	}
+	CloningWindowMode:{
+		Sheet:0
+		Grid:1
+		Layout:2
+	}
+	ConnectorType:{
+		DIN56905:81
+		Eieland:54
+		CEE_16A_2P_110:56
+		RCA:6
+		EDAC90:28
+		DisplayPort:36
+		HAN_4:76
+		Powerlock_400A:64
+		TL_ST:40
+		HD25:23
+		SCDUP:42
+		Edison:53
+		DB50:21
+		PowerCONTRUE1TOP:71
+		LCDUP:41
+		TAG:2
+		KRN:3
+		F_CON:49
+		BNC:0
+		Stagepin:79
+		HD15:22
+		L6_20:77
+		IEE488:32
+		NAC3FCB:69
+		CEE_16A_2P:55
+		Powerlock_120A:63
+		DB37:20
+		RJ45:15
+		DVI:37
+		HUBBEL_6_4:80
+		MDIN5:10
+		MDIN4:9
+		NAC3FCA:68
+		SCART:7
+		ST:44
+		CEE_125A:61
+		XLR5:14
+		XLR4:13
+		XLR3:12
+		SC:43
+		USB:47
+		DB15:18
+		DIN3:24
+		Powerlock:62
+		CEE_32A:57
+		Socapex_7:73
+		Socapex_16:72
+		CENT24:35
+		STJ:4
+		DB25:19
+		HAN_16:75
+		MDIN6:11
+		CENT36:34
+		Camlock:67
+		RJ11:16
+		CEE_63A:60
+		DIN5:25
+		CEE_7_7:51
+		IEC_60320_C13_14:52
+		IEC_60320_C7_C8:50
+		N_CON:48
+		PS2:39
+		SCSI68:31
+		SVIDEO:8
+		DB9:17
+		DL96:30
+		L15_30:78
+		NL4:45
+		EDAC56:27
+		Powerlock_800A:66
+		PowerconTRUE1:70
+		CENT50:33
+		HDMI:38
+		TBLK:1
+		CEE_32A_2P:58
+		MSTJ:5
+		CACOM:46
+		EDAC120:29
+		EDAC20:26
+		Socapex_9:74
+		CEE_32A_2P_110:59
+		Powerlock_660A:65
+	}
+	AssignType:{
+		View:1
+		World:6
+		Macro:2
+		Menu:4
+		Fixture:12
+		Sequence:7
+		Filter:19
+		EncoderBar:18
+		Quickey:16
+		Preset:15
+		Timer:17
+		Video:14
+		Sound:9
+		User:10
+		MAtricks:13
+		Group:5
+		Master:8
+		ScreenConfig:11
+		Plugin:3
+		Empty:0
+	}
+	RowOrder:{
+		Up Down:0
+		Down Up:1
+	}
+	ScrollItemPlacementType:{
+		Begin:1
+		Auto:0
+		End:2
+	}
+	CreateBy:{
+		Unknown:0
+		System Conversion:2
+		User Conversion:1
+	}
+	YesNo:{
+		true:1
+		on:1
+		false:0
+		No:0
+		Yes:1
+		off:0
+		1:1
+		0:0
+	}
+	GroupMasterMode:{
+		Scaling:3
+		Positive:1
+		Additive:4
+		None:0
+		Negative:2
+	}
+	PultType:{
+		Conventional:1
+		Web:2
+		Any:0
+	}
+	ScrollType:{
+		Vertical:0
+		Horizontal:1
+	}
+	NDIBandwidth:{
+		Highest:100
+		Lowest:0
+	}
+	SacnDataMode:{
+		Output Unicast:1
+		Input Unicast:3
+		Output Multicast:0
+		Input Multicast:2
+	}
+	PhaserViewMode:{
+		Sheet:3
+		1D:2
+		2D:1
+		Auto:0
+	}
+	VirtualKeyCode:{
+		UNKNOWN:0
+		NUM6:73
+		FREEZE:12
+		ENCODER_INSIDE5:97
+		OFF:47
+		DOWN:8
+		ENCODER_OUTSIDE3:94
+		HIGHLIGHT:10
+		X13:31
+		MOVE:48
+		NUM8:75
+		ESC:88
+		ONPC_SCREEN7:132
+		SOLO:11
+		STOMP:52
+		SET:5
+		PREV_STEP:118
+		FIXTURE:56
+		PAGE_DOWN:17
+		PHASER:141
+		GROUP:58
+		VIEW:139
+		RESET_MATRICKS:126
+		NEXT_Y:120
+		ENCODER_INSIDE4:95
+		NUM7:74
+		PREV:3
+		RECORD:114
+		ENCODER_INSIDE3:93
+		ENCODER_OUTSIDE1:90
+		LIST:18
+		NEXT:4
+		PRESET:61
+		ONPC_SCREEN4:129
+		DEF_PAUSE:38
+		XKEYS:15
+		GOBACKFAST:44
+		AT:82
+		X7:25
+		DMX:140
+		ASSIGN:63
+		UP:6
+		DOT:80
+		X12:30
+		DOUBLE_SPEED:113
+		SEQUENCE:59
+		ONPC_SCREEN5:130
+		CHANNEL:57
+		NEXT_X:119
+		TOP:107
+		X8:26
+		X10:28
+		ENCODER_INSIDE2:91
+		X15:33
+		EXECUTOR:144
+		HALF_SPEED:112
+		EXEC:35
+		PLEASE:84
+		PAUSE:40
+		KILL:103
+		MACRO:142
+		NUM2:69
+		ASTERISK:133
+		LOWLIGHT:109
+		BLIND:14
+		ONPC_SCREEN3:128
+		ENCODER_OUTSIDE5:98
+		IF:81
+		X5:23
+		X11:29
+		STORE:66
+		LEARN:43
+		X14:32
+		MINUS:79
+		DELETE:50
+		TIMECODE:138
+		:0
+		DEF_GOBACK:39
+		LOAD:108
+		COPY:49
+		PREV_Z:117
+		CLONE:135
+		X6:24
+		X9:27
+		X4:22
+		SELFIX:7
+		NUM9:76
+		UPDATE:65
+		SELECT:54
+		X2:20
+		TOGGLE_MATRICKS:125
+		PREV_X:115
+		X1:19
+		USER2:100
+		STEP:123
+		SWAP:111
+		USER1:99
+		HELP:53
+		GO:42
+		PAGE_UP:16
+		GOSTEP:110
+		RATE1:104
+		MA1:1
+		THRU:78
+		ENCODER_INSIDE1:89
+		GOFAST:45
+		PLUS:77
+		ENCODER_OUTSIDE4:96
+		FADER:36
+		FLASH:101
+		LAYOUT:137
+		EDIT:62
+		ENCODER_OUTSIDE2:92
+		PAGE:143
+		ALIGN:51
+		NUM4:71
+		NUM5:72
+		MA2:2
+		FULL:85
+		TEMP:105
+		NEXT_Z:121
+		CLEAR:87
+		NUM3:70
+		TOGGLE:106
+		TIME:64
+		ONPC_SCREEN6:131
+		ON:46
+		GOBACK:41
+		DEF_GO:37
+		BLACK:102
+		CUE:60
+		OOPS:86
+		UNDO:86
+		NUM1:68
+		GOTO:55
+		NEXT_STEP:122
+		X16:34
+		PREV_Y:116
+		FIX:134
+		ONPC_SCREEN2:127
+		GRID:136
+		MENU:9
+		PREVIEW:13
+		X3:21
+		SLASH:83
+		NUM0:67
+		TOGGLE_STEP:124
+	}
+	MibPreferenceLevel:{
+		Best(100):100
+		Normal:50
+		Good(75):75
+		Worst(1):1
+		Worst:1
+		Normal(50):50
+		Bad:25
+		Good:75
+		Never(0):0
+		Never:0
+		Bad(25):25
+		Best:100
+	}
+	RDMProductDetail:{
+		PRODUCT_DETAIL_ARC:1
+		PRODUCT_DETAIL_HIGHFREQUENCY_12V:1035
+		PRODUCT_DETAIL_PROFILE_SHUTTER:261
+		PRODUCT_DETAIL_SWITCH_PANEL:1796
+		PRODUCT_DETAIL_PWM:1027
+		PRODUCT_DETAIL_PROTOCOL_CONVERTOR:1793
+		PRODUCT_DETAIL_METAL_HALIDE:2
+		PRODUCT_DETAIL_DATAPATCH:1539
+		PRODUCT_DETAIL_OTHER:32767
+		PRODUCT_DETAIL_FOGGER_GLYCOL:768
+		PRODUCT_DETAIL_DC:1028
+		PRODUCT_DETAIL_SPLITTER:1536
+		PRODUCT_DETAIL_ROUTER:2048
+		PRODUCT_DETAIL_CONFETTI:780
+		PRODUCT_DETAIL_ANALOG_DEMULTIPLEX:1794
+		PRODUCT_DETAIL_FLAME_OTHER:775
+		PRODUCT_DETAIL_MIRRORBALL_ROTATOR:1280
+		PRODUCT_DETAIL_ELECTROLUMINESCENT:7
+		PRODUCT_DETAIL_OTHER_ROTATOR:1281
+		PRODUCT_DETAIL_MOTOR_CONTROL:1285
+		PRODUCT_DETAIL_HFHV_EL:1031
+		PRODUCT_DETAIL_WIRELESS_LINK:1540
+		PRODUCT_DETAIL_WIND:779
+		PRODUCT_DETAIL_WATER_JET:778
+		PRODUCT_DETAIL_COLORSCROLLER:256
+		PRODUCT_DETAIL_BARNDOOR_SHUTTER:262
+		PRODUCT_DETAIL_VIDEO:512
+		PRODUCT_DETAIL_TEST:2306
+		PRODUCT_DETAIL_RELAY_MECHANICAL:1036
+		PRODUCT_DETAIL_SWITCH_ELECTRONIC:1038
+		PRODUCT_DETAIL_COLDCATHODE:6
+		PRODUCT_DETAIL_CHANGEOVER_MANUAL:2304
+		PRODUCT_DETAIL_FADER:2049
+		PRODUCT_DETAIL_C02:771
+		PRODUCT_DETAIL_SNOW:777
+		PRODUCT_DETAIL_SLIDE:513
+		PRODUCT_DETAIL_MHR_BALLAST:1032
+		PRODUCT_DETAIL_SINE:1026
+		PRODUCT_DETAIL_REVERSE_PHASE_CONTROL:1025
+		PRODUCT_DETAIL_RELAY_ELECTRONIC:1037
+		PRODUCT_DETAIL_LASER:8
+		PRODUCT_DETAIL_LN2:772
+		PRODUCT_DETAIL_COLORCHANGE:258
+		PRODUCT_DETAIL_OLEFACTORY_STIMULATOR:776
+		PRODUCT_DETAIL_BUBBLE:773
+		PRODUCT_DETAIL_HAZARD:781
+		PRODUCT_DETAIL_MERGE:1538
+		PRODUCT_DETAIL_FREQUENCY_MODULATION:1034
+		PRODUCT_DETAIL_ETHERNET_NODE:1537
+		PRODUCT_DETAIL_CONTROLLABLE_BREAKER:2562
+		PRODUCT_DETAIL_ANALOG_MULTIPLEX:1795
+		PRODUCT_DETAIL_HFBALLAST:1029
+		PRODUCT_DETAIL_DAMPER_CONTROL:1286
+		PRODUCT_DETAIL_INCANDESCENT:3
+		PRODUCT_DETAIL_CURTAIN:1283
+		PRODUCT_DETAIL_BITANGLE_MODULATION:1033
+		PRODUCT_DETAIL_FLASHTUBE:9
+		PRODUCT_DETAIL_HFHV_NEONBALLAST:1030
+		PRODUCT_DETAIL_FLUROESCENT:5
+		PRODUCT_DETAIL_GFI_RCD:2560
+		PRODUCT_DETAIL_LCDGATE:516
+		PRODUCT_DETAIL_GOBO_ROTATOR:264
+		PRODUCT_DETAIL_IRIS_DOUSER:259
+		PRODUCT_DETAIL_BATTERY:2561
+		PRODUCT_DETAIL_CONTACTOR:1039
+		PRODUCT_DETAIL_EFFECTS_DISC:263
+		PRODUCT_DETAIL_DIMMING_SHUTTER:260
+		PRODUCT_DETAIL_FOGGER_WATER:770
+		PRODUCT_DETAIL_LED:4
+		PRODUCT_DETAIL_OILWHEEL:515
+		PRODUCT_DETAIL_FOGGER_MINERALOIL:769
+		PRODUCT_DETAIL_FILM:514
+		Manufacturer Specific:32768
+		PRODUCT_DETAIL_LINESET:1284
+		PRODUCT_DETAIL_KABUKI_DROP:1282
+		PRODUCT_DETAIL_CHANGEOVER_AUTO:2305
+		PRODUCT_DETAIL_MIXER:2050
+		PRODUCT_DETAIL_NOT DECLARED:0
+		PRODUCT_DETAIL_FLAME_PROPANE:774
+		PRODUCT_DETAIL_COLORWHEEL:257
+		PRODUCT_DETAIL_PHASE_CONTROL:1024
+	}
+	Pretty RDMSensorUnit:{
+		UNITS_MS:128
+		Ω:9
+		V (AC RMS):4
+		J:19
+		°C:1
+		°:22
+		m/s:16
+		N:18
+		m:12
+		cd:24
+		s:21
+		sr:23
+		m³:14
+		P:20
+		W:10
+		A (AC P-P):6
+		:0
+		V (DC):2
+		m²:13
+		m/(s²):17
+		lx:26
+		lm:25
+		kg/(m²):15
+		kg:11
+		A (DC):5
+		Hz:8
+		V (AC P-P):3
+		B:28
+		IRE:27
+		A (AC RMS):7
+	}
+	SheetSettingsMergeMode:{
+		Feature
+Group:2
+		Feature:1
+		None:0
+	}
+	RDMManufacturerId:{
+		i2Systems:915
+		Lehigh Electric Products:9778
+		GermTec GmbH & Co. KG:2305
+		Hungaroflash:9258
+		DigitaLicht AG:30600
+		Interactive Technologies, Inc.:18766
+		ELC lighting:25964
+		Alenco BV:16748
+		DES:18256
+		LanBolight Technology Co., LTD.:14440
+		LEDValley Technologies Sdn Bhd:19542
+		Moog Animatics:2432
+		Music & Lights S.r.l.:5584
+		Lux Lumen:826
+		ARC Solid-State Lighting Corp.:2165
+		Flashlight/Ampco Holding:17996
+		TMB:6906
+		Luxam, Ltd.:2433
+		MX design:19800
+		IBL/ESD-Datentechnik GmbH:1669
+		GEE:1
+		Hollywood Controls Inc.:18511
+		Ultratec Special Effects:19533
+		ADDiCTiON BoX GbR:1968
+		CDCA Ltd.:17220
+		Kino Flo, Inc.:19270
+		AIM Northwest:20055
+		Lumishore Ltd. UK:13853
+		Fly Dragon Lighting Equipment Co.,ltd:14472
+		Oase GmbH:20289
+		HDT impex s.r.o.:2362
+		Antari Lighting And Effects Ltd.:7896
+		Rosstech Signals Inc.:843
+		Mode Lighting (UK) Ltd.:19788
+		D-LED Illumination Technologies Ltd.:1491
+		LLC Lighting Technologies production:2462
+		Sundrax, LLC:10679
+		Krisledz Pte. Ltd.:1166
+		Alcorn McBride Inc.:913
+		Conceptinetics Technologies and Consultancy Ltd.:1799
+		DF elettronica s.r.l.:17510
+		LGR:364
+		Dezelectric Kft.:17477
+		IBEX UK Limited:18754
+		OJSC Kadoshkinsky electrotechnical:674
+		Intense Lighting, LLC:5280
+		Kolberg Percussion GmbH:4842
+		Hollywood Rentals LLC:4858
+		Ambitsel, Inc.:1308
+		High End Systems Inc.:19538
+		SV-wtu eU:21366
+		Heliospectra AB:25626
+		Martin Sukale Medientechnik GbR:21845
+		ChamSys Ltd.:1290
+		ESTA1:65535
+		Ephesus Lighting:27630
+		DDS Elettronica:20300
+		Lex Products Corp.:19544
+		Industrias Sola Basic S.A. de C.V.:21314
+		Electronics Diversified LLC:17732
+		Cinetix Medien u. Interface GmbH:17257
+		Edward J. Keefe Jr.:1193
+		Griven S.r.l.:1996
+		Event Lighting Pty, Ltd.:2055
+		Aixz International (S):2458
+		PRO-SOLUTIONS:1375
+		Zumtobel Lighting GmbH:27757
+		CPOINT:1844
+		Acclaim Lighting:714
+		Strich Labs:911
+		Glow Motion Technologies, LLC.:2443
+		PatternAgents, LLC:2263
+		Spectrum Manufacturing Inc.:21360
+		kuwatec, Inc.:19285
+		Autotech Co.:2479
+		Anidea Engineering, Inc.:16713
+		JB-lighting GmbH:19010
+		Laser Imagineering GmbH:1810
+		ADB - TTV Technologies nv:16708
+		Peperoni Lighting-Solutions:20556
+		City Theatrical, Inc.:17236
+		Starway:2537
+		Lighting Services Inc.:11488
+		Helvar Ltd:9266
+		BOTEX:16975
+		JAP Optoelectronic Ltd.:20809
+		Zingerli Show Engineering:23123
+		ACTOR-MATE CO., LTD.:2326
+		Nixer Ltd.:10036
+		Ocean Thin Films Inc.:21315
+		American-Pro International:1742
+		QMAXZ lighting:20813
+		RESERVED FOR PROTOTYPING/EXPERIMENTAL USE ONLY e:32766
+		Steinigke Showtechnic GmbH:10666
+		Ingenieurbuero Stahlkopf:4976
+		Gekko Technology Ltd.:9138
+		Lumenec Pty. Ltd.:9786
+		L&L Luce&Light:1735
+		LSC Lighting Systems (Aust) Pty. Ltd.:19571
+		Aboutshow Color Light Co., LTD:5860
+		RaumZeitLabor e.V.:2431
+		JPK Systems Limited:27243
+		Solid State Luminaires:6456
+		VT-Control:4941
+		Connex GmbH:17240
+		Argetron Elektrik Elektronik Organizasyon Gida San. ve Dis Tic. Ltd. Sti.:2497
+		SEIKO Epson Corporation:5216
+		St. Anne Engineering GmbH:257
+		Schreder:21320
+		HERA LED:26732
+		Zaklad Elektroniczny AGAT s.c.:5292
+		www.doityourselfchristmas.com hobbyists:22637
+		Tempest Lighting Inc.:21580
+		Digimedia Multimedia Lighting Solutions:17485
+		RESERVED FOR PROTOTYPING/EXPERIMENTAL USE ONLY 8:32760
+		Shanghai Moons Automation Control Co., Ltd:771
+		EREA:17746
+		RVL techniek:19148
+		Enfis Ltd:18518
+		AquaTronic:2358
+		LEADER LIGHT s.r.o.:9761
+		Integrated Theatre, Inc.:18772
+		RESERVED FOR PROTOTYPING/EXPERIMENTAL USE ONLY a:32762
+		NJD Electronics:20042
+		Altman Stage Lighting:16689
+		Duralamp S.p.A.:6585
+		XENON ARCHITECTURAL LIGHTING:22629
+		Lumisia Co., Ltd.:26454
+		RHENAC Systems GmbH:1732
+		Avolites Ltd.:19798
+		Light.Audio.Design:1696
+		Moda Light:7821
+		Ehrgeiz:2245
+		ShowCAD Control Systems Ltd.:21352
+		Tait Towers Manufacturing Inc.:737
+		Ittermann electronic GmbH:26996
+		Leonh Hardware Enterprise Inc.:9763
+		Leviton Manufacturing Co., Inc.:19525
+		ADE ELETTRONICA srl:16709
+		AYRTON:16761
+		OKEROAB AB:17969
+		AZ e-lite Pte Ltd:8365
+		TecArt Lighting:21569
+		Lumonic Limited:9782
+		Soundsculpture Incorporated:21321
+		MY-Semi Inc.:1938
+		RESERVED FOR PROTOTYPING/EXPERIMENTAL USE ONLY b:32763
+		RESERVED FOR PROTOTYPING/EXPERIMENTAL USE ONLY f:32767
+		Pr-Lighting Ltd.:28786
+		Dove Lighting Systems, Inc.:17484
+		LightProcessor Ltd:19536
+		Smartpark Creative Solutions:5038
+		JANUS srl:19009
+		Pangolin Laser Systems, Inc.:28912
+		Innovation LED Limited:1408
+		SVI Public Company Limited:2259
+		Selectron Bvba:10674
+		Quicklights:20844
+		RNC Systems Inc.:21070
+		Legargeant and Associates:19557
+		Ice House Productions:18760
+		RESERVED FOR PROTOTYPING/EXPERIMENTAL USE ONLY 3:32755
+		Adelto Limited:16740
+		Alektra AB:24908
+		Drinelec:1794
+		Advanced Lighting Systems:24940
+		Luxlight Skandinavien AB:4832
+		Culture Crew bvba:8609
+		PLS Electronics Ltd.:6552
+		Phaton Lighting Co., Ltd.:2298
+		Juno Lighting Group:2136
+		HBE Lighting Systems:18508
+		Fontana Fountains:2405
+		DJPOWER ELECTRONIC STAGE LIGHTING FIXTURE FACTORY (GUANGZHOU):20781
+		ALS Stanislaw Binkiewicz:7104
+		MEGATECHNICS Ltd.:9890
+		Sean Christopher FX:29539
+		KissBox:19266
+		Loxone Electronics GmbH:9783
+		Teamboyce Limited:2426
+		RESERVED FOR PROTOTYPING/EXPERIMENTAL USE ONLY 9:32761
+		KMX Inc.:19277
+		State Automation Pty Ltd.:10682
+		Hale Microsystems LLC:9328
+		Insta Elektro GmbH:18757
+		Lisys Fenyrendszer Zrt.:9764
+		LED Flex Limited:30900
+		Mittomakers:2518
+		Anaren Inc.:31392
+		SGM A/S:1836
+		Diginet Control Systems Pty Ltd:1545
+		RoscoLab Ltd:21074
+		Capricorn Software:17235
+		LightGeist Ltd.:19527
+		Crystal Fountains Inc.:2504
+		UP-LUX Eletronica Ltda.:21840
+		Lumenpulse Lighting Inc.:13880
+		Sein & Schein GmbH:28003
+		CHAUVET Lighting:8612
+		Wybron, Inc.:22361
+		Pfannenberg GmbH:20582
+		Vari-Lite, Inc.:22092
+		Guangzhou VAS Lighting Co., Ltd.:1088
+		RESERVED FOR PROTOTYPING/EXPERIMENTAL USE ONLY d:32765
+		SGM Technology For Lighting SPA:21319
+		Doug Fleenor Design, Inc.:17478
+		SIRS-E:2181
+		Strand Lighting Ltd.:29548
+		CAST Software:17223
+		kLabs Research UK:2394
+		Laser Technology Ltd.:19545
+		Acuity Brands Lighting Inc.:623
+		Production Resource Group:20562
+		CODEM MUSIC S.r.l.:17263
+		Guangzhou Chai Yi Light Co., Ltd.:1519
+		Panasonic Corporation:1871
+		Selador:21317
+		ChamberPlus Co., Ltd:26646
+		Equipson S.A.:1766
+		ESTA:0
+		Vision Quest Lighting Inc.:22097
+		Freescale Semiconductor U.K. Ltd.:26227
+		LjusDesign AB:9781
+		HB-Laserkomponenten GmbH:9249
+		Coolon Pty Ltd:8627
+		GRE Alpha:2316
+		City Design S.p.A.:4862
+		ShowLED:2285
+		Galaxia Electronics:1842
+		Stellascapes:11720
+		Claude Heintz Design:27768
+		Innovation Solutions Ltd.:18803
+		PXM s.c.:20568
+		Brighten Technology Development Co., Ltd.:1487
+		Lutron Electronics:748
+		Lumascape Lighting Industries:1388
+		ACS - Ackerman Computer Sciences:2297
+		W.A. Benjamin Electric Co.:2264
+		Ecosense Lighting Company Limited:2446
+		Electrone Americas Ltd. Co.:5806
+		Dangeross Design:25700
+		Traxon Technologies Ltd.:5852
+		XTBA:11306
+		Bytecraft Entertainment Pty Ltd:16965
+		Entertainment Technology:17748
+		ImageCue LLC:776
+		E:cue Control GmbH:17722
+		CTG sp. z o.o.:1776
+		STILED:2265
+		QuickSilver Controls, Inc.:20819
+		LEDART LLC:1668
+		Bushveld Labs:2220
+		LAN Systems--Midibox project:19778
+		AUTOLUX Handels- und ProduktionsgmbH:21553
+		Shenzhen Lesan Lighting Co., Ltd.:1451
+		lumenetix:1910
+		Arthur Digital Solutions Kft:32487
+		Lug Light Factory Sp. z o. o.:2237
+		Callegenix LLC:10152
+		ALL-DO INTERNATIONALCO., LTD.:10649
+		IT Ihme:9386
+		Arnold Tang Productions:16724
+		Peternet Electronics BVBA:10279
+		LightWild LC:19543
+		SOUNDLIGHT:21324
+		Pharos Architectural Controls:28776
+		Interesting Products, Inc.:18768
+		Brompton Technology Ltd.:2484
+		ELM Video Technology, Inc.:17741
+		TERMINAL-COM:1335
+		ERAL srl:17747
+		LED, Inc.:20578
+		Lighting Innovation Group AG:9379
+		David O Smith Design:2328
+		LED Company s.r.o.:19685
+		Robert Juliat:2478
+		Stagetronics Ltda:21332
+		SK-Software:21323
+		Motomuto Aps:2508
+		OSRAM:1321
+		LED Team:19556
+		Adam Hall GmbH:2212
+		Masiero s.r.l.:7887
+		SISTEMA Jsc:1772
+		LumenRadio AB:19541
+		Global Special Effects:18040
+		James Embedded Systems Engineering (JESE Ltd):26724
+		Ingham Designs:18756
+		W-DEV:22340
+		Hubbell Entertainment, Inc.:26725
+		Open Lighting:31344
+		Eulum Design, LLC:2294
+		GUANZHOU KAVON STAGE EQUIPMENT CO., LTD.:6280
+		KIM Lighting:2224
+		IGuzzini illuminazione spa:18759
+		Golden Sea Disco Light Manufacturer:18259
+		Howard Eaton Lighting Ltd.:18501
+		Pathway Connectivity Inc.:20547
+		Shenzhen CreateLED Electronics Co., Ltd:2368
+		COSMOLIGHT SRL:1387
+		MAL Effekt-Technik GmbH:28001
+		Prolites S.A.L.:2488
+		Birdbrain Labs LLC:1102
+		LDDE Vertriebs Gmbh:9762
+		Red Arrow Controls:2272
+		Laservision Pty Ltd:9776
+		ROE Visual Co. Ltd.:2438
+		Wireless Solution Sweden AB:22355
+		SpaceCannon vH:21347
+		medien technik cords:19796
+		Fire & Magic:5454
+		AC Entertainment Products Ltd.:2434
+		Targetti Sankey Spa:1239
+		James Thomas Engineering:19028
+		Vehtec Tecnologia Ltda:7296
+		Ballantyne Strong Inc.:29541
+		THELIGHT Luminary for Cine and TV S.L.:2045
+		Spotlight s.r.l.:10680
+		euroGenie:25927
+		The Light Source, Inc.:29009
+		I-Lum:18764
+		Flexvisual:18006
+		zactrack Lighting Technologies Gmbh:15664
+		Amptown Lichttechnik GmbH:16717
+		Nerd's Meter:5674
+		CKC Lighting Co., Ltd.:1579
+		techKnow Design Ltd.:5658
+		Jands Pty Ltd.:19041
+		inoage GmbH:18753
+		Les Generateurs de brouillard MDG Fog Generators Ltd.:19780
+		CCI Power Supplies, LLC:2454
+		iLight Technologies Inc:26956
+		OTTEC Technology GmbH:2168
+		LEDsistem Teknolojileri Tic. Ltd. Sti.:5670
+		RUIZ TECH:21069
+		Studio S Music City:7110
+		Mole-Richardson Co.:30734
+		Fountain People:2466
+		PH Lightning AB:7089
+		GLP German Light Products GmbH:26476
+		Synthe FX, LLC:21318
+		eX Systems:981
+		Toni Maroni Gmb:10790
+		eBrain GmbH:25922
+		ALADIN Architekturlicht GmbH:8358
+		dilitronics GmbH:25708
+		XLN-t bvba:30828
+		Philips Lighting BV:20584
+		deskontrol electronics:2556
+		Durand Interstellar, Inc.:17481
+		de koster Special Effects:12853
+		awaptec GmbH:5776
+		Stage Services Ltd.:4852
+		D.T.S. Illuminazione srl:1808
+		acdc LED Ltd.:19676
+		Rena Electronica B.V.:18561
+		DALCNET SRL:17486
+		Bart van Stiphout Electronics & Software:8496
+		Zero 88:2056
+		EUTRAC - Intelligent Lighting GmbH:8874
+		Yifeng Lighting Co., Ltd.:14341
+		Newlab S.r.l.:4826
+		Xtraordinary Musical Accolade Systems:22605
+		Winona Lighting:720
+		Williams Electronic Design Ltd.:11188
+		Wildfire, Inc.:22342
+		WLPS Wodielite Production Services:2515
+		RootPath Ltd.:21072
+		Urban Visuals & Effects Ltd.:10923
+		WERPAX bvba:11170
+		Anytronics Ltd.:16718
+		Element Labs Inc.:17772
+		Sean Sill:21331
+		eventa Aktiengesellschaft:25974
+		ChromaCove LLC:8629
+		Velleman nv:2499
+		WET:30564
+		PR-Electronic:10281
+		MA Lighting Technology GmbH:19777
+		Unilumin Group:2519
+		Turkowski GmbH:1461
+		TalentStorm Enterprises, Inc.:21587
+		HUMAL Elektroonika OU:5220
+		Toshiba Lighting & Technology Corporation:26608
+		Audio Visual Devices P/L:16726
+		Thorn Lighting Limited:10789
+		Theatrelight New Zealand:1807
+		ACME EFFECTS LTD.:14342
+		Technographic Displays Ltd.:21572
+		The White Rabbit Company, Inc.:11177
+		Outsight Pty Ltd.:20341
+		TheOlymp - Networking & InterNet Services:14903
+		CDS advanced technology bv:25444
+		Revolution Display:21060
+		TamaTech Labo Company Ltd,:21588
+		Sensa-Lite Ltd.:2260
+		LUMINEX Lighting Control Equipment bvba:19532
+		TESI Elettronica srl:21573
+		TBE Srl:2374
+		eldoLED BV:25711
+		ROAL Electronics SpA:10535
+		Sturdy Corporation:10657
+		AAdyn Technology:2223
+		Robe Show Lighting s.r.o.:21075
+		SAN JACK ANALOG HOUSE CO., LTD.:16465
+		Stroytsirk LLC:10728
+		Stage Technologies Limited:21313
+		Imlight-Showtechnic:603
+		Serva Transport Systems GmbH:5902
+		Sand Network Systems:21326
+		Apollo Design Technology, Inc:24932
+		StageLine Electronic:21356
+		Apogee Lighting:16720
+		ABLELITE INTERNATIONAL:578
+		Mueller Elektronik:19831
+		Johnsson Lighting Technologies AB:19020
+		AVAB America, Inc.:16705
+		Simon Tech:21416
+		JSC MFG:19027
+		SanDevices, LLC:2289
+		Red Lighting s.r.l.:6717
+		Grid Show Systems Inc.:5264
+		Raven Systems Design, Inc.:4919
+		Focon Showtechnic:9015
+		AC Lasers:16707
+		RESERVED FOR PROTOTYPING/EXPERIMENTAL USE ONLY 6:32758
+		LightLife, Gesellschaft fuer audiovisuelle Erlebnisse mbH:19547
+		FLUX ECLAIRAGE:1060
+		Gantom Lighting & Controls:8209
+		STG-Beikirch Industrieelektronik + Sicherheitstechnik GmbH & Co. KG:21364
+		Aquarii, Inc.:16721
+		Electronic Theatre Controls, Inc.:25972
+		Showtec (Highlite International B.V.):10676
+		D.O.M. Datenverarbeitung GmbH:17476
+		Bortis Elektronik:258
+		Martin Professional A/S:19792
+		FATEC sarl:1930
+		D-Light Designs, LLC:8726
+		Joshua 1 Systems Inc.:18993
+		Etherlight:8889
+		DC Reactive:31164
+		Milford Instruments Ltd.:9908
+		Digilin Australia:25697
+		Yuesheng International Limited:5968
+		C.I.Tronics Lighting Designers Ltda:17225
+		Audio Scene:16723
+		Ingenieurbuero fuer Nachrichtentechnik in der Studio und Veranstaltungstechnik:17740
+		Corsair Technology Ltd.:1851
+		Company NA:20033
+		Stealth Light srl:2227
+		Lightforce Lasertechnik:923
+		Digital Sputnik Lighting:2447
+		Diamante Lighting Srl:17513
+		Brother,Brother & Sons Aps:8481
+		EC Elettronica Srl:17731
+		feno GmbH:774
+		Artistic Licence Engineering Ltd.:16716
+		SAS Productions:21322
+		NOVALIGHT S.r.l.:20044
+		Advatek Lighting:24916
+		Ambra Elettronica s.r.l.:27794
+		DIGITAL ART SYSTEM:17473
+		Alkalite LED Technology Corp:8374
+		Barco:16979
+		DMX4ALL GmbH:11290
+		KLH Electronics PLC:19276
+		Horizon Control Inc.:18499
+		SWISSON AG:21367
+		Birket Engineering, Inc.:17058
+		BEGLEC NV:8482
+		OOO SAMLIGHT:21334
+		ADL Electronics Ltd.:2202
+		Krislite Pte. Ltd.:2331
+		Visual Productions:11048
+		Fineline Solutions Ltd.:2400
+		Lite Puter Enterprise Co., Ltd.:5882
+		Color Kinetics Inc.:17227
+		Les Eclairages Lou Inc.:17763
+		MBN GmbH:28002
+		ARNOLD LICHTTECHNIK:16754
+		Lichttechnik & Sonderbau:14295
+		ENTTEC Pty Ltd:17742
+		Planungsbuero:10294
+		EverBrighten Co., Ltd.:1344
+		Cineo Lighting:6669
+		EVC:8875
+		Lumina Visual Productions:28650
+		Guangzhou GTD Lighting Technology Co., Ltd:2385
+		G-LEC Europe GmbH:18252
+		MEB Veranstaltungstechnik GmbH:1190
+		Shenzhen Longrich Energy Sources Technology Co., Ltd.:2444
+		LLT Lichttechnik GmbH&CO.KG:9766
+		Brink Electronics:2429
+		mathertel.de:2439
+		Peradise:20581
+		Marumo Electric Co., Ltd.:2420
+		WADAK GmbH:6678
+		Prolight Concepts Ltd.:2469
+		Junction Inc. Ltd:2129
+		Stardraw.com Ltd.:21316
+		Licht-Technik:19540
+		Lighting Science Group (formerly LED Effects, Inc.):1547
+		Global Design Solutions, Ltd.:13364
+		KB Design:2421
+		RESERVED FOR PROTOTYPING/EXPERIMENTAL USE ONLY 2:32754
+		D.E.F. Srl:8738
+		HxDx:18500
+		Growflux LLC:712
+		LEDEngin Inc.:1887
+		Illum Technology LLC (previously Verde Designs, Inc.):2392
+		LLC Likhoslavl Plant of Lighting Engineering (Svetotehnika):672
+		NXP Semiconductors B.V.:15120
+		Lamp & Pencil:1109
+		Creative Lighting And Sound Systems Pty Ltd:161
+		LaserAnimation Sollinger GmbH:19521
+		Lampo Lighting Designers:19564
+		Environmental Lighting Solutions:25971
+		GuangZhou MCSWE Technologies, INC:5536
+		Nila Inc.:10020
+		RESERVED FOR PROTOTYPING/EXPERIMENTAL USE ONLY 1:32753
+		Astera LED Technology GmbH:16755
+		Peter Maes Technology:10278
+		Niko:20073
+		v2 Lighting Group, Inc.:5382
+		Grand Canyon LED Lighting System (Suzhou) Co., Ltd.:1167
+		Engineering Arts:17729
+		OXO:23616
+		MCI Group:2226
+		AusChristmasLighting:8378
+		BECKHOFF Automation GmbH:16961
+		Getlux Ltd.:10628
+		RESERVED FOR PROTOTYPING/EXPERIMENTAL USE ONLY 4:32756
+		Macostar International Ltd.:13192
+		Peter Meyer Project Management Adviser GmbH:20557
+		CLAY PAKY S.p.A:17232
+		JIAXING XINHUALI LIGHTING & SOUNDING CO., LTD.:1395
+		LAM32 srl:19488
+		Mediatec Group:23980
+		Claudio Dal Cero Engineering:17475
+		ARRI -- Arnold & Richter Cine Technik GmbH & Co. Betriebs KG:8377
+		Pioneer Corporation:10273
+		ELETTROLAB S.r.l.:17474
+		GVA Lighting, Inc.:715
+		DMXPROFI.EU GmbH i.G.:17488
+		Bill Coghill Company : Bill Coghill Design:16963
+		Blossom Communications Corp.:4894
+		Devantech Ltd.:17494
+		MARTINI S.p.A.:19809
+		Guangzhou Yajiang (Yagang - Silver Star) Photoelectric Equipment Ltd.:14474
+		Padura Elektronik GmbH:8319
+		RayComposer - R. Adams:1839
+		Elaborated Networks GmbH:2399
+		Bigbear Co., Ltd.:2308
+		SRS Light Design:10665
+		Aquatique Show Int.:2483
+		RESERVED FOR PROTOTYPING/EXPERIMENTAL USE ONLY 5:32757
+		MagicFX B.V.:18008
+		RESERVED FOR PROTOTYPING/EXPERIMENTAL USE ONLY c:32764
+		CaptSystemes:8617
+		Dream Solutions Ltd.:8761
+		Licht-, Steuer- und Schaltanlagenbau GmbH (LSS GmbH):19539
+		Philips Entertainment Lighting Asia:20545
+		Highendled Electronics Company Limited:2186
+		Philips Selecon:20563
+		PiXL Factory:2218
+		Integrated System Technologies Ltd.:18771
+		Goddard Design Co.:18244
+		PixelRange Inc.:28792
+		Jinnax Opto Technology Co., Ltd.:682
+		CHROMLECH:8628
+		Coemar Spa:17229
+		Invisible Rival Incorporated:18770
+		Plsao Optoelectronics Technology Co., Ltd.:22664
+		Prism Projection:916
+		RDC, Inc. d.b.a. LynTec:1616
+		RE-Engineering:701
+		RESERVED FOR PROTOTYPING/EXPERIMENTAL USE ONLY 0:32752
+		Pulsar Light of Cambridge Ltd.:20597
+		RESERVED FOR PROTOTYPING/EXPERIMENTAL USE ONLY 7:32759
+		Engineering Solutions Inc.:8873
+		GPE srl:18245
+		Carallon Ltd.:812
+		Radical Lighting Ltd.:21068
+		Elation Lighting:8870
+		EAS SYSTEMS:8864
+		LightMinded Industries, Inc.:19546
+		OFilms:1630
+		Rnet Lighting Technology Limited:2464
+		General Luminaire (Shanghai) Ltd.:18284
+		DAS Integrator Pte Ltd:8740
+		LLC Moscow Experimental Lighting Plant (TeleMechanic):673
+		Viso Systems Aps:22099
+		I-Pix Digital Light Ltd.:9788
+		LIGHTOLIER:19561
+		Key Delfin:27492
+	}
+	AgendaTool:{
+		Delete:2
+		Select:0
+		Paste:5
+		Cut:3
+		Store:1
+		Edit:7
+		Call:6
+		Copy:4
+	}
+	SeqMasterGoMode:{
+		Top:3
+		On:2
+		Go:1
+		None:0
+	}
+	OSCMode:{
+		UDP:0
+		TCP:1
+	}
+	TCTextMode:{
+		Tracks:1
+		Markers:3
+		Selected:2
+		All:0
+	}
+	TimeCursorScrollMode:{
+		Center:1
+		Page:0
+	}
+	ConnectorGender:{
+		Universal:0
+		Female:1
+		Male:-1
+	}
+	ColorWheelMode:{
+		Mix Color
+Only:1
+		Color
+Wheel Only:2
+		Prefer
+Mix Color:0
+	}
+	MatricksTabs:{
+		Y:1
+		Z:2
+		Shuffle:3
+		X:0
+	}
+	MatricksWingsNone:{
+		None:0
+		No Wings:-1
+	}
+	MessagePriority:{
+		Spam:1
+		Alerts:4
+		Warnings:2
+		Errors:3
+		Undefined:0
+	}
+	DmxCurveModes:{
+		MinMax:0
+		Switch:1
+		Custom:2
+	}
+	PlaybacksOff:{
+		Playbacks Off:1
+		Keep Playbacks:0
+	}
+	AxisSystem:{
+		Stage:0
+		Object:1
+	}
+	RDMResponseNackReason:{
+		Proxy is not the RDM line master and cannot comply with message.:3
+		The proxy buffer is full and can not store any more Queued Message or Status Message responses.:10
+		The responder cannot comply with request because the message is not implemented in responder.:0
+		Incoming message exceeds buffer capacity.:8
+		The responder cannot interpret request as controller data was not formatted correctly.:1
+		Buffer or Queue space currently has no free space to store data.:7
+		SET Command normally allowed but being blocked currently.:4
+		The responder cannot comply due to an internal hardware fault.:2
+		Sub-Device is out of range or unknown.:9
+		Value for given Parameter out of allowable range or not supported.:6
+		Not valid for Command Class attempted. May be used where GET allowed but SET is not supported.:5
+	}
+	Yes:{
+		Yes:1
+		<Blank>:0
+		:0
+	}
+	RDMStatusMessageType:{
+		STATUS_ADVISORY:2
+		STATUS_ADVISORY_CLEARED:18
+		STATUS_GET_LAST_MESSAGE:1
+		STATUS_WARNING:3
+		STATUS_ERROR_CLEARED:20
+		STATUS_ERROR:4
+		STATUS_NONE:0
+		STATUS_WARNING_CLEARED:19
+	}
+	AlignmentV:{
+		Bottom:2
+		Top:1
+		Center:0
+	}
+	ColorSample:{
+		CES05:4
+		CES53:52
+		CES16:15
+		CES33:32
+		CES68:67
+		CES60:59
+		CES50:49
+		CES69:68
+		CES84:83
+		CES81:80
+		CES75:74
+		CES91:90
+		CES57:56
+		CES85:84
+		CES99:98
+		CES11:10
+		CES63:62
+		CES47:46
+		CES03:2
+		CES08:7
+		CES89:88
+		CES15:14
+		CES52:51
+		CES19:18
+		CES18:17
+		CES40:39
+		CES02:1
+		CES92:91
+		CES43:42
+		CES72:71
+		CES09:8
+		CES35:34
+		CES34:33
+		CES36:35
+		CES71:70
+		CES24:23
+		CES67:66
+		CES37:36
+		CES65:64
+		CES41:40
+		CES45:44
+		CES97:96
+		CES22:21
+		CES01:0
+		CES38:37
+		CES80:79
+		CES17:16
+		CES98:97
+		CES42:41
+		CES96:95
+		CES95:94
+		CES94:93
+		CES78:77
+		CES93:92
+		CES70:69
+		CES26:25
+		CES90:89
+		CES31:30
+		CES88:87
+		CES32:31
+		CES23:22
+		CES13:12
+		CES87:86
+		CES77:76
+		CES82:81
+		CES44:43
+		CES14:13
+		CES56:55
+		CES21:20
+		CES20:19
+		CES62:61
+		CES29:28
+		CES76:75
+		CES12:11
+		CES58:57
+		CES64:63
+		CES07:6
+		CES79:78
+		CES30:29
+		CES83:82
+		CES27:26
+		CES86:85
+		CES04:3
+		CES61:60
+		CES10:9
+		CES49:48
+		CES54:53
+		CES46:45
+		CES59:58
+		CES74:73
+		CES73:72
+		CES48:47
+		CES51:50
+		CES06:5
+		CES66:65
+		CES25:24
+		CES55:54
+		CES28:27
+		CES39:38
+	}
+	NetworkFilter:{
+		My Location:4
+		Not My Session:2
+		My Session:1
+		All:0
+		Wrong Version:3
+	}
+	RealtimeSection:{
+		Timecode:7
+		SendRTStream:4
+		Jobque:3
+		PostRealtime:14
+		CalcChannel:10
+		DMXCompress:12
+		DMXTransfer:13
+		Wait2:15
+		Wait1:11
+		Highlight:9
+		DMXMix:2
+		GroupMaster:6
+		Start:0
+		LED:17
+		Lua:5
+		Playback:8
+		ChannelCompress:16
+		DMXDecompress:1
+	}
+	OnOff:{
+		On:1
+		Off:0
+	}
+	DimmerWheelResolution:{
+		Coarse:1
+		Fine:2
+		Normal:0
+	}
+	PatchOffset:{
+		None:-1
+	}
+	DisplayIndex:{
+		None:-1
+	}
+	DefinedPoolColumns:{
+		Not Defined:-1
+	}
+	MonthShort:{
+		Aug:7
+		Nov:10
+		Jun:5
+		Jul:6
+		Oct:9
+		Sep:8
+		Dec:11
+		Jan:0
+		Mar:2
+		May:4
+		Apr:3
+		Feb:1
+	}
+	InputType:{
+		Mouse:0
+		Touch:1
+		Scroller:3
+		Keyboard:2
+	}
+	RelationType:{
+		Multiply:0
+		Override:1
+	}
+	TrackpadPTInvertMode:{
+		Both:3
+		Off:0
+		Tilt Invert:2
+		Pan Invert:1
+	}
+	RequestedSize:{
+		Default:0
+	}
+	CommandWingBarDisplayMode:{
+		Labels:0
+		Hardware
+Buttons:1
+	}
+	ValueNoneEmpty:{
+		Release:1107296256
+		Hold:1107296257
+		:2147483647
+		None:2147483647
+	}
+	AttriebuteEncoderResolutionSmall:{
+		Coarse:16777216
+		Fine:1677721
+		Increment:167772
+	}
+	DmxSheetSettingsViewMode:{
+		Sheet:0
+	}
+	FrameFormatDefault:{
+		30 fps:30
+		60 fps:60
+		24 fps:24
+		25 fps:25
+		Default:0
+		Seconds:100
+	}
+	FalloffType:{
+		None:0
+		Correct:2
+		Linear:1
+	}
+	AssignmentSpeedButtonFunctions:{
+		Toggle:14
+		:0
+		On:7
+		LearnSpeed:10
+		Speed1:12
+		Black:2
+		Flash:1
+		HalfSpeed:26
+		DoubleSpeed:27
+		Temp:13
+		Off:8
+		Pause:18
+		Empty:0
+	}
+	AssignmentHighlightSoloButtonFunctions:{
+		Toggle:14
+		Flash:1
+		:0
+		On:7
+		Temp:13
+		Off:8
+		Black:2
+		Empty:0
+	}
+	AssignmentSoundMasterButtonFunctions:{
+		Toggle:14
+		:0
+		On:7
+		Off:8
+		Empty:0
+	}
+	BeamType:{
+		PC:4
+		Spot:1
+		Wash:0
+		None:2
+		Rectangle:3
+		Glow:6
+		Fresnel:5
+	}
+	DMXReadoutMode:{
+		Dec8:3
+		Hex16:1
+		Hex8:0
+		Hex24:2
+		Percent:6
+		Dec24:5
+		Dec16:4
+	}
+	LampType:{
+		Discharge:0
+		Halogen:2
+		Tungsten:1
+		LED:3
+	}
+	PhaserValueFields:{
+		Absolute:1
+		Accel:3
+		Trans:5
+		Relative:2
+		Width:6
+		Integrated:0
+		Decel:4
+	}
+	SelectionModeLayout:{
+		Linearize:1
+		2D Grid:0
+	}
+	MouseButtonTypes:{
+		Middle:2
+		Right:1
+		Left:0
+	}
+	ValueReadoutMode:{
+		Hex16:7
+		Physical:2
+		Decimal24:5
+		Hex8:6
+		PercentFine:1
+		Hex24:8
+		Percent:0
+		Decimal16:4
+		Decimal8:3
+	}
+	WeekDay:{
+		Tuesday:1
+		Wednesday:2
+		Friday:4
+		Thursday:3
+		Monday:0
+		Saturday:5
+		Sunday:6
+	}
+	PlaybacksToShow:{
+		Macros:1
+		Sequences:0
+		Timers:4
+		Timecodes:2
+		All:6
+		Presets:3
+		SoundFiles:5
+	}
+	GroupSelectionType:{
+		Absolute:1
+		Relative:0
+	}
+	ShowFileStatus:{
+		ShowSaving:5
+		ShowMediaDownloading:11
+		ShowDownloaded:3
+		NoShow:1
+		ShowLoaded:2
+		DataNegotiationSlave:7
+		ShowDownloadIgnore:12
+		DataNegotiationMaster:6
+		ShowDownloading:10
+		DataNegotiationActive:4
+		ShowMediaUploading:9
+		ShowUploading:8
+		Undefined:0
+	}
+	TrueFalse:{
+		False:0
+		True:1
+	}
+	SpeedMaster:{
+		Speed2:1
+		Speed4:3
+		Speed7:6
+		BPM:15
+		Speed1:0
+		Speed12:11
+		Speed13:12
+		Speed6:5
+		Speed15:14
+		:255
+		None:255
+		Speed3:2
+		Speed11:10
+		Speed10:9
+		Speed5:4
+		Speed8:7
+		Speed9:8
+		Speed14:13
+	}
+	DmxSheetCellType:{
+		Parked:7
+		DmxTest:8
+		NotPatched:0
+		Selected:3
+		SelectedInverted:4
+		PartlySelected:5
+		NotRequested:6
+		Patched2:2
+		Patched1:1
+	}
+	TimeNoneEmpty:{
+		:-1
+		None:-1
+	}
+	TrackpadPTMode:{
+		Both:2
+		Pan Only:0
+		Tilt Only:1
+	}
+	ZoomFactor:{
+		60%:0
+		70%:1
+		80%:2
+		90%:3
+		250%:19
+		220%:16
+		280%:22
+		270%:21
+		260%:20
+		150%:9
+		160%:10
+		170%:11
+		180%:12
+		140%:8
+		130%:7
+		120%:6
+		110%:5
+		210%:15
+		100%:4
+		240%:18
+		230%:17
+		290%:23
+		190%:13
+		200%:14
+		300%:24
+	}
+	ShadowMapQuality:{
+		None:0
+		Very High:4
+		High:3
+		Medium:2
+		Low:1
+	}
+	ItemGroupPosition:{
+		Center:2
+		Begin:1
+		None:0
+		End:3
+	}
+	ChildrenFillPolicy:{
+		ColumnFirst:2
+		RowFirst:1
+		Default:0
+	}
+}

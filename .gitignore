@@ -5,3 +5,6 @@ build
 # WIP
 examples/stringSend.lua
 MA Tools
+
+# macOS
+.DS_Store
