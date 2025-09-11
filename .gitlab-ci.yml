@@ -77,11 +77,11 @@ release:
 
 website:
   stage: release
+  tags:
+    - docker
   image: node:lts-alpine
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-  tags:
-    - docker
   before_script:
     - cd ./website && npm ci
   script:

@@ -1,0 +1,85 @@
+---
+title: Write a Plugin
+description: How to write a LUA plugin
+tableOfContents:
+  minHeadingLevel: 1
+  maxHeadingLevel: 4
+---
+
+import { Aside, FileTree, Code } from '@astrojs/starlight/components';
+import plugin_xml from '../../../../../PluginTemplate/MyPlugin.xml?raw';
+import plugin_lua from '../../../../../PluginTemplate/MyComponent.lua?raw';
+
+
+## Plugin structure
+
+By Default, grandMA expects a `.xml` plugin file which references all the `.lua` components for the plugin.
+Most plugins will only require one LUA component but multiple is permitted.
+
+The `.xml` and `.lua` files should be in the `gma3_library/datapools/plugins` directory of your MA installation:
+    - macOS: `~/MALightingTechnology/...`
+    - Windows: `C:\ProgramData\MALightingTechnology\...`
+    - USB key: `/grandMA3/...`
+
+<Aside type="tip">
+A `Path` attribute can be set in the plugin `.xml` file which defines a subdirectory in which all the components should live.
+This enables a cleaner and more seggregated setup to avoid filename collisions between plugins.
+grandMA will automatically detect plugin `.xml` files in subdirectories and will be available in the `Import` popup.
+</Aside>
+
+<FileTree>
+- gma3_library/datapools/plugins
+    - MyPlugin
+        - MyPlugin.xml
+        - MyComponent.lua
+        - ... (Other lua components)  
+    - ... Other plugin files
+</FileTree>
+
+
+## Plugin files
+
+### XML
+
+<Code code={plugin_xml} lang="xml" title="MyPlugin.xml" />
+
+### Lua
+
+<Code code={plugin_lua} lang="lua" title="MyComponent.lua" />
+
+
+## Usage
+
+When a plugin DataPool object is clicked or the `Plugin X` keyword is used, the first returned function from the module is called (called `Main` in the example file above).  
+If a `Cleanup` function is provided (2nd returned function), it will be executed after the Main function is run.  
+If the plugin is called with any Action keyword, for example: `Go+ Plugin X` or `On Plugin X`, the third returned function (called `Execute` in the example file above) is run.
+
+### Arguments
+
+Any arguments can be passed to the plugin:
+
+```lua
+Plugin X "<args>"
+```
+
+These arguments are only available in the `Main` function.
+
+<Aside type="tip">
+
+An example on how to create and use positional and named arguments can be found in the [ScreenSwap](https://github.com/patopesto/GrandMA3-Plugins/blob/master/ScreenSwap/ScreenSwap.lua#L16) plugin source code.
+
+</Aside>
+
+
+## Lua version
+
+The LUA version of the grandMA3 LUA Engine is 5.4.
+    - LUA 5.4.4 (grandMA3 \<= v2.0)
+    - LUA 5.4.6 (grandMA3 \>= v2.1)
+
+
+## Further reading
+
+- Read [Official User Guide](https://help.malighting.com/grandMA3/2.0/HTML/plugins.html) on plugin creation and Import/Export.
+- Read [Official User Guide](https://help.malighting.com/grandMA3/2.0/HTML/keyword_plugin.html) on Plugin command keyword.
+- Lua 5.4 [docs](https://www.luadocs.com/docs/introduction)

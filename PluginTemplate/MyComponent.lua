@@ -1,7 +1,7 @@
-local plugin_name = select(1, ...)
-local component_name = select(2, ...)
-local signal_table = select(3, ...)
-local handle = select(4, ...)
+local pluginName    = select(1,...)
+local componentName = select(2,...) 
+local signalTable   = select(3,...) 
+local my_handle     = select(4,...)
 
 -- Minimal example of plugin structure
 
@@ -21,8 +21,11 @@ end
 -- Main Entrypoint of plugin
 --  Called when `Call Plugin X` is run or Pool object is clicked
 function Main(display_handle, args)
-    Printf(plugin_name .. ": Main")
-    Debugf("Hello from %s", component_name)
+    Printf(pluginName .. ": Main")
+    Debugf("Hello from %s", componentName)
+    if args ~= nil then
+        Debugf("Arguments: %s", args)
+    end
 
     Debugf("ToAddr: " .. handle:ToAddr())
     Debugf("Addr:   " .. handle:Addr())
@@ -33,13 +36,13 @@ end
 
 -- Called after the Main function returns
 function Cleanup()
-    Printf(plugin_name .. ": Cleaning up")
+    Printf(pluginName .. ": Cleaning up")
 end
 
 
 -- Called when plugin is run with `Go+ Plugin X`
 function Execute(type, ...)
-    Printf(plugin_name .. ": Executed")
+    Printf(pluginName .. ": Executed")
     Debugf(type .. ": " .. ...)
 end
 
