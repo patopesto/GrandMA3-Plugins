@@ -205,8 +205,8 @@ export async function GenerateFunctionsMarkDown(version = "v2.0", check_docs = t
     process.exit(1);
   }
 
-  const pretty = JSON.stringify(funcs, null, 2);
-  console.log(pretty);
+  // const pretty = JSON.stringify(funcs, null, 2);
+  // console.log(pretty);
 
   const functions = {};
   for (const section of Object.keys(funcs)) {
@@ -281,4 +281,4 @@ import { Aside, Badge } from '@astrojs/starlight/components';
 
 
 // Run when called standalone (for debug)
-GenerateFunctionsMarkDown("v2.0");
+// GenerateFunctionsMarkDown("v2.0");

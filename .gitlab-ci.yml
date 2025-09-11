@@ -73,3 +73,18 @@ release:
           filepath: "/plugin"
           link_type: package
           url: "$PACKAGE_REGISTRY_URL/$PLUGIN_NAME/$PLUGIN_VERSION/$PLUGIN_FILE"
+
+
+website:
+  stage: release
+  image: node:lts-alpine
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  tags:
+    - docker
+  before_script:
+    - cd ./website && npm ci
+  script:
+    - npm run build
+  pages:
+    publish: website/dist

@@ -4,6 +4,7 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://grandma3.bambinito.net',
 	integrations: [
 		starlight({
 			title: 'GrandMA3 plugins',
