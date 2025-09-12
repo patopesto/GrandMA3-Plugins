@@ -15,7 +15,7 @@ function sanitize(raw) {
 
   // Quote any key
   txt = txt.replace(
-    /^([\s]*)([A-Za-z0-9_<>()][^:]*):/gm,
+    /^([\s]*)([A-Za-z0-9_<>()]*?):/gm,
     (_, prefix, key) => `${prefix}"${key.replace('\n', ' ')}":` // Fix keys containing newline
   );
 
@@ -23,6 +23,12 @@ function sanitize(raw) {
   txt = txt.replace(
     /^([\s]*)([0-9]+):/gm,
     (_, prefix, key) => `${prefix}"${key}":`
+  );
+
+  // Remove newlines from string values
+  txt = txt.replace(
+    /([^]*?):("[^]*?")/gm,
+    (_, key, value) => `${key}:${value.replace('\n', ' ')}`
   );
 
   // Remove stray trailing commas before a closing brace
