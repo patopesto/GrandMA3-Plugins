@@ -256,7 +256,7 @@ import { Aside, Badge } from '@astrojs/starlight/components';
     object: "Object API",
   }
 
-  for (const section of Object.keys(functions)) {
+  for (const section of Object.keys(sections)) {
     const sorted = Object.keys(functions[section]).sort((a, b) => a.localeCompare(b)); // sort alphabetically
 
     if (!sorted.length) continue;

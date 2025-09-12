@@ -1,0 +1,6078 @@
+
+---
+title: LUA Functions
+description: The LUA API for grandMA3 version v2.1
+version: v2.1
+---
+import { Aside, Badge } from '@astrojs/starlight/components';
+
+<Aside type="tip">
+  Only some functions have an entry in the official grandMA User Manual.
+  If this is the case, a <Badge text="Official Docs" variant="note"/> badge will be present.
+  You can click on the badge to open the corresponding page in the official User Manual.
+</Aside>
+
+## Object-Free API
+
+### AddFixtures <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_addfixtures.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+AddFixtures({'mode'=light_userdata:dmx_mode, 'amount'=integer:amount[, 'undo'=string:undo_text][, 'parent'=light_userdata:handle][, 'insert_index'=integer:value][, 'idtype'=string:idtype][, 'cid'=string:cid][, 'fid'=string:fid][, 'name'=string:name][, 'layer'=string:layer][, 'class'=string:class][, 'patch'={table 1..8: string:address}]}): boolean:success or nothing
+```
+
+**Arguments**
+
+1. **`{'mode'=light_userdata:dmx_mode, 'amount'=integer:amount[, 'undo'=string:undo_text][, 'parent'=light_userdata:handle][, 'insert_index'=integer:value][, 'idtype'=string:idtype][, 'cid'=string:cid][, 'fid'=string:fid][, 'name'=string:name][, 'layer'=string:layer][, 'class'=string:class][, 'patch'={table 1..8: string:address}]}`** : 
+
+**Returns**
+
+- **`boolean`**: success or nothing
+
+---
+
+### AddonVars <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_addonvars.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+AddonVars(string:addon_name): light_userdata:addon_variables
+```
+
+**Arguments**
+
+1. **`string`** : addon_name
+
+**Returns**
+
+- **`light_userdata`**: addon_variables
+
+---
+
+### BuildDetails <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_builddetails.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+BuildDetails(nothing): table:build_details
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`table`**: build_details
+
+---
+
+### CheckDMXCollision <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_checkdmxcollision.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+CheckDMXCollision(light_userdata:dmx_mode, string:dmx_address[ ,integer:count[ ,integer:break_index]]): boolean:no_collision_found
+```
+
+**Arguments**
+
+1. **`light_userdata`** : dmx_mode
+2. **`string`** : dmx_address
+3. **`integer`** **(optional)**: count
+4. **`integer`** **(optional)**: break_index
+
+**Returns**
+
+- **`boolean`**: no_collision_found
+
+---
+
+### CheckFIDCollision <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_checkfidcollision.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+CheckFIDCollision(integer:fid[, integer:count[, integer:type]]): boolean:no_collision_found
+```
+
+**Arguments**
+
+1. **`integer`** : fid
+2. **`integer`** **(optional)**: count
+3. **`integer`** **(optional)**: type
+
+**Returns**
+
+- **`boolean`**: no_collision_found
+
+---
+
+### ClassExists <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_classexists.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+ClassExists(string:class_name): boolean:result
+```
+
+**Arguments**
+
+1. **`string`** : class_name
+
+**Returns**
+
+- **`boolean`**: result
+
+---
+
+### CloseAllOverlays <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_closealloverlays.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+CloseAllOverlays(nothing): nothing
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+No Return
+
+---
+
+### CloseUndo <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_closeundo.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+CloseUndo(light_userdata:undo_handle): boolean:closed (true if was closed, false - if it's still in use)
+```
+
+**Arguments**
+
+1. **`light_userdata`** : undo_handle
+
+**Returns**
+
+- **`boolean`**: closed (true if was closed, false - if it's still in use)
+
+---
+
+### Cmd <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_cmd.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Cmd(string:formatted_command[ ,light_userdata:undo], ...): string:command_execution_result ('Ok', 'Syntax Error', 'Illegal Command', ...)
+```
+
+**Arguments**
+
+1. **`string`** : formatted_command
+2. **`light_userdata`** **(optional)**: undo
+3. **`...`** : 
+
+**Returns**
+
+- **`string`**: command_execution_result ('Ok', 'Syntax Error', 'Illegal Command', ...)
+
+---
+
+### CmdIndirect <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_cmdindirect.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+CmdIndirect(string:command[, light_userdata:undo[, light_userdata:target]]): nothing
+```
+
+**Arguments**
+
+1. **`string`** : command
+2. **`light_userdata`** **(optional)**: undo
+3. **`light_userdata`** **(optional)**: target
+
+**Returns**
+
+No Return
+
+---
+
+### CmdIndirectWait <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_cmdindirectwait.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+CmdIndirectWait(string:command[, light_userdata:undo[, light_userdata:target]]): nothing
+```
+
+**Arguments**
+
+1. **`string`** : command
+2. **`light_userdata`** **(optional)**: undo
+3. **`light_userdata`** **(optional)**: target
+
+**Returns**
+
+No Return
+
+---
+
+### CmdObj <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_cmdobj.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+CmdObj(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### ColMeasureDeviceDarkCalibrate
+
+**Signature**
+```lua
+ColMeasureDeviceDarkCalibrate(nothing): integer:flag
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`integer`**: flag
+
+---
+
+### ColMeasureDeviceDoMeasurement
+
+**Signature**
+```lua
+ColMeasureDeviceDoMeasurement(nothing): table:values
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`table`**: values
+
+---
+
+### ConfigTable <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_configtable.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+ConfigTable(nothing): table:config_details
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`table`**: config_details
+
+---
+
+### Confirm <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_confirm.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Confirm([string:title [,string:message [,integer:display_index [,boolean:showCancel]]]]): boolean:result
+```
+
+**Arguments**
+
+1. **`string`** **(optional)**: title
+2. **`string`** **(optional)**: message
+3. **`integer`** **(optional)**: display_index
+4. **`boolean`** **(optional)**: showCancel
+
+**Returns**
+
+- **`boolean`**: result
+
+---
+
+### CreateDirectoryRecursive
+
+**Signature**
+```lua
+CreateDirectoryRecursive(string:path): boolean:result
+```
+
+**Arguments**
+
+1. **`string`** : path
+
+**Returns**
+
+- **`boolean`**: result
+
+---
+
+### CreateMultiPatch <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_createmultipatch.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+CreateMultiPatch({light_userdata:fixture_handles}, integer:count[ ,string:undo_text]): integer:amount_of_multi-patch_fixtures_created
+```
+
+**Arguments**
+
+1. **`{light_userdata:fixture_handles}`** : 
+2. **`integer`** : count
+3. **`string`** **(optional)**: undo_text
+
+**Returns**
+
+- **`integer`**: amount_of_multi-patch_fixtures_created
+
+---
+
+### CreateUndo <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_createundo.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+CreateUndo(string:undo_text): light_userdata:undo_handle
+```
+
+**Arguments**
+
+1. **`string`** : undo_text
+
+**Returns**
+
+- **`light_userdata`**: undo_handle
+
+---
+
+### CurrentEnvironment <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_currentenvironment.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+CurrentEnvironment(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### CurrentExecPage <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_currentexecpage.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+CurrentExecPage(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### CurrentProfile <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_currentprofile.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+CurrentProfile(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### CurrentScreenConfig <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_currentscreenconfig.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+CurrentScreenConfig(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### CurrentUser <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_currentuser.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+CurrentUser(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### DataPool <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_datapool.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+DataPool(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### DefaultDisplayPositions <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_defaultdisplaypositions.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+DefaultDisplayPositions(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### DelVar <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_delvar.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+DelVar(light_userdata:variables, string:varname): boolean:success
+```
+
+**Arguments**
+
+1. **`light_userdata`** : variables
+2. **`string`** : varname
+
+**Returns**
+
+- **`boolean`**: success
+
+---
+
+### DeskLocked <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_desklocked.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+DeskLocked(nothing): boolean:desk_is_locked
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`boolean`**: desk_is_locked
+
+---
+
+### DeviceConfiguration <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_deviceconfiguration.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+DeviceConfiguration(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### DevMode3d
+
+**Signature**
+```lua
+DevMode3d(nothing): string:devmode3d
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`string`**: devmode3d
+
+---
+
+### DirList <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_dirlist.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+DirList(string:path[ ,string:filter]): table of {name:string, size:int, time:int}
+```
+
+**Arguments**
+
+1. **`string`** : path
+2. **`string`** **(optional)**: filter
+
+**Returns**
+
+- **`table of {name:string, size:int, time:int}`**: 
+
+---
+
+### DrawPointer <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_drawpointer.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+DrawPointer(integer:display_index, {x,y}:position[, number:duration]): nothing
+```
+
+**Arguments**
+
+1. **`integer`** : display_index
+2. **`{x,y}`** : position
+3. **`number`** **(optional)**: duration
+
+**Returns**
+
+No Return
+
+---
+
+### DumpAllHooks <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_dumpallhooks.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+DumpAllHooks(nothing): nothing
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+No Return
+
+---
+
+### Echo <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_echo.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Echo(string:formatted_command ...): nothing
+```
+
+**Arguments**
+
+1. **`string`** : formatted_command ...
+
+**Returns**
+
+No Return
+
+---
+
+### ErrEcho <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_errecho.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+ErrEcho(string:formatted_command ...): nothing
+```
+
+**Arguments**
+
+1. **`string`** : formatted_command ...
+
+**Returns**
+
+No Return
+
+---
+
+### ErrPrintf <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_errprintf.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+ErrPrintf(string:formatted_command ...): nothing
+```
+
+**Arguments**
+
+1. **`string`** : formatted_command ...
+
+**Returns**
+
+No Return
+
+---
+
+### Export <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_export.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Export(string:file_name, table:export_data): boolean:success
+```
+
+**Arguments**
+
+1. **`string`** : file_name
+2. **`table`** : export_data
+
+**Returns**
+
+- **`boolean`**: success
+
+---
+
+### ExportCSV <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_exportcsv.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+ExportCSV(string:file_name, table:export_data): boolean:success
+```
+
+**Arguments**
+
+1. **`string`** : file_name
+2. **`table`** : export_data
+
+**Returns**
+
+- **`boolean`**: success
+
+---
+
+### ExportJson <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_exportjson.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+ExportJson(string:file_name, table:export_data): boolean:success
+```
+
+**Arguments**
+
+1. **`string`** : file_name
+2. **`table`** : export_data
+
+**Returns**
+
+- **`boolean`**: success
+
+---
+
+### FileExists <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_fileexists.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+FileExists(string:path): boolean:result
+```
+
+**Arguments**
+
+1. **`string`** : path
+
+**Returns**
+
+- **`boolean`**: result
+
+---
+
+### FindBestDMXPatchAddr
+
+**Signature**
+```lua
+FindBestDMXPatchAddr(light_userdata:patch, integer:starting_address, integer:footprint): integer:absolute_address
+```
+
+**Arguments**
+
+1. **`light_userdata`** : patch
+2. **`integer`** : starting_address
+3. **`integer`** : footprint
+
+**Returns**
+
+- **`integer`**: absolute_address
+
+---
+
+### FindBestFocus
+
+**Signature**
+```lua
+FindBestFocus([light_userdata:handle]): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** **(optional)**: handle
+
+**Returns**
+
+No Return
+
+---
+
+### FindNextFocus
+
+**Signature**
+```lua
+FindNextFocus([bool:backwards(false)[, int(Focus::Reason):reason(UserTabKey)]]): nothing
+```
+
+**Arguments**
+
+1. **`bool`** **(optional)**: backwards(false)
+2. **`int(Focus::Reason)`** **(optional)**: reason(UserTabKey)
+
+**Returns**
+
+No Return
+
+---
+
+### FindTexture <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_findtexture.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+FindTexture(string:texture name): light userdata:handle to texture found
+```
+
+**Arguments**
+
+1. **`string`** : texture name
+
+**Returns**
+
+- **`light userdata`**: handle to texture found
+
+---
+
+### FirstDmxModeFixture <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_firstdmxmodefixture.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+FirstDmxModeFixture(light_userdata:dmxmode): light_userdata:fixture
+```
+
+**Arguments**
+
+1. **`light_userdata`** : dmxmode
+
+**Returns**
+
+- **`light_userdata`**: fixture
+
+---
+
+### FixtureType <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_fixturetype.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+FixtureType(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### FromAddr <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_fromaddr.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+FromAddr(string:address[, light_userdata:base_handle]): light_userdata:handle
+```
+
+**Arguments**
+
+1. **`string`** : address
+2. **`light_userdata`** **(optional)**: base_handle
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### FSExtendedModeHasDots
+
+**Signature**
+```lua
+FSExtendedModeHasDots(light_userdata:handle to UIGrid (or derived), {r, c}:cell): boolean
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+2. **`{r, c}`** : cell
+
+**Returns**
+
+- **`boolean`**: 
+
+---
+
+### GetApiDescriptor <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getapidescriptor.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetApiDescriptor(nothing): table of {string:function_name, string:arguments, string:return_values}
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`table of {string:function_name, string:arguments, string:return_values}`**: 
+
+---
+
+### GetAttributeByUIChannel <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getattributebyuichannel.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetAttributeByUIChannel(integer:ui channel index): light_userdata:reference_to_attribute
+```
+
+**Arguments**
+
+1. **`integer`** : ui channel index
+
+**Returns**
+
+- **`light_userdata`**: reference_to_attribute
+
+---
+
+### GetAttributeColumnId
+
+**Signature**
+```lua
+GetAttributeColumnId(light_userdata:handle, light_userdata:attribute): integer:column_id
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`light_userdata`** : attribute
+
+**Returns**
+
+- **`integer`**: column_id
+
+---
+
+### GetAttributeCount <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getattributecount.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetAttributeCount(nothing): integer:attribute_count
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`integer`**: attribute_count
+
+---
+
+### GetAttributeIndex <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getattributeindex.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetAttributeIndex(string:attribute_name): integer:attribute_index
+```
+
+**Arguments**
+
+1. **`string`** : attribute_name
+
+**Returns**
+
+- **`integer`**: attribute_index
+
+---
+
+### GetButton <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getbutton.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetButton(light_userdata:usb_device_object_handle): table of boolean:state
+```
+
+**Arguments**
+
+1. **`light_userdata`** : usb_device_object_handle
+
+**Returns**
+
+- **`table of boolean`**: state
+
+---
+
+### GetChannelFunction <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getchannelfunction.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetChannelFunction(integer:ui_channel_index, integer:attribute_index): light_userdata:handle
+```
+
+**Arguments**
+
+1. **`integer`** : ui_channel_index
+2. **`integer`** : attribute_index
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### GetChannelFunctionIndex <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getchannelfunctionindex.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetChannelFunctionIndex(integer:ui_channel_index, integer:attribute_index): integer:channel_function_index
+```
+
+**Arguments**
+
+1. **`integer`** : ui_channel_index
+2. **`integer`** : attribute_index
+
+**Returns**
+
+- **`integer`**: channel_function_index
+
+---
+
+### GetClassDerivationLevel <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getclassderivationlevel.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetClassDerivationLevel(string:class_name): integer:result or nothing
+```
+
+**Arguments**
+
+1. **`string`** : class_name
+
+**Returns**
+
+- **`integer`**: result or nothing
+
+---
+
+### GetCurrentCue <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getcurrentcue.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetCurrentCue(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### GetDebugFPS <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getdebugfps.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetDebugFPS(nothing): float:fps
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`float`**: fps
+
+---
+
+### GetDisplayByIndex <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getdisplaybyindex.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetDisplayByIndex(integer:display_index): light_userdata:display_handle
+```
+
+**Arguments**
+
+1. **`integer`** : display_index
+
+**Returns**
+
+- **`light_userdata`**: display_handle
+
+---
+
+### GetDisplayCollect <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getdisplaycollect.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetDisplayCollect(nothing): light_userdata:handle to DisplayCollect
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle to DisplayCollect
+
+---
+
+### GetDMXUniverse <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getdmxuniverse.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetDMXUniverse(integer:universe[ ,boolean:modePercent]): {integer:dmx_values}
+```
+
+**Arguments**
+
+1. **`integer`** : universe
+2. **`boolean`** **(optional)**: modePercent
+
+**Returns**
+
+- **`{integer:dmx_values}`**: 
+
+---
+
+### GetDMXValue <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getdmxvalue.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetDMXValue(integer:address[ ,integer:universe, boolean:mode_percent]): integer:dmx_value
+```
+
+**Arguments**
+
+1. **`integer`** : address
+2. **`integer`** **(optional)**: universe
+3. **`boolean`** **(optional)**: mode_percent
+
+**Returns**
+
+- **`integer`**: dmx_value
+
+---
+
+### GetExecutor <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getexecutor.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetExecutor(integer:executor): light_userdata:executor, light_userdata:page
+```
+
+**Arguments**
+
+1. **`integer`** : executor
+
+**Returns**
+
+- **`light_userdata`**: executor
+- **`light_userdata`**: page
+
+---
+
+### GetFocus <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getfocus.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetFocus(nothing): light_userdata:display_handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: display_handle
+
+---
+
+### GetFocusDisplay <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getfocusdisplay.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetFocusDisplay(nothing): light_userdata:display_handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: display_handle
+
+---
+
+### GetObjApiDescriptor <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getobjapidescriptor.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetObjApiDescriptor(nothing): table of {string:function_name, string:arguments, string:return_values}
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`table of {string:function_name, string:arguments, string:return_values}`**: 
+
+---
+
+### GetObject
+
+**Signature**
+```lua
+GetObject(string:address): light_userdata:handle
+```
+
+**Arguments**
+
+1. **`string`** : address
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### GetPath <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getpath.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetPath(string:path_type or integer:path_type(Enums.PathType)[ ,boolean:create]): string:path
+```
+
+**Arguments**
+
+1. **`string`** : path_type or integer:path_type(Enums.PathType)
+2. **`boolean`** **(optional)**: create
+
+**Returns**
+
+- **`string`**: path
+
+---
+
+### GetPathOverrideFor <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getpathoverridefor.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetPathOverrideFor(string:path type or integer:path_type(Enums.PathType), string:path[ ,boolean:create]): string:overwritten_path
+```
+
+**Arguments**
+
+1. **`string`** : path type or integer:path_type(Enums.PathType)
+2. **`string`** : path
+3. **`boolean`** **(optional)**: create
+
+**Returns**
+
+- **`string`**: overwritten_path
+
+---
+
+### GetPathSeparator
+
+**Signature**
+```lua
+GetPathSeparator(nothing): string:seperator
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`string`**: seperator
+
+---
+
+### GetPathType <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getpathtype.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetPathType(light_userdata:target_object[ ,integer:content_type (Enums.PathContentType)]): string:path_type_name
+```
+
+**Arguments**
+
+1. **`light_userdata`** : target_object
+2. **`integer`** **(optional)**: content_type (Enums.PathContentType)
+
+**Returns**
+
+- **`string`**: path_type_name
+
+---
+
+### GetPresetData <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getpresetdata.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetPresetData(light_userdata:preset_handle[, boolean:phasers_only(default=false)[, boolean:by_fixtures(default=true)]]): table:phaser_data
+```
+
+**Arguments**
+
+1. **`light_userdata`** : preset_handle
+2. **`boolean`** **(optional)**: phasers_only(default=false)
+3. **`boolean`** **(optional)**: by_fixtures(default=true)
+
+**Returns**
+
+- **`table`**: phaser_data
+
+---
+
+### GetProgPhaser
+
+**Signature**
+```lua
+GetProgPhaser(integer:ui_channel_index, boolean:phaser_only): {['abs_preset'=light_userdata:handle], ['rel_preset'=light_userdata:handle], ['fade'=integer:seconds], ['delay'=integer:seconds], ['speed'=integer:hz], ['phase'=integer:degree], ['measure'=integer:value], ['gridpos'=integer:value], ['mask_active_phaser'=boolean:value], ['mask_active_value'=boolean:value], ['mask_individual'=boolean:value], {['channel_function'=integer:value], ['absolute'=integer:percent], ['absolute_value'=integer:value], ['relative'=integer:percent], ['accel'=integer:percent[, 'accel_type'=integer:enum_value(Enums.SplineType)]], ['decel'=integer:percent[, 'decel_type'=integer:enum_value(Enums.SplineType)]], ['trans'=integer:percent], ['width'=integer:percent], ['integrated'=light_userdata:preset_handle]}}
+```
+
+**Arguments**
+
+1. **`integer`** : ui_channel_index
+2. **`boolean`** : phaser_only
+
+**Returns**
+
+- **`{['abs_preset'=light_userdata:handle], ['rel_preset'=light_userdata:handle], ['fade'=integer:seconds], ['delay'=integer:seconds], ['speed'=integer:hz], ['phase'=integer:degree], ['measure'=integer:value], ['gridpos'=integer:value], ['mask_active_phaser'=boolean:value], ['mask_active_value'=boolean:value], ['mask_individual'=boolean:value], {['channel_function'=integer:value], ['absolute'=integer:percent], ['absolute_value'=integer:value], ['relative'=integer:percent], ['accel'=integer:percent[, 'accel_type'=integer:enum_value(Enums.SplineType)]], ['decel'=integer:percent[, 'decel_type'=integer:enum_value(Enums.SplineType)]], ['trans'=integer:percent], ['width'=integer:percent], ['integrated'=light_userdata:preset_handle]}}`**: 
+
+---
+
+### GetProgPhaserValue
+
+**Signature**
+```lua
+GetProgPhaserValue(integer:ui_channel_index, integer:step): {['channel_function'=integer:value], ['absolute'=integer:percent], ['absolute_value'=integer:value], ['relative'=integer:percent], ['accel'=integer:percent[, 'accel_type'=integer:enum_value(Enums.SplineType)]], ['decel'=integer:percent[, 'decel_type'=integer:enum_value(Enums.SplineType)]], ['trans'=integer:percent], ['width'=integer:percent], ['integrated'=light_userdata:preset_handle]}
+```
+
+**Arguments**
+
+1. **`integer`** : ui_channel_index
+2. **`integer`** : step
+
+**Returns**
+
+- **`{['channel_function'=integer:value], ['absolute'=integer:percent], ['absolute_value'=integer:value], ['relative'=integer:percent], ['accel'=integer:percent[, 'accel_type'=integer:enum_value(Enums.SplineType)]], ['decel'=integer:percent[, 'decel_type'=integer:enum_value(Enums.SplineType)]], ['trans'=integer:percent], ['width'=integer:percent], ['integrated'=light_userdata:preset_handle]}`**: 
+
+---
+
+### GetPropertyColumnId
+
+**Signature**
+```lua
+GetPropertyColumnId(light_userdata:handle, string:property_name): integer:column_id
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : property_name
+
+**Returns**
+
+- **`integer`**: column_id
+
+---
+
+### GetRemoteVideoInfo
+
+**Signature**
+```lua
+GetRemoteVideoInfo(nothing): integer:wingID, boolean:isExtension
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`integer`**: wingID
+- **`boolean`**: isExtension
+
+---
+
+### GetRTChannel <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getrtchannel.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetRTChannel(integer:rt_channel_index): table:rt_channel_descriptor
+```
+
+**Arguments**
+
+1. **`integer`** : rt_channel_index
+
+**Returns**
+
+- **`table`**: rt_channel_descriptor
+
+---
+
+### GetRTChannelCount <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getrtchannelcount.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetRTChannelCount(nothing): integer:rt_channel_count
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`integer`**: rt_channel_count
+
+---
+
+### GetRTChannels <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getrtchannels.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetRTChannels(integer:fixture index or light_userdata: reference_to_fixture_object[, boolean:return_as_handles]): {integer:rt_channels} or {light_userdata:rt_channels}
+```
+
+**Arguments**
+
+1. **`integer`** : fixture index or light_userdata: reference_to_fixture_object
+2. **`boolean`** **(optional)**: return_as_handles
+
+**Returns**
+
+- **`{integer:rt_channels} or {light_userdata:rt_channels}`**: 
+
+---
+
+### GetSample <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getsample.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetSample(string:type('MEMORY', 'CPU', 'CPUTEMP', 'GPUTEMP', 'SYSTEMP', 'FANRPM')): integer:current_value_in_percent
+```
+
+**Arguments**
+
+1. **`string`** : type('MEMORY', 'CPU', 'CPUTEMP', 'GPUTEMP', 'SYSTEMP', 'FANRPM')
+
+**Returns**
+
+- **`integer`**: current_value_in_percent
+
+---
+
+### GetScreenContent <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getscreencontent.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetScreenContent(light_userdata:handle to ScreenConfig): light_userdata:handle
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to ScreenConfig
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### GetSelectedAttribute <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getselectedattribute.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetSelectedAttribute(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### GetShowFileStatus <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getshowfilestatus.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetShowFileStatus(nothing): string:showfile_status
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`string`**: showfile_status
+
+---
+
+### GetSubfixture <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getsubfixture.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetSubfixture(integer:subfixture_index): light_userdata:subfixture
+```
+
+**Arguments**
+
+1. **`integer`** : subfixture_index
+
+**Returns**
+
+- **`light_userdata`**: subfixture
+
+---
+
+### GetSubfixtureCount <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getsubfixturecount.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetSubfixtureCount(nothing): integer:subfixture_count
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`integer`**: subfixture_count
+
+---
+
+### GetTokenName <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_gettokenname.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetTokenName(string:shortName): string:full_name
+```
+
+**Arguments**
+
+1. **`string`** : shortName
+
+**Returns**
+
+- **`string`**: full_name
+
+---
+
+### GetTokenNameByIndex <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_gettokennamebyindex.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetTokenNameByIndex(integer:token_index): string:full_name
+```
+
+**Arguments**
+
+1. **`integer`** : token_index
+
+**Returns**
+
+- **`string`**: full_name
+
+---
+
+### GetTopModal <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_gettopmodal.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetTopModal(nothing): light userdata:handle to top modal overlay
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light userdata`**: handle to top modal overlay
+
+---
+
+### GetTopOverlay <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_gettopoverlay.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetTopOverlay(integer:display_index): light userdata:handle to top overlay on the display
+```
+
+**Arguments**
+
+1. **`integer`** : display_index
+
+**Returns**
+
+- **`light userdata`**: handle to top overlay on the display
+
+---
+
+### GetUIChannel
+
+**Signature**
+```lua
+GetUIChannel(integer:ui_channel_index or light_userdata: subfixture_reference, integer:attribute_index or string:attribute_name): table:ui_channel_descriptor
+```
+
+**Arguments**
+
+1. **`integer`** : ui_channel_index or light_userdata: subfixture_reference
+2. **`integer`** : attribute_index or string:attribute_name
+
+**Returns**
+
+- **`table`**: ui_channel_descriptor
+
+---
+
+### GetUIChannelCount <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getuichannelcount.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetUIChannelCount(nothing): integer:ui_channel_count
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`integer`**: ui_channel_count
+
+---
+
+### GetUIChannelIndex <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getuichannelindex.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetUIChannelIndex(integer:subfixture_index, integer:attribute_index): integer:ui_channel_index
+```
+
+**Arguments**
+
+1. **`integer`** : subfixture_index
+2. **`integer`** : attribute_index
+
+**Returns**
+
+- **`integer`**: ui_channel_index
+
+---
+
+### GetUIChannels <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getuichannels.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetUIChannels(integer:subfixture_index or light_userdata: subfixture_handle[, boolean:return_as_handles]): {integer:ui_channels} or {light_userdata:ui_channels}
+```
+
+**Arguments**
+
+1. **`integer`** : subfixture_index or light_userdata: subfixture_handle
+2. **`boolean`** **(optional)**: return_as_handles
+
+**Returns**
+
+- **`{integer:ui_channels} or {light_userdata:ui_channels}`**: 
+
+---
+
+### GetUIObjectAtPosition <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getuiobjectatposition.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetUIObjectAtPosition(integer:display_index, {x,y}:position): light_userdata:handle to UI object or nil
+```
+
+**Arguments**
+
+1. **`integer`** : display_index
+2. **`{x,y}`** : position
+
+**Returns**
+
+- **`light_userdata`**: handle to UI object or nil
+
+---
+
+### GetVar <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_getvar.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetVar(light_userdata:variables, string:varname): value
+```
+
+**Arguments**
+
+1. **`light_userdata`** : variables
+2. **`string`** : varname
+
+**Returns**
+
+- **`value`**: 
+
+---
+
+### GlobalVars <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_globalvars.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GlobalVars(nothing): light_userdata:global_variables
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: global_variables
+
+---
+
+### HandleToInt <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_handletoint.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+HandleToInt(light_userdata:handle): integer:handle
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`integer`**: handle
+
+---
+
+### HandleToStr
+
+**Signature**
+```lua
+HandleToStr(light_userdata:handle): string:handle(in H#... format)
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`string`**: handle(in H#... format)
+
+---
+
+### HookObjectChange <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_hookobjectchange.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+HookObjectChange(function:callback, light_userdata:handle, light_userdata:plugin_handle[, light_userdata:target]): integer:hook_id
+```
+
+**Arguments**
+
+1. **`function`** : callback
+2. **`light_userdata`** : handle
+3. **`light_userdata`** : plugin_handle
+4. **`light_userdata`** **(optional)**: target
+
+**Returns**
+
+- **`integer`**: hook_id
+
+---
+
+### HostOS <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_hostos.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+HostOS(nothing): string:ostype
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`string`**: ostype
+
+---
+
+### HostSubType <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_hostsubtype.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+HostSubType(nothing): string:hostsubtype
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`string`**: hostsubtype
+
+---
+
+### HostType <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_hosttype.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+HostType(nothing): string:hosttype
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`string`**: hosttype
+
+---
+
+### Import <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_import.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Import(string:file_name): table:content
+```
+
+**Arguments**
+
+1. **`string`** : file_name
+
+**Returns**
+
+- **`table`**: content
+
+---
+
+### IncProgress <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_incprogress.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+IncProgress(integer:progressbar_index[, integer:delta]): nothing
+```
+
+**Arguments**
+
+1. **`integer`** : progressbar_index
+2. **`integer`** **(optional)**: delta
+
+**Returns**
+
+No Return
+
+---
+
+### IntToHandle <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_inttohandle.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+IntToHandle(integer:handle): light_userdata:handle
+```
+
+**Arguments**
+
+1. **`integer`** : handle
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### IsClassDerivedFrom <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_isclassderivedfrom.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+IsClassDerivedFrom(string:derived_name, string:base_name): boolean:result
+```
+
+**Arguments**
+
+1. **`string`** : derived_name
+2. **`string`** : base_name
+
+**Returns**
+
+- **`boolean`**: result
+
+---
+
+### IsObjectValid <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_isobjectvalid.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+IsObjectValid(light_userdata:handle): boolean:valid
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`boolean`**: valid
+
+---
+
+### Keyboard
+
+**Signature**
+```lua
+Keyboard(integer:display_index, string:type('press', 'char', 'release')[ ,string:char(for type 'char') or string:keycode, boolean:shift, boolean:ctrl, boolean:alt, boolean:numlock]): nothing
+```
+
+**Arguments**
+
+1. **`integer`** : display_index
+2. **`string`** : type('press', 'char', 'release')
+3. **`string`** **(optional)**: char(for type 'char') or string:keycode
+4. **`boolean`** : shift
+5. **`boolean`** : ctrl
+6. **`boolean`** : alt
+7. **`boolean`** **(optional)**: numlock
+
+**Returns**
+
+No Return
+
+---
+
+### KeyboardObj <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_keyboardobj.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+KeyboardObj(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### LoadExecConfig
+
+**Signature**
+```lua
+LoadExecConfig(light_userdata:executor): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : executor
+
+**Returns**
+
+No Return
+
+---
+
+### MasterPool <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_masterpool.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+MasterPool(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### MessageBox <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_messagebox.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+MessageBox({title:string,[, string:backColor][, integer:timeout (ms)][, boolean:timeoutResultCancel][, integer:timeoutResultID][, string:icon][, string:titleTextColor][, string:messageTextColor] [, boolean:autoCloseOnInput] string:message[, integer:message_align_h(Enums.AlignmentH)][, integer:message_align_v(Enums.AlignmentV)][, integer|lightuserdata:display], commands:{array of {integer:value, string:name[, integer:order]}}, inputs:{array of {string:name, string:value, string:blackFilter, string:whiteFilter, string:vkPlugin, integer:maxTextLength[, integer:order]}}, states:{array of {string:name, boolean:state[, integer:order]}, selectors:{array of {name:string, integer:selectedValue, values:table[, type:integer 0-swipe, 1-radio][, integer:order]} }): {boolean:success, integer:result, inputs:{array of [string:name] = string:value}, states:{array of [string:name] = boolean:state}, selectors:{array of [string:name] = integer:selected-value}}
+```
+
+**Arguments**
+
+1. **`{title:string,[, string:backColor][, integer:timeout (ms)][, boolean:timeoutResultCancel][, integer:timeoutResultID][, string:icon][, string:titleTextColor][, string:messageTextColor] [, boolean:autoCloseOnInput] string:message[, integer:message_align_h(Enums.AlignmentH)][, integer:message_align_v(Enums.AlignmentV)][, integer|lightuserdata:display], commands:{array of {integer:value, string:name[, integer:order]}}, inputs:{array of {string:name, string:value, string:blackFilter, string:whiteFilter, string:vkPlugin, integer:maxTextLength[, integer:order]}}, states:{array of {string:name, boolean:state[, integer:order]}, selectors:{array of {name:string, integer:selectedValue, values:table[, type:integer 0-swipe, 1-radio][, integer:order]} }`** : 
+
+**Returns**
+
+- **`{boolean:success, integer:result, inputs:{array of [string:name] = string:value}, states:{array of [string:name] = boolean:state}, selectors:{array of [string:name] = integer:selected-value}}`**: 
+
+---
+
+### Mouse
+
+**Signature**
+```lua
+Mouse(integer:display_index, string:type('press', 'move', 'release')[ ,string:button('Left', 'Middle', 'Right' for 'press', 'release') or integer:abs_x, integer:abs_y)]): nothing
+```
+
+**Arguments**
+
+1. **`integer`** : display_index
+2. **`string`** : type('press', 'move', 'release')
+3. **`string`** **(optional)**: button('Left', 'Middle', 'Right' for 'press', 'release') or integer:abs_x
+4. **`integer`** **(optional)**: abs_y)
+
+**Returns**
+
+No Return
+
+---
+
+### MouseObj <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_mouseobj.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+MouseObj(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### NeedShowSave <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_needshowsave.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+NeedShowSave(nothing): boolean:need_show_save
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`boolean`**: need_show_save
+
+---
+
+### NextDmxModeFixture
+
+**Signature**
+```lua
+NextDmxModeFixture(light_userdata:fixture): light_userdata:fixture
+```
+
+**Arguments**
+
+1. **`light_userdata`** : fixture
+
+**Returns**
+
+- **`light_userdata`**: fixture
+
+---
+
+### ObjectList <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_objectlist.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+ObjectList(string:address[, {['selected_as_default'=boolean:enabled], ['reverse_order'=boolean:enabled]}): {light_userdata:handles}
+```
+
+**Arguments**
+
+1. **`string`** : address
+2. **`{['selected_as_default'=boolean:enabled], ['reverse_order'=boolean:enabled]}`** **(optional)**: 
+
+**Returns**
+
+- **`{light_userdata:handles}`**: 
+
+---
+
+### OverallDeviceCertificate
+
+**Signature**
+```lua
+OverallDeviceCertificate(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### Patch <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_patch.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Patch(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### PluginVars
+
+**Signature**
+```lua
+PluginVars([string:plugin_name]): light_userdata:plugin_preferences
+```
+
+**Arguments**
+
+1. **`string`** **(optional)**: plugin_name
+
+**Returns**
+
+- **`light_userdata`**: plugin_preferences
+
+---
+
+### PopupInput
+
+**Signature**
+```lua
+PopupInput({title:str, caller:handle, items:table:{{'str'|'int'|'lua'|'handle', name, type-dependent}...}, selectedValue:str, x:int, y:int, target:handle, render_options:{left_icon, number, right_icon}, useTopLeft:bool, properties:{prop:value}, add_args:{FilterSupport='Yes'/'No'}}): integer:selected_index, string:selected_value
+```
+
+**Arguments**
+
+1. **`{title:str, caller:handle, items:table:{{'str'|'int'|'lua'|'handle', name, type-dependent}...}, selectedValue:str, x:int, y:int, target:handle, render_options:{left_icon, number, right_icon}, useTopLeft:bool, properties:{prop:value}, add_args:{FilterSupport='Yes'/'No'}}`** : 
+
+**Returns**
+
+- **`integer`**: selected_index
+- **`string`**: selected_value
+
+---
+
+### PrepareWaitObjectChange
+
+**Signature**
+```lua
+PrepareWaitObjectChange(light_userdata:handle[ ,integer:change_level_threshold]): boolean:true or nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** **(optional)**: change_level_threshold
+
+**Returns**
+
+- **`boolean`**: true or nothing
+
+---
+
+### Printf <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_printf.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Printf(string:formatted_command ...): nothing
+```
+
+**Arguments**
+
+1. **`string`** : formatted_command ...
+
+**Returns**
+
+No Return
+
+---
+
+### Programmer <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_programmer.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Programmer(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### ProgrammerPart <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_programmerpart.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+ProgrammerPart(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### Pult <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_pult.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Pult(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### RefreshLibrary
+
+**Signature**
+```lua
+RefreshLibrary(light_userdata:handle): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+No Return
+
+---
+
+### ReleaseType <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_releasetype.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+ReleaseType(nothing): string:releasetype
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`string`**: releasetype
+
+---
+
+### RemoteCommand
+
+**Signature**
+```lua
+RemoteCommand(string:ip, string:command): boolean:success
+```
+
+**Arguments**
+
+1. **`string`** : ip
+2. **`string`** : command
+
+**Returns**
+
+- **`boolean`**: success
+
+---
+
+### Root <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_root.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Root(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### SaveExecConfig
+
+**Signature**
+```lua
+SaveExecConfig(light_userdata:executor): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : executor
+
+**Returns**
+
+No Return
+
+---
+
+### SelectedDrive
+
+**Signature**
+```lua
+SelectedDrive(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### SelectedFeature <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_selectedfeature.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+SelectedFeature(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### SelectedLayout <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_selectedlayout.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+SelectedLayout(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### SelectedSequence <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_selectedsequence.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+SelectedSequence(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### SelectedTimecode <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_selectedtimecode.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+SelectedTimecode(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### SelectedTimer <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_selectedtimer.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+SelectedTimer(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### Selection <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_selection.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Selection(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### SelectionComponentX
+
+**Signature**
+```lua
+SelectionComponentX(nothing): integer:min, integer:max, integer:index, integer:block, integer:group
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`integer`**: min
+- **`integer`**: max
+- **`integer`**: index
+- **`integer`**: block
+- **`integer`**: group
+
+---
+
+### SelectionComponentY
+
+**Signature**
+```lua
+SelectionComponentY(nothing): integer:min, integer:max, integer:index, integer:block, integer:group
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`integer`**: min
+- **`integer`**: max
+- **`integer`**: index
+- **`integer`**: block
+- **`integer`**: group
+
+---
+
+### SelectionComponentZ
+
+**Signature**
+```lua
+SelectionComponentZ(nothing): integer:min, integer:max, integer:index, integer:block, integer:group
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`integer`**: min
+- **`integer`**: max
+- **`integer`**: index
+- **`integer`**: block
+- **`integer`**: group
+
+---
+
+### SelectionCount <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_selectioncount.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+SelectionCount(nothing): integer:amount_of_selected_subfixtures
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`integer`**: amount_of_selected_subfixtures
+
+---
+
+### SelectionFirst <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_selectionfirst.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+SelectionFirst(nothing): integer:first_subfixture_index, integer:x, integer:y, integer:z
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`integer`**: first_subfixture_index
+- **`integer`**: x
+- **`integer`**: y
+- **`integer`**: z
+
+---
+
+### SelectionNext <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_selectionnext.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+SelectionNext(integer:current_subfixture_index): integer:next_subfixture_index, integer:x, integer:y, integer:z
+```
+
+**Arguments**
+
+1. **`integer`** : current_subfixture_index
+
+**Returns**
+
+- **`integer`**: next_subfixture_index
+- **`integer`**: x
+- **`integer`**: y
+- **`integer`**: z
+
+---
+
+### SelectionNotifyBegin
+
+**Signature**
+```lua
+SelectionNotifyBegin(light_userdata:associated_context): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : associated_context
+
+**Returns**
+
+No Return
+
+---
+
+### SelectionNotifyEnd
+
+**Signature**
+```lua
+SelectionNotifyEnd(light_userdata:associated_context): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : associated_context
+
+**Returns**
+
+No Return
+
+---
+
+### SelectionNotifyObject
+
+**Signature**
+```lua
+SelectionNotifyObject(light_userdata:object_to_notify_about): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : object_to_notify_about
+
+**Returns**
+
+No Return
+
+---
+
+### SerialNumber <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_serialnumber.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+SerialNumber(nothing): string:serialnumber
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`string`**: serialnumber
+
+---
+
+### SetBlockInput <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_setblockinput.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+SetBlockInput(boolean:block): nothing
+```
+
+**Arguments**
+
+1. **`boolean`** : block
+
+**Returns**
+
+No Return
+
+---
+
+### SetColor
+
+**Signature**
+```lua
+SetColor(string:color_model('RGB', 'xyY', 'Lab', 'XYZ', 'HSB'), float:tripel1, float:tripel2, float:tripel3, float:brightness, float:quality, boolean:const_brightness): integer:flag
+```
+
+**Arguments**
+
+1. **`string`** : color_model('RGB', 'xyY', 'Lab', 'XYZ', 'HSB')
+2. **`float`** : tripel1
+3. **`float`** : tripel2
+4. **`float`** : tripel3
+5. **`float`** : brightness
+6. **`float`** : quality
+7. **`boolean`** : const_brightness
+
+**Returns**
+
+- **`integer`**: flag
+
+---
+
+### SetLED <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_setled.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+SetLED(light_userdata:usb_device_object_handle, table:led_values): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : usb_device_object_handle
+2. **`table`** : led_values
+
+**Returns**
+
+No Return
+
+---
+
+### SetProgPhaser
+
+**Signature**
+```lua
+SetProgPhaser(integer:ui_channel_index, {['abs_preset'=light_userdata:handle], ['rel_preset'=light_userdata:handle], ['fade'=integer:seconds], ['delay'=integer:seconds], ['speed'=integer:hz], ['phase'=integer:degree], ['measure'=integer:value], ['gridpos'=integer:value], {['channel_function'=integer:value], ['absolute'=integer:percent], ['absolute_value'=integer:value], ['relative'=integer:percent], ['accel'=integer:percent[, 'accel_type'=integer:enum_value(Enums.SplineType)]], ['decel'=integer:percent[, 'decel_type'=integer:enum_value(Enums.SplineType)]], ['trans'=integer:percent], ['width'=integer:percent], ['integrated'=light_userdata:preset_handle]}}): nothing
+```
+
+**Arguments**
+
+1. **`integer`** : ui_channel_index
+2. **`{['abs_preset'=light_userdata:handle], ['rel_preset'=light_userdata:handle], ['fade'=integer:seconds], ['delay'=integer:seconds], ['speed'=integer:hz], ['phase'=integer:degree], ['measure'=integer:value], ['gridpos'=integer:value], {['channel_function'=integer:value], ['absolute'=integer:percent], ['absolute_value'=integer:value], ['relative'=integer:percent], ['accel'=integer:percent[, 'accel_type'=integer:enum_value(Enums.SplineType)]], ['decel'=integer:percent[, 'decel_type'=integer:enum_value(Enums.SplineType)]], ['trans'=integer:percent], ['width'=integer:percent], ['integrated'=light_userdata:preset_handle]}}`** : 
+
+**Returns**
+
+No Return
+
+---
+
+### SetProgPhaserValue
+
+**Signature**
+```lua
+SetProgPhaserValue(integer:ui_channel_index, integer:step, {['channel_function'=integer:value], ['absolute'=integer:percent], ['absolute_value'=integer:value], ['relative'=integer:percent], ['accel'=integer:percent[, 'accel_type'=integer:enum_value(Enums.SplineType)]], ['decel'=integer:percent[, 'decel_type'=integer:enum_value(Enums.SplineType)]], ['trans'=integer:percent], ['width'=integer:percent], ['integrated'=light_userdata:preset_handle]}): nothing
+```
+
+**Arguments**
+
+1. **`integer`** : ui_channel_index
+2. **`integer`** : step
+3. **`{['channel_function'=integer:value], ['absolute'=integer:percent], ['absolute_value'=integer:value], ['relative'=integer:percent], ['accel'=integer:percent[, 'accel_type'=integer:enum_value(Enums.SplineType)]], ['decel'=integer:percent[, 'decel_type'=integer:enum_value(Enums.SplineType)]], ['trans'=integer:percent], ['width'=integer:percent], ['integrated'=light_userdata:preset_handle]}`** : 
+
+**Returns**
+
+No Return
+
+---
+
+### SetProgress <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_setprogress.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+SetProgress(integer:progressbar_index, integer:value): nothing
+```
+
+**Arguments**
+
+1. **`integer`** : progressbar_index
+2. **`integer`** : value
+
+**Returns**
+
+No Return
+
+---
+
+### SetProgressRange <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_setprogressrange.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+SetProgressRange(integer:progressbar_index, integer:start, integer:end): nothing
+```
+
+**Arguments**
+
+1. **`integer`** : progressbar_index
+2. **`integer`** : start
+3. **`integer`** : end
+
+**Returns**
+
+No Return
+
+---
+
+### SetProgressText <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_setprogresstext.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+SetProgressText(integer:progressbar_index, string:text): nothing
+```
+
+**Arguments**
+
+1. **`integer`** : progressbar_index
+2. **`string`** : text
+
+**Returns**
+
+No Return
+
+---
+
+### SetVar <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_setvar.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+SetVar(light_userdata:variables, string:varname, value): boolean:success
+```
+
+**Arguments**
+
+1. **`light_userdata`** : variables
+2. **`string`** : varname
+3. **`value`** : 
+
+**Returns**
+
+- **`boolean`**: success
+
+---
+
+### ShowData <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_showdata.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+ShowData(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### ShowSettings <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_showsettings.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+ShowSettings(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### StartProgress <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_startprogress.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+StartProgress(string:name): integer:progressbar_index
+```
+
+**Arguments**
+
+1. **`string`** : name
+
+**Returns**
+
+- **`integer`**: progressbar_index
+
+---
+
+### StopProgress <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_stopprogress.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+StopProgress(integer:progressbar_index): nothing
+```
+
+**Arguments**
+
+1. **`integer`** : progressbar_index
+
+**Returns**
+
+No Return
+
+---
+
+### StrToHandle <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_strtohandle.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+StrToHandle(string:handle(in H#... format)): light_userdata:handle
+```
+
+**Arguments**
+
+1. **`string`** : handle(in H#... format)
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### SyncFS
+
+**Signature**
+```lua
+SyncFS(nothing): nothing
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+No Return
+
+---
+
+### TestPlaybackOutput
+
+**Signature**
+```lua
+TestPlaybackOutput(table:expectations): boolean:success, string:result text
+```
+
+**Arguments**
+
+1. **`table`** : expectations
+
+**Returns**
+
+- **`boolean`**: success
+- **`string`**: result text
+
+---
+
+### TestPlaybackOutputSteps
+
+**Signature**
+```lua
+TestPlaybackOutputSteps(table:expectations): boolean:success, string:result text
+```
+
+**Arguments**
+
+1. **`table`** : expectations
+
+**Returns**
+
+- **`boolean`**: success
+- **`string`**: result text
+
+---
+
+### TextInput <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_textinput.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+TextInput([string:title[, string:value[, integer:x[, integer:y]]]]): string:value
+```
+
+**Arguments**
+
+1. **`string`** **(optional)**: title
+2. **`string`** **(optional)**: value
+3. **`integer`** **(optional)**: x
+4. **`integer`** **(optional)**: y
+
+**Returns**
+
+- **`string`**: value
+
+---
+
+### Time <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_time.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Time(nothing): integer:time
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`integer`**: time
+
+---
+
+### Timer <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_timer.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Timer(function:timer_function, integer:delay_time, integer:max_count[, function:cleanup][, light_userdata:context object]): nothing
+```
+
+**Arguments**
+
+1. **`function`** : timer_function
+2. **`integer`** : delay_time
+3. **`integer`** : max_count
+4. **`function`** **(optional)**: cleanup]
+5. **`light_userdata`** **(optional)**: context object
+
+**Returns**
+
+No Return
+
+---
+
+### ToAddr <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_toaddr.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+ToAddr(light_userdata:handle, boolean:with_name): string:address
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`boolean`** : with_name
+
+**Returns**
+
+- **`string`**: address
+
+---
+
+### Touch
+
+**Signature**
+```lua
+Touch(integer:display_index, string:type('press', 'move', 'release'), integer:touch_id, integer:abs_x, integer:abs_y): nothing
+```
+
+**Arguments**
+
+1. **`integer`** : display_index
+2. **`string`** : type('press', 'move', 'release')
+3. **`integer`** : touch_id
+4. **`integer`** : abs_x
+5. **`integer`** : abs_y
+
+**Returns**
+
+No Return
+
+---
+
+### TouchObj <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_touchobj.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+TouchObj(nothing): light_userdata:handle
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### Unhook <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_unhook.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Unhook(integer:hook_id): nothing
+```
+
+**Arguments**
+
+1. **`integer`** : hook_id
+
+**Returns**
+
+No Return
+
+---
+
+### UnhookMultiple <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_unhookmultiple.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+UnhookMultiple(function:callback(can be nil), light_userdata:handle to target(can be nil), light_userdata:handle to context (can be nil)): integer:amount of removed hooks
+```
+
+**Arguments**
+
+1. **`function`** : callback(can be nil)
+2. **`light_userdata`** : handle to target(can be nil)
+3. **`light_userdata`** : handle to context (can be nil)
+
+**Returns**
+
+- **`integer`**: amount of removed hooks
+
+---
+
+### UserVars <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_uservars.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+UserVars(nothing): light_userdata:user_variables
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`light_userdata`**: user_variables
+
+---
+
+### Version <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_objectfree_version.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Version(nothing): string:version
+```
+
+**Arguments**
+
+No Arguments
+
+**Returns**
+
+- **`string`**: version
+
+---
+
+### WaitModal
+
+**Signature**
+```lua
+WaitModal([number:seconds to wait]): handle to modal overlay or nil on failure(timeout)
+```
+
+**Arguments**
+
+1. **`number`** **(optional)**: seconds to wait
+
+**Returns**
+
+- **`handle to modal overlay or nil on failure(timeout)`**: 
+
+---
+
+### WaitObjectDelete
+
+**Signature**
+```lua
+WaitObjectDelete(light_userdata:handle to UIObject[, number:seconds to wait]): boolean:true on success, nil on timeout
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIObject
+2. **`number`** **(optional)**: seconds to wait
+
+**Returns**
+
+- **`boolean`**: true on success
+- **`nil on timeout`**: 
+
+---
+
+## Object API
+
+### AddListChildren
+
+**Signature**
+```lua
+AddListChildren(light_userdata:handle, light_userdata:parent[, enum{Roles}:role]): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`light_userdata`** : parent
+3. **`enum{Roles}`** **(optional)**: role
+
+**Returns**
+
+No Return
+
+---
+
+### AddListChildrenNames
+
+**Signature**
+```lua
+AddListChildrenNames(light_userdata:handle, light_userdata:parent[, enum{Roles}:role]): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`light_userdata`** : parent
+3. **`enum{Roles}`** **(optional)**: role
+
+**Returns**
+
+No Return
+
+---
+
+### AddListLuaItem
+
+**Signature**
+```lua
+AddListLuaItem(light_userdata:handle, string:name, string:value/function name, lua_function:callback reference[, <any lua type>:argument to pass to callback[, {[left={...}][right={...}]}:appearance]]): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : name
+3. **`string`** : value/function name
+4. **`lua_function`** : callback reference
+5. **`<any lua type>`** **(optional)**: argument to pass to callback
+6. **`{[left={...}][right={...}]}`** **(optional)**: appearance
+
+**Returns**
+
+No Return
+
+---
+
+### AddListLuaItems
+
+**Signature**
+```lua
+AddListLuaItems(light_userdata:handle, table{item={[1]=name, [2]=value/function name, [3]=callback reference[, [4]=argument of any lua type to pass to callback]}, ...}): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`table{item={[1]=name, [2]=value/function name, [3]=callback reference[, [4]=argument of any lua type to pass to callback]}, ...}`** : 
+
+**Returns**
+
+No Return
+
+---
+
+### AddListNumericItem
+
+**Signature**
+```lua
+AddListNumericItem(light_userdata:handle, string:name, number:value[,light_userdata:base handle[, {[left={...}][right={...}]}:appearance]]): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : name
+3. **`number`** : value
+4. **`light_userdata`** **(optional)**: base handle
+5. **`{[left={...}][right={...}]}`** **(optional)**: appearance
+
+**Returns**
+
+No Return
+
+---
+
+### AddListNumericItems
+
+**Signature**
+```lua
+AddListNumericItems(light_userdata:handle, table{item={[1]=name, [2]=integer:value}, ...}): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`table{item={[1]=name, [2]=integer:value}, ...}`** : 
+
+**Returns**
+
+No Return
+
+---
+
+### AddListObjectItem
+
+**Signature**
+```lua
+AddListObjectItem(light_userdata:handle, light_userdata:target object[, (string: explicit name[, {[left={...}][right={...}]}:appearance] | enum{Roles}: role [, :boolean: extended_name[, {[left={...}][right={...}]}:appearance]])]): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`light_userdata`** : target object
+3. **`(string: explicit name[, {[left={...}][right={...}]}:appearance] | enum{Roles}: role [, :boolean: extended_name[, {[left={...}][right={...}]}:appearance]])`** **(optional)**: 
+
+**Returns**
+
+No Return
+
+---
+
+### AddListPropertyItem
+
+**Signature**
+```lua
+AddListPropertyItem(light_userdata:handle, string:name, string:value, light_userdata:target handle[,{[left={...}][right={...}]}:appearance]): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : name
+3. **`string`** : value
+4. **`light_userdata`** : target handle
+5. **`{[left={...}][right={...}]}`** **(optional)**: appearance
+
+**Returns**
+
+No Return
+
+---
+
+### AddListPropertyItems
+
+**Signature**
+```lua
+AddListPropertyItems(light_userdata:handle, table{item={[1]=name, [2]=property name, [3]=target handle}, ...}): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`table{item={[1]=name, [2]=property name, [3]=target handle}, ...}`** : 
+
+**Returns**
+
+No Return
+
+---
+
+### AddListRecursiveNames
+
+**Signature**
+```lua
+AddListRecursiveNames(light_userdata:handle, light_userdata:parent[, enum{Roles}:role]): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`light_userdata`** : parent
+3. **`enum{Roles}`** **(optional)**: role
+
+**Returns**
+
+No Return
+
+---
+
+### AddListStringItem
+
+**Signature**
+```lua
+AddListStringItem(light_userdata:handle, string:name, string:value[, {[left={...}][right={...}]}:appearance]): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : name
+3. **`string`** : value
+4. **`{[left={...}][right={...}]}`** **(optional)**: appearance
+
+**Returns**
+
+No Return
+
+---
+
+### AddListStringItems
+
+**Signature**
+```lua
+AddListStringItems(light_userdata:handle, table{item={[1]=name, [2]=value}, ...}): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`table{item={[1]=name, [2]=value}, ...}`** : 
+
+**Returns**
+
+No Return
+
+---
+
+### Addr <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_object_addr.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Addr(light_userdata:handle[, light_userdata:base_handle[, boolean:force_parent-based_address[, boolean:force_commandline_index-based_address]]]): string:numeric_root_address
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`light_userdata`** **(optional)**: base_handle
+3. **`boolean`** **(optional)**: force_parent-based_address
+4. **`boolean`** **(optional)**: force_commandline_index-based_address
+
+**Returns**
+
+- **`string`**: numeric_root_address
+
+---
+
+### AddrNative <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_object_addrnative.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+AddrNative(light_userdata:handle, light_userdata:base_handle[, boolean:escape_names]]): string:numeric_root_address
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`light_userdata`** : base_handle
+3. **`boolean`** **(optional)**: escape_names
+
+**Returns**
+
+- **`string`**: numeric_root_address
+
+---
+
+### Append
+
+**Signature**
+```lua
+Append(light_userdata:handle[, string:class[, light_userdata:undo[, integer:count]]]): light_userdata:child_handle
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** **(optional)**: class
+3. **`light_userdata`** **(optional)**: undo
+4. **`integer`** **(optional)**: count
+
+**Returns**
+
+- **`light_userdata`**: child_handle
+
+---
+
+### Aquire
+
+**Signature**
+```lua
+Aquire(light_userdata:handle[, string:class[, light_userdata:undo]]): light_userdata:child_handle
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** **(optional)**: class
+3. **`light_userdata`** **(optional)**: undo
+
+**Returns**
+
+- **`light_userdata`**: child_handle
+
+---
+
+### Changed
+
+**Signature**
+```lua
+Changed(light_userdata:handle, string:change_level_enum_name): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : change_level_enum_name
+
+**Returns**
+
+No Return
+
+---
+
+### Children <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_object_children.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Children(light_userdata:handle): {light_userdata:child_handles}
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`{light_userdata:child_handles}`**: 
+
+---
+
+### ClearList
+
+**Signature**
+```lua
+ClearList(light_userdata:handle): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+No Return
+
+---
+
+### ClearUIChildren
+
+**Signature**
+```lua
+ClearUIChildren(light_userdata:handle to UIObject): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIObject
+
+**Returns**
+
+No Return
+
+---
+
+### CmdlineChildren
+
+**Signature**
+```lua
+CmdlineChildren(light_userdata:handle): {light_userdata:child_handles}
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`{light_userdata:child_handles}`**: 
+
+---
+
+### CmdlinePtr
+
+**Signature**
+```lua
+CmdlinePtr(light_userdata:handle, integer:index(1-based)): light_userdata:child_handle
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : index(1-based)
+
+**Returns**
+
+- **`light_userdata`**: child_handle
+
+---
+
+### CommandAt
+
+**Signature**
+```lua
+CommandAt(light_userdata:handle): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+No Return
+
+---
+
+### CommandCall
+
+**Signature**
+```lua
+CommandCall(light_userdata:handle, light_userdata:dest_handle, boolean:focus_search_allowed(default:true)): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`light_userdata`** : dest_handle
+3. **`boolean`** : focus_search_allowed(default:true)
+
+**Returns**
+
+No Return
+
+---
+
+### CommandCreateDefaults
+
+**Signature**
+```lua
+CommandCreateDefaults(light_userdata:handle): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+No Return
+
+---
+
+### CommandDelete
+
+**Signature**
+```lua
+CommandDelete(light_userdata:handle): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+No Return
+
+---
+
+### CommandStore
+
+**Signature**
+```lua
+CommandStore(light_userdata:handle): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+No Return
+
+---
+
+### Compare
+
+**Signature**
+```lua
+Compare(light_userdata:handle, light_userdata:handle): boolean:is_equal, string:what_differs
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`light_userdata`** : handle
+
+**Returns**
+
+- **`boolean`**: is_equal
+- **`string`**: what_differs
+
+---
+
+### Copy
+
+**Signature**
+```lua
+Copy(light_userdata:dst_handle, light_userdata:src_handle[, light_userdata:undo]): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : dst_handle
+2. **`light_userdata`** : src_handle
+3. **`light_userdata`** **(optional)**: undo
+
+**Returns**
+
+No Return
+
+---
+
+### Count <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_object_count.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Count(light_userdata:handle): integer:child_count
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`integer`**: child_count
+
+---
+
+### Create
+
+**Signature**
+```lua
+Create(light_userdata:handle, integer:child_index(1-based)[, string:class[, light_userdata:undo]]): light_userdata:child_handle
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : child_index(1-based)
+3. **`string`** **(optional)**: class
+4. **`light_userdata`** **(optional)**: undo
+
+**Returns**
+
+- **`light_userdata`**: child_handle
+
+---
+
+### CurrentChild
+
+**Signature**
+```lua
+CurrentChild(light_userdata:handle): light_userdata:current_child or nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`light_userdata`**: current_child or nothing
+
+---
+
+### Delete
+
+**Signature**
+```lua
+Delete(light_userdata:handle, integer:child_index(1-based)[, light_userdata:undo]): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : child_index(1-based)
+3. **`light_userdata`** **(optional)**: undo
+
+**Returns**
+
+No Return
+
+---
+
+### Dump <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_object_dump.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Dump(light_userdata:handle): string:information
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`string`**: information
+
+---
+
+### Export <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_object_export.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Export(light_userdata:handle, string:file_path, string:file_name): boolean:success
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : file_path
+3. **`string`** : file_name
+
+**Returns**
+
+- **`boolean`**: success
+
+---
+
+### Find
+
+**Signature**
+```lua
+Find(light_userdata:search_start_handle, string:search_name[, string:search_class_name]): light_userdata:found_handle
+```
+
+**Arguments**
+
+1. **`light_userdata`** : search_start_handle
+2. **`string`** : search_name
+3. **`string`** **(optional)**: search_class_name
+
+**Returns**
+
+- **`light_userdata`**: found_handle
+
+---
+
+### FindListItemByName
+
+**Signature**
+```lua
+FindListItemByName(light_userdata:handle, string:value): integer:1-based index
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : value
+
+**Returns**
+
+- **`integer`**: 1-based index
+
+---
+
+### FindListItemByValueStr
+
+**Signature**
+```lua
+FindListItemByValueStr(light_userdata:handle, string:value): integer:1-based index
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : value
+
+**Returns**
+
+- **`integer`**: 1-based index
+
+---
+
+### FindParent
+
+**Signature**
+```lua
+FindParent(light_userdata:search_start_handle, string:search_class_name): light_userdata:found_handle
+```
+
+**Arguments**
+
+1. **`light_userdata`** : search_start_handle
+2. **`string`** : search_class_name
+
+**Returns**
+
+- **`light_userdata`**: found_handle
+
+---
+
+### FindRecursive
+
+**Signature**
+```lua
+FindRecursive(light_userdata:search_start_handle, string:search_name[, string:search_class_name]): light_userdata:found_handle
+```
+
+**Arguments**
+
+1. **`light_userdata`** : search_start_handle
+2. **`string`** : search_name
+3. **`string`** **(optional)**: search_class_name
+
+**Returns**
+
+- **`light_userdata`**: found_handle
+
+---
+
+### FindWild
+
+**Signature**
+```lua
+FindWild(light_userdata:search_start_handle, string:search_name): light_userdata:found_handle
+```
+
+**Arguments**
+
+1. **`light_userdata`** : search_start_handle
+2. **`string`** : search_name
+
+**Returns**
+
+- **`light_userdata`**: found_handle
+
+---
+
+### FSExtendedModeHasDots
+
+**Signature**
+```lua
+FSExtendedModeHasDots(light_userdata:handle to UIGrid (or derived), {r, c}:cell): boolean
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+2. **`{r, c}`** : cell
+
+**Returns**
+
+- **`boolean`**: 
+
+---
+
+### Get <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_object_get.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Get(light_userdata:handle, string:property_name[, integer:role(Enums.Roles)]): light:userdata:child or string:property (if 'role' provided - always string)
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : property_name
+3. **`integer`** **(optional)**: role(Enums.Roles)
+
+**Returns**
+
+- **`light`**: userdata:child or string:property (if 'role' provided - always string)
+
+---
+
+### GetAssignedObj
+
+**Signature**
+```lua
+GetAssignedObj(light_userdata:handle): light_userdata:handle
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### GetChildClass <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_object_getchildclass.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetChildClass(light_userdata:handle): string:class_name
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`string`**: class_name
+
+---
+
+### GetClass <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_object_getclass.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+GetClass(light_userdata:handle): string:class_name
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`string`**: class_name
+
+---
+
+### GetDependencies
+
+**Signature**
+```lua
+GetDependencies(light_userdata:handle): {light_userdata:handle}
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`{light_userdata:handle}`**: 
+
+---
+
+### GetDisplay
+
+**Signature**
+```lua
+GetDisplay(light_userdata:handle to UIObject): light_userdata:display_handle
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIObject
+
+**Returns**
+
+- **`light_userdata`**: display_handle
+
+---
+
+### GetDisplayIndex
+
+**Signature**
+```lua
+GetDisplayIndex(light_userdata:handle to UIObject): integer:display_index
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIObject
+
+**Returns**
+
+- **`integer`**: display_index
+
+---
+
+### GetExportFileName
+
+**Signature**
+```lua
+GetExportFileName(light_userdata:handle[, boolean:camel_case_to_file_name]): string:file_name
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`boolean`** **(optional)**: camel_case_to_file_name
+
+**Returns**
+
+- **`string`**: file_name
+
+---
+
+### GetFader
+
+**Signature**
+```lua
+GetFader(light_userdata:handle, {[string:token(Fader*)], [integer:index]}): float:value[0..100]
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`{[string:token(Fader*)], [integer:index]}`** : 
+
+**Returns**
+
+- **`float`**: value[0..100
+
+---
+
+### GetFaderText
+
+**Signature**
+```lua
+GetFaderText(light_userdata:handle, {[string:token(Fader*)], [integer:index]}): string:text
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`{[string:token(Fader*)], [integer:index]}`** : 
+
+**Returns**
+
+- **`string`**: text
+
+---
+
+### GetLineAt
+
+**Signature**
+```lua
+GetLineAt(light_userdata:handle, integer:line_number): string:line_content
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : line_number
+
+**Returns**
+
+- **`string`**: line_content
+
+---
+
+### GetLineCount
+
+**Signature**
+```lua
+GetLineCount(light_userdata:handle): integer:count
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`integer`**: count
+
+---
+
+### GetListItemAppearance
+
+**Signature**
+```lua
+GetListItemAppearance(light_userdata:handle, integer:index): {left={AppearanceData}, right={AppearanceData}}
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : index
+
+**Returns**
+
+- **`{left={AppearanceData}, right={AppearanceData}}`**: 
+
+---
+
+### GetListItemButton
+
+**Signature**
+```lua
+GetListItemButton(light_userdata:handle, integer:index): light userdata:button or nil if not visible
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : index
+
+**Returns**
+
+- **`light userdata`**: button or nil if not visible
+
+---
+
+### GetListItemName
+
+**Signature**
+```lua
+GetListItemName(light_userdata:handle, integer:index): string:name
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : index
+
+**Returns**
+
+- **`string`**: name
+
+---
+
+### GetListItemsCount
+
+**Signature**
+```lua
+GetListItemsCount(light_userdata:handle): integer:amount of items in the list
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`integer`**: amount of items in the list
+
+---
+
+### GetListItemValueI64
+
+**Signature**
+```lua
+GetListItemValueI64(light_userdata:handle, integer:index): integer:value
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : index
+
+**Returns**
+
+- **`integer`**: value
+
+---
+
+### GetListItemValueStr
+
+**Signature**
+```lua
+GetListItemValueStr(light_userdata:handle, integer:index): string:value
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : index
+
+**Returns**
+
+- **`string`**: value
+
+---
+
+### GetListSelectedItemIndex
+
+**Signature**
+```lua
+GetListSelectedItemIndex(light_userdata:handle): integer:1-based index
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`integer`**: 1-based index
+
+---
+
+### GetOverlay
+
+**Signature**
+```lua
+GetOverlay(light_userdata:handle to UIObject): light_userdata:overlay_handle
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIObject
+
+**Returns**
+
+- **`light_userdata`**: overlay_handle
+
+---
+
+### GetReferences
+
+**Signature**
+```lua
+GetReferences(light_userdata:handle): {light_userdata:handle}
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`{light_userdata:handle}`**: 
+
+---
+
+### GetScreen
+
+**Signature**
+```lua
+GetScreen(light_userdata:handle to UIObject): light_userdata:handle
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIObject
+
+**Returns**
+
+- **`light_userdata`**: handle
+
+---
+
+### GetUIChild
+
+**Signature**
+```lua
+GetUIChild(light_userdata:handle to UIObject, integer:index(1-based)): light_userdata:handle to UIObject
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIObject
+2. **`integer`** : index(1-based)
+
+**Returns**
+
+- **`light_userdata`**: handle to UIObject
+
+---
+
+### GetUIChildrenCount
+
+**Signature**
+```lua
+GetUIChildrenCount(light_userdata:handle to UIObject): integer:count
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIObject
+
+**Returns**
+
+- **`integer`**: count
+
+---
+
+### GetUIEditor
+
+**Signature**
+```lua
+GetUIEditor(light_userdata:handle): string:ui_editor_name
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`string`**: ui_editor_name
+
+---
+
+### GetUISettings
+
+**Signature**
+```lua
+GetUISettings(light_userdata:handle): string:ui_settings_name
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`string`**: ui_settings_name
+
+---
+
+### GridCellExists
+
+**Signature**
+```lua
+GridCellExists(light_userdata:handle to UIGrid (or derived), {r, c}:cell): boolean
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+2. **`{r, c}`** : cell
+
+**Returns**
+
+- **`boolean`**: 
+
+---
+
+### GridGetBase
+
+**Signature**
+```lua
+GridGetBase(light_userdata:handle to UIGrid (or derived)): light_userdata:handle to GridBase
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+
+**Returns**
+
+- **`light_userdata`**: handle to GridBase
+
+---
+
+### GridGetCellData
+
+**Signature**
+```lua
+GridGetCellData(light_userdata:handle to UIGrid (or derived), {r, c}:cell): {text, color={text, back}}
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+2. **`{r, c}`** : cell
+
+**Returns**
+
+- **`{text, color={text, back}}`**: 
+
+---
+
+### GridGetCellDimensions
+
+**Signature**
+```lua
+GridGetCellDimensions(light_userdata:handle to UIGrid (or derived), {r, c}:cell): {x, y, w, h}
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+2. **`{r, c}`** : cell
+
+**Returns**
+
+- **`{x, y, w, h}`**: 
+
+---
+
+### GridGetData
+
+**Signature**
+```lua
+GridGetData(light_userdata:handle to UIGrid (or derived)): light_userdata:handle to GridData
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+
+**Returns**
+
+- **`light_userdata`**: handle to GridData
+
+---
+
+### GridGetDimensions
+
+**Signature**
+```lua
+GridGetDimensions(light_userdata:handle to UIGrid (or derived)): {r, c}
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+
+**Returns**
+
+- **`{r, c}`**: 
+
+---
+
+### GridGetParentRowId
+
+**Signature**
+```lua
+GridGetParentRowId(light_userdata:handle to UIGrid (or derived), integer: rowId): parent row id (integer) or nil (if there's no parent)
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+2. **`integer`** : rowId
+
+**Returns**
+
+- **`parent row id (integer) or nil (if there's no parent)`**: 
+
+---
+
+### GridGetScrollCell
+
+**Signature**
+```lua
+GridGetScrollCell(light_userdata:handle to UIGrid (or derived)): {r, c}
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+
+**Returns**
+
+- **`{r, c}`**: 
+
+---
+
+### GridGetScrollOffset
+
+**Signature**
+```lua
+GridGetScrollOffset(light_userdata:handle to UIGrid (or derived)): {v = {index, offset}, h={index, offset}}
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+
+**Returns**
+
+- **`{v = {index, offset}, h={index, offset}}`**: 
+
+---
+
+### GridGetSelectedCells
+
+**Signature**
+```lua
+GridGetSelectedCells(light_userdata:handle to UIGrid (or derived)): array of {r, c, r_UniqueId, r_GroupId, c_UniqueId, c_GroupId} cells in the selection
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+
+**Returns**
+
+- **`array of {r, c, r_UniqueId, r_GroupId, c_UniqueId, c_GroupId} cells in the selection`**: 
+
+---
+
+### GridGetSelection
+
+**Signature**
+```lua
+GridGetSelection(light_userdata:handle to UIGrid (or derived)): light_userdata:handle to GridSelection
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+
+**Returns**
+
+- **`light_userdata`**: handle to GridSelection
+
+---
+
+### GridGetSettings
+
+**Signature**
+```lua
+GridGetSettings(light_userdata:handle to UIGrid (or derived)): light_userdata:handle to GridSettings
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+
+**Returns**
+
+- **`light_userdata`**: handle to GridSettings
+
+---
+
+### GridIsCellReadOnly
+
+**Signature**
+```lua
+GridIsCellReadOnly(light_userdata:handle to UIGrid (or derived), {r, c}:cell): boolean
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+2. **`{r, c}`** : cell
+
+**Returns**
+
+- **`boolean`**: 
+
+---
+
+### GridIsCellVisible
+
+**Signature**
+```lua
+GridIsCellVisible(light_userdata:handle to UIGrid (or derived), {r, c}:cell): boolean
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+2. **`{r, c}`** : cell
+
+**Returns**
+
+- **`boolean`**: 
+
+---
+
+### GridMoveSelection
+
+**Signature**
+```lua
+GridMoveSelection(light_userdata:handle to UIGrid (or derived), x, y): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+2. **`x`** : 
+3. **`y`** : 
+
+**Returns**
+
+No Return
+
+---
+
+### GridScrollCellIntoView
+
+**Signature**
+```lua
+GridScrollCellIntoView(light_userdata:handle to UIGrid (or derived), {r, c}:cell): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+2. **`{r, c}`** : cell
+
+**Returns**
+
+No Return
+
+---
+
+### GridSetColumnSize
+
+**Signature**
+```lua
+GridSetColumnSize(light_userdata:handle to UIGrid (or derived), integer: columnId, integer:size in pixels): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+2. **`integer`** : columnId
+3. **`integer`** : size in pixels
+
+**Returns**
+
+No Return
+
+---
+
+### GridsGetColumnById
+
+**Signature**
+```lua
+GridsGetColumnById(light_userdata:handle to UIGrid (or derived), integer: columnId): column index or nil (if there's no such visible column)
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+2. **`integer`** : columnId
+
+**Returns**
+
+- **`column index or nil (if there's no such visible column)`**: 
+
+---
+
+### GridsGetExpandHeaderCell
+
+**Signature**
+```lua
+GridsGetExpandHeaderCell(light_userdata:handle to UIGrid (or derived)): {r, c} or nil
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+
+**Returns**
+
+- **`{r, c} or nil`**: 
+
+---
+
+### GridsGetExpandHeaderCellState
+
+**Signature**
+```lua
+GridsGetExpandHeaderCellState(light_userdata:handle to UIGrid (or derived)): boolean or nil
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+
+**Returns**
+
+- **`boolean or nil`**: 
+
+---
+
+### GridsGetLevelButtonWidth
+
+**Signature**
+```lua
+GridsGetLevelButtonWidth(light_userdata:handle to UIGrid (or derived), {r, c}:cell): width in pixels or nil
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+2. **`{r, c}`** : cell
+
+**Returns**
+
+- **`width in pixels or nil`**: 
+
+---
+
+### GridsGetRowById
+
+**Signature**
+```lua
+GridsGetRowById(light_userdata:handle to UIGrid (or derived), integer: rowId): row index or nil (if there's no such visible row)
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIGrid (or derived)
+2. **`integer`** : rowId
+
+**Returns**
+
+- **`row index or nil (if there's no such visible row)`**: 
+
+---
+
+### HasActivePlayback <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_object_hasactiveplayback.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+HasActivePlayback(light_userdata:handle): boolean:result
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`boolean`**: result
+
+---
+
+### HasDependencies
+
+**Signature**
+```lua
+HasDependencies(light_userdata:handle): boolean:result
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`boolean`**: result
+
+---
+
+### HasEditSettingUI
+
+**Signature**
+```lua
+HasEditSettingUI(light_userdata:handle): boolean:result
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`boolean`**: result
+
+---
+
+### HasEditUI
+
+**Signature**
+```lua
+HasEditUI(light_userdata:handle): boolean:result
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`boolean`**: result
+
+---
+
+### HasParent
+
+**Signature**
+```lua
+HasParent(light_userdata:handle, handle:object_to_check): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`handle`** : object_to_check
+
+**Returns**
+
+No Return
+
+---
+
+### HasReferences
+
+**Signature**
+```lua
+HasReferences(light_userdata:handle): boolean:result
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`boolean`**: result
+
+---
+
+### HookDelete
+
+**Signature**
+```lua
+HookDelete(light_userdata:handle to UIObject, function:callback to invoke on deletion[, any:argument to pass by]): boolean:true on success, nil on failure
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIObject
+2. **`function`** : callback to invoke on deletion
+3. **`any`** **(optional)**: argument to pass by
+
+**Returns**
+
+- **`boolean`**: true on success
+- **`nil on failure`**: 
+
+---
+
+### Import <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_object_import.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Import(light_userdata:handle, string:file_path, string:file_name): boolean:success
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : file_path
+3. **`string`** : file_name
+
+**Returns**
+
+- **`boolean`**: success
+
+---
+
+### Index
+
+**Signature**
+```lua
+Index(light_userdata:handle): integer:index
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`integer`**: index
+
+---
+
+### InputCallFunction
+
+**Signature**
+```lua
+InputCallFunction(light_userdata:handle, string:function name[, ...parameters to function]): <depends on function>
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : function name
+3. **`...parameters to function`** **(optional)**: 
+
+**Returns**
+
+- **`<depends on function>`**: 
+
+---
+
+### InputHasFunction
+
+**Signature**
+```lua
+InputHasFunction(light_userdata:handle, string:function name): true or nil
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : function name
+
+**Returns**
+
+- **`true or nil`**: 
+
+---
+
+### InputRun
+
+**Signature**
+```lua
+InputRun(light_userdata:handle): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+No Return
+
+---
+
+### InputSetAdditionalParameter
+
+**Signature**
+```lua
+InputSetAdditionalParameter(light_userdata:handle, string:parameter name, string:parameter value): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : parameter name
+3. **`string`** : parameter value
+
+**Returns**
+
+No Return
+
+---
+
+### InputSetEditTitle
+
+**Signature**
+```lua
+InputSetEditTitle(light_userdata:handle, string:name_value): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : name_value
+
+**Returns**
+
+No Return
+
+---
+
+### InputSetMaxLength
+
+**Signature**
+```lua
+InputSetMaxLength(light_userdata:handle, integer:length): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : length
+
+**Returns**
+
+No Return
+
+---
+
+### InputSetTitle
+
+**Signature**
+```lua
+InputSetTitle(light_userdata:handle, string:name_value): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : name_value
+
+**Returns**
+
+No Return
+
+---
+
+### InputSetValue
+
+**Signature**
+```lua
+InputSetValue(light_userdata:handle, string:value): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : value
+
+**Returns**
+
+No Return
+
+---
+
+### Insert
+
+**Signature**
+```lua
+Insert(light_userdata:handle, integer:child_index(1-based)[, string:class[, light_userdata:undo[, integer:count]]]): light_userdata:child_handle
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : child_index(1-based)
+3. **`string`** **(optional)**: class
+4. **`light_userdata`** **(optional)**: undo
+5. **`integer`** **(optional)**: count
+
+**Returns**
+
+- **`light_userdata`**: child_handle
+
+---
+
+### IsClass
+
+**Signature**
+```lua
+IsClass(light_userdata:handle): boolean:result
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`boolean`**: result
+
+---
+
+### IsEmpty
+
+**Signature**
+```lua
+IsEmpty(light_userdata:handle): boolean:object_is_empty
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`boolean`**: object_is_empty
+
+---
+
+### IsEnabled
+
+**Signature**
+```lua
+IsEnabled(light_userdata:handle to UIObject): bool:is enabled
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIObject
+
+**Returns**
+
+- **`bool`**: is enabled
+
+---
+
+### IsListItemEmpty
+
+**Signature**
+```lua
+IsListItemEmpty(light_userdata:handle, integer:index): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : index
+
+**Returns**
+
+No Return
+
+---
+
+### IsListItemEnabled
+
+**Signature**
+```lua
+IsListItemEnabled(light_userdata:handle, integer:index): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : index
+
+**Returns**
+
+No Return
+
+---
+
+### IsLocked
+
+**Signature**
+```lua
+IsLocked(light_userdata:handle): boolean:object_is_locked
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`boolean`**: object_is_locked
+
+---
+
+### IsValid
+
+**Signature**
+```lua
+IsValid(light_userdata:handle): boolean:result
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`boolean`**: result
+
+---
+
+### IsVisible
+
+**Signature**
+```lua
+IsVisible(light_userdata:handle to UIObject): bool:is visible
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIObject
+
+**Returns**
+
+- **`bool`**: is visible
+
+---
+
+### Load
+
+**Signature**
+```lua
+Load(light_userdata:handle, string:file_path, string:file_name): boolean:success
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : file_path
+3. **`string`** : file_name
+
+**Returns**
+
+- **`boolean`**: success
+
+---
+
+### MaxCount
+
+**Signature**
+```lua
+MaxCount(light_userdata:handle): integer:child_count
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`integer`**: child_count
+
+---
+
+### OverlaySetCloseCallback
+
+**Signature**
+```lua
+OverlaySetCloseCallback(light_userdata:handle to Overlay, callbackName:string[, ctx:anything]): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to Overlay
+2. **`callbackName`** : string
+3. **`ctx`** **(optional)**: anything
+
+**Returns**
+
+No Return
+
+---
+
+### Parent
+
+**Signature**
+```lua
+Parent(light_userdata:handle): light_userdata:parent_handle
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`light_userdata`**: parent_handle
+
+---
+
+### PrepareAccess
+
+**Signature**
+```lua
+PrepareAccess(light_userdata:handle): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+No Return
+
+---
+
+### PropertyCount
+
+**Signature**
+```lua
+PropertyCount(light_userdata:handle): integer:property_count
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+
+**Returns**
+
+- **`integer`**: property_count
+
+---
+
+### PropertyInfo
+
+**Signature**
+```lua
+PropertyInfo(light_userdata:handle, integer:property_index): {string:read_only, string:import_ignore, string:export_ignore}
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : property_index
+
+**Returns**
+
+- **`{string:read_only, string:import_ignore, string:export_ignore}`**: 
+
+---
+
+### PropertyName
+
+**Signature**
+```lua
+PropertyName(light_userdata:handle, integer:property_index): string:property_name
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : property_index
+
+**Returns**
+
+- **`string`**: property_name
+
+---
+
+### PropertyType
+
+**Signature**
+```lua
+PropertyType(light_userdata:handle, integer:property_index): string:property_type
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : property_index
+
+**Returns**
+
+- **`string`**: property_type
+
+---
+
+### Ptr <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_object_ptr.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+Ptr(light_userdata:handle, integer:index(1-based)): light_userdata:child_handle
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : index(1-based)
+
+**Returns**
+
+- **`light_userdata`**: child_handle
+
+---
+
+### Remove
+
+**Signature**
+```lua
+Remove(light_userdata:handle, integer:child_index(1-based)[, light_userdata:undo]): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : child_index(1-based)
+3. **`light_userdata`** **(optional)**: undo
+
+**Returns**
+
+No Return
+
+---
+
+### RemoveListItem
+
+**Signature**
+```lua
+RemoveListItem(light_userdata:handle, string:name): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : name
+
+**Returns**
+
+No Return
+
+---
+
+### Resize
+
+**Signature**
+```lua
+Resize(light_userdata:handle, integer:size): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : size
+
+**Returns**
+
+No Return
+
+---
+
+### Save
+
+**Signature**
+```lua
+Save(light_userdata:handle, string:file_path, string:file_name): boolean:success
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : file_path
+3. **`string`** : file_name
+
+**Returns**
+
+- **`boolean`**: success
+
+---
+
+### ScrollDo
+
+**Signature**
+```lua
+ScrollDo(light_userdata:handle, integer:scroll type (see 'ScrollType' enum), integer:scroll entity (item or area, see 'ScrollParamEntity' enum), integer:value type (absolute or relative, see 'ScrollParamValueType' enum), number: value to scroll (items - 1-based), boolean: updateOpposite side): boolean:true scroll
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : scroll type (see 'ScrollType' enum)
+3. **`integer`** : scroll entity (item or area, see 'ScrollParamEntity' enum)
+4. **`integer`** : value type (absolute or relative, see 'ScrollParamValueType' enum)
+5. **`number`** : value to scroll (items - 1-based)
+6. **`boolean`** : updateOpposite side
+
+**Returns**
+
+- **`boolean`**: true scroll
+
+---
+
+### ScrollGetInfo
+
+**Signature**
+```lua
+ScrollGetInfo(light_userdata:handle, integer:scroll type (see 'ScrollType' enum)): {index(1-based), offset, visibleArea, totalArea, itemsCount, itemsOnPage} or nil
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : scroll type (see 'ScrollType' enum)
+
+**Returns**
+
+- **`{index(1-based), offset, visibleArea, totalArea, itemsCount, itemsOnPage} or nil`**: 
+
+---
+
+### ScrollGetItemByOffset
+
+**Signature**
+```lua
+ScrollGetItemByOffset(light_userdata:handle, integer:scroll type (see 'ScrollType' enum), integer:offset): integer:1-based item index
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : scroll type (see 'ScrollType' enum)
+3. **`integer`** : offset
+
+**Returns**
+
+- **`integer`**: 1-based item index
+
+---
+
+### ScrollGetItemOffset
+
+**Signature**
+```lua
+ScrollGetItemOffset(light_userdata:handle, integer:scroll type (see 'ScrollType' enum), integer:1-based item idx): integer:offset of the item or nil
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : scroll type (see 'ScrollType' enum)
+3. **`integer`** : 1-based item idx
+
+**Returns**
+
+- **`integer`**: offset of the item or nil
+
+---
+
+### ScrollGetItemSize
+
+**Signature**
+```lua
+ScrollGetItemSize(light_userdata:handle, integer:scroll type (see 'ScrollType' enum), integer:1-based item idx): integer:size of the item of nil
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : scroll type (see 'ScrollType' enum)
+3. **`integer`** : 1-based item idx
+
+**Returns**
+
+- **`integer`**: size of the item of nil
+
+---
+
+### ScrollIsNeeded
+
+**Signature**
+```lua
+ScrollIsNeeded(light_userdata:handle, integer:scroll type (see 'ScrollType' enum)): boolean:true if scroll of the requested type is needed
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : scroll type (see 'ScrollType' enum)
+
+**Returns**
+
+- **`boolean`**: true if scroll of the requested type is needed
+
+---
+
+### SelectListItemByIndex
+
+**Signature**
+```lua
+SelectListItemByIndex(light_userdata:handle, integer:index(1-based)): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : index(1-based)
+
+**Returns**
+
+No Return
+
+---
+
+### SelectListItemByName
+
+**Signature**
+```lua
+SelectListItemByName(light_userdata:handle, string:name_value): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : name_value
+
+**Returns**
+
+No Return
+
+---
+
+### SelectListItemByValue
+
+**Signature**
+```lua
+SelectListItemByValue(light_userdata:handle, string:value): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : value
+
+**Returns**
+
+No Return
+
+---
+
+### Set
+
+**Signature**
+```lua
+Set(light_userdata:handle, string:property_name, string:property_value[, integer:override_change_level(Enums.ChangeLevel)]): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`string`** : property_name
+3. **`string`** : property_value
+4. **`integer`** **(optional)**: override_change_level(Enums.ChangeLevel)
+
+**Returns**
+
+No Return
+
+---
+
+### SetChildren
+
+**Signature**
+```lua
+SetChildren(light_userdata:handle_of_parent, string:property_name, string:property_value[, boolean:recursive (default: false)]): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle_of_parent
+2. **`string`** : property_name
+3. **`string`** : property_value
+4. **`boolean`** **(optional)**: recursive (default: false)
+
+**Returns**
+
+No Return
+
+---
+
+### SetChildrenRecursive
+
+**Signature**
+```lua
+SetChildrenRecursive(light_userdata:handle_of_parent, string:property_name, string:property_value[, boolean:recursive (default: false)]): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle_of_parent
+2. **`string`** : property_name
+3. **`string`** : property_value
+4. **`boolean`** **(optional)**: recursive (default: false)
+
+**Returns**
+
+No Return
+
+---
+
+### SetContextSensHelpLink
+
+**Signature**
+```lua
+SetContextSensHelpLink(light_userdata:handle to UIObject, string:topic name): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIObject
+2. **`string`** : topic name
+
+**Returns**
+
+No Return
+
+---
+
+### SetEmptyListItem
+
+**Signature**
+```lua
+SetEmptyListItem(light_userdata:handle, integer:index[, bool:empty(default:true)]): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : index
+3. **`bool`** **(optional)**: empty(default:true)
+
+**Returns**
+
+No Return
+
+---
+
+### SetEnabledListItem
+
+**Signature**
+```lua
+SetEnabledListItem(light_userdata:handle, integer:index[, bool:enable(default:true)]): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : index
+3. **`bool`** **(optional)**: enable(default:true)
+
+**Returns**
+
+No Return
+
+---
+
+### SetFader
+
+**Signature**
+```lua
+SetFader(light_userdata:handle, {[float:value[0..100]], [boolean:faderEnabled], [string:token(Fader*)]}): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`{[float:value[0..100]], [boolean:faderEnabled], [string:token(Fader*)]}`** : 
+
+**Returns**
+
+No Return
+
+---
+
+### SetListItemAppearance
+
+**Signature**
+```lua
+SetListItemAppearance(light_userdata:handle, integer:index, {[left={...AppearanceData...}][right={...AppearanceData...}]}): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : index
+3. **`{[left={...AppearanceData...}][right={...AppearanceData...}]}`** : 
+
+**Returns**
+
+No Return
+
+---
+
+### SetListItemName
+
+**Signature**
+```lua
+SetListItemName(light_userdata:handle, integer:index, string:name): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : index
+3. **`string`** : name
+
+**Returns**
+
+No Return
+
+---
+
+### SetListItemValueStr
+
+**Signature**
+```lua
+SetListItemValueStr(light_userdata:handle, integer:index, string:value): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : index
+3. **`string`** : value
+
+**Returns**
+
+No Return
+
+---
+
+### SetPositionHint
+
+**Signature**
+```lua
+SetPositionHint(light_userdata:handle, integer:x, integer:y): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`integer`** : x
+3. **`integer`** : y
+
+**Returns**
+
+No Return
+
+---
+
+### ShowModal
+
+**Signature**
+```lua
+ShowModal(light_userdata:handle, callback:function): nothing
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`callback`** : function
+
+**Returns**
+
+No Return
+
+---
+
+### ToAddr <a href="https://help.malighting.com/grandMA3/2.1/HTML/lua_object_toaddr.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>
+
+**Signature**
+```lua
+ToAddr(light_userdata:handle,boolean:with_name): string:address
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle
+2. **`boolean`** : with_name
+
+**Returns**
+
+- **`string`**: address
+
+---
+
+### UIChildren
+
+**Signature**
+```lua
+UIChildren(light_userdata:handle to UIObject): array of references to children of passed UIObject
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIObject
+
+**Returns**
+
+- **`array of references to children of passed UIObject`**: 
+
+---
+
+### UILGGetColumnAbsXLeft
+
+**Signature**
+```lua
+UILGGetColumnAbsXLeft(light_userdata:handle to UILayoutGrid, integer:index): integer:x
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UILayoutGrid
+2. **`integer`** : index
+
+**Returns**
+
+- **`integer`**: x
+
+---
+
+### UILGGetColumnAbsXRight
+
+**Signature**
+```lua
+UILGGetColumnAbsXRight(light_userdata:handle to UILayoutGrid, integer:index): integer:x
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UILayoutGrid
+2. **`integer`** : index
+
+**Returns**
+
+- **`integer`**: x
+
+---
+
+### UILGGetColumnWidth
+
+**Signature**
+```lua
+UILGGetColumnWidth(light_userdata:handle to UILayoutGrid, integer:index): integer:size
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UILayoutGrid
+2. **`integer`** : index
+
+**Returns**
+
+- **`integer`**: size
+
+---
+
+### UILGGetRowAbsYBottom
+
+**Signature**
+```lua
+UILGGetRowAbsYBottom(light_userdata:handle to UILayoutGrid, integer:index): integer:y
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UILayoutGrid
+2. **`integer`** : index
+
+**Returns**
+
+- **`integer`**: y
+
+---
+
+### UILGGetRowAbsYTop
+
+**Signature**
+```lua
+UILGGetRowAbsYTop(light_userdata:handle to UILayoutGrid, integer:index): integer:y
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UILayoutGrid
+2. **`integer`** : index
+
+**Returns**
+
+- **`integer`**: y
+
+---
+
+### UILGGetRowHeight
+
+**Signature**
+```lua
+UILGGetRowHeight(light_userdata:handle to UILayoutGrid, integer:index): integer:size
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UILayoutGrid
+2. **`integer`** : index
+
+**Returns**
+
+- **`integer`**: size
+
+---
+
+### WaitChildren
+
+**Signature**
+```lua
+WaitChildren(light_userdata:handle to UIObject, integer:expected amount of children[, number:seconds to wait]): boolean:true on success, nil on timeout or if object doesn't exist
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIObject
+2. **`integer`** : expected amount of children
+3. **`number`** **(optional)**: seconds to wait
+
+**Returns**
+
+- **`boolean`**: true on success
+- **`nil on timeout or if object doesn't exist`**: 
+
+---
+
+### WaitInit
+
+**Signature**
+```lua
+WaitInit(light_userdata:handle to UIObject[, number:seconds to wait[, bool:force to re-init, default - false]]): boolean:true on success, nil on timeout or if object doesn't exist
+```
+
+**Arguments**
+
+1. **`light_userdata`** : handle to UIObject
+2. **`number`** **(optional)**: seconds to wait
+3. **`bool`** **(optional)**: force to re-init
+4. **`default - false`** **(optional)**: 
+
+**Returns**
+
+- **`boolean`**: true on success
+- **`nil on timeout or if object doesn't exist`**: 
+
+---

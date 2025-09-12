@@ -9,6 +9,7 @@ local json = require("json")
 
 
 -- Parameters
+local VERSION_FILENAME = "grandMA3_version.json"
 local FUNCS_FILENAME = "grandMA3_lua_functions.json"
 local ENUMS_FILENAME = "grandMA3_lua_enums.json"
 local TREE_FILENAME = "grandMA3_object_tree.json"
@@ -53,6 +54,24 @@ end
 
 
 -- Exporters
+local function ExportVersion()
+
+    local data = {
+        version = "",
+        date = os.date("%d/%m/%Y %X"),
+        build_details = BuildDetails(),
+        host_os = HostOS(),
+        showfile = Root().ManetSocket.Showfile,
+    }
+    data.version = string.sub(data.build_details.BigVersion, 0, 3)
+    PrintTable(data)
+
+    local fileName = GetPath(Enums.PathType.Library) .. "/" .. VERSION_FILENAME
+    ExportJsonTable(fileName, data, true)
+
+end
+
+
 local function ExportFunctions()
 
     local funcs = {
@@ -174,6 +193,7 @@ function Main(display_handle, args)
     Printf(plugin_name .. ": Main")
     Printf(plugin_name .. ": Starting exports")
 
+    ExportVersion()
     Cmd("HelpLua")
     ExportFunctions() -- Alternative to HelpLua which outputs to JSON file
     ExportEnums()

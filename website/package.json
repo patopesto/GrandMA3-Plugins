@@ -15,6 +15,7 @@
     "sharp": "^0.34.2"
   },
   "devDependencies": {
+    "commander": "^14.0.0",
     "github-slugger": "^2.0.0",
     "hjson": "^3.2.2",
     "limiter": "^3.0.0",
