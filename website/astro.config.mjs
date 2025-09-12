@@ -22,7 +22,8 @@ export default defineConfig({
 					label: 'Reference',
 					items: [
 						'grandma3/intro',
-						{ label: 'v2.1', autogenerate: { directory: 'grandma3/v2.1' }, badge: { text: 'Latest', variant: 'caution' }},
+						{ label: 'v2.2', autogenerate: { directory: 'grandma3/v2.2' }, badge: { text: 'Latest', variant: 'caution' }},
+						{ label: 'v2.1', autogenerate: { directory: 'grandma3/v2.1' }, collapsed: true },
 						{ label: 'v2.0', autogenerate: { directory: 'grandma3/v2.0' }, collapsed: true },
 					],
 				},
