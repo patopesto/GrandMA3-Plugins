@@ -15,7 +15,7 @@ Plugins:
 
 ## Documentation
 
-Documentation for the plugins and a reference LUA documentation is available at: [https://grandma3.bambinito.net]()
+Documentation for the plugins and a reference LUA documentation is available at [https://grandma3.bambinito.net](https://grandma3.bambinito.net)
 
 
 ## Installation
