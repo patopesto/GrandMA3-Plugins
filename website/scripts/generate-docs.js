@@ -90,27 +90,6 @@ function GenerateDocs(opts, cmd) {
     const options = cmd.optsWithGlobals();
     const data = {};
 
-    // if (options.diff) {
-    //     const diff = {}
-    //     for (let i = 1; i < options.version.length; i++) {
-    //         const prev = options.version[i-1];
-    //         const current = options.version[i];
-    //         diff[current] = {}
-    //         if (options.functions) {
-    //             diff[current].functions = rdiff.getDiff(data[prev].functions, data[current].functions);
-    //             console.log(diff[current].functions);
-    //         }
-    //         if (options.enums) {
-    //             diff[current].enums = rdiff.getDiff(data[prev].enums, data[current].enums);
-    //         }
-    //         if (options.tree) {
-    //             diff[current].tree = rdiff.getDiff(data[prev].tree, data[current].tree);
-    //             // console.log(diff[current].tree)
-    //         }
-    //     }
-    //     console.log(diff);
-    // }
-
     const load_version = (version) => {
         const dir = path.resolve(BASE_DIR, version);
         data[version] = {};
@@ -172,7 +151,6 @@ function GenerateDocs(opts, cmd) {
 
 
 // Run Standalone
-
 const program = new Command();
 program.option('-v, --version <version...>', 'Run for versions "vX.Y"', VERSIONS)
        .option('--no-functions', 'Do not generate functions files')
@@ -190,5 +168,3 @@ program.command('generate')
        .action(GenerateDocs);
 
 program.parse();
-
-// Main();

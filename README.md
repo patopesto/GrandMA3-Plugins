@@ -1,15 +1,26 @@
 # GrandMA3 plugins
 
-A collection of GrandMA3 plugins and experiments
+![Gitlab Pipeline Status](https://img.shields.io/gitlab/pipeline-status/patopest%2Fgrandma3-plugins?branch=master)
+
+A collection of GrandMA3 plugins, documentation and experiments
+
+Plugins:
 
 - [ViewScaler](#viewscaler): Scale a display's content to fit the available space.
 - [ScreenSwap](#screenswap): Swap the ViewButtons between 2 displays
+- [APIDump](#apidump): Export the LUA API (used for the [reference documentation](https://grandma3.bambinito.net) generation)
+- [PluginTemplate](#plugintemplate): A template for a new plugin
 - Other small examples and templates found in the [examples](./examples) directory
+
+
+## Documentation
+
+Documentation for the plugins and a reference LUA documentation is available at: [https://grandma3.bambinito.net]()
 
 
 ## Installation
 
-- Download latest version from the [Package Registry](https://gitlab.com/patopest/grandma3-plugins/-/packages) or the [Releases](https://gitlab.com/patopest/grandma3-plugins/-/releases) page.
+- Download latest version of a plugin from the [Package Registry](https://gitlab.com/patopest/grandma3-plugins/-/packages) or the [Releases](https://gitlab.com/patopest/grandma3-plugins/-/releases) page.
 - Unzip the file in the `gma3_library/datapools/plugins/` folder of your MA installation:
     - macOS: `~/MALightingTechnology/...`
     - Windows: `C:\ProgramData\MALightingTechnology\...`
@@ -49,6 +60,25 @@ Swap `ViewButtons` between 2 screens.
 
 ![ScreenSwap Demo Video](./assets/ScreenSwap_demo.gif)
 
+
+
+### [PluginTemplate](./PluginTemplate)
+
+[![plugin version](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fgitlab.com%2Fpatopest%2Fgrandma3-plugins%2F-%2Fraw%2Fmaster%2FPluginTemplate%MyPlugin.xml%3Fref_type%3Dheads&query=%2FGMA3%2FUserPlugin%2F%40Version&prefix=v&label=Plugin)](https://gitlab.com/patopest/grandma3-plugins/-/packages)
+[![grandMA3 version](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fgitlab.com%2Fpatopest%2Fgrandma3-plugins%2F-%2Fraw%2Fmaster%2FPluginTemplate%MyPlugin.xml%3Fref_type%3Dheads&query=%2FGMA3%2F%40DataVersion&prefix=v&label=grandMA3)](https://www.malighting.com/grandma3/)
+
+
+A simple plugin template to kickstart a new plugin
+
+
+
+### [APIDump](./APIDump)
+
+[![plugin version](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fgitlab.com%2Fpatopest%2Fgrandma3-plugins%2F-%2Fraw%2Fmaster%2FAPIDump%2FAPIDump.xml%3Fref_type%3Dheads&query=%2FGMA3%2FUserPlugin%2F%40Version&prefix=v&label=Plugin)](https://gitlab.com/patopest/grandma3-plugins/-/packages)
+[![grandMA3 version](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fgitlab.com%2Fpatopest%2Fgrandma3-plugins%2F-%2Fraw%2Fmaster%2FAPIDump%2FAPIDump.xml%3Fref_type%3Dheads&query=%2FGMA3%2F%40DataVersion&prefix=v&label=grandMA3)](https://www.malighting.com/grandma3/)
+
+
+Export data from the current grandMA3 version used for the reference documentation generation.
 
 
 
