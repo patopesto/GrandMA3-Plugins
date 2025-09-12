@@ -1,0 +1,210 @@
+---
+title: Changelog
+description: The changelog for grandMA3 version v2.2
+version: v2.2
+sidebar:
+  order: 1
+--- 
+import { Aside, Badge } from '@astrojs/starlight/components';
+import ReadMore from '@components/ReadMore.astro';
+
+<Aside>
+  <ReadMore>Read the <a href="https://help.malighting.com/grandMA3/2.2/HTML/key_releasenotes.html" target="_blank" rel="noopener noreferrer">Official Release Notes</a></ReadMore>
+</Aside>
+
+
+## Functions
+
+### Object-Free API
+
+<Badge text="New" variant="success"/> [CloseMessageQueue](../api/#closemessagequeue)
+
+<Badge text="New" variant="success"/> [CopyFile](../api/#copyfile)
+
+<Badge text="New" variant="success"/> [GetTextScreenLine](../api/#gettextscreenline)
+
+<Badge text="New" variant="success"/> [GetTextScreenLineCount](../api/#gettextscreenlinecount)
+
+<Badge text="New" variant="success"/> [OpenMessageQueue](../api/#openmessagequeue)
+
+<Badge text="New" variant="success"/> [SampleOutput](../api/#sampleoutput)
+
+<Badge text="New" variant="success"/> [SendLuaMessage](../api/#sendluamessage)
+
+<Badge text="Changed" variant="caution"/> [DrawPointer](../api/#drawpointer)
+
+<Badge text="Changed" variant="caution"/> [FindTexture](../api/#findtexture)
+
+<Badge text="Changed" variant="caution"/> [GetPathOverrideFor](../api/#getpathoverridefor)
+
+<Badge text="Changed" variant="caution"/> [GetProgPhaser](../api/#getprogphaser)
+
+<Badge text="Changed" variant="caution"/> [GetProgPhaserValue](../api/#getprogphaservalue)
+
+<Badge text="Changed" variant="caution"/> [GetTokenName](../api/#gettokenname)
+
+<Badge text="Changed" variant="caution"/> [GetTopModal](../api/#gettopmodal)
+
+<Badge text="Changed" variant="caution"/> [GetTopOverlay](../api/#gettopoverlay)
+
+<Badge text="Changed" variant="caution"/> [GetUIObjectAtPosition](../api/#getuiobjectatposition)
+
+<Badge text="Changed" variant="caution"/> [SetProgPhaser](../api/#setprogphaser)
+
+<Badge text="Changed" variant="caution"/> [SetProgPhaserValue](../api/#setprogphaservalue)
+
+<Badge text="Changed" variant="caution"/> [ToAddr](../api/#toaddr)
+
+### Object API
+
+<Badge text="New" variant="success"/> [Acquire](../api/#acquire)
+
+<Badge text="Changed" variant="caution"/> [AddListObjectItem](../api/#addlistobjectitem)
+
+<Badge text="Changed" variant="caution"/> [GetListItemButton](../api/#getlistitembutton)
+
+<Badge text="Changed" variant="caution"/> [PropertyInfo](../api/#propertyinfo)
+
+<Badge text="Changed" variant="caution"/> [ToAddr](../api/#toaddr)
+
+<Badge text="Changed" variant="caution"/> [UIChildren](../api/#uichildren)
+
+## Enums
+
+<Badge text="New" variant="success"/> [CleanupOperation](../enums/#cleanupoperation)
+
+<Badge text="New" variant="success"/> [CuePartAppearanceContent](../enums/#cuepartappearancecontent)
+
+<Badge text="New" variant="success"/> [CueTimeNone](../enums/#cuetimenone)
+
+<Badge text="New" variant="success"/> [DSCPCodes](../enums/#dscpcodes)
+
+<Badge text="New" variant="success"/> [DSCPCodesDMX](../enums/#dscpcodesdmx)
+
+<Badge text="New" variant="success"/> [DataMergeTimeout](../enums/#datamergetimeout)
+
+<Badge text="New" variant="success"/> [DataNegotiationMode](../enums/#datanegotiationmode)
+
+<Badge text="New" variant="success"/> [DataNegotiationModeDefault](../enums/#datanegotiationmodedefault)
+
+<Badge text="New" variant="success"/> [EncoderResolution3d](../enums/#encoderresolution3d)
+
+<Badge text="New" variant="success"/> [FailureMode](../enums/#failuremode)
+
+<Badge text="New" variant="success"/> [FixtureMoveOperation](../enums/#fixturemoveoperation)
+
+<Badge text="New" variant="success"/> [GridDirection](../enums/#griddirection)
+
+<Badge text="New" variant="success"/> [IndividualTiming](../enums/#individualtiming)
+
+<Badge text="New" variant="success"/> [MIDITCMode](../enums/#miditcmode)
+
+<Badge text="New" variant="success"/> [MacroPoolAction](../enums/#macropoolaction)
+
+<Badge text="New" variant="success"/> [MultiCastBase](../enums/#multicastbase)
+
+<Badge text="New" variant="success"/> [NackStat](../enums/#nackstat)
+
+<Badge text="New" variant="success"/> [NotificationType](../enums/#notificationtype)
+
+<Badge text="New" variant="success"/> [PluginPoolAction](../enums/#pluginpoolaction)
+
+<Badge text="New" variant="success"/> [PolicyOnEnter](../enums/#policyonenter)
+
+<Badge text="New" variant="success"/> [Pooltype](../enums/#pooltype)
+
+<Badge text="New" variant="success"/> [PresetActionToken](../enums/#presetactiontoken)
+
+<Badge text="New" variant="success"/> [RecipeCleanupOperation](../enums/#recipecleanupoperation)
+
+<Badge text="New" variant="success"/> [SequenceActionToken](../enums/#sequenceactiontoken)
+
+<Badge text="New" variant="success"/> [SessionTimeStyle](../enums/#sessiontimestyle)
+
+<Badge text="New" variant="success"/> [SessionTimeStyleTZ](../enums/#sessiontimestyletz)
+
+<Badge text="New" variant="success"/> [SoundPoolAction](../enums/#soundpoolaction)
+
+<Badge text="New" variant="success"/> [TTL](../enums/#ttl)
+
+<Badge text="New" variant="success"/> [TagType](../enums/#tagtype)
+
+<Badge text="New" variant="success"/> [TextInputEditor](../enums/#textinputeditor)
+
+<Badge text="New" variant="success"/> [TimecodePoolAction](../enums/#timecodepoolaction)
+
+<Badge text="New" variant="success"/> [TimecodeSlotPoolAction](../enums/#timecodeslotpoolaction)
+
+<Badge text="New" variant="success"/> [TimingMaster](../enums/#timingmaster)
+
+<Badge text="New" variant="success"/> [TimingMasterWithDefault](../enums/#timingmasterwithdefault)
+
+<Badge text="New" variant="success"/> [TimingMasterWithXAssert](../enums/#timingmasterwithxassert)
+
+<Badge text="New" variant="success"/> [VideoPoolAction](../enums/#videopoolaction)
+
+<Badge text="Changed" variant="caution"/> [AssignType](../enums/#assigntype)
+
+<Badge text="Changed" variant="caution"/> [AssignmentButtonFunctions](../enums/#assignmentbuttonfunctions)
+
+<Badge text="Changed" variant="caution"/> [AssignmentButtonFunctionsGroup](../enums/#assignmentbuttonfunctionsgroup)
+
+<Badge text="Changed" variant="caution"/> [AssignmentButtonFunctionsPlugin](../enums/#assignmentbuttonfunctionsplugin)
+
+<Badge text="Changed" variant="caution"/> [AssignmentButtonFunctionsPreset](../enums/#assignmentbuttonfunctionspreset)
+
+<Badge text="Changed" variant="caution"/> [AssignmentButtonFunctionsScreenConfig](../enums/#assignmentbuttonfunctionsscreenconfig)
+
+<Badge text="Changed" variant="caution"/> [AssignmentButtonFunctionsSequence](../enums/#assignmentbuttonfunctionssequence)
+
+<Badge text="Changed" variant="caution"/> [AssignmentButtonFunctionsUser](../enums/#assignmentbuttonfunctionsuser)
+
+<Badge text="Changed" variant="caution"/> [AssignmentButtonFunctionsView](../enums/#assignmentbuttonfunctionsview)
+
+<Badge text="Changed" variant="caution"/> [AssignmentButtonFunctionsWorld](../enums/#assignmentbuttonfunctionsworld)
+
+<Badge text="Changed" variant="caution"/> [AssignmentFaderFunctions](../enums/#assignmentfaderfunctions)
+
+<Badge text="Changed" variant="caution"/> [AssignmentFaderFunctionsMasterOnly](../enums/#assignmentfaderfunctionsmasteronly)
+
+<Badge text="Changed" variant="caution"/> [AssignmentTimecodeFunctions](../enums/#assignmenttimecodefunctions)
+
+<Badge text="Changed" variant="caution"/> [ClockSources](../enums/#clocksources)
+
+<Badge text="Changed" variant="caution"/> [Config](../enums/#config)
+
+<Badge text="Changed" variant="caution"/> [DebugUsbDataSection](../enums/#debugusbdatasection)
+
+<Badge text="Changed" variant="caution"/> [FaderFunctions](../enums/#faderfunctions)
+
+<Badge text="Changed" variant="caution"/> [FilterAction](../enums/#filteraction)
+
+<Badge text="Changed" variant="caution"/> [HostSubType](../enums/#hostsubtype)
+
+<Badge text="Changed" variant="caution"/> [MIDIMode](../enums/#midimode)
+
+<Badge text="Changed" variant="caution"/> [Master](../enums/#master)
+
+<Badge text="Changed" variant="caution"/> [MessageCategory](../enums/#messagecategory)
+
+<Badge text="Changed" variant="caution"/> [PresetAction](../enums/#presetaction)
+
+<Badge text="Changed" variant="caution"/> [SequenceAction](../enums/#sequenceaction)
+
+<Badge text="Changed" variant="caution"/> [TimerAction](../enums/#timeraction)
+
+<Badge text="Changed" variant="caution"/> [TotalReferenceUpdateStatus](../enums/#totalreferenceupdatestatus)
+
+<Badge text="Changed" variant="caution"/> [TotalUpdateType](../enums/#totalupdatetype)
+
+<Badge text="Changed" variant="caution"/> [UsbProductID](../enums/#usbproductid)
+
+<Badge text="Changed" variant="caution"/> [WingType](../enums/#wingtype)
+
+<Badge text="Changed" variant="caution"/> [YesNo](../enums/#yesno)
+
+<Badge text="Changed" variant="caution"/> [ZoomFactor](../enums/#zoomfactor)
+
+<Badge text="Removed" variant="danger"/> DSCPLevel
+
+<Badge text="Removed" variant="danger"/> Fade

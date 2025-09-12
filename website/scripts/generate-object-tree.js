@@ -1,13 +1,30 @@
-#!/usr/bin/env node
-
 import fs from 'node:fs';
 import path from 'node:path';
 import GithubSlugger from 'github-slugger';
+
 import { ParseJson } from './grandma3-json-parser.js';
 
 
 const MAX_CHILDS = 30
-const slugger = new GithubSlugger()
+let slugger = new GithubSlugger()
+
+
+export function ParseTree(version = "v2.0", input_file) {
+
+  if (!fs.existsSync(input_file)) {
+    console.error(`❌ Input file not found: ${input_file}`);
+    process.exit(1);
+  }
+
+  const raw = fs.readFileSync(input_file, 'utf8');
+  const tree = ParseJson(raw);
+  if (tree == null) {
+    process.exit(1);
+  }
+
+  return tree;
+}
+
 
 
 function object_to_markdown(object, markdown, level = 1) {
@@ -67,22 +84,9 @@ function tree_to_markdown(object, markdown, level = 0) {
 }
 
 
-// Main 
-export function GenerateTreeMarkDown(version = "v2.0") {
-  const DIR = `src/content/docs/grandma3/${version}`;
-  const input_file = path.resolve(DIR, 'data', 'grandMA3_object_tree.json');
-  const output_file = path.resolve(DIR, 'tree.mdx');
+export function GenerateTreeMarkDown(version = "v2.0", tree, output_file) {
 
-  if (!fs.existsSync(input_file)) {
-    console.error(`❌ Input file not found: ${input_file}`);
-    process.exit(1);
-  }
-
-  const raw = fs.readFileSync(input_file, 'utf8');
-  const tree = ParseJson(raw);
-  if (tree == null) {
-    process.exit(1);
-  }
+  slugger = new GithubSlugger()
 
   let markdown = 
 `---
@@ -128,9 +132,5 @@ import { Aside, FileTree } from '@astrojs/starlight/components';
   fs.writeFileSync(output_file, markdown.join('\n'), 'utf8');
   console.log(`✅ Markdown generated at ${output_file}`);
 
+  return tree;
 }
-
-
-
-// Run when called standalone (for debug)
-// GenerateTreeMarkDown("v2.0");

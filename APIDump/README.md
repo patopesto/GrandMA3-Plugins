@@ -8,7 +8,8 @@ Export data from the current grandMA3 version used for the documentation generat
 Currently exports:
 - LUA Functions
 - LUA `Enums`
-- The data tree 
+- The data tree
+- Version and build information
 
 
 ## Usage

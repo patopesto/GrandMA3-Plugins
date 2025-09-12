@@ -39,3 +39,5 @@ task preview
 
 - Astro [docs](https://docs.astro.build)
 - Starlight [docs](https://starlight.astro.build/)
+- Starlight plugins used:
+    - Heading Badges [docs](https://starlight-heading-badges.vercel.app/)

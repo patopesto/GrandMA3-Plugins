@@ -123,9 +123,9 @@ local function TraverseChildren(object, level)
     end
 
     local data = {
-        name = object.Name,
+        name = string.gsub(object.Name, '\n', ' '), -- Remove newlines if any
         index = Obj.Index(object),
-        path = object:AddrNative(),
+        path = string.gsub(object:AddrNative(), '\n', ' '), -- Remove newlines if any
         class = object:GetClass(),
     }
 

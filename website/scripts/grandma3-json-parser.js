@@ -15,7 +15,7 @@ function sanitize(raw) {
 
   // Quote any key
   txt = txt.replace(
-    /^([\s]*)([A-Za-z0-9_<>()]*?):/gm,
+    /^([\s]*)([A-Za-z0-9_<>()][^:]*?):/gm,
     (_, prefix, key) => `${prefix}"${key.replace('\n', ' ')}":` // Fix keys containing newline
   );
 
@@ -27,7 +27,7 @@ function sanitize(raw) {
 
   // Remove newlines from string values
   txt = txt.replace(
-    /([^]*?):("[^]*?")/gm,
+    /^([^:]*?):("[^]*?")/gm,
     (_, key, value) => `${key}:${value.replace('\n', ' ')}`
   );
 

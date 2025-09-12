@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightHeadingBadges from 'starlight-heading-badges';
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,13 +23,14 @@ export default defineConfig({
 					label: 'Reference',
 					items: [
 						'grandma3/intro',
-						{ label: 'v2.3', autogenerate: { directory: 'grandma3/v2.3' }, badge: { text: 'Latest', variant: 'caution' }},
+						{ label: 'v2.3', autogenerate: { directory: 'grandma3/v2.3' }, badge: { text: 'Latest', variant: 'note' }},
 						{ label: 'v2.2', autogenerate: { directory: 'grandma3/v2.2' }, collapsed: true },
 						{ label: 'v2.1', autogenerate: { directory: 'grandma3/v2.1' }, collapsed: true },
 						{ label: 'v2.0', autogenerate: { directory: 'grandma3/v2.0' }, collapsed: true },
 					],
 				},
 			],
+			plugins: [starlightHeadingBadges()],
 		}),
 	],
 });

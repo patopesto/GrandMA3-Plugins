@@ -1,9 +1,9 @@
-#!/usr/bin/env node
-
 import fs from 'node:fs';
 import path from 'node:path';
 import { RateLimiter } from "limiter";
 import { Agent } from "undici";
+
+import { BadgeVariants } from './generate-changelog.js';
 
 
 // Rate-limit requests to MA's docs to 10 requests every 100ms
@@ -139,58 +139,7 @@ function parse_function(name, data) {
 }
 
 
-function function_to_markdown(name, func, markdown) {
-
-  if (func.docs) {
-    markdown.push(`### ${name} <a href="${func.docs}" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" style="margin-left:25px;"/></a>`);
-  }
-  else {
-    markdown.push(`### ${name}`);
-  }
-  markdown.push('');
-  markdown.push('**Signature**');
-  markdown.push('```lua');
-  markdown.push(func.signature);
-  markdown.push('```');
-  markdown.push('');
-  markdown.push('**Arguments**');
-  markdown.push('');
-
-  if (func.arguments.length) {
-    for (let i = 0; i < func.arguments.length; i++) {
-      const arg = func.arguments[i];
-      const opt = arg.optional ? '**(optional)**' : '';
-      const name = arg.name ? arg.name : '';
-      markdown.push(`${i + 1}. **\`${arg.type}\`** ${opt}: ${name}`)
-    }
-  }
-  else {
-    markdown.push('No Arguments');
-  }
-
-  markdown.push('');
-  markdown.push('**Returns**');
-  markdown.push('');
-
-  if (func.returns.length) {
-    for (const arg of func.returns) {
-      const name = arg.name ? arg.name : '';
-      markdown.push(`- **\`${arg.type}\`**: ${name}`)
-    }
-  }
-  else {
-    markdown.push('No Return');
-  }
-  markdown.push('\n---\n');
-
-}
-
-
-// Main 
-export async function GenerateFunctionsMarkDown(version = "v2.0", check_docs = true) {
-  const DIR = `src/content/docs/grandma3/${version}`;
-  const input_file = path.resolve(DIR, 'data', 'grandMA3_lua_functions.json');
-  const output_file = path.resolve(DIR, 'api.mdx');
+export async function ParseFunctions(version = "v2.0", input_file, check_docs = true) {
   const version_short = version.replace(/^v/, '');
   const DOCS_BASE_URL = `https://help.malighting.com/grandMA3/${version_short}/HTML/`;
 
@@ -235,6 +184,64 @@ export async function GenerateFunctionsMarkDown(version = "v2.0", check_docs = t
     await Promise.all(doc_checks);
   }
 
+  return functions;
+}
+
+
+
+function function_to_markdown(name, func, markdown) {
+
+  let title = `### ${name} `;
+  if (func.docs) {
+    title += ` <a href="${func.docs}" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" size="medium" style="margin:20px;"/></a>`;
+  }
+  if (func.changelog) {
+    const {text, variant} = BadgeVariants[func.changelog];
+    title += ` :badge[${text}]{variant=${variant}}`;
+  }
+
+  markdown.push(title);
+  markdown.push('');
+  markdown.push('**Signature**');
+  markdown.push('```lua');
+  markdown.push(func.signature);
+  markdown.push('```');
+  markdown.push('');
+  markdown.push('**Arguments**');
+  markdown.push('');
+
+  if (func.arguments.length) {
+    for (let i = 0; i < func.arguments.length; i++) {
+      const arg = func.arguments[i];
+      const opt = arg.optional ? '**(optional)**' : '';
+      const name = arg.name ? arg.name : '';
+      markdown.push(`${i + 1}. **\`${arg.type}\`**${opt}: ${name}`)
+    }
+  }
+  else {
+    markdown.push('No Arguments');
+  }
+
+  markdown.push('');
+  markdown.push('**Returns**');
+  markdown.push('');
+
+  if (func.returns.length) {
+    for (const arg of func.returns) {
+      const name = arg.name ? arg.name : '';
+      markdown.push(`- **\`${arg.type}\`**: ${name}`)
+    }
+  }
+  else {
+    markdown.push('No Return');
+  }
+  markdown.push('\n---\n');
+
+}
+
+
+export function GenerateFunctionsMarkDown(version = "v2.0", functions, output_file) {
+
   let markdown =
 `---
 title: LUA Functions
@@ -254,7 +261,7 @@ import { Aside, Badge } from '@astrojs/starlight/components';
   const sections = {
     objectfree: "Object-Free API",
     object: "Object API",
-  }
+  };
 
   for (const section of Object.keys(sections)) {
     const sorted = Object.keys(functions[section]).sort((a, b) => a.localeCompare(b)); // sort alphabetically
@@ -277,8 +284,3 @@ import { Aside, Badge } from '@astrojs/starlight/components';
   console.log(`✅ Markdown generated at ${output_file}`);
 
 }
-
-
-
-// Run when called standalone (for debug)
-// GenerateFunctionsMarkDown("v2.0");

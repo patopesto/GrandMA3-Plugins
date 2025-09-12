@@ -1,36 +1,12 @@
-#!/usr/bin/env node
-
 import fs from 'node:fs';
-import path from 'node:path';
+
 import { ParseJson } from './grandma3-json-parser.js'
+import { BadgeVariants } from './generate-changelog.js';
 
 
 
-function object_to_markdown(title, object, markdown) {
-
-  markdown.push(`### ${title}`);
-  markdown.push('');
-
-  // Sort by values
-  const sorted = Object.fromEntries(
-    Object.entries(object).sort(([,a],[,b]) => a - b)
-  );
-
-  markdown.push('| Name | Value | Usage');
-  markdown.push('| ---- | ----- | -----');
-  for (const [key, value] of Object.entries(sorted)) {
-    markdown.push(`| \`${key}\` | ${value} | \`Enums.${title}.${key}\``);
-  }
-
-}
-
-
-// Main 
-export function GenerateEnumsMarkDown(version = "v2.0") {
-  const DIR = `src/content/docs/grandma3/${version}`;
-  const input_file = path.resolve(DIR, 'data', 'grandMA3_lua_enums.json');
-  const output_file = path.resolve(DIR, 'enums.mdx');
-
+export function ParseEnums(version = "v2.0", input_file) {
+  
   if (!fs.existsSync(input_file)) {
     console.error(`❌ Input file not found: ${input_file}`);
     process.exit(1);
@@ -41,10 +17,46 @@ export function GenerateEnumsMarkDown(version = "v2.0") {
   if (enums == null) {
     process.exit(1);
   }
-  const sorted = Object.keys(enums).sort() // Sort by keys
 
-  // const pretty = JSON.stringify(enums, null, 2);
-  // console.log(enums);
+  const parsed = {}
+  for (const [key, value] of Object.entries(enums)) {
+    parsed[key] = {
+      items: value,
+    }
+  }
+
+  return parsed;
+}
+
+
+function object_to_markdown(name, object, markdown) {
+
+  let title = `### ${name} `;
+  if (object.changelog) {
+    const {text, variant} = BadgeVariants[object.changelog];
+    title += ` :badge[${text}]{variant=${variant}}`;
+  }
+  markdown.push(title);
+  markdown.push('');
+
+  // Sort by values
+  const sorted = Object.fromEntries(
+    Object.entries(object.items).sort(([,a],[,b]) => a - b)
+  );
+
+  markdown.push('| Name | Value | Usage');
+  markdown.push('| ---- | ----- | -----');
+  for (const [key, value] of Object.entries(sorted)) {
+    markdown.push(`| \`${key}\` | ${value} | \`Enums.${name}.${key}\``);
+  }
+
+  markdown.push('');
+
+}
+
+
+
+export function GenerateEnumsMarkDown(version = "v2.0", enums, output_file) {
 
   let markdown =
 `---
@@ -66,6 +78,8 @@ import { Aside } from '@astrojs/starlight/components';
 `;
   markdown = markdown.split('\n');
 
+  const sorted = Object.keys(enums).sort() // Sort by keys
+
   // // Main object
   // markdown.push(`## Enums`);
   // markdown.push('');
@@ -83,8 +97,3 @@ import { Aside } from '@astrojs/starlight/components';
   console.log(`✅ Markdown generated at ${output_file}`);
 
 }
-
-
-
-// Run when called standalone (for debug)
-// GenerateEnumsMarkDown("v2.0");
