@@ -235,8 +235,8 @@ export async function GenerateFunctionsMarkDown(version = "v2.0", check_docs = t
     await Promise.all(doc_checks);
   }
 
-  let markdown = `
----
+  let markdown =
+`---
 title: LUA Functions
 description: The LUA API for grandMA3 version ${version}
 version: ${version}

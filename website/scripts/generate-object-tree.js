@@ -84,8 +84,8 @@ export function GenerateTreeMarkDown(version = "v2.0") {
     process.exit(1);
   }
 
-  let markdown = `
----
+  let markdown = 
+`---
 title: Data Tree
 description: The Data Tree for grandMA3 version ${version}
 version: ${version}

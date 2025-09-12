@@ -46,8 +46,8 @@ export function GenerateEnumsMarkDown(version = "v2.0") {
   // const pretty = JSON.stringify(enums, null, 2);
   // console.log(enums);
 
-  let markdown = `
----
+  let markdown =
+`---
 title: LUA Enums
 description: The LUA Enums for grandMA3 version ${version}
 version: ${version}

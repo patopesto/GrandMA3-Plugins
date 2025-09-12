@@ -49,7 +49,7 @@ export function ParseJson(raw) {
   try {
     parsed = Hjson.parse(sanitized);
   } catch (e) {
-    console.error('Parsing failed after sanitisation', e.message);
+    console.error('❌ Parsing failed after sanitisation', e.message);
     return null
   }
 

@@ -5,7 +5,7 @@ import { GenerateEnumsMarkDown } from './generate-lua-enums.js'
 import { GenerateTreeMarkDown } from './generate-object-tree.js'
 
 
-const VERSIONS = ["v2.0", "v2.1"];
+const VERSIONS = ["v2.0", "v2.1", "v2.2", "v2.3"];
 
 
 async function GenerateDocs() {
