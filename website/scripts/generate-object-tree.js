@@ -42,7 +42,7 @@ function object_to_markdown(object, markdown, level = 1) {
 
   if (object.children !== undefined) {
     markdown.push('');
-    markdown.push(`**Children**:`);
+    markdown.push(`**Children** (${object.children.length}):`);
 
     let i = 1;
     for (const child of object.children) {
@@ -55,12 +55,15 @@ function object_to_markdown(object, markdown, level = 1) {
       i += 1;
     }
 
-    if (object.children.length <= MAX_CHILDS) {
-      markdown.push('');
-      for (const child of object.children) {
-        object_to_markdown(child, markdown, level + 1)
-      }
+    i = 1;
+    markdown.push('');
+    for (const child of object.children) {
+      if (i == MAX_CHILDS) break;
+
+      object_to_markdown(child, markdown, level + 1)
+      i += 1;
     }
+
   }
   markdown.push('');
 }
@@ -68,7 +71,9 @@ function object_to_markdown(object, markdown, level = 1) {
 
 function tree_to_markdown(object, markdown, level = 0) {
 
-  markdown.push(`${"    ".repeat(level)}- ${object.index} [\`${object.name}\`](#${slugger.slug(object.name)})`);
+  if (level > 0) { // Skipping root object to keep all first child visible by default
+    markdown.push(`${"    ".repeat(level)}- ${object.index} [\`${object.name}\`](#${slugger.slug(object.name)})`);
+  }
   
   if (object.children !== undefined) {
     let i = 1;
@@ -86,8 +91,6 @@ function tree_to_markdown(object, markdown, level = 0) {
 
 export function GenerateTreeMarkDown(version = "v2.0", tree, output_file) {
 
-  slugger = new GithubSlugger()
-
   let markdown = 
 `---
 title: Data Tree
@@ -97,10 +100,11 @@ tableOfContents:
   minHeadingLevel: 1
   maxHeadingLevel: 5
 ---
-import { Aside, FileTree } from '@astrojs/starlight/components';
+import { Aside } from '@astrojs/starlight/components';
+import DataTree from '@components/DataTree.astro';
 
 <Aside type="tip">
-  This is a dump of the data tree from a demo showfile.
+  This is a dump of the data tree from the \`Simple_show\` Demo Showfile.
   The **Addr** or **Path** can be used in CLI commands or LUA
 
   Usage in grandMA3 CLI:
@@ -120,13 +124,15 @@ import { Aside, FileTree } from '@astrojs/starlight/components';
   markdown = markdown.split('\n');
 
   // Tree
-  // markdown.push('# Tree');
-  // markdown.push('');
-  // markdown.push('<FileTree>');
-  // tree_to_markdown(tree, markdown);
-  // markdown.push('</FileTree>');
+  slugger = new GithubSlugger()
+  markdown.push('# Interactive Tree');
+  markdown.push('');
+  markdown.push('<DataTree>');
+  tree_to_markdown(tree, markdown);
+  markdown.push('</DataTree>');
 
   // Traverse
+  slugger = new GithubSlugger() // Reset heading slugs
   object_to_markdown(tree, markdown);
 
   fs.writeFileSync(output_file, markdown.join('\n'), 'utf8');

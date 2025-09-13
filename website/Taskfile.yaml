@@ -19,6 +19,7 @@ tasks:
     desc: "Preview production website"
     cmd: npm run preview
 
+
   copy:
     desc: "Copy the exported files in the proper location [VERSION=required]"
     requires:
@@ -27,6 +28,28 @@ tasks:
       - cp -v ~/MALightingTechnology/gma3_library/*.json src/content/docs/grandma3/{{.VERSION}}/data/
       - cp -v ~/MALightingTechnology/gma3_library/*.txt src/content/docs/grandma3/{{.VERSION}}/data/
 
+  parse:
+    desc: "Parse the grandMA3 dumped .json files"
+    cmd: node scripts/generate-docs.js parse {{.CLI_ARGS}}
+
   generate:
     desc: "Generate the grandMA3 reference docs from the dumped .json files"
-    cmd: npm run generate
+    aliases: [gen]
+    cmd: node scripts/generate-docs.js generate {{.CLI_ARGS}}
+
+  create-new-version:
+    desc: "Create the documentation for a new grandma3 version [VERSION=required]"
+    requires:
+        vars: [VERSION]
+    cmds:
+      - cp -r src/content/docs/grandma3/v2.0/ src/content/docs/grandma3/{{.VERSION}}
+      - task: copy
+        vars:
+          VERSION: '{{.VERSION}}'
+      - task: parse
+        vars:
+          CLI_ARGS: '-v {{.VERSION}}'
+      - task: generate
+        vars:
+          CLI_ARGS: '-v {{.VERSION}}'
+      - echo "Edit astro.config.mjs to add the new version to the sidebar"
