@@ -22,11 +22,11 @@ export default defineConfig({
 				{
 					label: 'Reference',
 					items: [
-						'grandma3/intro',
-						{ label: 'v2.3', autogenerate: { directory: 'grandma3/v2.3' }, badge: { text: 'Latest', variant: 'note' }},
-						{ label: 'v2.2', autogenerate: { directory: 'grandma3/v2.2' }, collapsed: true },
-						{ label: 'v2.1', autogenerate: { directory: 'grandma3/v2.1' }, collapsed: true },
-						{ label: 'v2.0', autogenerate: { directory: 'grandma3/v2.0' }, collapsed: true },
+						{ label: 'Introduction', slug: 'reference' },
+						{ label: 'v2.3', autogenerate: { directory: 'reference/v2.3' }, badge: { text: 'Latest', variant: 'note' }},
+						{ label: 'v2.2', autogenerate: { directory: 'reference/v2.2' }, collapsed: true },
+						{ label: 'v2.1', autogenerate: { directory: 'reference/v2.1' }, collapsed: true },
+						{ label: 'v2.0', autogenerate: { directory: 'reference/v2.0' }, collapsed: true },
 					],
 				},
 			],

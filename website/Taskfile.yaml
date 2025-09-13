@@ -25,8 +25,8 @@ tasks:
     requires:
         vars: [VERSION]
     cmds:
-      - cp -v ~/MALightingTechnology/gma3_library/*.json src/content/docs/grandma3/{{.VERSION}}/data/
-      - cp -v ~/MALightingTechnology/gma3_library/*.txt src/content/docs/grandma3/{{.VERSION}}/data/
+      - cp -v ~/MALightingTechnology/gma3_library/*.json src/content/docs/reference/{{.VERSION}}/data/
+      - cp -v ~/MALightingTechnology/gma3_library/*.txt src/content/docs/reference/{{.VERSION}}/data/
 
   parse:
     desc: "Parse the grandMA3 dumped .json files"
@@ -42,7 +42,7 @@ tasks:
     requires:
         vars: [VERSION]
     cmds:
-      - cp -r src/content/docs/grandma3/v2.0/ src/content/docs/grandma3/{{.VERSION}}
+      - cp -r src/content/docs/reference/v2.0/ src/content/docs/reference/{{.VERSION}}
       - task: copy
         vars:
           VERSION: '{{.VERSION}}'

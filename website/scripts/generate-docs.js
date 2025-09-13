@@ -10,7 +10,7 @@ import { ProcessDiff, GenerateChangelogMarkDown } from './generate-changelog.js'
 
 
 const VERSIONS = ["v2.0", "v2.1", "v2.2", "v2.3"];
-const BASE_DIR = "src/content/docs/grandma3";
+const BASE_DIR = "src/content/docs/reference";
 const FILENAMES = {
     fonctions: {
         raw: 'grandMA3_lua_functions.json',
