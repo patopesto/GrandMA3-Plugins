@@ -1,0 +1,29 @@
+---
+# A reusable component
+title: ''
+draft: true
+sidebar:
+  hidden: true
+---
+import { Steps, FileTree } from '@astrojs/starlight/components';
+
+
+<Steps>
+1. Download latest version of a plugin from the [Package Registry](https://gitlab.com/patopest/grandma3-plugins/-/packages) or the [Releases](https://gitlab.com/patopest/grandma3-plugins/-/releases) page.
+
+2. Unzip the file in the `gma3_library/datapools/plugins/` folder of your MA installation:
+      - macOS: `~/MALightingTechnology/...`
+      - Windows: `C:\ProgramData\MALightingTechnology\...`
+      - USB key: `/grandMA3/...`
+
+    Once unzipped:
+    <FileTree>
+      - .../gma3_library/datapools/plugins
+          - {props.folder}
+              - {props.folder}.xml
+              - {props.folder}.lua
+          - ... Other plugin files
+    </FileTree>
+
+3. In your showfile, import the plugin in a new `Plugin` pool object.
+</Steps>

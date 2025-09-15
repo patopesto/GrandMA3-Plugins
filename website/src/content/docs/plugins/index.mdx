@@ -1,0 +1,26 @@
+---
+title: Plugins
+description: A collection of grandMA3 plugins
+template: splash
+tableOfContents: false
+prev: false
+next: false
+---
+
+import { CardGrid, LinkButton } from '@astrojs/starlight/components';
+import Card from '@components/Card.astro';
+
+<CardGrid stagger>
+  <Card title="ViewScaler" icon="magnifier" href="/plugins/viewscaler">
+        Scale a display's content to fit the available space.
+  </Card>
+  <Card title="ScreenSwap" icon="document" href="/plugins/screenswap">
+      Swap `ViewButtons` between 2 screens.
+  </Card>
+  <Card title="PluginTemplate" icon="pencil" href="/plugins/plugintemplate">
+        A simple plugin template to kickstart your own plugin.
+  </Card>
+  <Card title="APIDump" icon="open-book" href="/plugins/apidump">
+        Export LUA API data, used for the reference documentation generation.
+  </Card>
+</CardGrid>

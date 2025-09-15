@@ -3,30 +3,49 @@ title: GrandMA3 plugins
 description: A collection of grandMA3 plugins and unoffical documentation
 template: splash
 hero:
-  tagline: A collection of grandMA3 plugins, experiments and other resources
+  tagline: A collection of grandMA3 plugins, guides and LUA reference documentation
   image:
-    file: ../../assets/houston.webp
+    file: '@assets/plugins-pool-rectangle-5.png'
+  image_attrs:
+    style: 'rotate: 3deg; filter: drop-shadow(0px 0px 75px rgba(255, 0, 175, 0.2));'
   actions:
     - text: Plugins
       link: /plugins
       icon: puzzle
     - text: Documentation
       link: /reference
+      # icon: open-book
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { CardGrid } from '@astrojs/starlight/components';
+import Card from '@components/Card.astro';
+import LinkButton from '@components/LinkButton.astro';
 
 ## Plugins
 
 <CardGrid stagger>
-	<Card title="ViewScaler" icon="pencil">
-		Scale a display's content to fit the available space.
-	</Card>
-	<Card title="ScreenSwap" icon="add-document">
-		Swap `ViewButtons` between 2 screens.
-	</Card>
+	<Card title="ViewScaler" icon="magnifier" href="/plugins/viewscaler">
+        Scale a display's content to fit the available space.
+  </Card>
+  <Card title="ScreenSwap" icon="document" href="/plugins/screenswap">
+      Swap `ViewButtons` between 2 screens.
+  </Card>
+  <Card title="PluginTemplate" icon="pencil" href="/plugins/plugintemplate">
+        A simple plugin template to kickstart your own plugin.
+  </Card>
+  <Card title="APIDump" icon="open-book" href="/plugins/apidump">
+        Export LUA API data, used for the reference documentation generation.
+  </Card>
 </CardGrid>
+
+<div style="text-align: center;">
+  <LinkButton href="/plugins" variant="secondary">View All Plugins</LinkButton>
+</div>
 
 ## Documentation
 
-An unofficial documentation on the LUA engine and API
+A documentation on the LUA engine and API meant as a reference for plugin development and understanding of the platform.
+
+<div style="text-align: center;">
+  <LinkButton href="/reference" variant="secondary">Documentation</LinkButton>
+</div>

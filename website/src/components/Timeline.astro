@@ -1,0 +1,83 @@
+---
+import { h } from 'hastscript';
+import { rehype } from 'rehype';
+import { classnames } from 'hast-util-classnames';
+import { CONTINUE, SKIP, visit } from 'unist-util-visit';
+
+const processor = rehype()
+    .data('settings', { fragment: true })
+    .use(function timeline() {
+        return (tree, file) => {
+            visit(tree, 'element', (node, index) => {
+                // Strip nodes that only contain newlines.
+                node.children = node.children.filter(
+                    (child) => child.type === 'comment' || child.type !== 'text' || !/^\n+$/.test(child.value)
+                );
+
+                if (node.tagName == 'ul') {
+                    classnames(node, node.properties.classnames, 'timeline');
+                }
+
+                if (node.tagName == 'li') {
+                    classnames(node, node.properties.classnames, 'item');
+                    node.children = [
+                        h('div', { class: 'dot' }),
+                        h('span', { class: 'item-title' }, node.children[0]),
+                        ...node.children.slice(1),
+                    ];
+
+                    return SKIP; // Only process upper most list items
+                }
+
+                return CONTINUE;
+            });
+        };
+    });
+
+const timelineHtml = await Astro.slots.render('default');
+const file = processor.processSync({ value: timelineHtml });
+const html = file.toString();
+
+const { ...args } = Astro.props;
+
+import { Badge } from '@astrojs/starlight/components';
+---
+
+<timeline set:html={html} {...args}/>
+
+<style>
+    @layer components {
+        timeline :global(.timeline) {
+            position: relative;
+            border-inline-start-width: 10rem;
+            border-inline-start-style: solid;
+            border-width: 1px;
+            border-color: oklch(50% 0.034 259.733);
+            margin: 2rem 1rem;
+        }
+        timeline :global(.timeline .item) {
+            margin-bottom: 2.5rem;
+            margin-inline-start: 1px;
+            list-style-type: none;
+        }
+        timeline :global(.timeline .item .dot) {
+            position: absolute;
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: calc(infinity * 1px);
+            background: oklch(50% 0.034 259.733);
+            margin-top: 0.625rem;
+            border-width: 1px;
+            inset-inline-start: -0.375rem;
+        }
+        /*timeline :global(.timeline .item:not(:first-child) > .only-first-child) {
+            display: none;
+        }*/
+        timeline :global(.timeline .item .item-title) {
+            color: rgb(0,255,255);
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+    }
+</style>

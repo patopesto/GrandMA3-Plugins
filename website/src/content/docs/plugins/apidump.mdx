@@ -1,0 +1,76 @@
+---
+title: APIDump
+description: &desc Export LUA API data, used for the reference documentation generation.
+template: splash
+prev: true
+next: true
+hero:
+  tagline: *desc
+  # image:
+  #   file: '@assets/ViewScaler-menu.png'
+  #   alt: ViewScaler UI menu
+  # image_attrs:
+  #   style: 'rotate: 3deg; filter: drop-shadow(0px 0px 75px rgba(255, 255, 255, 0.2));'
+  actions:
+    - text: Download
+      link: '#installation'
+    - text: Help
+      link: '#usage'
+      variant: secondary
+    - text: Release Notes
+      link: '#release-notes'
+      variant: secondary
+plugin:
+  version: v1.1.0.0
+  grandma3: v2.0.2.0
+---
+
+import { Badge, Aside } from '@astrojs/starlight/components';
+import Timeline from '@components/Timeline.astro';
+import ReadMore from '@components/ReadMore.astro';
+import Installation from './_components/Installation.mdx';
+
+
+Export data from the current **grandMA3** version used for the documentation generation.
+Currently exports:
+- LUA Functions
+- LUA `Enums`
+- The data tree
+- Version and build information
+
+
+<ReadMore>Don't forget to read the [Reference Documentation](/reference) generated from the data exported from this plugin</ReadMore>
+
+---
+
+## Usage
+
+
+```lua
+Plugin "APIDump"
+```
+
+### Notes
+
+- Install in `Simple_Show` Demo showfile.
+- Rename Station Hostname to `Laptop` and `Session` to `MySession` (To avoid having device-specific data in the tree dump).
+- Run After a restart (to avoid having too much `Undo` history in the tree dump).
+
+
+## Installation
+
+Requires **grandMA3 version** <Badge text={frontmatter.plugin.grandma3} size="medium" variant="caution"/> or above.
+
+<Installation folder={frontmatter.title}/>
+
+
+## Release Notes
+
+<Timeline>
+- #### Release v1.1.0.0 - 12/09/2025 <Badge text="Latest" size="large" variant="tip" style="margin-left: 15px;"/>
+  - Fixed Tree objects containing newlines in their name or path.
+
+- #### Release v1.0.0.0 - 10/09/2025
+  - Initial commit of Functions, Enums and Tree exports to be used by generator scripts
+
+</Timeline>

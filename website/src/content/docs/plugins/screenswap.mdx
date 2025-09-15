@@ -1,0 +1,95 @@
+---
+title: ScreenSwap
+description: &desc Swap ViewButtons between 2 screens.
+template: splash
+prev: true
+next: true
+hero:
+  tagline: *desc
+  # image:
+  #   file: '@assets/ViewScaler-menu.png'
+  #   alt: ViewScaler UI menu
+  # image_attrs:
+  #   style: 'rotate: 3deg; filter: drop-shadow(0px 0px 75px rgba(255, 255, 255, 0.2));'
+  actions:
+    - text: Download
+      link: '#installation'
+    - text: Help
+      link: '#usage'
+      variant: secondary
+    - text: Release Notes
+      link: '#release-notes'
+      variant: secondary
+plugin:
+  version: v1.1.0.0
+  grandma3: v2.0.2.0
+---
+
+import { Badge, Aside } from '@astrojs/starlight/components';
+import Timeline from '@components/Timeline.astro';
+import Installation from './_components/Installation.mdx';
+
+
+- Easily access a 2nd bank of ViewButtons for your screen in one-click.
+- Move around stored views between displays.
+- Access views stored on unavailable displays in your showfile. ex: Showfile was built on Full Console but currently running on Lite Console and missing Display 3.
+
+
+<div style="width: 80%; text-align: center; margin: 3rem auto 3rem auto;">
+![ScreenSwap Demo Video](@assets/ScreenSwap_demo.gif)
+</div>
+
+---
+
+## Usage
+
+```lua
+Plugin "ScreenSwap"
+```
+
+### Arguments:
+
+- `/Screen A`: First screen (optional, default: 1)
+- `/Screen B`: Second screen (optional, default: 2)
+- `/Buttons X Thru Y`: The range of `ViewButtons` to swap (optional, default: "1 Thru 10")
+
+### Examples:
+
+- Swap buttons 1 to 10 between screen 1 and 2:
+
+  ```lua
+  Plugin "ScreenSwap"
+  -- OR
+  Plugin "ScreenSwap" "/Screen 1 /Screen 2 /Buttons 1 Thru 10"
+  ```
+
+- Swap all buttons starting from #5 onwards between display 1 and 2:
+
+  ```lua
+  Plugin "ScreenSwap" "/Buttons 5 Thru"
+  ```
+
+- Swap all visible buttons (1 to 10 on Lite/Full console) between display 2 and 3
+
+  ```lua
+  Plugin "ScreenSwap" "/Screen 2 /Screen 3"
+  ```
+
+
+## Installation
+
+Requires **grandMA3 version** <Badge text={frontmatter.plugin.grandma3} size="medium" variant="caution"/> or above.
+
+<Installation folder={frontmatter.title}/>
+
+
+## Release Notes
+
+<Timeline>
+- #### Release v1.1.0.0 - 23/08/2025 <Badge text="Latest" size="large" variant="tip" style="margin-left: 15px;"/>
+  - Made viewbuttons range fully configurable in arguments
+  - Changed from `Copy` to `Move` command for empty buttons swaps
+
+- #### Release v1.0.0.0 - 18/08/2025 
+  - Initial release after more than a year of constant utilisation in my showfiles
+</Timeline>

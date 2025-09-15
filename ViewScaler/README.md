@@ -8,13 +8,29 @@ Scale a display's content to fit the available space.
 
 This plugin came as a need to handle the views on different screen sizes when using multiple platforms: onPC, Compact(XT) or Lite/Full consoles.
 
-![ViewScaler Demo Video](../assets/ViewScaler_demo.gif)
+![ViewScaler Demo Video](../website/src/assets/ViewScaler_demo.gif)
 
 
 
 ## Usage
 
 When called, the plugin will scale the content of the currently focused display.
+
+```lua
+Plugin "ViewScaler"
+```
+
+### Arguments:
+
+- `/Screen X`: Run on specified display
+
+### Examples:
+
+- Run on Display 3
+
+  ```lua
+  Plugin "ViewScaler" "/Screen 3"
+  ```
 
 
 ## Notes

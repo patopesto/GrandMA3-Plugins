@@ -11,35 +11,39 @@ Swap `ViewButtons` between 2 screens.
 - Access views stored on unavailable displays in your showfile. ex: Showfile was built on Full Console but currently running on Lite Console and missing Display 3.
 
 
-![ScreenSwap Demo Video](../assets/ScreenSwap_demo.gif)
+![ScreenSwap Demo Video](../src/website/assets/ScreenSwap_demo.gif)
 
 
 ## Usage
 
-Arguments:
+```lua
+Plugin "ScreenSwap"
+```
+
+### Arguments:
 
 - `/Screen A`: First screen (optional, default: 1)
 - `/Screen B`: Second screen (optional, default: 2)
 - `/Buttons X Thru Y`: The range of `ViewButtons` to swap (optional, default: "1 Thru 10")
 
-Examples:
+### Examples:
 
 - Swap buttons 1 to 10 between screen 1 and 2:
 
-```lua
-Plugin "ScreenSwap"
--- OR
-Plugin "ScreenSwap" "/Screen 1 /Screen 2 /Buttons 1 Thru 10"
-```
+    ```lua
+    Plugin "ScreenSwap"
+    -- OR
+    Plugin "ScreenSwap" "/Screen 1 /Screen 2 /Buttons 1 Thru 10"
+    ```
 
 - Swap all buttons starting from #5 onwards between display 1 and 2:
 
-```lua
-Plugin "ScreenSwap" "/Buttons 5 Thru"
-```
+    ```lua
+    Plugin "ScreenSwap" "/Buttons 5 Thru"
+    ```
 
 - Swap all visible buttons (1 to 10 on Lite/Full console) between display 2 and 3
 
-```lua
-Plugin "ScreenSwap" "/Screen 2 /Screen 3"
-```
+    ```lua
+    Plugin "ScreenSwap" "/Screen 2 /Screen 3"
+    ```

@@ -42,7 +42,7 @@ Scale a display's content to fit the available space.
 
 This plugin came as a need to handle the views on different screen sizes when using multiple platforms: onPC, Compact(XT) or Lite/Full consoles.
 
-![ViewScaler Demo Video](./assets/ViewScaler_demo.gif)
+![ViewScaler Demo Video](./website/src/assets/ViewScaler_demo.gif)
 
 
 
@@ -58,7 +58,7 @@ Swap `ViewButtons` between 2 screens.
 - Move around stored views between displays.
 - Access views stored on unavailable displays in your showfile. ex: Showfile was built on Full Console but currently running on Lite Console and missing Display 3.
 
-![ScreenSwap Demo Video](./assets/ScreenSwap_demo.gif)
+![ScreenSwap Demo Video](./website/src/assets/ScreenSwap_demo.gif)
 
 
 
@@ -86,7 +86,7 @@ Export data from the current grandMA3 version used for the reference documentati
 
 ## References / Documentation
 
-- Official UserManual [v2.0](https://help.malighting.com/grandMA3/2.0/HTML/plugins.html)
-- Unofficial documentation [github](https://github.com/hossimo/GMA3Plugins/wiki)
+- Official grandMA3 [User Manual (v2.0)](https://help.malighting.com/grandMA3/2.0/HTML/plugins.html)
+- Other Unofficial documentation [github](https://github.com/hossimo/GMA3Plugins/wiki)
 - Unofficial TypeScript [types](https://github.com/LightYourWay/grandMA3-types/tree/main)
 - MA Forum [LUA UI thread](https://forum.malighting.com/forum/thread/5738-lua-ui/?pageNo=1)

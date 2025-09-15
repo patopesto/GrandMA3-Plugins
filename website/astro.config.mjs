@@ -1,5 +1,4 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, sharpImageService } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightHeadingBadges from 'starlight-heading-badges';
 
@@ -11,10 +10,6 @@ export default defineConfig({
 			title: 'GrandMA3 plugins',
 			social: [{ icon: 'github', label: 'Gitlab', href: 'https://github.com/patopesto/GrandMA3-Plugins' }],
 			sidebar: [
-				{
-					label: 'Plugins',
-					autogenerate: { directory: 'plugins' },
-				},
 				{
 					label: 'Guides',
 					autogenerate: { directory: 'guides' },
@@ -30,7 +25,17 @@ export default defineConfig({
 					],
 				},
 			],
+			components: {
+    			LinkButton: '@components/LinkButton.astro',
+    			Hero: '@components/Hero.astro',
+  			},
 			plugins: [starlightHeadingBadges()],
 		}),
 	],
+	image: {
+    	service: sharpImageService({ limitInputPixels: false }),
+  	},
+	vite: {
+		assetsInclude: ['**/*.xml'],
+	}
 });

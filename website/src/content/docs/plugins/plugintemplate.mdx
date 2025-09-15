@@ -1,0 +1,66 @@
+---
+title: PluginTemplate
+description: &desc A simple plugin template to kickstart a new plugin
+template: splash
+prev: true
+next: true
+hero:
+  tagline: *desc
+  # image:
+  #   file: '@assets/ViewScaler-menu.png'
+  #   alt: ViewScaler UI menu
+  # image_attrs:
+  #   style: 'rotate: 3deg; filter: drop-shadow(0px 0px 75px rgba(255, 255, 255, 0.2));'
+  actions:
+    - text: Download
+      link: '#installation'
+    - text: Help
+      link: '#usage'
+      variant: secondary
+    - text: Release Notes
+      link: '#release-notes'
+      variant: secondary
+plugin:
+  version: v0.0.0.0
+  grandma3: v2.0.2.0
+---
+
+import { Badge, Aside, Steps } from '@astrojs/starlight/components';
+import Timeline from '@components/Timeline.astro';
+import ReadMore from '@components/ReadMore.astro';
+import Installation from './_components/Installation.mdx';
+
+
+Kickstart your next LUA plugin with this template
+
+<ReadMore>Don't forget to read the [Write a Plugin](/guides/plugin-intro) guide.</ReadMore>
+
+
+## Usage
+
+<Steps>
+1. Copy the plugin's directory and rename it to your plugin name
+
+2. Rename both the `.xml` and `.lua` files to your plugin name
+
+3. In the `.xml` file, change the following:
+    - `UserPlugin > Name` to your plugin name
+    - `UserPlugin > Path` to your directory name
+    - `UserPlugin > ComponentLua > FileName` to your `.lua` filename
+</Steps>
+---
+
+
+## Installation
+
+Requires **grandMA3 version** <Badge text={frontmatter.plugin.grandma3} size="medium" variant="caution"/> or above.
+
+<Installation folder={frontmatter.title}/>
+
+
+## Release Notes
+
+<Timeline>
+- #### Release v0.0.0.0 - 32/14/2147 <Badge text="Latest" size="large" variant="tip" style="margin-left: 15px;"/>
+  - You can version your plugin however you want
+</Timeline>
