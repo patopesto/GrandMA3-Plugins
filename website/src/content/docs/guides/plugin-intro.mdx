@@ -7,8 +7,8 @@ tableOfContents:
 ---
 
 import { Aside, FileTree, Code } from '@astrojs/starlight/components';
-import plugin_xml from '../../../../../PluginTemplate/MyPlugin.xml?raw';
-import plugin_lua from '../../../../../PluginTemplate/MyComponent.lua?raw';
+import plugin_xml from '../../../../../PluginTemplate/PluginTemplate.xml?raw';
+import plugin_lua from '../../../../../PluginTemplate/PluginTemplate.lua?raw';
 
 
 ## Plugin structure
@@ -29,9 +29,9 @@ grandMA will automatically detect plugin `.xml` files in subdirectories and will
 
 <FileTree>
 - gma3_library/datapools/plugins
-    - MyPlugin
-        - MyPlugin.xml
-        - MyComponent.lua
+    - PluginTemplate
+        - PluginTemplate.xml
+        - PluginTemplate.lua
         - ... (Other lua components)  
     - ... Other plugin files
 </FileTree>
@@ -41,11 +41,11 @@ grandMA will automatically detect plugin `.xml` files in subdirectories and will
 
 ### XML
 
-<Code code={plugin_xml} lang="xml" title="MyPlugin.xml" />
+<Code code={plugin_xml} lang="xml" title="PluginTemplate.xml" />
 
 ### Lua
 
-<Code code={plugin_lua} lang="lua" title="MyComponent.lua" />
+<Code code={plugin_lua} lang="lua" title="PluginTemplate.lua" />
 
 
 ## Usage
@@ -59,7 +59,7 @@ If the plugin is called with any Action keyword, for example: `Go+ Plugin X` or 
 Any arguments can be passed to the plugin:
 
 ```lua
-Plugin X "<args>"
+Plugin "PluginTemplate" "<args>"
 ```
 
 These arguments are only available in the `Main` function.
