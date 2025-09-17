@@ -1,0 +1,89 @@
+---
+import { XMLParser } from "fast-xml-parser";
+
+import { Steps, FileTree, Badge } from '@astrojs/starlight/components';
+import LinkButton from '@components/LinkButton.astro';
+
+const { name } = Astro.props;
+
+const xmls = import.meta.glob('@plugins/**/*.xml', { eager: true, query: '?raw', import: 'default', });
+const plugin = Object.keys(xmls).find(key => key.includes(name));
+
+const parser = new XMLParser({ ignoreAttributes:false });
+const xml = parser.parse(xmls[plugin], true);
+const grandma_version = xml.GMA3['@_DataVersion'];
+const version = xml.GMA3.UserPlugin['@_Version'];
+
+const GITLAB_URL = 'https://gitlab.com/patopest/grandma3-plugins';
+const releases_url = `${GITLAB_URL}/-/releases`;
+const download_url = `${releases_url}/${name}_v${version}/downloads/plugin`;
+
+---
+
+
+<div align="center">
+  <LinkButton href={download_url} target="_blank" >Download Latest</LinkButton>
+  <p>Requires <b>grandMA3 version</b> <Badge text={grandma_version} size="medium" variant="caution"/> or above.</p>
+  <p>Other versions of the plugin are available on the <a href={releases_url} target="_blank">Releases</a> page</p>
+</div>
+
+
+<h4>Installation Steps</h4>
+
+<Steps>
+<ol>
+  <li>
+    <p> <a href={download_url} target="_blank">Download</a> plugin.</p>
+  </li>
+  <li>
+    <p>Unzip the file in the <code>gma3_library/datapools/plugins/</code> folder of your MA installation:</p>
+    <ul>
+      <li>macOS: <code>~/MALightingTechnology/...</code></li>
+      <li>Windows: <code>C:\ProgramData\MALightingTechnology\...</code></li>
+      <li>USB key: <code>/grandMA3/...</code></li>
+    </ul>
+    <p>Once unzipped:</p>
+    <FileTree>
+      <ul>
+        <li>.../gma3_library/datapools/plugins
+          <ul>
+            <li>{name}_v{version}
+              <ul>
+                <li>{name}.xml</li>
+                <li>{name}.lua</li>
+              </ul>
+            </li>
+            <li>... Other plugin files</li>
+          </ul>
+        </li>
+      </ul>
+    </FileTree>
+  </li>
+  <li>
+    <p>In your showfile, import the plugin in a new <code>Plugin</code> pool object.</p>
+  </li>
+</ol>
+</Steps>
+
+{// Markdown equivalent:
+/*
+<Steps>
+1. Download latest version of a plugin from the [Package Registry](https://gitlab.com/patopest/grandma3-plugins/-/packages) or the [Releases](https://gitlab.com/patopest/grandma3-plugins/-/releases) page.
+
+2. Unzip the file in the `gma3_library/datapools/plugins/` folder of your MA installation:
+      - macOS: `~/MALightingTechnology/...`
+      - Windows: `C:\ProgramData\MALightingTechnology\...`
+      - USB key: `/grandMA3/...`
+
+    Once unzipped:
+    <FileTree>
+      - .../gma3_library/datapools/plugins
+          - {props.name}\_{props.version}
+              - {props.name}.xml
+              - {props.name}.lua
+          - ... Other plugin files
+    </FileTree>
+
+3. In your showfile, import the plugin in a new `Plugin` pool object.
+</Steps>
+*/}

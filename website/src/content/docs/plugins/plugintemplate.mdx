@@ -20,15 +20,13 @@ hero:
     - text: Release Notes
       link: '#release-notes'
       variant: secondary
-plugin:
-  version: v0.0.0.0
-  grandma3: v2.0.2.0
 ---
 
 import { Badge, Aside, Steps } from '@astrojs/starlight/components';
 import Timeline from '@components/Timeline.astro';
 import ReadMore from '@components/ReadMore.astro';
-import Installation from './_components/Installation.mdx';
+import Installation from './_components/Installation.astro';
+import ReleaseNotes from './_components/ReleaseNotes.astro';
 
 
 Kickstart your next LUA plugin with this template
@@ -39,7 +37,7 @@ Kickstart your next LUA plugin with this template
 ## Usage
 
 <Steps>
-1. Copy the plugin's directory and rename it to your plugin name
+1. After the [installation](#installation), rename the plugin directory to your plugin name
 
 2. Rename both the `.xml` and `.lua` files to your plugin name
 
@@ -48,19 +46,16 @@ Kickstart your next LUA plugin with this template
     - `UserPlugin > Path` to your directory name
     - `UserPlugin > ComponentLua > FileName` to your `.lua` filename
 </Steps>
----
 
 
 ## Installation
 
-Requires **grandMA3 version** <Badge text={frontmatter.plugin.grandma3} size="medium" variant="caution"/> or above.
-
-<Installation folder={frontmatter.title}/>
+<Installation name={frontmatter.title} />
 
 
 ## Release Notes
 
-<Timeline>
+<ReleaseNotes>
 - #### Release v0.0.0.0 - 32/14/2147 <Badge text="Latest" size="large" variant="tip" style="margin-left: 15px;"/>
   - You can version your plugin however you want
-</Timeline>
+</ReleaseNotes>

@@ -20,14 +20,11 @@ hero:
     - text: Release Notes
       link: '#release-notes'
       variant: secondary
-plugin:
-  version: v0.2.0.0
-  grandma3: v2.0.2.0
 ---
 
 import { Badge, Aside } from '@astrojs/starlight/components';
-import Timeline from '@components/Timeline.astro';
-import Installation from './_components/Installation.mdx';
+import Installation from './_components/Installation.astro';
+import ReleaseNotes from './_components/ReleaseNotes.astro';
 
 
 <div style="text-align: center">
@@ -87,20 +84,10 @@ The display grid sizes for the most common configurations
 
 ## Installation
 
-Requires **grandMA3 version** <Badge text={frontmatter.plugin.grandma3} size="medium" variant="caution"/> or above.
-
-<Installation folder={frontmatter.title}/>
+<Installation name={frontmatter.title} />
 
 
 ## Release Notes
 
-<Timeline>
-- #### Release v0.2.0.0 - 23/08/2025 <Badge text="Latest" size="large" variant="tip" style="margin-left: 15px;"/>
-  - Made screen configurable with argument `/Screen X`
+<ReleaseNotes name={frontmatter.title} />
 
-- #### Release v0.1.0.1 - 18/08/2025
-  - Fixed packaging issue
-
-- #### Release v0.1.0.0 - 18/08/2025 
-  - Initial release
-</Timeline>

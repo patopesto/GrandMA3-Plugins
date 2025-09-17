@@ -1,0 +1,55 @@
+---
+import { Badge } from '@astrojs/starlight/components';
+import Timeline from '@components/Timeline.astro';
+
+
+const { name } = Astro.props;
+
+const PROJECT_ID = "58393466";
+const gitlab_api_url = `https://gitlab.com/api/v4/projects/${PROJECT_ID}/releases`;
+
+const data = await fetch(gitlab_api_url+'?include_html_description=true').then((response) => response.json());
+const filtered = data.filter((release) => release.name.includes(name));
+const releases = filtered.map((release) => {
+  return {
+    version: release.tag_name.replace(`${name}_`, ''),
+    date: new Date(release.released_at).toLocaleDateString('en-GB'),
+    description: release.description_html,
+  }
+})
+
+---
+
+
+<Timeline>
+  <!-- Fetched releases -->
+  <ul>
+    { releases.map((release) => (
+      <li>
+        <span class="title">
+          <h4>Release {release.version}</h4>&emsp; - &emsp;{release.date}
+          <Badge text="Latest" size="large" variant="tip" class="badge only-first-child"/>
+        </span>
+        <div set:html={release.description} />
+      </li>
+    ))}
+  </ul>
+
+  <!-- Passed child content -->
+  <slot />
+</Timeline>
+
+
+<style>
+  li:not(:first-child) .only-first-child {
+      display: none;
+  }
+  .title {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .badge {
+    margin-left: 3rem;
+  }
+</style>

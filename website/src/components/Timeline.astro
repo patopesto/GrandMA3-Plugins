@@ -20,10 +20,14 @@ const processor = rehype()
 
                 if (node.tagName == 'li') {
                     classnames(node, node.properties.classnames, 'item');
+                    // node.children = [
+                    //     h('div', { class: 'dot' }),
+                    //     h('span', { class: 'item-title' }, node.children[0]),
+                    //     ...node.children.slice(1),
+                    // ];
                     node.children = [
                         h('div', { class: 'dot' }),
-                        h('span', { class: 'item-title' }, node.children[0]),
-                        ...node.children.slice(1),
+                        ...node.children,
                     ];
 
                     return SKIP; // Only process upper most list items
@@ -74,9 +78,8 @@ import { Badge } from '@astrojs/starlight/components';
             display: none;
         }*/
         timeline :global(.timeline .item .item-title) {
-            color: rgb(0,255,255);
-            display: flex;
-            align-items: center;
+            /*display: flex;
+            align-items: center;*/
             margin-bottom: 1rem;
         }
     }
