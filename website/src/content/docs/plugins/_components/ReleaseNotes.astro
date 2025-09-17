@@ -13,7 +13,8 @@ const filtered = data.filter((release) => release.name.includes(name));
 const releases = filtered.map((release) => {
   return {
     version: release.tag_name.replace(`${name}_`, ''),
-    date: new Date(release.released_at).toLocaleDateString('en-GB'),
+    // date: new Date(release.released_at).toLocaleDateString('en-GB'),
+    date: new Date(release.commit.committed_date).toLocaleDateString('en-GB'), // Use commit date in case of retroactive release
     description: release.description_html,
   }
 })
