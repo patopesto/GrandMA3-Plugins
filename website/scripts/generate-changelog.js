@@ -13,7 +13,7 @@ export function ProcessDiff(version = "v2.1", prev_version = "v2.0", data, optio
   if (options.functions) {
       const result = rdiff.getDiff(data[prev_version].functions, data[version].functions);
       diffs.functions = result.filter((diff) => {
-        if (diff.path.length == 3 && diff.path[2] == 'docs') return false; // remove diffs which are about docs url change
+        if (diff.path.length >= 3 && diff.path[2] == 'docs') return false; // remove diffs which are about docs change
         return true;
       });
 
@@ -68,7 +68,7 @@ export function GenerateChangelogMarkDown(version = "v2.0", diffs, output_file) 
   let markdown =
 `---
 title: Changelog
-description: The changelog for grandMA3 version ${version}
+description: The changelog for grandMA3 ${version}
 version: ${version}
 sidebar:
   order: 1

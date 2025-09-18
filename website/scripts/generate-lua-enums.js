@@ -20,8 +20,11 @@ export function ParseEnums(version = "v2.0", input_file) {
 
   const parsed = {}
   for (const [key, value] of Object.entries(enums)) {
+    const filtered = Object.fromEntries( // remove 'unnamed' keys
+      Object.entries(value) .filter(([key]) => key !== 'unnamed')
+    );
     parsed[key] = {
-      items: value,
+      items: filtered,
     }
   }
 
@@ -41,7 +44,11 @@ function object_to_markdown(name, object, markdown) {
 
   // Sort by values
   const sorted = Object.fromEntries(
-    Object.entries(object.items).sort(([,a],[,b]) => a - b)
+    Object.entries(object.items).sort((a, b) => {
+      const diff = a[1] - b[1];
+      if (diff !== 0) return diff; // sort by value
+      return a[0].localeCompare(b[0], undefined, { caseFirst: 'lower' }); // sort by key if same values
+    })
   );
 
   markdown.push('| Name | Value | Usage');
@@ -61,7 +68,7 @@ export function GenerateEnumsMarkDown(version = "v2.0", enums, output_file) {
   let markdown =
 `---
 title: LUA Enums
-description: The LUA Enums for grandMA3 version ${version}
+description: The LUA Enums for grandMA3 ${version}
 version: ${version}
 ---
 import { Aside } from '@astrojs/starlight/components';

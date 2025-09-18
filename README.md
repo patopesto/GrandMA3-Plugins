@@ -2,7 +2,7 @@
 
 ![Gitlab Pipeline Status](https://img.shields.io/gitlab/pipeline-status/patopest%2Fgrandma3-plugins?branch=master)
 
-A collection of GrandMA3 plugins, documentation and experiments
+A collection of GrandMA3 plugins, documentation, user-guides and experiments
 
 Plugins:
 

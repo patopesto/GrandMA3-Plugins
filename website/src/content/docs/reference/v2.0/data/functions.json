@@ -1024,7 +1024,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_object_hasactiveplayback.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_object_hasactiveplayback.html",
+        "description": "The HasActivePlayback Lua function returns a boolean indicating if an object has a currently active playback, for instance, if a sequence has an active cue.",
+        "example": "To return the information if the selected sequence has an active playback, create a plugin with this code:",
+        "example_code": "return function()\n    -- Stores the handle of the selected sequence.\n    local selectedSequence = SelectedSequence()\n\n    -- The following 'if' gives different feedback based on the playback status.\n    if selectedSequence:HasActivePlayback() then\n        Printf(\"Sequence '\" ..selectedSequence.name.. \"' has active playback.\")\n    else\n        Printf(\"Sequence '\" ..selectedSequence.name.. \"' has NO active playback.\")\n    end\nend"
+      }
     },
     "Import": {
       "signature": "Import(light_userdata:handle, string:file_path, string:file_name): boolean:success",
@@ -1056,7 +1061,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_object_import.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_object_import.html",
+        "description": "The object version of the Import Lua function is used to import an object written in XML format.",
+        "example": "These two examples import the content of the XML file into the selected sequence. The file is called \"MySelectedSequence\", and it is located at \"../gma3_library/datapools/sequences\". It is two examples of how to achieve the same outcome.",
+        "example_code": "return function()\n    --SelectedSequence() creates a handle to the selected sequence.\n    local selectedSequence = SelectedSequence()\n    --The path is stored in a variable.\n    local path = GetPath(Enums.PathType.UserSequences)\n    --The actual import function.\n    selectedSequence:Import(path, \"mySelectedSequence.xml\")\n    --Print some feedback.\n    Printf(\"The sequence is imported from: \" .. path)\nend"
+      }
     },
     "CmdlineChildren": {
       "signature": "CmdlineChildren(light_userdata:handle): {light_userdata:child_handles}",
@@ -1447,7 +1457,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_object_toaddr.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_object_toaddr.html",
+        "description": "The ToAddr Lua object function converts a handle to an address string that can be used in commands.",
+        "example": "These two examples return the address of the first sequence of the selected data pool and create a grandMA3 command with a \"Go\" keyword in front of the address. This command is sent to the grandMA3 command line.",
+        "example_code": "return function()\n    -- Stores the handle in a variable.\n    local mySequence = DataPool().Sequences[1]\n    -- Converts the handle to the address and store in variable.\n    local mySequenceAddress = mySequence:ToAddr()\n    -- Send a 'Go' command with the address appended.\n    Cmd(\"Go %s\", mySequenceAddress)\nend"
+      }
     },
     "CommandDelete": {
       "signature": "CommandDelete(light_userdata:handle): nothing",
@@ -1833,7 +1848,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_object_children.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_object_children.html",
+        "description": "The Children Lua function creates a table of handles of the children of an object.",
+        "example": "This example returns the name of the cues in the first sequence of the selected data pool:",
+        "example_code": "return function()\n    -- Stores the handle for sequence 1 in a variable.\n    local mySequence = DataPool().Sequences[1]\n    -- Use the \"Children()\" funciton to store a table with all the children in a new variable.\n    local cues = mySequence:Children()\n    -- For loop that uses the length operator on the cue variable.\n    for i = 1, #cues do\n        -- Text is printed for each child.\n        Printf(\"Sequence 1 Child \" .. i .. \" = \" .. cues[i].name)\n    end\nend"
+      }
     },
     "ClearList": {
       "signature": "ClearList(light_userdata:handle): nothing",
@@ -2642,7 +2662,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_object_addr.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_object_addr.html",
+        "description": "The Addr Lua object function converts a handle to an address string that can be used in commands.",
+        "example": "This example prints different versions of the address to a cue in a sequence:",
+        "example_code": "return function()\n    -- Creates a cue in sequence 1\n    Cmd(\"Store Sequence 1 Cue 100 /Merge /NoConfirmation\")\n    --Store a handle to the created cue\n    local cueObject = ObjectList(\"Sequence 1 Cue 100\")[1]\n    --Print different version of the handle address\n    Printf(\"ToAddr:              \" .. cueObject:ToAddr())\n    Printf(\"Addr:                \" .. cueObject:Addr())\n    Printf(\"Addr(Parent, false): \" .. cueObject:Addr(cueObject:Parent(), false))\n    Printf(\"Addr(Parent, true):  \" .. cueObject:Addr(cueObject:Parent(), true))\nend"
+      }
     },
     "GetDisplay": {
       "signature": "GetDisplay(light_userdata:handle to UIObject): light_userdata:display_handle",
@@ -2884,7 +2909,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_object_dump.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_object_dump.html",
+        "description": "The Dump function returns a string with information about the object, for instance, the name, class, path of the object, its properties, and children.",
+        "example": "These examples all print information about the selected sequence in the Command Line History.",
+        "example_code": "return function ()\n    -- Dump() is called on a function\n    Printf(\"=============== START OF DUMP ===============\")\n    SelectedSequence():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "GridsGetExpandHeaderCell": {
       "signature": "GridsGetExpandHeaderCell(light_userdata:handle to UIGrid (or derived)): {r, c} or nil",
@@ -2962,7 +2992,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_object_export.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_object_export.html",
+        "description": "The Export object Lua function exports an object into an XML file.",
+        "example": "This example exports the selected sequence into an XML file:",
+        "example_code": "return function()\n    --SelectedSequence() creates a handle to the selected sequence.\n    local selectedSequence = SelectedSequence()\n    if selectedSequence == nil then\n        ErrPrintf(\"The selected sequence could not be found.\")\n        return\n    end\n    --The path is stored in a variable.\n    local exportPath = GetPath(Enums.PathType.UserSequences)\n    --The actual export function.\n    local success = selectedSequence:Export(exportPath, \"mySelectedSequence.xml\")\n    --Print some feedback. \n    if success then\n        Printf(\"The sequence is exported to: \" .. exportPath)\n    else\n        ErrPrintf(\"The sequence could not be exported.\")\n    end\nend"
+      }
     },
     "GridGetBase": {
       "signature": "GridGetBase(light_userdata:handle to UIGrid (or derived)): light_userdata:handle to GridBase",
@@ -3819,7 +3854,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_object_addrnative.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_object_addrnative.html",
+        "description": "The AddrNative Lua object function converts a handle to an address string that can be used in commands.",
+        "example": "This example prints the address of the first sequence:",
+        "example_code": "return function()\n    -- Stores the handle to the first sequence.\n    local mySequence = DataPool().Sequences[1]\n    -- Print the native address.\n    Printf(\"The full address is: \" .. mySequence:AddrNative())\n    -- Stores a handle to the default DataPool.\n    local myDataPool = DataPool()\n    -- Print the native address to the datapool using the default datapool as a base.\n    Printf(\"The address in the datapool is: \" .. mySequence:AddrNative(myDataPool))\n    -- Print the native address to the datapool, using the default datapool as a base, with names as strings.\n    Printf(\"The address in the datapool with quotes around the names is: \" .. mySequence:AddrNative(myDataPool, true))\nend"
+      }
     },
     "GetListSelectedItemIndex": {
       "signature": "GetListSelectedItemIndex(light_userdata:handle): integer:1-based index",
@@ -3891,7 +3931,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_hosttype.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_hosttype.html",
+        "description": "The HostType Lua function returns a string with the host type of the device where the plugin is executed (for example, \"Console\" or \"onPC\").",
+        "example": "This example prints the host type of the device in the Command Line History:",
+        "example_code": "return function()\n    Printf(\"The HostType is \"..HostType())\nend"
+      }
     },
     "MessageBox": {
       "signature": "MessageBox({title:string,[, string:backColor][, integer:timeout (ms)][, boolean:timeoutResultCancel][, integer:timeoutResultID][, string:icon][, string:titleTextColor][, string:messageTextColor] string:message[, integer:message_align_h(Enums.AlignmentH)][, integer:message_align_v(Enums.AlignmentV)][, integer|lightuserdata:display], commands:{array of {integer:value, string:name[, integer:order]}}, inputs:{array of {string:name, string:value, string:blackFilter, string:whiteFilter, string:vkPlugin, integer:maxTextLength[, integer:order]}}, states:{array of {string:name, boolean:state[, integer:order]}, selectors:{array of {name:string, integer:selectedValue, values:table[, type:integer 0-swipe, 1-radio][, integer:order]} }): {boolean:success, integer:result, inputs:{array of [string:name] = string:value}, states:{array of [string:name] = boolean:state}, selectors:{array of [string:name] = integer:selected-value}}",
@@ -3911,7 +3956,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_messagebox.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_messagebox.html",
+        "description": "The MessageBox Lua function is used to create pop-up message boxes. These can be simple or complex information pop-ups with many different options and user inputs.",
+        "example": "There are six different examples demonstrating different elements of the message box. The elements can be combined, but the examples highlight different functions.",
+        "example_code": "return function ()\n    -- This creates a small pop-up with a single button.\n    local returnTable = MessageBox(\n        {\n            title = \"Please confirm This\",\n            commands = {{value = 1, name = \"Confirm\"}}\n        }\n    )\n\n    -- Print the content of the returned table. \n    Printf(\"Success = \"..tostring(returnTable.success))\n    Printf(\"Result = \"..returnTable.result)\nend"
+      }
     },
     "GetUIChannels": {
       "signature": "GetUIChannels(integer:subfixture_index or light_userdata: subfixture_handle[, boolean:return_as_handles]): {integer:ui_channels} or {light_userdata:ui_channels}",
@@ -3937,7 +3987,11 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getuichannels.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getuichannels.html",
+        "description": "The GetUIChannels Lua function returns a table with UI Channel indexes or a table with handles to the UI Channel objects. There are two different types of arguments for this function.",
+        "example_code": "return function()\n    -- Creates a table of indexes of the UI channels of the first selected fixture.\n    local uiChannels = GetUIChannels(SelectionFirst())\n    if uiChannels == nil then\n        ErrPrintf(\"Please select a fixture and try again\")\n        return\n    end\n    for key,value in ipairs(uiChannels) do\n        Printf(\"List index number \".. key .. \" :  UIChannel Index = \" .. value)\n    end\nend"
+      }
     },
     "UserVars": {
       "signature": "UserVars(nothing): light_userdata:user_variables",
@@ -3950,7 +4004,11 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_uservars.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_uservars.html",
+        "example": "This example sets, gets, and deletes a user variable:",
+        "example_code": "return function()\n    -- Stores a local Lua variable with the handle for the user variables.\n    local variableSection = UserVars()\n\n    -- Sets a user variable with an integer value using the SetVar function.\n    SetVar(variableSection, \"myUserVar\", 42)\n\n    -- Prints the user variable using the GetVar function.\n    Printf(\"The value  of myUserVar is: \" .. GetVar(variableSection, \"myUserVar\"))\n\n    -- Deletes the user variable using the DelVar function.\n    DelVar(variableSection, \"myUserVar\")\nend"
+      }
     },
     "GetScreenContent": {
       "signature": "GetScreenContent(light_userdata:handle to ScreenConfig): light_userdata:handle",
@@ -3970,7 +4028,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getscreencontent.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getscreencontent.html",
+        "description": "The GetScreenContent Lua function returns a handle to the screen content based on a provided handle to a screen configuration.",
+        "example": "This example prints the data connected to the screen content handle. It uses the CurrentScreenConfig() and Dump() functions:",
+        "example_code": "return function()\n    -- Create a handle for the current screen configuration.\n    local myCurrentScreenConfig = CurrentScreenConfig()\n    -- Create a handle for the screen content based on the screen configuration.\n    local myScreenContent = GetScreenContent(myCurrentScreenConfig)\n    -- Print the Dump of the handle.\n    Printf(\"=============== START OF DUMP ===============\")\n    myScreenContent:Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "IncProgress": {
       "signature": "IncProgress(integer:progressbar_index[, integer:delta]): nothing",
@@ -3989,7 +4052,12 @@
         }
       ],
       "returns": [],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_incprogress.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_incprogress.html",
+        "description": "The IncProgress Lua function changes the value on the range for a progress bar using an integer input. A handle input argument defines the progress bar. The progress br needs to be created using the StartProgress() function.",
+        "example": "These two examples increase and decrease the range value for the progress bar created using the example in the StartProgress topic (link above):",
+        "example_code": "return function()\n    -- Increase the current value for a progress bar with the matching handle.\n    IncProgress(progressHandle, 1)\nend"
+      }
     },
     "CurrentUser": {
       "signature": "CurrentUser(nothing): light_userdata:handle",
@@ -4002,7 +4070,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_currentuser.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_currentuser.html",
+        "description": "The CurrentUser Lua function returns a handle to the current user.",
+        "example": "This example prints the data connected to the handle. It uses the Dump() function:",
+        "example_code": "return function()\n    -- Dumps information about the current user\n    Printf(\"=============== START OF DUMP ===============\")\n    CurrentUser():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "StopProgress": {
       "signature": "StopProgress(integer:progressbar_index): nothing",
@@ -4015,7 +4088,12 @@
         }
       ],
       "returns": [],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_stopprogress.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_stopprogress.html",
+        "description": "The StopProgress Lua function removes a progress bar. A handle input argument defines which progress bar it removes. The progress bar must exist before it can be removed. Progress bars are created using the StartProgress function.",
+        "example": "This example stops the progress bar created using the example in the StartProgress topic (link above):",
+        "example_code": "return function()\n    -- Stops and closes the progress bar with the matching handle\n    StopProgress(progressHandle)\nend"
+      }
     },
     "GetAttributeIndex": {
       "signature": "GetAttributeIndex(string:attribute_name): integer:attribute_index",
@@ -4035,7 +4113,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getattributeindex.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getattributeindex.html",
+        "description": "The GetAttributeIndex Lua function returns the (0 based) index number of the attribute definition based on the system name of the attribute.",
+        "example": "This example prints the index number of the attribute in Command Line History if it exists:",
+        "example_code": "return function()\n    -- store the returned index or nil of \"Gobo1\"\n    local attributeIndex = GetAttributeIndex(\"Gobo1\")\n    -- Check if the returned value is not nil and print a useful feedback\n    if attributeIndex~=nil then\n        Printf(\"Attribute is index number %i\", attributeIndex)\n    else\n        Printf(\"The attribute is not found\")\n    end\nend"
+      }
     },
     "SetColor": {
       "signature": "SetColor(string:color_model('RGB', 'xyY', 'Lab', 'XYZ', 'HSB'), float:tripel1, float:tripel2, float:tripel3, float:brightness, float:quality, boolean:const_brightness): integer:flag",
@@ -4143,7 +4226,11 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getrtchannels.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getrtchannels.html",
+        "description": "The GetRTChannels Lua function returns a table with RT Channel indexes or a table with handles to the RT Channel objects. There are two different types of arguments for this function.",
+        "example_code": "return function()\n    -- Get the index number for the first fixture in the current selection \n    local fixtureIndex = SelectionFirst()\n    -- Get the indexes of the RT channels\n    local rtChannels = GetRTChannels(fixtureIndex, false)\n    -- Print an error message if returnd table is nil\n    if rtChannels == nil then\n        ErrPrintf(\"Please select a fixture and try again\")\n        return\n    end\n    -- Print the table content\n    for key,value in ipairs(rtChannels) do\n        Printf(\"List index number \".. key ..\" : RTChannel index number = \".. value)\n    end\nend"
+      }
     },
     "GetSubfixtureCount": {
       "signature": "GetSubfixtureCount(nothing): integer:subfixture_count",
@@ -4156,7 +4243,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getsubfixturecount.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getsubfixturecount.html",
+        "description": "The GetSubfixtureCount Lua function returns the total number of fixtures that are patched within the show file.",
+        "example": "This example prints the total number of patched fixtures in the Command Line History:",
+        "example_code": "return function ()\n    Printf('Total number of patched fixtures: %i', GetSubfixtureCount())\nend"
+      }
     },
     "ClassExists": {
       "signature": "ClassExists(string:class_name): boolean:result",
@@ -4176,7 +4268,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_classexists.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_classexists.html",
+        "description": "The ClassExists Lua function returns a boolean indicating whether the provided string is a class.",
+        "example": "This example asks if the word \"Display\" is a class and returns proper feedback.",
+        "example_code": "return function()\n    -- Store a string with the class name\n    local className = \"Display\"\n    -- Check if the class exists and then provide proper feedback\n    if ClassExists(className) then\n        Printf(\"The class '%s' exists\", className)\n    else\n        Printf(\"The class '%s' does not exists\", className)\n    end\nend"
+      }
     },
     "FromAddr": {
       "signature": "FromAddr(string:address[, light_userdata:base_handle]): light_userdata:handle",
@@ -4202,7 +4299,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_fromaddr.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_fromaddr.html",
+        "description": "The FromAddr Lua function converts a numbered string address into a handle that can be used in commands.",
+        "example": "This example prints the address of the first sequence:",
+        "example_code": "return function()\n    -- Converts the string to a handle and store in a variabel.\n    local mySequenceHandle = FromAddr(\"13.13.1.5.1\")\n    -- Converts the handle back to a numbered string and prints it.\n    Printf(\"The address is: \" ..mySequenceHandle:Addr())\n    -- Converts the handle to a named string and prints it.\n    Printf(\"The address is: \" ..mySequenceHandle:AddrNative())\n    \n    -- Store the handle of the selected datapool.\n    local myDataPool = DataPool()\n    -- Prints the address of the selected datapool.\n    Printf(myDataPool:Addr())\n    \n    --- The follwoing example uses the name of a sequence in the sequence pool. \n    --- Please adjust the \"Default\" name in the next line to match an existing named sequence.\n    -- Finds the address based on the base location and a text string with names.\n    local alsoMySequenceHandle = FromAddr(\"Sequences.Default\", myDataPool)\n    -- Converts the handle back to a numbered string and prints it.\n    Printf(\"The address is: \" ..alsoMySequenceHandle:Addr())\n    -- Converts the handle to a named string and prints it.\n    Printf(\"The address is: \" ..alsoMySequenceHandle:AddrNative())\nend"
+      }
     },
     "GetPropertyColumnId": {
       "signature": "GetPropertyColumnId(light_userdata:handle, string:property_name): integer:column_id",
@@ -4254,7 +4356,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getchannelfunctionindex.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getchannelfunctionindex.html",
+        "description": "The GetChannelFunctionIndex Lua function returns the integer matching a channel function based on two index inputs.",
+        "example": "This example prints the indexes based on the fixture selection and the \"Dimmer\" attribute.",
+        "example_code": "return function()\n    -- Get the Attribute index and UIChannel index.\n    local attributeIndex = GetAttributeIndex(\"Dimmer\")\n    local uiChannelIndex = GetUIChannelIndex(SelectionFirst(),attributeIndex)\n    -- End the function if any of the index return nil.\n    if (attributeIndex == nil or uiChannelIndex == nil) then\n        ErrPrintf(\"Something wrong happened, maybe your first selected fixture don't have a Dimmer - Please try again\")\n        return\n    end\n    -- Get the Channel Function Index and store it in a variable.\n    local channelFunctionIndex = GetChannelFunctionIndex(uiChannelIndex,attributeIndex)\n    Printf(\"The UIChannel Index is: %i. The Attribute Index is: %i. The Channel Function Index is: %i\", uiChannelIndex, attributeIndex, channelFunctionIndex)\nend"
+      }
     },
     "GetUIObjectAtPosition": {
       "signature": "GetUIObjectAtPosition(integer:display_index, {x,y}:position): light_userdata:handle to UI object or nil",
@@ -4280,7 +4387,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getuiobjectatposition.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getuiobjectatposition.html",
+        "description": "The GetUIObjectAtPosition Lua function returns the handle of the UI Object at a specified position on a specified display.",
+        "example": "This example prints the Dump of the UIObject at a specific position on display 1. It also uses the DrawPointer function to draw a red pointer at the position.",
+        "example_code": "return function()\n    -- Get the index number for \"Display 1\"\n    local displayIndex = GetDisplayCollect()[\"Display 1\"].INDEX\n    -- Create a table with X and Y position\n    local positionTable = {}\n    positionTable.x = 1000\n    positionTable.y = 500\n    -- Get the UI object handle\n    local uiObjectAtPositionHandle = GetUIObjectAtPosition(displayIndex,positionTable)\n    -- Dump all information about the display with the index number if not nil\n    if uiObjectAtPositionHandle == nil then\n        Printf(\"The returned value was not a valid handle.\")\n        return\n    end\n    -- Draw a pointer at the posiiton for 5 seconds\n    DrawPointer(displayIndex,positionTable,5000)\n    --Dump of the UIObject\n    Printf(\"=============== START OF DUMP ===============\")\n    uiObjectAtPositionHandle:Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "SyncFS": {
       "signature": "SyncFS(nothing): nothing",
@@ -4299,7 +4411,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getuichannelcount.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getuichannelcount.html",
+        "description": "The GetUIChannelCount Lua function returns a number indicating the total amount of UI channels.",
+        "example": "This example prints the number of UI channels to the Command Line History:",
+        "example_code": "return function()\n    Printf(\"The number of UI channels is \" .. GetUIChannelCount())\nend"
+      }
     },
     "GetDisplayByIndex": {
       "signature": "GetDisplayByIndex(integer:display_index): light_userdata:display_handle",
@@ -4319,7 +4436,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getdisplaybyindex.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getdisplaybyindex.html",
+        "description": "The GetDisplayByIndex Lua function returns a handle to the display object matching the provided index number.",
+        "example": "This example prints the data connected to the handle. It uses the Dump() function:",
+        "example_code": "return function()\n    -- Get the index number for \"Display 1\"\n    local displayIndex = GetDisplayCollect()[\"Display 1\"].INDEX\n    -- return error text in case the index number is nil\n    if displayIndex == nil then\n        ErrPrintf('Something went wrong. It appears that there is no \"display 1\"')\n        return\n    end\n    -- Dump all information about the display with the index number\n    Printf(\"=============== START OF DUMP ===============\")\n    GetDisplayByIndex(displayIndex):Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "ReleaseType": {
       "signature": "ReleaseType(nothing): string:releasetype",
@@ -4332,7 +4454,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_releasetype.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_releasetype.html",
+        "description": "The ReleaseType Lua function returns a string with the type of release for the MA software. All the software versions available from MA Lighting will return \"Release\". Internally and during development, there can be other release types.",
+        "example": "This example prints the release type in the Command Line History:",
+        "example_code": "return function()\n    Printf(\"The ReleaseType is \"..ReleaseType())\nend"
+      }
     },
     "GetChannelFunction": {
       "signature": "GetChannelFunction(integer:ui_channel_index, integer:attribute_index): light_userdata:handle",
@@ -4358,7 +4485,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getchannelfunction.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getchannelfunction.html",
+        "description": "The GetChannelFunction Lua function returns a handle to a channel function based on two index inputs.",
+        "example": "This example prints the data connected to the handle. It uses the Dump() function:",
+        "example_code": "return function()\n    -- Select the first fixture in the current selection.\n    local subfixtureIndex = SelectionFirst()\n    -- End the function if there is no selection.\n    if subfixtureIndex == nil then\n        ErrPrintf(\"Please select a fixture with a Dimmer\")\n        return\n    end\n    -- Get the Attribute index and UIChannel index.\n    local attributeIndex = GetAttributeIndex(\"Dimmer\")\n    local uiChannelIndex = GetUIChannelIndex(subfixtureIndex,attributeIndex)\n    Printf(\"The UIChannel Index is: %i. The Attribute Index is: %i. \",uiChannelIndex, attributeIndex)\n    -- End the function if any of the index return nil.\n    if (attributeIndex == nil or uiChannelIndex == nil) then\n        ErrPrintf(\"Something wrong happened, maybe your first selected fixture don't have a Dimmer - Please try again\")\n        return\n    end\n    -- The following prints the dump for the dimmer channel function.\n    Printf(\"=============== START OF DUMP ===============\")\n    GetChannelFunction(uiChannelIndex,attributeIndex):Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "GetDisplayCollect": {
       "signature": "GetDisplayCollect(nothing): light_userdata:handle to DisplayCollect",
@@ -4371,7 +4503,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getdisplaycollect.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getdisplaycollect.html",
+        "description": "The GetDisplayCollect Lua function returns a handle to the DisplayCollect object.",
+        "example": "This example prints the data connected to the handle. It uses the Dump() function:",
+        "example_code": "return function()\n    -- This example dumps all information about the DisplayCollect object.\n    Printf(\"=============== START OF DUMP ===============\")\n    GetDisplayCollect():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "Echo": {
       "signature": "Echo(string:formatted_command ...): nothing",
@@ -4384,7 +4521,12 @@
         }
       ],
       "returns": [],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_echo.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_echo.html",
+        "description": "The Echo Lua function prints a string in the System Monitor.",
+        "example": "This example prints \"Hello World!\" on the System Monitor:",
+        "example_code": "return function()\n    -- Prints 'Hellow World!' in the system monitor in yellow text.\n    Echo(\"Hello World!\")\nend"
+      }
     },
     "HookObjectChange": {
       "signature": "HookObjectChange(function:callback, light_userdata:handle, light_userdata:plugin_handle[, light_userdata:target]): integer:hook_id",
@@ -4422,7 +4564,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_hookobjectchange.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_hookobjectchange.html",
+        "description": "The HookObjectChange Lua function automatically calls a function when a grandMA3 object changes.",
+        "example": "To call a function every time the content of the sequence pool changes, create a plugin with this code:",
+        "example_code": "-- Get the handle to this Lua component.\nlocal luaComponentHandle = select(4,...)\n\nfunction Main()\n    -- Get a handle to the sequence pool.\n    local hookObject = DataPool().Sequences\n    -- Get a handle to this plugin.\n    local pluginHandle = luaComponentHandle:Parent()\n    -- Create the hook and save the Hook ID.\n    SequenceHookId = HookObjectChange(MySequencePoolCallback, hookObject, pluginHandle)\n    -- Print the returned Hook ID.\n    Printf(\"HookId: \" .. SequenceHookId)\nend\n\n-- This function is called when there are changes in the sequence pool.\nfunction MySequencePoolCallback(obj)\n    Printf(tostring(obj.name) .. \" changed!\")\nend\n\nreturn Main"
+      }
     },
     "GetShowFileStatus": {
       "signature": "GetShowFileStatus(nothing): string:showfile_status",
@@ -4435,7 +4582,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getshowfilestatus.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getshowfilestatus.html",
+        "description": "The GetShowFileStatus Lua function returns a string with the current device's show file status, for example, \"NoShow\", \"ShowLoaded\", \"ShowDownloaded\", \"ShowSaving\", and \"DataNegotiationActive\".",
+        "example": "This example prints the current device's show file status in the Command Line History:",
+        "example_code": "return function ()\n    -- Prints the current showfile status\n    Printf(\"ShowfileStatus: \"..GetShowFileStatus())\nend"
+      }
     },
     "CreateUndo": {
       "signature": "CreateUndo(string:undo_text): light_userdata:undo_handle",
@@ -4455,7 +4607,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_createundo.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_createundo.html",
+        "description": "The CreateUndo Lua function returns a handle to a list of commands and function calls grouped in the same oops action.",
+        "example": "This example creates an undo list, performs a series of commands being added to the undo list, and closes the undo list. Now the series of commands can be oopsed with one oops command.",
+        "example_code": "return function()\n    -- Create the undo group.\n    local MyNewUndo = CreateUndo(\"MySelection\")\n    -- Make some command line actions linked to the undo.\n    Cmd(\"ClearAll\", MyNewUndo)\n    Cmd(\"Fixture 1\", MyNewUndo)\n    Cmd(\"Fixture 2\", MyNewUndo)\n    Cmd(\"Fixture 5\", MyNewUndo)\n    Cmd(\"Fixture 7\", MyNewUndo)\n    -- Closing the undo group and store it's return in a variable.\n    local closeSuccess = CloseUndo(MyNewUndo)\n    -- Print the feedback from the closing action - 1 = Success / 0 = Failure.\n    if (closeSuccess == 1) then\n        Printf(\"The undo was closed successfully\")\n    else\n        Printf(\"The undo was not closed correctly\")\n    end\nend"
+      }
     },
     "ObjectList": {
       "signature": "ObjectList(string:address): {light_userdata:handles}",
@@ -4475,7 +4632,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_objectlist.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_objectlist.html",
+        "description": "The ObjectList Lua function returns a table with handles. The table is created based on a string input that should create a selection.",
+        "example": "This example returns the names and patch addresses of fixtures 1 through 10. It assumes these fixtures exist - if they do not, then it returns an error text.",
+        "example_code": "return function()\n    -- Create a list of handles based on the \"Fixture 1 Thru 10\" selection and store it in a table. \n    local myObjects = ObjectList(\"Fixture 1 Thru 10\")\n    -- If the selection returned a table, then go through all elements and print information of the object.\n    if myObjects~= nil then\n        for i in pairs(myObjects) do\n            Printf(\"Fixture: \" .. myObjects[i].name .. \" - Patch: \" ..myObjects[i].patch)\n        end\n    else\n        ErrPrintf(\"An error occured. Does Fixture 1 Thru 10 exist?\")\n    end\nend"
+      }
     },
     "SelectedTimecode": {
       "signature": "SelectedTimecode(nothing): light_userdata:handle",
@@ -4488,7 +4650,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_selectedtimecode.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_selectedtimecode.html",
+        "description": "The SelectedTimecode Lua function returns the handle of the selected timecode object.",
+        "example": "This example prints all information about the selected timecode show in the Command Line History using the Dump() function:",
+        "example_code": "return function ()\n    -- The following prints the dump for the selected timecode object\n    local myTimecodeShow = SelectedTimecode()\n    if myTimecodeShow ~= nil then\n        Printf(\"=============== START OF DUMP ===============\")\n        myTimecodeShow:Dump()\n        Printf(\"================ END OF DUMP ================\")\n    end\nend"
+      }
     },
     "GetTopOverlay": {
       "signature": "GetTopOverlay(integer:display_index): light userdata:handle to top overlay on the display",
@@ -4508,7 +4675,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_gettopoverlay.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_gettopoverlay.html",
+        "description": "The GetTopOverlay Lua function returns a handle for the overlay at the top of the display with the provided index number. Overlay is the internal name for what is called pop-ups or menus in the rest of this manual.",
+        "example": "This example uses the Dump() function to show information about the MenuSelector pop-up - it is the one opening when pressing the Menu key.",
+        "example_code": "return function()\n    -- Open the MenuSelector overlay.\n    Cmd('Menu \"MenuSelector')\n    -- Add a small delay.\n    coroutine.yield({activeShowstatus=0.2})\n    -- Get the handle for the overlay on the display with index 1.\n    local overlayHandle = GetTopOverlay(1)\n    -- Add a small delay.\n    coroutine.yield({activeShowstatus=0.2})\n    -- Close the MenuSelector overlay.\n    Cmd('Menu \"MenuSelector')\n    -- Check if there is a handle and print appropriate feedback.\n    if overlayHandle ~= nil then\n        Printf(\"=============== START OF DUMP ===============\")\n        overlayHandle:Dump()\n        Printf(\"================ END OF DUMP ================\")\n    else\n        ErrPrintf(\"The Overlay UI object could not be found.\")\n    end\nend"
+      }
     },
     "SelectedTimer": {
       "signature": "SelectedTimer(nothing): light_userdata:handle",
@@ -4521,7 +4693,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_selectedtimer.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_selectedtimer.html",
+        "description": "The SelectedTimer Lua function returns the handle of the selected timer object.",
+        "example": "This example prints all information about the selected timer in the Command Line History using the Dump() function:",
+        "example_code": "return function ()\n    -- The following prints the dump for the selected timer object\n    local myTimer = SelectedTimer()\n    if myTimer ~= nil then\n        Printf(\"=============== START OF DUMP ===============\")\n        myTimer:Dump()\n        Printf(\"================ END OF DUMP ================\")\n    end\nend"
+      }
     },
     "FirstDmxModeFixture": {
       "signature": "FirstDmxModeFixture(light_userdata:dmxmode): light_userdata:fixture",
@@ -4541,7 +4718,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_firstdmxmodefixture.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_firstdmxmodefixture.html",
+        "description": "The FirstDmxModeFixture Lua function returns a handle to the first fixture matching the supplied DMX mode.",
+        "example": "If it exists, this example prints the data connected to the first \"Dimmer\" fixture using \"Mode 0\" - if the fixture type exists in the show. It uses the Dump() functions:",
+        "example_code": "return function ()\n    -- Get the handle for the Dimmer fixture.\n    local fixtureTypeHandle = Patch().FixtureTypes['Dimmer']\n\n    -- Check if fixture type returned something and provide feedback.\n    if fixtureTypeHandle == nil then\n        ErrPrintf(\"The fixture type does not exist in this show. Try adding it or edit this plugin.\")\n    else\n        -- Get the handle for the DMX mode of a Dimmer fixture.\n        local fixtureDMXMode = fixtureTypeHandle.DMXModes[\"Mode 0\"]\n\n        -- Check if fixtureDMXMode returned something and provide feedback.\n        if fixtureDMXMode == nil then\n            ErrPrintf(\"The fixture type does not contain a 'Mode 0' DMX mode. Try adding it or edit this plugin.\")\n        else\n            -- Dumps information about the first fixture matching the DMX mode.\n            Printf(\"=============== START OF DUMP ===============\")\n            FirstDmxModeFixture(fixtureDMXMode):Dump()\n            Printf(\"================ END OF DUMP ================\")\n        end\n    end\nend"
+      }
     },
     "SelectedSequence": {
       "signature": "SelectedSequence(nothing): light_userdata:handle",
@@ -4554,7 +4736,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_selectedsequence.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_selectedsequence.html",
+        "description": "The SelectedSequence Lua function returns the handle of the selected sequence.",
+        "example": "This example prints all information about the selected sequence in the Command Line History using the Dump() function:",
+        "example_code": "return function ()\n    -- The following prints the dump for the selected sequence object\n    Printf(\"=============== START OF DUMP ===============\")\n    SelectedSequence():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "CreateDirectoryRecursive": {
       "signature": "CreateDirectoryRecursive(string:path): boolean:result",
@@ -4620,7 +4807,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getdmxuniverse.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getdmxuniverse.html",
+        "description": "The GetDMXUniverse Lua function returns a table with the DMX channels and their current value.",
+        "example": "This example prints the table in a list for DMX universe 1 (if it is granted):",
+        "example_code": "return function()\n    -- This gets a table for universe 1 with the returned value in percent.\n    local tableDMXUniverse = GetDMXUniverse(1,true)\n    -- Check the returned table and print information if nil.\n    if tableDMXUniverse == nil then\n        Printf(\"No value is returned. The univer is not granted or input is out of range\")\n        return\n    end\n    -- Prints the table if not nil.\n    for addr, value in ipairs(tableDMXUniverse) do\n        Printf(\"DMX Addr: %i - DMX value : %i\", addr, value)\n    end\nend"
+      }
     },
     "Touch": {
       "signature": "Touch(integer:display_index, string:type('press', 'move', 'release'), integer:touch_id, integer:abs_x, integer:abs_y): nothing",
@@ -4670,7 +4862,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_patch.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_patch.html",
+        "description": "The Patch Lua function returns a handle to the patch object.",
+        "example": "This example prints the data connected to the handle. It uses the Dump() function:",
+        "example_code": "return function()\n    -- This example dumps all information about the patch object\n    Printf(\"=============== START OF DUMP ===============\")\n    Patch():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "GetSubfixture": {
       "signature": "GetSubfixture(integer:subfixture_index): light_userdata:subfixture",
@@ -4690,7 +4887,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getsubfixture.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getsubfixture.html",
+        "description": "The GetSubfixture Lua function returns the handle of the fixture specified by its patch index number.",
+        "example": "This example uses a fixture selection to print all the information (in the Command Line History) about the first fixture in the selection using the Dump() function:",
+        "example_code": "return function ()\n    -- Check for a fixture selection, by returning an index for the first fixture\n    if (SelectionFirst()) then\n        -- There is a fixture selection, store the index for the first fixture \n        local fixtureIndex = SelectionFirst()\n        -- Dump all information about the fixture\n        Printf(\"=============== START OF DUMP ===============\")\n        GetSubfixture(fixtureIndex):Dump()\n        Printf(\"================ END OF DUMP ================\")\n    else\n        -- There needs to be a selection of at least one fixture\n        Printf(\"Please select a fixture\")\n    end\nend"
+      }
     },
     "SetVar": {
       "signature": "SetVar(light_userdata:variables, string:varname, value): boolean:success",
@@ -4722,7 +4924,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_setvar.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_setvar.html",
+        "description": "The SetVar Lua function sets a value to a specific variable in a set of variables. To learn more about the variables in plugins, look at the Variable Functions topic.",
+        "example": "This example sets a value to the variable called \"myUserVar\" in the set of user variables if it exists.",
+        "example_code": "return function()\n    -- Sets the value of user variable \"myUserVar\" to \"Hello World\" and store the returned boolean in a Lua variable\n    local success = SetVar(UserVars(), \"myUserVar\", \"Hello World\")\n    -- Prints the ressult\n    if success then\n        Printf(\"Variable is stored.\")\n    else\n        Printf(\"Variable is NOT stored!\")\n    end\nend"
+      }
     },
     "MasterPool": {
       "signature": "MasterPool(nothing): light_userdata:handle",
@@ -4735,7 +4942,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_masterpool.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_masterpool.html",
+        "description": "The MasterPool Lua function returns the handle to the masters.",
+        "example": "This example prints the information of the MasterPool object. It uses the Dump() function:",
+        "example_code": "return function()\n    -- Print all informatin about the MasterPool object\n    Printf(\"=============== START OF DUMP ===============\")\n    MasterPool():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "DelVar": {
       "signature": "DelVar(light_userdata:variables, string:varname): boolean:success",
@@ -4761,7 +4973,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_delvar.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_delvar.html",
+        "description": "The DelVar Lua function deletes a specific variable in a set of variables. To learn more about the variables in plugins, have a look at the Variable Functions topic.",
+        "example": "This example deletes a variable called \"myUserVar\" in the set of user variables.",
+        "example_code": "return function()\n    -- Deletes the variable called 'myUserVar' in the 'UserVars' variable set.\n    local success = DelVar(UserVars(), \"myUserVar\")\n    -- Prints the outcome of the deletion outcome.\n    if success then\n        Printf(\"Variable is deleted.\")\n    else\n        Printf(\"Variable is NOT deleted!\")\n    end\nend"
+      }
     },
     "SaveExecConfig": {
       "signature": "SaveExecConfig(light_userdata:executor): nothing",
@@ -4794,7 +5011,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_import.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_import.html",
+        "description": "The object-free Import Lua function imports a Lua table in XML format.",
+        "example": "This example imports the table exported using the example in the Export() function topic - please run that example before running this example.",
+        "example_code": "return function ()\n    -- Get the path for the exported table.\n    local importPath = GetPath(Enums.PathType.Library) .. \"/BuildDetails.xml\"\n    -- Check if the file exist and print relevant feedback.\n    if importPath == nil then\n        -- File does not exist.\n        ErrPrintf(\"The desired file does not exist. Please add it or adjust the requested file name.\")\n    else\n        -- Import the table.\n        local importedTable = Import(importPath)\n        -- Check if the import returned something and print relevant feedback.\n        if importedTable == nil then\n            -- Import didn't return anything.\n            ErrPrintf(\"The import failed.\")\n        else\n        -- Print some of the table content.\n        Printf(\"CompileDate: \" .. importedTable.CompileDate)\n        Printf(\"CompileTime: \" .. importedTable.CompileTime)\n        Printf(\"BigVersion: \" .. importedTable.BigVersion)\n        Printf(\"HostType: \" .. importedTable.HostType)\n        Printf(\"HostSubType: \" .. importedTable.HostSubType)\n        Printf(\"CodeType: \" .. importedTable.CodeType)\n        end\n    end\nend"
+      }
     },
     "GetRTChannel": {
       "signature": "GetRTChannel(integer:rt_channel_index): table:rt_channel_descriptor",
@@ -4814,7 +5036,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getrtchannel.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getrtchannel.html",
+        "description": "The GetRTChannel Lua function returns a table with information about the related RT Channel.",
+        "example": "This example prints all information related to the first RT Channel for the first fixture in the selection:",
+        "example_code": "return function()\n    -- Get the index number for the first RT Channel for the first fixture in the current selection \n    local channelRTIndex = GetRTChannels(SelectionFirst())[1]\n    -- Print an error message if returnd index is nil\n    if channelRTIndex == nil then\n        ErrPrintf(\"Please select a fixture and try again\")\n        return\n    end\n    -- Print all information about the RT Channel if it does not return nil\n    local rtChannel = GetRTChannel(channelRTIndex)\n    if rtChannel == nil then\n        Printf(\"An RTChannel could not be found. Please try to selct a different fixture and try again.\")\n        return\n    end\n    Printf(\"================= RT CHANNEL =================\")\n    Printf(\"ui_index_first = \" .. rtChannel[\"ui_index_first\"])\n    Printf(\"dmx_lowlight = \" .. rtChannel[\"dmx_lowlight\"])\n    Printf(\"dmx_highlight = \" .. rtChannel[\"dmx_highlight\"])\n    Printf(\"dmx_default = \" .. rtChannel[\"dmx_default\"])\n    Printf(\"freq = \" .. rtChannel[\"freq\"])\n    Printf(\"rt_index = \" .. rtChannel[\"rt_index\"])\n    Printf(\"========== RELATED DMX CHANNEL DUMP ==========\")\n    rtChannel[\"dmx_channel\"]:Dump() -- Handle for relevant DMX channel\n    Printf(\"============ RELATED FIXTURE DUMP ============\")\n    rtChannel[\"fixture\"]:Dump() -- Handle for relevant fixture\n    Printf(\"========== RELATED SUBFIXTURE DUMP ===========\")\n    rtChannel[\"subfixture\"]:Dump() -- Handle for relevant subfixture\n    Printf(\"=================== INFO =====================\")\n    Printf(\"normed_phaser_time = \" .. rtChannel[\"info\"][\"normed_phaser_time\"])\n    Printf(\"================ INFO FLAGS ==================\")\n    Printf(\"group_master = \" .. rtChannel[\"info\"][\"flags\"][\"group_master\"])\n    Printf(\"additive_master = \" .. rtChannel[\"info\"][\"flags\"][\"additive_master\"])\n    Printf(\"solo = \" .. rtChannel[\"info\"][\"flags\"][\"solo\"])\n    Printf(\"highlight = \" .. rtChannel[\"info\"][\"flags\"][\"highlight\"])\n    Printf(\"lowlight = \" .. rtChannel[\"info\"][\"flags\"][\"lowlight\"])\n    Printf(\"=================== PATCH ====================\")\n    Printf(\"break = \" .. rtChannel[\"patch\"][\"break\"])\n    Printf(\"coarse = \" .. rtChannel[\"patch\"][\"coarse\"])\n    Printf(\"fine = \" .. rtChannel[\"patch\"][\"fine\"])\n    Printf(\"ultra = \" .. rtChannel[\"patch\"][\"ultra\"])\nend"
+      }
     },
     "GetVar": {
       "signature": "GetVar(light_userdata:variables, string:varname): value",
@@ -4840,7 +5067,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getvar.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getvar.html",
+        "description": "The GetVar Lua function returns the value of a specific variable in a set of variables. To learn more about the variables in plugins, look at the Variable Functions topic.",
+        "example": "This example returns the value of a variable called \"myUserVar\" in the set of user variables if it exists:",
+        "example_code": "return function()\n    -- Get the value from a user variable called \"myUserVar\" - assuming it already exists\n    local varValue = GetVar(UserVars(), \"myUserVar\")\n    -- Print en error feedback or the value of the variable\n    if varValue == nil then\n        Printf(\"Variable returns nothing!\")\n    else\n        Printf(\"Variable value is: \" .. varValue)\n    end\nend"
+      }
     },
     "GetPath": {
       "signature": "GetPath(string:path_type or integer:path_type(Enums.PathType)[ ,boolean:create]): string:path",
@@ -4866,7 +5098,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getpath.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getpath.html",
+        "description": "The GetPath Lua function returns a string with the path of a grandMA3 folder.",
+        "example": "This example prints the paths of the show folder on the system monitor twice. It demonstrates the two different input types:",
+        "example_code": "return function()\n    -- This prints a path based on a string input and it creates the folder if it does not exists.\n    Printf(\"Path of show files (string) is: \" .. GetPath(\"shows\", true))\n    -- This prints the path based on an integer. The integer is looked-up using the 'PathType' enum.\n    Printf(\"Path of show files (integer) is: \" .. GetPath(Enums.PathType.Showfiles))\nend"
+      }
     },
     "ShowData": {
       "signature": "ShowData(nothing): light_userdata:handle",
@@ -4879,7 +5116,10 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_showdata.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_showdata.html",
+        "description": "ShowData is an object-free function that returns a handle to the object at position Root/ShowData."
+      }
     },
     "GetAttributeByUIChannel": {
       "signature": "GetAttributeByUIChannel(integer:ui channel index): light_userdata:reference_to_attribute",
@@ -4899,13 +5139,23 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getattributebyuichannel.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getattributebyuichannel.html",
+        "description": "The GetAttributeByUIChannel Lua function returns the handle to an attribute based on a \"UI Channel Index\". The index number can be found in the Parameter List.",
+        "example": "This example prints the \"native\" address to the first attribute of the first fixture in the current selection:",
+        "example_code": "return function()\n    -- Get a handle to the first fixture in the current selection\n    local fixtureIndex = SelectionFirst()\n    -- Get the UI Channel Index number for the first attribute for the fixture\n    local channelIndex = GetUIChannelIndex(fixtureIndex,0)\n    -- Print the native address for the attribute with the handle\n    Printf(\"The native addr for the attribute is: %s\",GetAttributeByUIChannel(channelIndex):AddrNative())\nend"
+      }
     },
     "DumpAllHooks": {
       "signature": "DumpAllHooks(nothing): nothing",
       "arguments": [],
       "returns": [],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_dumpallhooks.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_dumpallhooks.html",
+        "description": "The DumpAllHooks function prints a list of the hooks in the system. The list is only shown in the System Monitor.",
+        "example": "This example prints the list of hooks in the system monitor.",
+        "example_code": "return function()\n    -- Dumps a list of all the hooks in the System Monitor.\n    Printf(\"=============== START OF HOOK DUMP ===============\")\n    DumpAllHooks()\n    Printf(\"================ END OF HOOK DUMP ================\")\nend"
+      }
     },
     "SelectedFeature": {
       "signature": "SelectedFeature(nothing): light_userdata:handle",
@@ -4918,7 +5168,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_selectedfeature.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_selectedfeature.html",
+        "description": "The SelectedFeature Lua function returns the handle of the selected feature.",
+        "example": "This example prints all information about the selected feature in the Command Line History using the Dump() function:",
+        "example_code": "return function ()\n    -- The following prints the dump for the selected feature object\n    Printf(\"=============== START OF DUMP ===============\")\n    SelectedFeature():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "FindBestFocus": {
       "signature": "FindBestFocus([light_userdata:handle]): nothing",
@@ -4944,7 +5199,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_version.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_version.html",
+        "description": "The Version Lua function returns the software version.",
+        "example": "This example prints the software version in the Command Line History:",
+        "example_code": "return function()\n    Printf(\"Software version: %s\", Version())\nend"
+      }
     },
     "SetProgress": {
       "signature": "SetProgress(integer:progressbar_index, integer:value): nothing",
@@ -4963,7 +5223,12 @@
         }
       ],
       "returns": [],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_setprogress.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_setprogress.html",
+        "description": "The SetProgress Lua function defines a value on the range for a progress bar. A handle input argument defines the progress bar. The progress bar needs have been created using the StartProgress function.",
+        "example": "This example sets a range value for the progress bar created using the example in the StartProgress topic (link above):",
+        "example_code": "return function()\n    -- Sets the current value to 5 for a progress bar with the matching handle\n    SetProgress(progressHandle, 5)\nend"
+      }
     },
     "GetClassDerivationLevel": {
       "signature": "GetClassDerivationLevel(string:class_name): integer:result or nothing",
@@ -4983,7 +5248,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getclassderivationlevel.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getclassderivationlevel.html",
+        "description": "The GetClassDerivationLevel Lua function returns an integer indicating the derivation level index for a class based on a class name.",
+        "example": "This example prints the index integer for the Pool class in the Command Line History:",
+        "example_code": "return function()\n    -- Get the index integer for the \"Pool\" class.\n    local classDerivationLevel = GetClassDerivationLevel(\"Pool\")\n    -- Create a valid Printf return.\n    if classDerivationLevel == nil then\n        Printf(\"The return is nil\")\n    else\n        Printf(\"The ClassDerivationLevel index for 'Pool' is: %i\", classDerivationLevel)\n    end\nend"
+      }
     },
     "CmdObj": {
       "signature": "CmdObj(nothing): light_userdata:handle",
@@ -4996,7 +5266,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_cmdobj.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_cmdobj.html",
+        "description": "The CmdObj Lua function returns information about the command line object.",
+        "example": "This example uses the Dump() function on the command object. It lists all the properties and lists the children and some extra examples of how the command line object can be used:",
+        "example_code": "return function()\n    --Store the handle to the command object\n    local cmd = CmdObj()\n    --Print all information about the command object\n    Printf(\"=============== START OF DUMP ===============\")\n    cmd:Dump()\n    Printf(\"================ END OF DUMP ================\")\n    --Print some selected elements from the command object - this is currently not in the online manual\n    Printf(\"Current text in the command line: \" ..cmd.cmdtext)\n    Printf(\"Current cmd edit object: \" ..tostring(cmd.editobject and cmd.editobject:ToAddr()))\n    Printf(\"Current cmd destination: \" ..tostring(cmd.destination and cmd.destination:ToAddr()))\n    Printf(\"Current user of the command line: \" ..tostring(cmd.user and cmd.user:ToAddr()))\n    Printf(\"Current profile of the command line: \" ..tostring(cmd.profile and cmd.profile:ToAddr()))\n    Printf(\"Current DMX readout: \" ..cmd.dmxreadout)\n    Printf(\"Current amount steps: \" ..cmd.maxstep)\n    Printf(\"Current selected object: \" ..tostring(cmd:GetSelectedObject() and cmd:GetSelectedObject():ToAddr()))\nend"
+      }
     },
     "CheckDMXCollision": {
       "signature": "CheckDMXCollision(light_userdata:dmx_mode, string:dmx_address[ ,integer:count[ ,integer:break_index]]): boolean:no_collision_found",
@@ -5034,7 +5309,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_checkdmxcollision.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_checkdmxcollision.html",
+        "description": "The CheckDMXCollision Lua function checks if a specific DMX address range is available or already used.",
+        "example": "This example prints feedback to the DMX collision check based on a DMX address of \"1.001\" and the DMX mode of the first fixture in the current selection:",
+        "example_code": "return function()\n    -- Set the DMX universe - range 1-1024.\n    local myDMXUniverse = 1\n    -- Set the DMX address in the universe - range 1-512.\n    local myDMXAddress = 1\n    -- Set the optional count for the number of fixtures (break_index channel amount) to check.\n    local myCount = 1\n    -- Set the optional break_index number for fixtures with multiple breaks. \n    -- Default value is 0 to indicate the first break.\n    local myBreakIndex = 0\n\n    -- Creates the string used for the DMX address.\n    local startOfRange = string.format(\"%d.%03d\", myDMXUniverse, myDMXAddress)\n\n    -- Check if there is a selection and exit if there isn't.\n    if SelectionFirst() == nil then\n        Printf(\"Please make a selection and try again.\")\n        return\n    end\n    -- This gets the handle for the first fixture a patched generic Dimmers 8-bit mode.\n    local myDmxMode = GetSubfixture(SelectionFirst()).ModeDirect\n\n    if myDmxMode == nil then\n        -- Exit the function if the DMX mode returns nil.\n       \n    else\n        -- Do the actual collision check and provide useful feedback.\n        if CheckDMXCollision(myDmxMode, startOfRange, myCount, myBreakIndex) then\n            Printf(\"The DMX address \" .. startOfRange .. \" is available.\")\n            return\n        else\n            Printf(\"The DMX address \" .. startOfRange .. \" cannot be used as a start address for this patch.\")\n            return\n        end\n    end\nend"
+      }
     },
     "GetCurrentCue": {
       "signature": "GetCurrentCue(nothing): light_userdata:handle",
@@ -5047,7 +5327,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getcurrentcue.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getcurrentcue.html",
+        "description": "The GetCurrentCue Lua function returns a handle to the last activated cue in the selected sequence.",
+        "example": "This example prints the data connected to the handle. It uses the Dump() function:",
+        "example_code": "return function()\n    -- Dumps information about the last activated cue in the selected sequence\n    Printf(\"=============== START OF DUMP ===============\")\n    GetCurrentCue():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "GetExecutor": {
       "signature": "GetExecutor(integer:executor): light_userdata:executor, light_userdata:page",
@@ -5073,7 +5358,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getexecutor.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getexecutor.html",
+        "description": "The GetExecutor Lua function returns the handles of the executor and the page based on the executor number.",
+        "example": "This example stores the handles for executor number 201. It then uses the Dump() function to show the data for the two handles.",
+        "example_code": "return function ()\n    -- This saves the handles for executor 201 on the selected page.\n    local executorHandle, pageHandle = GetExecutor(201)\n    -- exit the function and print an error message if any of the handles are nil.\n    if executorHandle == nil | pageHandle == nil then\n        ErrPrintf(\"There is not a valid object on executor 201, please assign something and try again.\")\n        return\n    end\n    -- The following prints the dumps of the two handles.\n    Printf(\"============ START OF EXEC DUMP =============\")\n    executorHandle:Dump()\n    Printf(\"================ END OF DUMP ================\")\n    Printf(\"============ START OF PAGE DUMP =============\")\n    pageHandle:Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "Confirm": {
       "signature": "Confirm([string:title [,string:message [,integer:display_index [,boolean:showCancel]]]]): boolean:result",
@@ -5111,7 +5401,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_confirm.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_confirm.html",
+        "description": "The Confirm Lua function provides a simple confirmation pop-up for a true/false query. It is part of the user interface functions.",
+        "example": "This example creates a confirmation pop-up with printed feedback in the Command Line History:",
+        "example_code": "return function()\n    --Creates a pop-up asking to be confirmed and prints a useful text.\n    if Confirm(\"Confirm me\", \"Tap OK or Cancel\", nil, true) then\n        Printf(\"Pop-up result: OK\")\n    else\n        Printf(\"Pop-up result: Cancel\")\n    end\nend"
+      }
     },
     "SelectionComponentX": {
       "signature": "SelectionComponentX(nothing): integer:min, integer:max, integer:index, integer:block, integer:group",
@@ -5185,7 +5480,12 @@
         }
       ],
       "returns": [],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_timer.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_timer.html",
+        "description": "The Timer Lua function references the current programmer object.",
+        "example": "This example prints a greeting three times and then calls a clean up function:",
+        "example_code": "-- Function that will be called several times.\nfunction TimedFunction()\n    -- Check the value of RunAmount and print something.\n    if RunAmount 1 then\n        Printf(\"Hello\")\n    else\n        Printf(\"Hello again\")\n    end\n    -- Add 1 to the RunAmount variable.\n    RunAmount = RunAmount + 1\nend\n\n-- Cleanup function.\nfunction TimerCleanup()\n    -- Delete the RunAmount variable.\n    RunAmount = nil\nend\n\n-- Function with the Timer call.\nfunction Main()\n    -- Set a wait variable.\n    local waitSeconds = 1\n    -- Set a variable with the number of iterations.\n    local iterations = 3\n    -- Create a counter variable and set it to 0.\n    RunAmount = 0\n    -- Call the timer function.\n    Timer(TimedFunction, waitSeconds, iterations, TimerCleanup);\nend\n\n-- call the main function.\nreturn Main"
+      }
     },
     "GetDMXValue": {
       "signature": "GetDMXValue(integer:address[ ,integer:universe, boolean:mode_percent]): integer:dmx_value",
@@ -5217,7 +5517,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getdmxvalue.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getdmxvalue.html",
+        "description": "The GetDMXValue Lua function returns a number indicating the DMX value of a specified DMX address.",
+        "example": "This example prints the value for DMX address 1 in Universe 4:",
+        "example_code": "return function()\n    -- This prints the value of DMX address 1 in universe 4 in a range of 0 to 255\n    local address = 1       -- The DMX address\n    local universe = 4      -- The DMX universe\n    local percent = false   -- Readout in percent or DMX value\n    local value = GetDMXValue(address, universe, percent)\n    Printf(\"DMX address %i.%03d is %03d\", universe, address, value)\nend"
+      }
     },
     "SetProgressRange": {
       "signature": "SetProgressRange(integer:progressbar_index, integer:start, integer:end): nothing",
@@ -5242,7 +5547,12 @@
         }
       ],
       "returns": [],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_setprogressrange.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_setprogressrange.html",
+        "description": "The SetProgressRange Lua function defines a range for a progress bar.",
+        "example": "This example sets a range for the progress bar created using the example in the StartProgress topic (link above):",
+        "example_code": "return function()\n    -- Sets the range of a progress bar with the matching handle\n    SetProgressRange(progressHandle, 1, 10)\nend"
+      }
     },
     "TextInput": {
       "signature": "TextInput([string:title[, string:value[, integer:x[, integer:y]]]]): string:value",
@@ -5280,7 +5590,10 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_textinput.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_textinput.html",
+        "description": "The TextInput Lua function opens a text input pop-up and returns the typed input as a string. It is part of the user interface functions."
+      }
     },
     "Export": {
       "signature": "Export(string:file_name, table:export_data): boolean:success",
@@ -5306,7 +5619,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_export.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_export.html",
+        "description": "The object-free Export Lua function exports a Lua table in XML format.",
+        "example": "To export the build details table, create a plugin with this code:",
+        "example_code": "return function()\n    -- 'BuildDetails()' creates a table with information about the software build.\n    local build = BuildDetails()\n    --The path and filename is stored in a variable.\n    local exportPath = GetPath(Enums.PathType.Library) .. \"/BuildDetails.xml\"\n    --The actual export (in xml format) using the path and the table - the result boolean stored in a variable.\n    local success = Export(exportPath, build)\n    --Print feedback about the export path.\n    if success then\n        Printf(\"The export was stored at: \" .. exportPath)\n    else\n        Printf(\"The export failed\")\n    end\nend"
+      }
     },
     "CheckFIDCollision": {
       "signature": "CheckFIDCollision(integer:fid[, integer:count[, integer:type]]): boolean:no_collision_found",
@@ -5338,7 +5656,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_checkfidcollision.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_checkfidcollision.html",
+        "description": "The CheckFIDCollision Lua function checks if a specific (range of) ID is available or already used. It can be used to check FID and any type of CID by adding a type integer.",
+        "example": "This example prints feedback to the FID check:",
+        "example_code": "return function()\n    -- Create a variable with the FID you want to check.\n    local myFID = 2001\n    -- Create a variable with the number of subsequent ID's to also check.\n    local myCount = 10\n    -- Create a variable with the IDType you want to check.\n    -- Default value is 0. This is the \"Fixture\" type.\n    -- Valid integers are:\n    --- 0 = Fixture\n    --- 1 = Channel\n    --- 2 = Universal\n    --- 3 = Houseligths (default name)\n    --- 4 = NonDim (default name)\n    --- 5 = Media (default name)\n    --- 6 = Fog (default name)\n    --- 7 = Effect (default name)\n    --- 8 = Pyro (default name)\n    --- 9 = MArker\n    --- 10 = Multipatch\n    local myType = 0\n\n    -- Check if the count is more than one.\n    if myCount > 1 then\n        -- Check if there is a collision and print valid feedback.\n        if CheckFIDCollision(myFID, myCount, myType) then\n            Printf(\"The FID \" .. myFID .. \" to \" .. (myFID + myCount) .. \" is available.\")\n            return\n        else\n            Printf(\"The FID \" .. myFID .. \" to \" .. (myFID + myCount) .. \" gives an FID collision.\")\n            return\n        end\n    else\n        if CheckFIDCollision(myFID, nil, myType) then\n            Printf(\"The FID \" .. myFID .. \" is available.\")\n            return\n        else\n            Printf(\"The FID \" .. myFID .. \" gives an FID collision.\")\n            return\n        end\n    end\nend"
+      }
     },
     "CurrentProfile": {
       "signature": "CurrentProfile(nothing): light_userdata:handle",
@@ -5351,7 +5674,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_currentprofile.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_currentprofile.html",
+        "description": "The CurrentProfile Lua function returns a handle to the current users' profile.",
+        "example": "This example prints the data connected to the handle. It uses the Dump() function:",
+        "example_code": "return function()\n    -- Dumps information about the current executor page\n    Printf(\"=============== START OF DUMP ===============\")\n    CurrentProfile():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "GetPathOverrideFor": {
       "signature": "GetPathOverrideFor(string:path type or integer:path_type(Enums.PathType), string:path[ ,boolean:create]): string:overwritten_path",
@@ -5383,7 +5711,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getpathoverridefor.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getpathoverridefor.html",
+        "description": "The GetPathOverrideFor Lua function delivers a string with the path of a grandMA3 folder. The function is relevant when the path should be on a removable drive connected to a console.",
+        "example": "This example prints the override path of the macro folder on the system monitor. It should be run on a console with a removable drive connected.",
+        "example_code": "return function ()\n    -- Set a path for the first removable media.\n    -- Set the initial value to nil.\n    local myBasePath = nil\n    -- Itereate the drives and find the first 'Removeable' drive and store the path.\n    for _, value in ipairs(Root().Temp.DriveCollect) do\n        local driveType = value.drivetype\n        if driveType == \"Removeable\" then\n            myBasePath = value.path\n            break\n        end\n    end\n    -- If no removeable drive was found, then provide feedback and exit the function.\n    if myBasePath == nil then\n        ErrPrintf(\"No removeable drive could be found. Please insert one and try again\")\n        return\n    end\n\n    -- Get the integer for the UserMacros path type.\n    local myPathType = Enums.PathType.UserMacros\n\n    -- Gey the string for the path override.\n    local myOverridePath = GetPathOverrideFor(myPathType, myBasePath)\n    -- Print the returned string.\n    Printf(\"The path is: \" .. myOverridePath)\nend"
+      }
     },
     "ToAddr": {
       "signature": "ToAddr(light_userdata:handle, boolean:with_name): string:address",
@@ -5409,7 +5742,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_toaddr.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_toaddr.html",
+        "description": "The ToAddr Lua object-free function converts a handle to an address string that can be used in commands.",
+        "example": "This example prints the address of the selected sequence in both the numbered and named versions.",
+        "example_code": "return function ()\n    local mySequence = SelectedSequence()\n    -- Print the address to the selected sequence in number and name format.\n    Printf(ToAddr(mySequence))\n    Printf(ToAddr(mySequence, true))\nend"
+      }
     },
     "Programmer": {
       "signature": "Programmer(nothing): light_userdata:handle",
@@ -5422,7 +5760,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_programmer.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_programmer.html",
+        "description": "The Programmer Lua function references the current programmer object.",
+        "example": "This example uses the Dump() function on the programmer object:",
+        "example_code": "return function ()\n    -- Dumps information about the programmer object.\n    Printf(\"=============== START OF DUMP ===============\")\n    Programmer():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "DataPool": {
       "signature": "DataPool(nothing): light_userdata:handle",
@@ -5435,7 +5778,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_datapool.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_datapool.html",
+        "description": "The DataPool Lua function references the currently selected DataPool and is used to read or edit properties within the data pool.",
+        "example": "This example uses the Dump() function on the data pool object. Dump lists all the properties and lists the children. Finally, the example also prints the name of the first sequence in the data pool.",
+        "example_code": "return function()\n    -- Dumps information about the datapool object.\n    Printf(\"=============== START OF DUMP ===============\")\n    DataPool():Dump()\n    Printf(\"================ END OF DUMP ================\")\n    -- Prints the name of the first sequence.\n    Printf(\"Name of sequence 1: \" .. DataPool().Sequences[1].Name)\nend"
+      }
     },
     "WaitModal": {
       "signature": "WaitModal([number:seconds to wait]): handle to modal overlay or nil on failure(timeout)",
@@ -5468,7 +5816,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_programmerpart.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_programmerpart.html",
+        "description": "The ProgrammerPart Lua function references the current programmer part object.",
+        "example": "This example uses the Dump() function on the programmer part object:",
+        "example_code": "return function ()\n    -- Dumps information about the current programmer part object.\n    Printf(\"=============== START OF DUMP ===============\")\n    ProgrammerPart():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "SetBlockInput": {
       "signature": "SetBlockInput(boolean:block): nothing",
@@ -5481,7 +5834,12 @@
         }
       ],
       "returns": [],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_setblockinput.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_setblockinput.html",
+        "description": "The SetBlockInput function is an internal function used during the system tests. It stops input from USB-connected keyboards and mouse. The built-in keyboard on some models is internally connected using a USB connection, which is also blocked by this function. The block affects the station where the function is executed.",
+        "example": "This example blocks mouse and keyboard input for 10 seconds:",
+        "example_code": "return function()\n    -- Set a variable for yield time in seconds\n    yieldTime = 10\n    -- Set the block to true\n    SetBlockInput(true)\n    -- Wait the [yieldtime]\n    coroutine.yield(yieldTime)\n    -- Unblock the station\n    SetBlockInput(false)\nend"
+      }
     },
     "Keyboard": {
       "signature": "Keyboard(integer:display_index, string:type('press', 'char', 'release')[ ,string:char(for type 'char') or string:keycode, boolean:shift, boolean:ctrl, boolean:alt, boolean:numlock]): nothing",
@@ -5543,7 +5901,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_pult.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_pult.html",
+        "description": "The Pult Lua function returns a handle to the current \"Pult\" object at position Root/GraphicsRoot/PultCollect. The \"Pult\" object contains display and device information.",
+        "example": "This example prints the data connected to the handle. It uses the Dump() function:",
+        "example_code": "return function()\n    -- The following prints the dump for the pult object\n    Printf(\"=============== START OF DUMP ===============\")\n    Pult():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "GetTopModal": {
       "signature": "GetTopModal(nothing): light userdata:handle to top modal overlay",
@@ -5556,7 +5919,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_gettopmodal.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_gettopmodal.html",
+        "description": "The GetTopModal Lua function returns a handle for the modal at the top. Modal is the internal name for pop-ups that interrupt the system's normal operation. A modal blocks other UI elements from being used while it is open.",
+        "example": "This example uses the Dump() function to show information about the StagePopup selection pop-up.",
+        "example_code": "return function()\n    -- Open a Modal / Pop-up.\n    Cmd('Menu \"StagePopup\"')\n    -- Add a small wait.\n    coroutine.yield({activeShowstatus=0.2})\n    -- Get the handle for the modal / pop-up. \n    local modalHandle = GetTopModal()\n    -- If there is a handle then dump all information else print en error feedback.\n    if modalHandle ~= nil then\n        Printf(\"=============== START OF DUMP ===============\")\n        modalHandle:Dump()\n        Printf(\"================ END OF DUMP ================\")\n    else\n        ErrPrintf(\"The Modal UI object could not be found.\")\n    end\n    -- Close the modal / pop-up by pressing the Escape key.\n    Keyboard(1,'press','Escape')\n    Keyboard(1,'release','Escape')\nend"
+      }
     },
     "StrToHandle": {
       "signature": "StrToHandle(string:handle(in H#... format)): light_userdata:handle",
@@ -5576,7 +5944,11 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_strtohandle.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_strtohandle.html",
+        "example": "This example prints the handle hex number for the selected sequence. It also converts the string back to a handle and uses this to print the name of the sequence:",
+        "example_code": "return function()\n    -- Store a variable with the string of the handle converted to hex\n    local mySeqStr = HandleToStr(SelectedSequence())\n    -- Print some feedback with the handle in a string version\n    Printf(\"The handle for the selected sequence (string version): %s\", mySeqStr)\n    -- Print some feedback where the string is converted back to a handle\n    Printf(\"The name of the selected sequence is: %s\", StrToHandle(mySeqStr).name)\nend"
+      }
     },
     "SelectionCount": {
       "signature": "SelectionCount(nothing): integer:amount_of_selected_subfixtures",
@@ -5589,7 +5961,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_selectioncount.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_selectioncount.html",
+        "description": "The SelectionCount Lua function returns a number indicating the total amount of currently selected fixtures.",
+        "example": "This example prints the number of fixtures in the current selection to the Command Line History:",
+        "example_code": "return function()\n    Printf('Number of fixtures in the current selection: %i', SelectionCount())\nend"
+      }
     },
     "NextDmxModeFixture": {
       "signature": "NextDmxModeFixture(light_userdata:fixture): light_userdata:fixture",
@@ -5622,7 +5999,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_deviceconfiguration.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_deviceconfiguration.html",
+        "description": "The DeviceConfiguration Lua function returns a handle to the DeviceConfiguration object.",
+        "example": "This example prints the data connected to the handle. It uses the Dump() function:",
+        "example_code": "return function()\n    -- This example dumps all information about the DeviceConfiguration object.\n    Printf(\"=============== START OF DUMP ===============\")\n    DeviceConfiguration():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "FindBestDMXPatchAddr": {
       "signature": "FindBestDMXPatchAddr(light_userdata:patch, integer:starting_address, integer:footprint): integer:absolute_address",
@@ -5680,7 +6062,12 @@
         }
       ],
       "returns": [],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_unhook.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_unhook.html",
+        "description": "The Unhook Lua function removes a hook.",
+        "example": "This example unhooks the hook created using the example in the HookObjectChange - please run that example before this one.",
+        "example_code": "return function()\n    -- Unhooks the specific Hook integer ID.\n    Unhook(SequenceHookId)\nend"
+      }
     },
     "StartProgress": {
       "signature": "StartProgress(string:name): integer:progressbar_index",
@@ -5700,7 +6087,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_startprogress.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_startprogress.html",
+        "description": "The StartProgress Lua function creates and displays a progress bar on all screens. A string input argument creates a title for the progress bar. The function returns a handle that is used to further interact with the progress bar.",
+        "example": "This creates and displays a progress bar on all screens. The progress bar does not disappear using this example - see the example in the StopProgress (link above) function to remove:",
+        "example_code": "return function()\n    -- Create and display a progress bar with a title\n    -- IMPORTANT: The Lua variable 'progressHandle' is needed to remove the progressbar again - StopProgress()\n    progressHandle = StartProgress(\"ProgressBar Title\")\nend"
+      }
     },
     "ErrEcho": {
       "signature": "ErrEcho(string:formatted_command ...): nothing",
@@ -5713,7 +6105,12 @@
         }
       ],
       "returns": [],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_errecho.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_errecho.html",
+        "description": "The ErrEcho Lua function prints a red error message on the System Monitor.",
+        "example": "This prints \"This is a red error message!\" on the system monitor:",
+        "example_code": "return function()\n    -- Prints an error message in the system monitor in red text.\n    ErrEcho(\"This is an error message!\")\nend"
+      }
     },
     "FindNextFocus": {
       "signature": "FindNextFocus([bool:backwards(false)[, int(Focus::Reason):reason(UserTabKey)]]): nothing",
@@ -5765,7 +6162,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_findtexture.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_findtexture.html",
+        "description": "The FindTixture Lua function returns a handle to the texture matching the input text string - if the texture exists.",
+        "example": "This example prints the information about the \"button\" texture. The example uses the Dump() function.",
+        "example_code": "return function ()\n    -- Set a texture name.\n    local textureName = \"button\"\n    -- Get the handle of the texture.\n    local textureHandle = FindTexture(textureName)\n    -- Check if textureHandle returned something and provide feedback.\n    if textureHandle == nil then\n        ErrPrintf(\"Texture does not exist.\")\n    else\n        Printf(\"=============== START OF DUMP ===============\")\n        FindTexture(textureName):Dump()\n        Printf(\"================ END OF DUMP ================\")\n    end\nend"
+      }
     },
     "IsClassDerivedFrom": {
       "signature": "IsClassDerivedFrom(string:derived_name, string:base_name): boolean:result",
@@ -5791,7 +6193,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_isclassderivedfrom.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_isclassderivedfrom.html",
+        "description": "The IsClassDerivedFrom Lua function returns a boolean indicating if a class is derived from a different class.",
+        "example": "This example checks if a class is derived from a different class and returns useful feedback.",
+        "example_code": "return function()\n    -- Set the value of the two strings.\n    local derivedName = \"World\"\n    local baseName = \"Group\"\n    -- Check if the derivedName is the name of a class derived from the baseName class.\n    local isDerived = IsClassDerivedFrom(derivedName, baseName)\n    -- Provide feedback.\n    if isDerived then\n        Printf(derivedName .. \" is derived from \" .. baseName)\n    else\n        Printf(derivedName .. \" is not derived from \" .. baseName)\n    end\nend"
+      }
     },
     "MouseObj": {
       "signature": "MouseObj(nothing): light_userdata:handle",
@@ -5804,7 +6211,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_mouseobj.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_mouseobj.html",
+        "description": "The MouseObj function returns the handle to the first found mouse object.",
+        "example": "This example prints the information of the mouse object. Is uses the Dump() function:",
+        "example_code": "return function()\n    -- Print all informatin about the MouseObj object\n    Printf(\"=============== START OF DUMP ===============\")\n    MouseObj():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "HandleToInt": {
       "signature": "HandleToInt(light_userdata:handle): integer:handle",
@@ -5824,7 +6236,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_handletoint.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_handletoint.html",
+        "description": "The HandleToInt Lua function converts a handle into an integer format.",
+        "example": "This example prints the handle integer number for the selected sequence. It also converts the integer back to a handle and uses this to print the name of the sequence:",
+        "example_code": "return function()\n    Printf(\"The integer number for the handle of the selected sequence: %i\", HandleToInt(SelectedSequence()))\nend"
+      }
     },
     "PopupInput": {
       "signature": "PopupInput({title:str, caller:handle, items:table:{{'str'|'int'|'lua'|'handle', name, type-dependent}...}, selectedValue:str, x:int, y:int, target:handle, render_options:{left_icon, number, right_icon}, useTopLeft:bool, properties:{prop:value}, add_args:{FilterSupport='Yes'/'No'}}): string:value",
@@ -5863,7 +6280,12 @@
         }
       ],
       "returns": [],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_setled.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_setled.html",
+        "description": "The SetLED Lua function sends a table with a set of LED brightness values to an MA3Module. After around two seconds, the system automatically sets the LED values to what it believes it should be.",
+        "example": "This example sets the LEDs on encoder 1 to green on a full-size console:",
+        "example_code": "return function()\n    -- Create the LED table\n    local myLedTable = {}\n    -- Fill the table with default \"release\" value\n    for index=1,256 do\n        myLedTable[index] = -1;\n    end\n    -- Set values in the table\n    -- Encoder_inside1 = green\n    myLedTable[7] = 0\n    myLedTable[10] = 255\n    myLedTable[22] = 0\n    -- Encoder_outside1 = green\n    myLedTable[8] = 0\n    myLedTable[11] = 255\n    myLedTable[23] = 0\n    -- Get the handle for the MasterModule on a console\n    local usbDeviceHandle = Root().UsbNotifier.MA3Modules[\"UsbDeviceMA3 4\"]\n    -- Set the values for the LEDs\n    SetLED(usbDeviceHandle, myLedTable)\nend"
+      }
     },
     "GetFocus": {
       "signature": "GetFocus(nothing): light_userdata:display_handle",
@@ -5876,7 +6298,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getfocus.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getfocus.html",
+        "description": "The GetFocus Lua function returns a handle to the object that currently has focus in the UI.",
+        "example": "This example prints the data connected to the handle. It uses the Dump() function:",
+        "example_code": "return function()\n    -- This example dumps all information about the object who currently got focus.\n    Printf(\"=============== START OF DUMP ===============\")\n    GetFocus():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "WaitObjectDelete": {
       "signature": "WaitObjectDelete(light_userdata:handle to UIObject[, number:seconds to wait]): boolean:true on success, nil on timeout",
@@ -5933,7 +6360,12 @@
         }
       ],
       "returns": [],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_drawpointer.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_drawpointer.html",
+        "description": "The DrawPointer function draws a red pointer on the display. There can only be one pointer at a time on each station.",
+        "example": "This example draws a pointer on display 1 for 5 seconds:",
+        "example_code": "return function()\n    --Set a display index\n    local displayIndex = 1\n    --Create and set the position in a table\n    local position = {}\n    position.x = 150\n    position.y = 25\n    --Set a 5 seconds duration - in milliseconds\n    local duration = 5000\n    --Draw the actual pointer\n    DrawPointer(displayIndex,position,duration)\nend"
+      }
     },
     "GetRemoteVideoInfo": {
       "signature": "GetRemoteVideoInfo(nothing): integer:wingID, boolean:isExtension",
@@ -5978,13 +6410,23 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getpathtype.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getpathtype.html",
+        "description": "The GetPathType Lua function returns a string with a name for the path type. This function can be useful when importing objects.",
+        "example": "This example prints the path type name for the first macro object - if it exists:",
+        "example_code": "return function ()\n    -- Get a handle to the first Macro.\n    local myMacro = DataPool().Macros[1]\n    if myMacro == nil then\n        ErrPrintf(\"An error occurred, possibly because the first macro does not exist.\")\n        ErrPrintf(\"Please create one and try again.\")\n        return\n    end\n    -- Get the user name of the path type.\n    local myPathTypeNameUser = GetPathType(myMacro, Enums.PathContentType.User)\n    if myPathTypeNameUser ~= nil then\n        Printf(\"The user name of the path type is: \" .. myPathTypeNameUser)\n    else\n        ErrPrintf(\"There was an error getting the path type.\")\n    end\n\n    -- Get the system name of the path type.\n    local myPathTypeNameSystem = GetPathType(myMacro, Enums.PathContentType.System)\n    if myPathTypeNameSystem ~= nil then\n        Printf(\"The system name of the path type is: \" .. myPathTypeNameSystem)\n    else\n        ErrPrintf(\"There was an error getting the path type.\")\n    end\nend"
+      }
     },
     "CloseAllOverlays": {
       "signature": "CloseAllOverlays(nothing): nothing",
       "arguments": [],
       "returns": [],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_closealloverlays.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_closealloverlays.html",
+        "description": "The CloseAllOverlays function closes any pop-ups or menus (overlays) open on any screen.",
+        "example": "This example simply closes any overlay.",
+        "example_code": "return function()\n    CloseAllOverlays()\nend"
+      }
     },
     "AddFixtures": {
       "signature": "AddFixtures({'mode'=light_userdata:dmx_mode, 'amount'=integer:amount[, 'undo'=string:undo_text][, 'parent'=light_userdata:handle][, 'insert_index'=integer:value][, 'idtype'=string:idtype][, 'cid'=string:cid][, 'fid'=string:fid][, 'name'=string:name][, 'layer'=string:layer][, 'class'=string:class][, 'patch'={table 1..8: string:address}]}): boolean:success or nothing",
@@ -6004,7 +6446,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_addfixtures.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_addfixtures.html",
+        "description": "The AddFixture Lua function adds fixtures to the patch. The argument for the function is a table, which must contain valid data for the function to succeed. The function returns a \"true\" boolean value if the addition was a success. The function must be run with the command line in the correct patch destination.",
+        "example": "This example adds a dimmer fixture with FID and CID 301 and patch address \"10.001\". It is a requirement that the generic dimmer type is already added to the show and that the ID and patch address are available. The example does not perform any check for availability.",
+        "example_code": "return function()\n    -- Change the command line destination to the correct patch location.\n    Cmd(\"ChangeDestination Root\")\n    -- Enter the \"ShowData\".\n    Cmd('ChangeDestination 13')\n    -- Enter the \"Patch\".\n    Cmd(\"ChangeDestination 9\")\n    -- Enter the \"Stages\".\n    Cmd(\"ChangeDestination 6\")\n    -- Enter the first stage object.\n    Cmd(\"ChangeDestination 1\")\n    -- Enter the \"Fixtures\" part of the stage. \n    Cmd(\"ChangeDestination 2\")\n    \n    -- Create a table.\n    local myAddFixtureTable = {}\n    -- Set the mode to a 8-bit Dimmer fixture type. \n    myAddFixtureTable.mode = Patch().FixtureTypes.Dimmer.DMXModes[\"Mode 0\"]\n    -- Set the amount of fixtures.\n    myAddFixtureTable.amount = 1\n    -- Set the FID for the fixture.\n    myAddFixtureTable.fid = \"301\"\n    -- Set the IdType - it is not needed if the type is \"Fixture\".\n    myAddFixtureTable.idtype = \"Channel\"\n    -- Set the CID - Use only this when the \"idtype\" is different than Fixture.\n    myAddFixtureTable.cid = \"301\"\n    -- Set the name of the fixture.\n    myAddFixtureTable.name = \"Dimmer 301\"\n    -- Create a patch table with an address.\n    myAddFixtureTable.patch = {\"10.001\"}\n\n    -- Add the fixture to the patch using the table data. Store the result in a local variable.\n    local success = AddFixtures(myAddFixtureTable)\n    \n    -- Provide some feedback.\n    if success ~= nil then\n        Printf(\"Fixture \" .. myAddFixtureTable.fid .. \" is added with patch address \" .. myAddFixtureTable.patch[1])\n    else\n        Printf(\"AddFixture failed!\")\n    end\n    \n    -- Return the command line to the root destination.\n    Cmd(\"ChangeDestination Root\")\nend"
+      }
     },
     "IntToHandle": {
       "signature": "IntToHandle(integer:handle): light_userdata:handle",
@@ -6024,7 +6471,11 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_inttohandle.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_inttohandle.html",
+        "example": "This example prints the handle integer number for the selected sequence. It also converts the integer back to a handle and uses this to print the name of the sequence:",
+        "example_code": "return function()\n    -- Convert the handle of the currently selected sequence to an integer\n    local handleInt = HandleToInt(SelectedSequence())\n    -- Print the handle integer\n    Printf(\"The handle integer number of the selected sequence: %i\", HandleToInt(SelectedSequence()))\n    -- Convter the integer back to a hanndle and use it to get the sequence name\n    Printf(\"The name of the selected sequence is: %s\", IntToHandle(handleInt).name)\nend"
+      }
     },
     "GetTokenNameByIndex": {
       "signature": "GetTokenNameByIndex(integer:token_index): string:full_name",
@@ -6044,7 +6495,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_gettokennamebyindex.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_gettokennamebyindex.html",
+        "description": "The GetTokenNameByIndex Lua function returns a string with the keyword based on the index number provided.",
+        "example": "If the keyword exists, this example returns the keywords matching the first 443 index numbers:",
+        "example_code": "return function()\n    -- Create a variable to hold the keyword string\n    local tokenName = \"\"\n    -- Print the keywords to the first 443 indexes if possible\n    for index = 1, 443, 1 do\n        tokenName = GetTokenNameByIndex(index)\n        if tokenName ~= nil then\n            Printf(\"Token index \" .. index .. \" = \" .. tokenName)\n        end\n    end\nend"
+      }
     },
     "HostOS": {
       "signature": "HostOS(nothing): string:ostype",
@@ -6057,7 +6513,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_hostos.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_hostos.html",
+        "description": "The HostOS Lua function returns a string with the type of operating system of the device where the plugin is executed (for instance, \"Windows\", \"Linux\", or \"Mac\").",
+        "example": "This example prints the operating system of the device in the Command Line History:",
+        "example_code": "return function()\n    Printf(\"The HostOS is \"..HostOS())\nend"
+      }
     },
     "BuildDetails": {
       "signature": "BuildDetails(nothing): table:build_details",
@@ -6070,7 +6531,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_builddetails.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_builddetails.html",
+        "description": "The BuildDetails function returns a table with key-value pairs about the software build.",
+        "example": "This example prints the content of the BuildDetails table:",
+        "example_code": "return function()\n    --Store the build detials table\n    local myBuild = BuildDetails()\n    --Print the content of the table\n    Printf(\"GitDate: \" .. myBuild.GitDate)\n    Printf(\"GitHead: \" .. myBuild.GitHead)\n    Printf(\"GitHash: \" .. myBuild.GitHash)\n    Printf(\"CompileDate: \" .. myBuild.CompileDate)\n    Printf(\"CompileTime: \" .. myBuild.CompileTime)\n    Printf(\"BigVersion: \" .. myBuild.BigVersion)\n    Printf(\"SmallVersion: \" .. myBuild.SmallVersion)\n    Printf(\"HostType: \" .. myBuild.HostType)\n    Printf(\"HostSubType: \" .. myBuild.HostSubType)\n    Printf(\"CodeType: \" .. myBuild.CodeType)\n    Printf(\"IsRelease: \" .. tostring(myBuild.IsRelease))\nend"
+      }
     },
     "GetSample": {
       "signature": "GetSample(string:type('MEMORY', 'CPU', 'CPUTEMP', 'GPUTEMP', 'SYSTEMP', 'FANRPM')): integer:current_value_in_percent",
@@ -6090,7 +6556,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getsample.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getsample.html",
+        "description": "The GetSample Lua function returns a number representing a percentage usage based on a string input.",
+        "example": "This example stores the different samples in a table and then prints the content of the table:",
+        "example_code": "return function()\n    -- Gather the sample information in a table\n    local sample = {}\n    sample[\"MEMORY\"] = GetSample(\"MEMORY\")\n    sample[\"CPU\"] = GetSample(\"CPU\")\n    sample[\"CPUTEMP\"] = GetSample(\"CPUTEMP\")\n    sample[\"GPUTEMP\"] = GetSample(\"GPUTEMP\")\n    sample[\"SYSTEMP\"] = GetSample(\"SYSTEMP\")\n    sample[\"FANRPM\"] = GetSample(\"FANRPM\")\n    -- Print the collected data\n    Printf(\"Memory ; \".. sample[\"MEMORY\"])\n    Printf(\"CPU ; \".. sample[\"CPU\"])\n    Printf(\"CPU temperature ; \".. sample[\"CPUTEMP\"])\n    Printf(\"GPU temperature ; \".. sample[\"GPUTEMP\"])\n    Printf(\"System temperature ; \".. sample[\"SYSTEMP\"])\n    Printf(\"Fan RPM ; \".. sample[\"FANRPM\"])\nend"
+      }
     },
     "GetUIChannelIndex": {
       "signature": "GetUIChannelIndex(integer:subfixture_index, integer:attribute_index): integer:ui_channel_index",
@@ -6116,7 +6587,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getuichannelindex.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getuichannelindex.html",
+        "description": "The GetUIChannelIndex Lua function returns the index integer matching a UI channel based on two index inputs.",
+        "example": "This example prints the UI channel index of the \"Dimmer\" attribute of the first fixture in the current selection:",
+        "example_code": "return function()\n    -- Get the Attribute index and UIChannel indexes\n    local attributeIndex = GetAttributeIndex(\"Dimmer\")\n    local uiChannelIndex = GetUIChannelIndex(SelectionFirst(),attributeIndex)\n    -- End the function if any of the index return nil\n    if (attributeIndex == nil or uiChannelIndex == nil) then\n        ErrPrintf(\"Something went wrong, maybe your first selected fixture don't have a Dimmer - Please try again\")\n        return\n    end\n    Printf(\"The UI Channel Index is \" .. uiChannelIndex)\nend"
+      }
     },
     "GetDebugFPS": {
       "signature": "GetDebugFPS(nothing): integer:fps",
@@ -6129,7 +6605,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getdebugfps.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getdebugfps.html",
+        "description": "The GetDebugFPS Lua function returns a float number with the frames per second.",
+        "example": "This example prints the FPS number:",
+        "example_code": "return function ()\n    -- Prints the current frames per second.\n    Printf(\"Current FPS: \" .. GetDebugFPS())\nend"
+      }
     },
     "PrepareWaitObjectChange": {
       "signature": "PrepareWaitObjectChange(light_userdata:handle[ ,integer:change_level_threshold]): boolean:true or nothing",
@@ -6168,7 +6649,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getobjapidescriptor.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getobjapidescriptor.html",
+        "description": "The GetObjApiDescriptor Lua function returns a table with a description of all the object Lua functions. These are descriptions only. The function does not have any actual functions. The table is not sorted.",
+        "example": "This example prints the content of the returned table.",
+        "example_code": "return function ()\n  -- This returns information about all the Lua \"object\" functions.\n  -- GetObjApiDescriptor() returns a table with all the functions. \n  -- Each table element is another table with the name, argument description, and return description.\n    for key,value in ipairs(GetObjApiDescriptor()) do\n      if value[1] ~= nil then\n        Printf(\"Api \" .. key .. \" is: \" .. value[1])\n      end\n      if value[2] ~= nil then\n        Printf(\"Arguments: \" .. value[2])\n      end\n      if value[3] ~= nil then\n        Printf(\"Returns: \" .. value[3])\n      end\n      Printf(\"---------------------------------------\")\n      end\nend"
+      }
     },
     "GetApiDescriptor": {
       "signature": "GetApiDescriptor(nothing): table of {string:function_name, string:arguments, string:return_values}",
@@ -6181,7 +6667,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getapidescriptor.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getapidescriptor.html",
+        "description": "The GetApiDescriptor Lua function returns a table with a description of all the object-free Lua functions. These are descriptions only. The function does not have any actual functions. The table is not sorted.",
+        "example": "This example prints the content of the returned table.",
+        "example_code": "return function ()\n    -- This returns information about all the Lua \"object-free\" functions.\n    -- GetApiDescriptor() returns a table with all the functions. \n    -- Each table element is another table with the name, argument description, and return description.\n      for key,value in ipairs(GetApiDescriptor()) do\n        if value[1] ~= nil then\n          Printf(\"Api \" .. key .. \" is: \" .. value[1])\n        end\n        if value[2] ~= nil then\n          Printf(\"Arguments: \" .. value[2])\n        end\n        if value[3] ~= nil then\n          Printf(\"Returns: \" .. value[3])\n        end\n        Printf(\"---------------------------------------\")\n      end\n  end"
+      }
     },
     "TestPlaybackOutputSteps": {
       "signature": "TestPlaybackOutputSteps(table:expectations): boolean:success, string:result text",
@@ -6227,7 +6718,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_gettokenname.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_gettokenname.html",
+        "description": "The GetTokenName Lua function returns a string with the full keyword based on the short version string input or nil if there is no corresponding keyword.",
+        "example": "This example returns the full keyword matching the short \"seq\" string:",
+        "example_code": "return function()\n    -- Store a short string to be used as input\n    local shortToken = 'seq'\n    -- Get the full token name\n    local tokenName = GetTokenName(shortToken)\n    -- Print useful output if nil is not returned\n    if tokenName ~= nil then\n        Printf(\"The full version of '\".. shortToken .. \"' is '\" .. tokenName .. \"'\")\n    end\nend"
+      }
     },
     "AddonVars": {
       "signature": "AddonVars(string:addon_name): light_userdata:addon_variables",
@@ -6247,7 +6743,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_addonvars.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_addonvars.html",
+        "description": "The AddonVars function returns a handle to the set of variables connected to a specific addon.",
+        "example": "This example prints information connected to the \"Demo\" addon variable set. It uses the Dump() function:",
+        "example_code": "return function()\n    -- Stores the handle to a variable set connected to the addon named 'Demo'.\n    local variableSet = AddonVars(\"Demo\")\n    -- Check if the return is nil and print an error message\n    if variableSet == nil then\n        ErrPrintf(\"The variable set does not exists\")\n        return\n    end\n    Printf(\"=============== START OF DUMP ===============\")\n    variableSet:Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "RemoteCommand": {
       "signature": "RemoteCommand(string:ip, string:command): boolean:success",
@@ -6286,7 +6787,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_globalvars.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_globalvars.html",
+        "description": "The GlobalVars function returns a handle to the set of global variables. Read more about these in the Variables topic in the Macro section.",
+        "example": "This example sets, gets, and deletes a global variable:",
+        "example_code": "return function()\n    -- Stores a local Lua variable with the handle for the global variable set.\n    local variableSet = GlobalVars()\n    -- Sets a global variable with an integer value using the SetVar() function.\n    SetVar(variableSet, \"myGlobalVar\", 42)\n    -- Prints the global variable using the GetVar() function.\n    Printf(\"The value  of myGlobalVar is: \" .. GetVar(variableSet, \"myGlobalVar\"))\n    -- Deletes the global variable using the DelVar() function.\n    DelVar(variableSet, \"myGlobalVar\")\nend"
+      }
     },
     "ConfigTable": {
       "signature": "ConfigTable(nothing): table:config_details",
@@ -6299,7 +6805,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_configtable.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_configtable.html",
+        "description": "The ConfigTable Lua function returns a table with some configuration information. These are information only. The function does not have any actual functions. The table is not sorted.",
+        "example": "This example prints the content of the returned table.",
+        "example_code": "return function ()\n    -- Prints the content of the ConfigTable\n    for key,value in pairs(ConfigTable()) do\n        Printf(key .. \" : \" .. value)\n    end\nend"
+      }
     },
     "Time": {
       "signature": "Time(nothing): integer:time",
@@ -6312,7 +6823,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_time.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_time.html",
+        "description": "The Time function returns the time (in seconds) the station has been on, as a number (float). It is basically a stopwatch that starts when the grandMA3 application starts. It is not the current time of day or the session online time.",
+        "example": "This example finds, formats, and prints the time.",
+        "example_code": "return function()\n    -- Get the current time\n    local time = Time()\n\n    --Calculate the different elements\n    local days = math.floor(time/86400)\n    local hours = math.floor((time % 86400)/3600)\n    local minutes = math.floor((time % 3600)/60)\n    local seconds = math.floor(time % 60)\n\n    --Print the result\n    Printf(\"The time is %d:%02d:%02d:%02d\", days, hours, minutes, seconds)\nend"
+      }
     },
     "CmdIndirect": {
       "signature": "CmdIndirect(string:command[, light_userdata:undo[, light_userdata:target]]): nothing",
@@ -6337,7 +6853,12 @@
         }
       ],
       "returns": [],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_cmdindirect.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_cmdindirect.html",
+        "description": "The CmdIndirect Lua function executes a command within the grandMA3 command line. It is executed asynchronously in the Main task. It does not block the Lua execution since it is not executed in the Lua Task.",
+        "example": "This example prints \"1\" and \"2\" in the Command Line History and let the main task open the Configure Display pop-up on screen 2.",
+        "example_code": "return function()\n    --Print something\n    Printf(\"1\")\n    --Use the 'CmdIndirect' to open a pop-up\n    CmdIndirect(\"Menu DisplayConfig\", nil, GetDisplayByIndex(2))\n    --Print something else\n    Printf(\"2\")\nend"
+      }
     },
     "SelectionNotifyEnd": {
       "signature": "SelectionNotifyEnd(light_userdata:associated_context): nothing",
@@ -6376,7 +6897,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_hostsubtype.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_hostsubtype.html",
+        "description": "The HostSubType Lua function returns a string with the host sub type of the station where the plugin is executed (for example, \"FullSize\", \"Light\", \"RPU\", \"onPCRackUnit\", \"Undefined\").",
+        "example": "This example prints the host sub-type of the station in the Command Line History:",
+        "example_code": "return function()\n    Printf(\"The HostSubType is \"..HostSubType())\nend"
+      }
     },
     "RefreshLibrary": {
       "signature": "RefreshLibrary(light_userdata:handle): nothing",
@@ -6434,7 +6960,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_createmultipatch.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_createmultipatch.html",
+        "description": "The CreateMultiPatch Lua function creates a series of multi patch fixtures to a table of fixtures.",
+        "example": "This example creates two multi patch fixtures to the first fixture (excluding the \"Universal\" fixture) in the patch.",
+        "example_code": "return function()\n    -- Enter Patch.\n    Cmd(\"ChangeDestination Root\");\n    -- Enter the SetupPatch.\n    Cmd(\"ChangeDestination 'ShowData'.'Patch'\");\n\n    -- Get the handle for the first fixture in the patch.\n    local myFixture = Patch().Stages[1].Fixtures[2]\n    -- Add the handle a list element in an table.\n    local myFixtureTable = {myFixture}\n    -- Add a variable with the amount of multipatch fixtures needed.\n    local multiPatchAmount = 2\n\n    -- Count the number of elements in the fixture table and store in a variable.\n    local count = 0\n    for _ in pairs(myFixtureTable) do\n         count = count + 1\n    end\n    -- Create an unto text string.\n    local undoText = string.format(\"Create %d multipatch fixtures for up to %d fixtures\", multiPatchAmount, count)\n\n    -- Create the multipatch fixtures to the each fixture handle in the table and store the returned value.\n    local multiPatchAmount = CreateMultiPatch(myFixtureTable, multiPatchAmount, undoText)\n    if multiPatchAmount ~= nil then\n        Printf(multiPatchAmount .. \" multi patch objects was created\")\n    else\n        Printf(\"An error occured\")\n    end\n\n    -- Return the command line destination to the root.\n    Cmd(\"ChangeDestination Root\")\nend"
+      }
     },
     "SelectionFirst": {
       "signature": "SelectionFirst(nothing): integer:first_subfixture_index, integer:x, integer:y, integer:z",
@@ -6465,7 +6996,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_selectionfirst.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_selectionfirst.html",
+        "description": "The SelectionFirst Lua function returns a set of integers for the selection's first fixture. It is the patch index number and the XYZ grid values in the selection grid.",
+        "example": "This example prints the returned numbers of the first fixture in the selection, to the Command Line History:",
+        "example_code": "return function()\n    -- Store the return in a local variable\n    local fixtureIndex, gridX, gridY, gridZ = SelectionFirst();\n\n    -- Cancel the plugin if no fixture is selected\n    assert(fixtureIndex,\"Please select a fixture and try again.\");\n\n    -- Print the index number of the first fixture in the selection\n    Printf(\"First selected fixture has index number: \"..fixtureIndex\n        ..\" and gridX value: \"..gridX\n        ..\" and gridY value: \"..gridY\n        ..\" and gridZ value: \"..gridZ);\nend"
+      }
     },
     "GetProgPhaser": {
       "signature": "GetProgPhaser(integer:ui_channel_index, boolean:phaser_only): {['abs_preset'=light_userdata:handle], ['rel_preset'=light_userdata:handle], ['fade'=integer:seconds], ['delay'=integer:seconds], ['speed'=integer:hz], ['phase'=integer:degree], ['measure'=integer:value], ['gridpos'=integer:value], ['mask_active_phaser'=boolean:value], ['mask_active_value'=boolean:value], ['mask_individual'=boolean:value], {['channel_function'=integer:value], ['absolute'=integer:percent], ['absolute_value'=integer:value], ['relative'=integer:percent], ['accel'=integer:percent[, 'accel_type'=integer:enum_value(Enums.SplineType)]], ['decel'=integer:percent[, 'decel_type'=integer:enum_value(Enums.SplineType)]], ['trans'=integer:percent], ['width'=integer:percent], ['integrated'=light_userdata:preset_handle]}}",
@@ -6504,7 +7040,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_showsettings.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_showsettings.html",
+        "description": "ShowSettings is an object-free function that returns a handle to the object at Root/ShowData/ShowSettings.",
+        "example": "This simple example prints the information of the ShowSettings object using the Dump() function:",
+        "example_code": "return function ()\n    -- The following prints the dump for the object for the show settings\n    Printf(\"=============== START OF DUMP ===============\")\n    ShowSettings():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "CloseUndo": {
       "signature": "CloseUndo(light_userdata:undo_handle): boolean:closed (true if was closed, false - if it's still in use)",
@@ -6524,7 +7065,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_closeundo.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_closeundo.html",
+        "description": "The CloseUndo Lua function closes an open undo list. The function returns a boolean indicating if the function succeeds.",
+        "example": "This example creates an undo list, performs a series of commands that are added to the undo list, and closes the undo list. Now the series of commands can be oopsed with one oops command.",
+        "example_code": "return function()\n    --Create the undo object \n    local MyNewUndo = CreateUndo(\"MySelection\")\n    --Create command actions connected to the undo object\n    Cmd(\"ClearAll\", MyNewUndo)\n    Cmd(\"Fixture 1\", MyNewUndo)\n    Cmd(\"Fixture 2\", MyNewUndo)\n    Cmd(\"Fixture 5\", MyNewUndo)\n    Cmd(\"Fixture 7\", MyNewUndo)\n    --Close the undo group and store it's return in a variable\n    local closeSuccess = CloseUndo(MyNewUndo)     \n    --Print the feedback from the closing action - 1 = Success / 0 = Failure.\n    if closeSuccess == 0 then\n        ErrPrintf(\"The CloseUndo was not successful\")\n    elseif closeSuccess == 1 then\n        Printf(\"The CloseUndo was successful\")\n    else\n        Printf(\"The CloseUndo did not return a meaningful result\")\n    end\nend"
+      }
     },
     "FileExists": {
       "signature": "FileExists(string:path): boolean:result",
@@ -6544,7 +7090,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_fileexists.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_fileexists.html",
+        "description": "The FileExists Lua function checks if a file exists and returns a boolean with the result.",
+        "example": "This example returns feedback for the first file in the show file folder. The example uses the GetPath() and DirList() functions.",
+        "example_code": "return function ()\n    -- Get the path to the show files.\n    local path = GetPath(Enums.PathType.Showfiles)\n    -- Get a table of files at the path.\n    local dirTable = DirList(path)\n    -- Get the file name for the first file.\n    local firstFile = dirTable[1]['name']\n    -- Create a string with the path and filename.\n    local filepath = string.format(\"%s%s%s\", path, GetPathSeparator(), firstFile)\n\n    -- Check if the file exist and return useful feedback.\n    if FileExists(filepath) then\n        Printf('The file \"' .. firstFile .. '\" exist at path \"' .. path .. '\"')\n    else\n        Printf('The file \"' .. firstFile .. '\" does not exist')\n    end\nend"
+      }
     },
     "FixtureType": {
       "signature": "FixtureType(nothing): light_userdata:handle",
@@ -6557,7 +7108,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_fixturetype.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_fixturetype.html",
+        "description": "The FixtureType Lua function returns a handle to the fixture type. The function does not accept any arguments, but the function must be executed when the command line destination is at a fixture type. If the command line destination is not a valid fixture type, then the function returns \"nil\".",
+        "example": "This example prints the information about the second fixture type in the show:",
+        "example_code": "return function ()\n    -- The function returns the handle to the fixture at the current command line destination.\n    -- Change to the \"FixtureType\" destination.\n    Cmd(\"ChangeDestination FixtureType\")\n    -- Change to the second fixture type in the show.\n    Cmd(\"ChangeDestination 2\")\n    -- Dump information about the Fixture Type handle. \n    Printf(\"=============== START OF DUMP ===============\")\n    FixtureType():Dump()\n    Printf(\"================ END OF DUMP ================\")\n    -- Return the command line destination to the Root.\n    Cmd(\"ChangeDestination Root\")\nend"
+      }
     },
     "GetPathSeparator": {
       "signature": "GetPathSeparator(nothing): string:seperator",
@@ -6583,7 +7139,10 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_root.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_root.html",
+        "description": "The Root Lua function returns a handle to the object at the root position."
+      }
     },
     "GetRTChannelCount": {
       "signature": "GetRTChannelCount(nothing): integer:rt_channel_count",
@@ -6596,7 +7155,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getrtchannelcount.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getrtchannelcount.html",
+        "description": "The GetRTChannelCount Lua function returns a number indicating the total amount of RT channels.",
+        "example": "This example prints the number of RT channels to the Command Line History:",
+        "example_code": "return function()\n    Printf(\"The number of RT channels is \" .. GetRTChannelCount())\nend"
+      }
     },
     "NeedShowSave": {
       "signature": "NeedShowSave(nothing): boolean:need_show_save",
@@ -6609,7 +7173,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_needshowsave.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_needshowsave.html",
+        "description": "The NeedShowSave Lua function returns a boolean indicating if there are unsaved changes to the showfile.",
+        "example": "This example prints feedback indicating if the show file should be saved or not.",
+        "example_code": "return function ()\n    -- Check if the show should be saved.\n    if NeedShowSave() then\n        Printf(\"You should save your showfile.\")\n    else\n        Printf(\"You do not need to save your showfile.\")\n    end\nend"
+      }
     },
     "SelectedLayout": {
       "signature": "SelectedLayout(nothing): light_userdata:handle",
@@ -6622,7 +7191,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_selectedlayout.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_selectedlayout.html",
+        "description": "The SelectedLayout Lua function returns the handle of the selected layout.",
+        "example": "This example prints all information about the selected layout in the Command Line History using the Dump() function:",
+        "example_code": "return function ()\n    -- The following prints the dump for the selected layout object\n    Printf(\"=============== START OF DUMP ===============\")\n    SelectedLayout():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "CmdIndirectWait": {
       "signature": "CmdIndirectWait(string:command[, light_userdata:undo[, light_userdata:target]]): nothing",
@@ -6647,7 +7221,12 @@
         }
       ],
       "returns": [],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_cmdindirectwait.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_cmdindirectwait.html",
+        "description": "The CmdIndirectWait Lua function executes a command within the grandMA3 command line. It does not block the Lua execution and is executed synchronously in the main task. Synchronous commands wait for the command to be executed before executing any following command.",
+        "example": "This example prints \"1\" and \"2\" in the Command Line History and lets the main task open the Configure Display pop-up on screen 2.",
+        "example_code": "return function()\n    --Print something\n    Printf(\"1\")\n    --Use the 'CmdIndirectWait' to open a pop-up\n    CmdIndirectWait(\"Menu DisplayConfig\", nil, GetDisplayByIndex(2))\n    --Print something else\n    Printf(\"2\")\nend"
+      }
     },
     "CurrentEnvironment": {
       "signature": "CurrentEnvironment(nothing): light_userdata:handle",
@@ -6660,7 +7239,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_currentenvironment.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_currentenvironment.html",
+        "description": "The CurrentEnvironment Lua function returns a handle to the current users' selected environment.",
+        "example": "This example prints the data connected to the handle. It uses the Dump() function:",
+        "example_code": "return function()\n    -- Dumps information about the current environment\n    Printf(\"=============== START OF DUMP ===============\")\n    CurrentEnvironment():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "GetSelectedAttribute": {
       "signature": "GetSelectedAttribute(nothing): light_userdata:handle",
@@ -6673,7 +7257,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getselectedattribute.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getselectedattribute.html",
+        "description": "The GetSelectedAttribute Lua function returns a handle to the currently selected attribute.",
+        "example": "This example prints the data connected to the handle. It uses the Dump() function:",
+        "example_code": "return function()\n    -- This example dumps all information about the currently selected attribute\n    Printf(\"=============== START OF DUMP ===============\")\n    GetSelectedAttribute():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "SerialNumber": {
       "signature": "SerialNumber(nothing): string:serialnumber",
@@ -6686,7 +7275,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_serialnumber.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_serialnumber.html",
+        "description": "The SerialNumber Lua function returns the serial number of the grandMA3 hardware or grandMA3 onPC.",
+        "example": "This example prints the serial number in the Command Line History:",
+        "example_code": "return function()\n    Printf(\"Serial number: \" .. SerialNumber())\nend"
+      }
     },
     "OverallDeviceCertificate": {
       "signature": "OverallDeviceCertificate(nothing): light_userdata:handle",
@@ -6745,7 +7339,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_exportcsv.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_exportcsv.html",
+        "description": "The object-free ExportCSV Lua function exports a Lua table in CSV format.",
+        "example": "To export the build details table, create a plugin with this code:",
+        "example_code": "return function()\n    -- 'BuildDetails()' creates a table with information about the software build.\n    local build = BuildDetails()\n    --The path and filename is stored in a variable.\n    local exportPath = GetPath(Enums.PathType.Library) .. \"/BuildDetails.csv\"\n    --The actual export (in csv format) using the path and the table - the result boolean stored in a variable.\n    local success = ExportCSV(exportPath, build)\n    --Print feedback about the export path.\n    if success then\n        Printf(\"The export was stored at: \" .. exportPath)\n    else\n        Printf(\"The export failed.\")\n    end\nend"
+      }
     },
     "GetPresetData": {
       "signature": "GetPresetData(light_userdata:preset_handle[, boolean:phasers_only(default=false)[, boolean:by_fixtures(default=false)]]): table:phaser_data",
@@ -6777,7 +7376,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getpresetdata.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getpresetdata.html",
+        "description": "The GetPresetData Lua function returns a table with the preset data based on the preset handle.",
+        "example": "This example prints information about the first level table in the preset data and the first level of the first fixture in the preset. It uses dimmer preset 1, which must exist.",
+        "example_code": "return function()\n    -- Get the handle for the first Dimmer preset.\n    local myPreset = DataPool().PresetPools[1][1]\n    -- Get the Preset Data of the handle.\n    local myPresetData = GetPresetData(myPreset, false, false)\n    -- Check if the GetPresetData returns something. \n    if myPresetData == nil then\n        ErrPrintf(\"Dimmer preset 1 does not exist. Please create one and try again.\")\n        return\n    end\n\n    -- Print the myPresetData table.\n    for Key, value in pairs(myPresetData) do\n      if type(value) == \"table\" then\n        Printf(\"Key: \" .. Key .. \" ; Value type is: \" .. type(value))\n      else\n        Printf(\"Key: \" .. Key .. \" ; Value type is: \" .. type(value) .. \" ; Value: \" .. value)\n      end\n    end\n\n    -- Create a table object to hold all the integer keys in the myPresetData table.\n    local myIntegerTableKeys = {}\n    -- Fill the table.\n    for key,_ in pairs(myPresetData) do\n        if type(key) == \"number\" then\n            table.insert(myIntegerTableKeys, key)\n        end\n    end\n    -- Sort the table\n    table.sort(myIntegerTableKeys)\n\n    -- Print the elements of the fixture with the lowest ui_channel_index in the preset.\n    local tableIndex = myIntegerTableKeys[1]\n    if tableIndex ~= nil then\n        Printf(\"=============== TABLE CONTENT START - Table Key: \" .. tableIndex ..\" ===============\")\n        for Key, value in pairs(myPresetData[tableIndex]) do\n          if type(value) == \"table\" then\n            Printf(\"Key: \" .. Key .. \" ; Value type is: \" .. type(value))\n          else\n            Printf(\"Key: \" .. Key .. \" ; Value type is: \" .. type(value) .. \" ; Value: \" .. tostring(value))\n          end\n        end\n        Printf(\"================ TABLE CONTENT END - Table Key: \" .. tableIndex ..\" ================\")\n    end\nend"
+      }
     },
     "ErrPrintf": {
       "signature": "ErrPrintf(string:formatted_command ...): nothing",
@@ -6790,7 +7394,12 @@
         }
       ],
       "returns": [],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_errprintf.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_errprintf.html",
+        "description": "The ErrPrintf Lua function prints a red error message in the Command Line History and System Monitor.",
+        "example": "This example prints \"This is a red error message!\" in the Command Line History and System Monitor:",
+        "example_code": "return function()\n    -- Prints an error message in the command line feedback in red text.\n    ErrPrintf(\"This is an error message!\")\nend"
+      }
     },
     "GetButton": {
       "signature": "GetButton(light_userdata:usb_device_object_handle): table of boolean:state",
@@ -6810,7 +7419,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getbutton.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getbutton.html",
+        "description": "The GetButton Lua function returns a key-value pairs table indicating, with a boolean value, whether a button is pressed on an MA3Module.",
+        "example": "This example requests the buttons states on the master module on a grandMA3 full-size console:",
+        "example_code": "return function()\n    --- grandMA3 full-size modules are:\n    --- Fader Module Encoder (MFE): \"UsbDeviceMA3 2\"\n    --- Fader Module Crossfader (MFX): \"UsbDeviceMA3 2\"\n    --- Master Module (MM): \"UsbDeviceMA3 4\"\n    \n    -- Get a handle to the Master Module on a grandMA3 full-size.\n    local usbDeviceHandle = Root().UsbNotifier.MA3Modules[\"UsbDeviceMA3 4\"]\n    -- Create a table with the button status.\n    local buttonTable = GetButton(usbDeviceHandle)\n    -- Check if the table is nil and then print an error.\n    if buttonTable == nil then\n        ErrPrintf(\"nil\")\n        return\n    end\n    -- If the table is not nil, then print a useful feedback.\n    for key,value in pairs(buttonTable) do\n        if tostring(value) == \"true\" then\n            Printf(\"The button with the index \" .. key .. \" is pressed.\")\n        end\n    end\nend"
+      }
     },
     "SetProgPhaser": {
       "signature": "SetProgPhaser(integer:ui_channel_index, {['abs_preset'=light_userdata:handle>], ['rel_preset'=light_userdata:handle], ['fade'=integer:seconds], ['delay'=integer:seconds], ['speed'=integer:hz], ['phase'=integer:degree], ['measure'=integer:value], ['gridpos'=integer:value], {['channel_function'=integer:value], ['absolute'=integer:percent], ['absolute_value'=integer:value], ['relative'=integer:percent], ['accel'=integer:percent[, 'accel_type'=integer:enum_value(Enums.SplineType)]], ['decel'=integer:percent[, 'decel_type'=integer:enum_value(Enums.SplineType)]], ['trans'=integer:percent], ['width'=integer:percent], ['integrated'=light_userdata:preset_handle]}}): nothing",
@@ -6867,7 +7481,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_selectionnext.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_selectionnext.html",
+        "description": "The SelectionNext function returns a set of integers for the next fixture in a selection based on the index number input as an argument. It is the index number in the patch and the XYZ grid values in the selection grid.",
+        "example": "This example prints the patch index number and grid positions of all the fixtures in the current selection:",
+        "example_code": "return function()\n    -- Store the return in a local variable\n    local fixtureIndex, gridX, gridY, gridZ = SelectionFirst()\n\n    -- Cancel the plugin if no fixture is selected\n    assert(fixtureIndex,\"Please select a (range of) fixture(s) and try again.\")\n    \n    -- Loop that prints the index and gridpositions of all the fixtures in the selection \n    while fixtureIndex do\n        Printf('The fixture has index number: %i and gridposition %i / %i / %i',\n          fixtureIndex, gridX, gridY, gridZ);\n        \n        -- Here is SelectionNext actually used to find the next fixture in the selection\n        fixtureIndex, gridX, gridY, gridZ = SelectionNext(fixtureIndex)\n    end\nend"
+      }
     },
     "TouchObj": {
       "signature": "TouchObj(nothing): light_userdata:handle",
@@ -6880,7 +7499,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_touchobj.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_touchobj.html",
+        "description": "The TouchObj function returns the handle to the first found touch object.",
+        "example": "This example prints information about the touch object using the Dump() function:",
+        "example_code": "return function()\n    -- Print all informatin about the TouchObj object\n    Printf(\"=============== START OF DUMP ===============\")\n    TouchObj():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "DevMode3d": {
       "signature": "DevMode3d(nothing): string:devmode3d",
@@ -6963,7 +7587,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_defaultdisplaypositions.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_defaultdisplaypositions.html",
+        "description": "The DefaultDisplayPositions Lua function returns the handle of the conventional default display positions, which contains the first seven screens as children.",
+        "example": "This example prints all the information about display 1 (child 1 of the default displays) using the Dump() function:",
+        "example_code": "return function()\n    -- Store a handle to display 1 (child 1 of the default displays).\n    local display1 = DefaultDisplayPositions():Children()[1]\n    -- Dumps information about the display.\n    Printf(\"=============== START OF DUMP ===============\")\n    display1:Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "SelectionComponentZ": {
       "signature": "SelectionComponentZ(nothing): integer:min, integer:max, integer:index, integer:block, integer:group",
@@ -7075,7 +7704,12 @@
         }
       ],
       "returns": [],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_printf.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_printf.html",
+        "description": "The Printf Lua function prints a string in the Command Line History and System Monitor.",
+        "example": "This example prints \"Hello World!\" in the Command Line History:",
+        "example_code": "return function()\n    Printf(\"Hello World!\")\nend"
+      }
     },
     "Selection": {
       "signature": "Selection(nothing): light_userdata:handle",
@@ -7088,7 +7722,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_selection.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_selection.html",
+        "description": "The Selection Lua function returns a handle to the object holding the current selection of fixtures.",
+        "example": "This example prints the information of the Selection object in the Command Line History using the Dump() function:",
+        "example_code": "return function ()\n    -- The following prints the dump for the object for the selection\n    Printf(\"=============== START OF DUMP ===============\")\n    Selection():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "Cmd": {
       "signature": "Cmd(string:formatted_command[ ,light_userdata:undo], ...): string:command_execution_result ('Ok', 'Syntax Error', 'Illegal Command', ...)",
@@ -7120,7 +7759,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_cmd.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_cmd.html",
+        "description": "The Cmd Lua function executes a command in the grandMA3 command line. It is executed in a Lua task - not the Main task (standard typed commands are run in the Main task). It is executed synchronously, and it blocks the Lua task while executing. This means that a bad command has the potential to block the system.",
+        "example": "This example executes the two commands \"ClearAll\" and \"Fixture Thru At 0\" in the command line.",
+        "example_code": "return function()\n    --Execute the command directly\n    Cmd(\"ClearAll\")\n    --Execute the command and provide feedback\n    Printf(Cmd(\"Fixture Thru At 0\"))\nend"
+      }
     },
     "ColMeasureDeviceDoMeasurement": {
       "signature": "ColMeasureDeviceDoMeasurement(nothing): table:values",
@@ -7146,7 +7790,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getfocusdisplay.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getfocusdisplay.html",
+        "description": "The GetFocusDisplay Lua function returns a handle to the display object that currently has focus in the UI.",
+        "example": "This example prints the data connected to the handle. It uses the Dump() function:",
+        "example_code": "return function()\n    -- This example dumps all information about the display object who currently got focus.\n    Printf(\"=============== START OF DUMP ===============\")\n    GetFocusDisplay():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "SetProgressText": {
       "signature": "SetProgressText(integer:progressbar_index, string:text): nothing",
@@ -7165,7 +7814,12 @@
         }
       ],
       "returns": [],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_setprogresstext.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_setprogresstext.html",
+        "description": "The SetProgressText Lua function defines a text string to be displayed in a progress bar next to the progress bar title text. The title cannot be changed after creation, but this text can be changed. It could be used to describe the current step in the progress.",
+        "example": "This example sets a text string for the progress bar created using the example in the StartProgress topic (link above):",
+        "example_code": "return function()\n    -- Sets the text next to progress title\n    SetProgressText(progressHandle, \"- This is text next to the progress title\")\nend"
+      }
     },
     "IsObjectValid": {
       "signature": "IsObjectValid(light_userdata:handle): boolean:valid",
@@ -7185,7 +7839,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_isobjectvalid.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_isobjectvalid.html",
+        "description": "The IsObjectValid function returns a boolean true or nil depending on whether the supplied argument is a valid object.",
+        "example": "This example below examines if \"Root()\" is a valid object and prints meaningful feedback:",
+        "example_code": "return function()\n    --Create a variable with the possible object\n    local myObject = Root()\n    --Check if it is an object\n    local myReturn = IsObjectValid(myObject)\n    --Print the result\n    if myReturn == nil then\n        ErrPrintf(\"It is not a valid object\")\n    else\n        Printf(\"It is an object\")\n    end\nend"
+      }
     },
     "CurrentScreenConfig": {
       "signature": "CurrentScreenConfig(nothing): light_userdata:handle",
@@ -7198,7 +7857,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_currentscreenconfig.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_currentscreenconfig.html",
+        "description": "The CurrentScreenConfig Lua function returns a handle to the current users' screen configuration.",
+        "example": "This example prints the data connected to the handle. It uses the Dump() function:",
+        "example_code": "return function()\n    -- Dumps information about the current screen configuration\n    Printf(\"=============== START OF DUMP ===============\")\n    CurrentScreenConfig():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "UnhookMultiple": {
       "signature": "UnhookMultiple(function:callback(can be nil), light_userdata:handle to target(can be nil), light_userdata:handle to context (can be nil)): integer:amount of removed hooks",
@@ -7230,7 +7894,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_unhookmultiple.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_unhookmultiple.html",
+        "description": "The UnhookMultiple Lua function unhooks multiple hooks based on an input. This input acts like a filter to identify all the hooks that should be unhooked.",
+        "example": "This example unhooks all hooked related to the function created in the example for the HookObjectChange - please run the example from that topic before running this one.",
+        "example_code": "return function ()\n    -- Unhooks all hooks related to the \"MySequencePoolCallback\" function.\n    local amount = UnhookMultiple(MySequencePoolCallback)\n    -- Print how many hooks that were unhooked.\n    Printf(amount .. \" hook(s) were unhooked.\")\nend"
+      }
     },
     "DirList": {
       "signature": "DirList(string:path[ ,string:filter]): table of {name:string, size:int, time:int}",
@@ -7256,7 +7925,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_dirlist.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_dirlist.html",
+        "description": "The DirList Lua function returns a table of files at a specified path. The returned list can be filtered using an optional filter argument.",
+        "example": "This example prints the show files in the showfile directory. It uses the GetPath() function.",
+        "example_code": "return function ()\n    -- Get the path to the show files.\n    local path = GetPath(Enums.PathType.Showfiles)\n    -- Make a filter to only list .show files.\n    local filter = \"*show\"\n    -- Use the DirList function to get a table of the files.\n    local returnTable = DirList(path, filter)\n\n    -- Print the information of the files in the returned table.\n    for _, value in pairs(returnTable) do\n        Printf(value['name'] .. \" - Size: \" .. value['size'] .. \" bytes - Time: \" .. os.date(\"%c\", value['time']))\n    end\nend"
+      }
     },
     "GetProgPhaserValue": {
       "signature": "GetProgPhaserValue(integer:ui_channel_index, integer:step): {['channel_function'=integer:value], ['absolute'=integer:percent], ['absolute_value'=integer:value], ['relative'=integer:percent], ['accel'=integer:percent[, 'accel_type'=integer:enum_value(Enums.SplineType)]], ['decel'=integer:percent[, 'decel_type'=integer:enum_value(Enums.SplineType)]], ['trans'=integer:percent], ['width'=integer:percent], ['integrated'=light_userdata:preset_handle]}",
@@ -7295,7 +7969,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_desklocked.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_desklocked.html",
+        "description": "The DeskLocked Lua function returns a boolean indicating if the station is locked.",
+        "example": "This example prints the boolean number indicating the \"DeskLocked\" status to the Command Line History.",
+        "example_code": "return function()\n    -- The DeskLocked() return is printed.\n    Printf(\"The desk is locked: \" .. tostring(DeskLocked()))\nend"
+      }
     },
     "ExportJson": {
       "signature": "ExportJson(string:file_name, table:export_data): boolean:success",
@@ -7321,7 +8000,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_exportjson.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_exportjson.html",
+        "description": "The object-free ExportJson Lua function exports a Lua table in JSON format.",
+        "example": "To export the build details table, create a plugin with this code:",
+        "example_code": "return function()\n    -- 'BuildDetails()' creates a table with information about the software build.\n    local build = BuildDetails()\n    --The path and filename is stored in a variable.\n    local exportPath = GetPath(Enums.PathType.Library) .. \"/BuildDetails.json\"\n    --The actual export (in JSON format) using the path and the table - the result boolean stored in a variable.\n    local success = ExportJson(exportPath, build)\n    --Print feedback about the export path.\n    if success then\n        Printf(\"The export was stored at: \" .. exportPath)\n    else\n        Printf(\"The export failed.\")\n    end\nend"
+      }
     },
     "GetAttributeCount": {
       "signature": "GetAttributeCount(nothing): integer:attribute_count",
@@ -7334,7 +8018,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getattributecount.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_getattributecount.html",
+        "description": "The GetAttributeCount Lua function returns the total number of attribute definitions in the show.",
+        "example": "This example prints the returned number in the Command Line History.",
+        "example_code": "return function()\n    Printf(\"Attribute count is %i\", GetAttributeCount())\nend"
+      }
     },
     "CurrentExecPage": {
       "signature": "CurrentExecPage(nothing): light_userdata:handle",
@@ -7347,7 +8036,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_currentexecpage.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_currentexecpage.html",
+        "description": "The CurrentEnvironment Lua function returns a handle to the current users' selected executor page.",
+        "example": "This example prints the data connected to the handle. It uses the Dump() function:",
+        "example_code": "return function()\n    -- Dumps information about the current executor page\n    Printf(\"=============== START OF DUMP ===============\")\n    CurrentExecPage():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     },
     "KeyboardObj": {
       "signature": "KeyboardObj(nothing): light_userdata:handle",
@@ -7360,7 +8054,12 @@
           "optional": false
         }
       ],
-      "docs": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_keyboardobj.html"
+      "docs": {
+        "url": "https://help.malighting.com/grandMA3/2.0/HTML/lua_objectfree_keyboardobj.html",
+        "description": "The KeyboardObj function returns the handle to the first found keyboard object.",
+        "example": "This example prints the information of the keyboard object. It uses the Dump() function:",
+        "example_code": "return function()\n    -- Print all informatin about the KeyboardObj object\n    Printf(\"=============== START OF DUMP ===============\")\n    KeyboardObj():Dump()\n    Printf(\"================ END OF DUMP ================\")\nend"
+      }
     }
   }
 }

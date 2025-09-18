@@ -149,7 +149,6 @@
       "V (AC RMS)": 4,
       "W": 10,
       "kg": 11,
-      "unnamed": 0,
       "cd": 24
     }
   },
@@ -214,7 +213,6 @@
   "AssignmentButtonFunctionsScreenConfig": {
     "items": {
       "Empty": 0,
-      "unnamed": 0,
       "Call": 109
     }
   },
@@ -347,7 +345,6 @@
       "Time": 1,
       "Go": 0,
       "No Trigger": 5,
-      "unnamed": 5,
       "BPM": 4
     }
   },
@@ -506,7 +503,6 @@
       "Lowlight": 20,
       "Flash": 1,
       "Off": 8,
-      "unnamed": 0,
       "GoStep": 23
     }
   },
@@ -591,7 +587,6 @@
     "items": {
       "Selected": 1,
       "SelectedInverted": 2,
-      "unnamed": 0,
       "PartlySelected": 3
     }
   },
@@ -774,7 +769,6 @@
       "Temp": 13,
       "Off": 8,
       "Flash": 1,
-      "unnamed": 0,
       "Empty": 0
     }
   },
@@ -1607,7 +1601,6 @@
       "Black": 2,
       "Temp": 13,
       "Off": 8,
-      "unnamed": 0,
       "Flash": 1
     }
   },
@@ -1715,7 +1708,6 @@
   "AssignmentButtonFunctionsUser": {
     "items": {
       "LogIn": 72,
-      "unnamed": 0,
       "Empty": 0
     }
   },
@@ -1854,7 +1846,6 @@
       "Top": 15,
       "Flash": 1,
       "Call": 109,
-      "unnamed": 0,
       "Go-": 4
     }
   },
@@ -1865,8 +1856,7 @@
       "Blocked": 2,
       "UpGoing": 3,
       "Tracked": 1,
-      "DownGoing": 4,
-      "unnamed": 0
+      "DownGoing": 4
     }
   },
   "HostStatus": {
@@ -2039,7 +2029,6 @@
   "Yes": {
     "items": {
       "Yes": 1,
-      "unnamed": 0,
       "<Blank>": 0
     }
   },
@@ -2051,7 +2040,6 @@
       "Temp": 13,
       "Off": 8,
       "Flash": 1,
-      "unnamed": 0,
       "Empty": 0
     }
   },
@@ -2149,7 +2137,6 @@
       "Top": 15,
       "Flash": 1,
       "Call": 109,
-      "unnamed": 0,
       "Go-": 4
     }
   },
@@ -2296,14 +2283,12 @@
   },
   "EC_NoGrid": {
     "items": {
-      "unnamed": 2147483647,
       "None": 2147483647
     }
   },
   "ExtraStatusInfo": {
     "items": {
       "Create": 2,
-      "unnamed": 0,
       "Join": 1
     }
   },
@@ -2401,7 +2386,6 @@
       "Go+": 3,
       "Pause": 18,
       "Off": 8,
-      "unnamed": 0,
       "Empty": 0
     }
   },
@@ -2469,9 +2453,7 @@
     }
   },
   "DmxSheetHeaderType": {
-    "items": {
-      "unnamed": 0
-    }
+    "items": {}
   },
   "CookMode": {
     "items": {
@@ -2588,7 +2570,6 @@
       "Speed7": 6,
       "Speed11": 10,
       "Speed2": 1,
-      "unnamed": 255,
       "Speed6": 5
     }
   },
@@ -2699,14 +2680,12 @@
   "AssignmentButtonFunctionsView": {
     "items": {
       "Empty": 0,
-      "unnamed": 0,
       "Call": 109
     }
   },
   "AssignmentQuickeyFunctions": {
     "items": {
       "Go+": 3,
-      "unnamed": 0,
       "Empty": 0
     }
   },
@@ -2724,7 +2703,6 @@
       "InvalidGridPosition": 4,
       "Selected": 1,
       "SelectedEdge": 6,
-      "unnamed": 0,
       "MainMultiPatchSelected": 5
     }
   },
@@ -2838,7 +2816,6 @@
       "Top": 15,
       "Empty": 0,
       "Off": 8,
-      "unnamed": 0,
       "Flash": 1
     }
   },
@@ -2851,7 +2828,6 @@
       "Yes": 1,
       "false": 0,
       "off": 0,
-      "unnamed": 1,
       "on": 1
     }
   },
@@ -2964,7 +2940,6 @@
       "Black": 2,
       "Temp": 13,
       "Flash": 1,
-      "unnamed": 0,
       "Empty": 0
     }
   },
@@ -3343,7 +3318,6 @@
   },
   "AssignmentButtonFunctionsMacro": {
     "items": {
-      "unnamed": 0,
       ">>>": 5,
       "Off": 8,
       "Go-": 4,
@@ -3453,7 +3427,6 @@
       "Temp": 13,
       "SelectFixtures": 120,
       "Flash": 1,
-      "unnamed": 0,
       "Empty": 0
     }
   },
@@ -3511,7 +3484,6 @@
   },
   "TimeNoneEmpty": {
     "items": {
-      "unnamed": -1,
       "None": -1
     }
   },
@@ -3581,7 +3553,6 @@
   },
   "None": {
     "items": {
-      "unnamed": -1,
       "None": -1
     }
   },
@@ -3636,14 +3607,11 @@
   },
   "EmptyAsZeroFID": {
     "items": {
-      "unnamed": 0,
       "None": 0
     }
   },
   "EmptyAsZero": {
-    "items": {
-      "unnamed": 0
-    }
+    "items": {}
   },
   "SessionTimeStyle": {
     "items": {
@@ -3960,7 +3928,6 @@
       "Rate": 38,
       "Empty": 0,
       "Speed": 39,
-      "unnamed": 0,
       "X": 34
     }
   },
@@ -4043,7 +4010,6 @@
       "M": 20,
       "Z": 25,
       "da": 17,
-      "unnamed": 0,
       "Y": 26
     }
   },
@@ -4073,7 +4039,6 @@
       "Yes": 1,
       "false": 0,
       "off": 0,
-      "unnamed": 1,
       "on": 1
     }
   },
@@ -4107,7 +4072,6 @@
     "items": {
       "X-Assert": 2,
       "Assert": 1,
-      "unnamed": 0,
       "None": 0
     }
   },
@@ -4318,7 +4282,6 @@
   "AssignmentFaderFunctionsMasterOnly": {
     "items": {
       "Master": 33,
-      "unnamed": 0,
       "Empty": 0
     }
   },
@@ -5009,7 +4972,6 @@
       "Proportional": 2,
       "None": 0,
       "Undefined": 3,
-      "unnamed": 0,
       "Free": 1
     }
   },
@@ -5172,7 +5134,6 @@
       "Temp": 13,
       "SelectFixtures": 120,
       "Flash": 1,
-      "unnamed": 0,
       "Empty": 0
     }
   },
@@ -5244,7 +5205,6 @@
       "Speed1": 12,
       "DoubleSpeed": 27,
       "Off": 8,
-      "unnamed": 0,
       "Flash": 1
     }
   },
@@ -5256,14 +5216,13 @@
     }
   },
   "NoName": {
-    "items": []
+    "items": {}
   },
   "RDMNotificationThresholdOperator": {
     "items": {
       "Greate": 3,
       "IsNot": 2,
       "Is": 1,
-      "unnamed": 0,
       "Less": 4
     }
   },
@@ -5350,7 +5309,6 @@
       "FREEZE": 12,
       "ENCODER_INSIDE3": 93,
       "NUM4": 71,
-      "unnamed": 0,
       "TEMP": 105,
       "X6": 24,
       "DOUBLE_SPEED": 113,
@@ -5460,7 +5418,6 @@
       "Top": 15,
       "Flash": 1,
       "Call": 109,
-      "unnamed": 0,
       "Go-": 4
     }
   },
@@ -5924,7 +5881,6 @@
   },
   "AssignmentFaderFunctionsNone": {
     "items": {
-      "unnamed": 0,
       "Empty": 0
     }
   },
@@ -5983,7 +5939,6 @@
       "On": 7,
       "Toggle": 14,
       "Off": 8,
-      "unnamed": 0,
       "Empty": 0
     }
   },
@@ -6092,7 +6047,6 @@
       "Top": 15,
       "DoubleSpeed": 27,
       "Flash": 1,
-      "unnamed": 0,
       "Go-": 4
     }
   },
@@ -6138,7 +6092,6 @@
     "items": {
       "PL": 2,
       "SL": 3,
-      "unnamed": 0,
       "UL": 1
     }
   },
@@ -6510,9 +6463,7 @@
     }
   },
   "Patched": {
-    "items": {
-      "unnamed": -1
-    }
+    "items": {}
   },
   "PultType": {
     "items": {
@@ -6555,7 +6506,6 @@
       "<Blank>": 0,
       "Yes": 1,
       "off": 0,
-      "unnamed": 0,
       "false": 0
     }
   },
@@ -6644,7 +6594,6 @@
       "Swap": 25,
       "Speed1": 12,
       "DoubleSpeed": 27,
-      "unnamed": 0,
       "Flash": 1
     }
   },
@@ -6799,7 +6748,6 @@
   },
   "MatricksInvert": {
     "items": {
-      "unnamed": 0,
       "On": 1
     }
   },
@@ -6819,7 +6767,6 @@
   "RDMPidValueResetDevice": {
     "items": {
       "Warm": 1,
-      "unnamed": 0,
       "Cold": 255
     }
   },
@@ -6921,7 +6868,6 @@
   "IgnoreFT": {
     "items": {
       "Ignore FT": -2,
-      "unnamed": -1,
       "Follow FT": -1
     }
   },
@@ -7132,7 +7078,6 @@
     "items": {
       "None": 2147483647,
       "Hold": 1107296257,
-      "unnamed": 2147483647,
       "Release": 1107296256
     }
   },
@@ -7147,7 +7092,6 @@
       "On": 7,
       "Toggle": 14,
       "Off": 8,
-      "unnamed": 0,
       "Empty": 0
     }
   },
@@ -7155,7 +7099,6 @@
     "items": {
       "Ultra": 3,
       "Fine": 2,
-      "unnamed": 0,
       "Coarse": 1
     }
   },
@@ -7262,7 +7205,6 @@
       "FREEZE": 12,
       "ENCODER_INSIDE3": 93,
       "NUM4": 71,
-      "unnamed": 0,
       "TEMP": 105,
       "X6": 24,
       "DOUBLE_SPEED": 113,

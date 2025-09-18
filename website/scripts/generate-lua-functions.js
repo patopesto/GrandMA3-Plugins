@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { RateLimiter } from "limiter";
 import { Agent } from "undici";
+import { parse } from 'node-html-parser';
 
 import { BadgeVariants } from './generate-changelog.js';
 
@@ -9,14 +10,47 @@ import { BadgeVariants } from './generate-changelog.js';
 // Rate-limit requests to MA's docs to 10 requests every 100ms
 const limiter = new RateLimiter({ tokensPerInterval: 10, interval: 100 });
 
-async function check_docs_exists(url) {
+async function get_official_docs(url) {
   try {
     const remaining_tokens = await limiter.removeTokens(1);
-    const res = await fetch(url, { method: 'HEAD', dispatcher: new Agent({ connectTimeout: 30 * 1000 }) });
-    return res.ok;
+    const res = await fetch(url, { method: 'GET', dispatcher: new Agent({ connectTimeout: 30 * 1000 }) });
+    if (res.ok) {
+      const data = await res.text();
+      const root = parse(data);
+      const headings = root.getElementsByTagName('h2');
+      const docs = {
+        url: url,
+      }
+      headings.forEach((heading) => {
+        if (heading.text.includes("Description")) {
+          const sibling = heading.nextElementSibling;
+          if (sibling && sibling.tagName === 'P') {
+            let description = sibling.textContent;
+            description = description.replace('\n', '');
+            docs.description = description.trim();
+          }
+        }
+        if (heading.text.includes("Example")) {
+          const sibling = heading.nextElementSibling;
+          if (sibling && sibling.tagName === 'P') {
+            let example = sibling.textContent;
+            example = example.replace('\n', '');
+            docs.example = example.trim();
+          }
+          
+          const table = heading.parentNode.querySelector('.CHCodeSample_code');
+          let code = table.textContent;
+          code = code.replace(/<br\/?>/gm, '\n'); // replace breaks with newline
+          code = code.replace(/<[^>]*>?/gm, '');  // remove any html elements in text
+          docs.example_code = code;
+        }
+      })
+      return [docs, false];
+    }
+    return [res.ok, false];
   } catch (e) {
-    console.log('Error for fetch: ', url, e)
-    return false;
+    // console.log('Error for fetch: ', url, e)
+    return [false, true];
   }
 }
 
@@ -173,15 +207,20 @@ export async function ParseFunctions(version = "v2.0", input_file, check_docs = 
 
   // Check if official docs for each function exists.
   if (check_docs) {
+    let errors = 0;
     const doc_checks = Object.keys(functions).map(async (section) => {
       await Promise.all(Object.keys(functions[section]).map(async (fn_name) => {
         const url = make_doc_url(section, fn_name);
-        const exists = await check_docs_exists(url);
+        const [docs, error] = await get_official_docs(url);
+        if (error) errors += 1;
 
-        functions[section][fn_name].docs = exists ? url : false;
+        functions[section][fn_name].docs = docs;
       }));
     });
     await Promise.all(doc_checks);
+    if (errors) {
+      console.log(`❌ Docs checks failed for ${errors} functions! Run again...`);
+    }
   }
 
   return functions;
@@ -193,7 +232,7 @@ function function_to_markdown(name, func, markdown) {
 
   let title = `### ${name} `;
   if (func.docs) {
-    title += ` <a href="${func.docs}" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" size="medium" style="margin:20px;"/></a>`;
+    title += ` <a href="${func.docs.url}" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" size="medium" style="margin:20px;"/></a>`;
   }
   if (func.changelog) {
     const {text, variant} = BadgeVariants[func.changelog];
@@ -206,6 +245,12 @@ function function_to_markdown(name, func, markdown) {
   markdown.push('```lua');
   markdown.push(func.signature);
   markdown.push('```');
+  if (func.docs.description) {
+    markdown.push('');
+    markdown.push('**Description**');
+    markdown.push('');
+    markdown.push(func.docs.description);
+  }
   markdown.push('');
   markdown.push('**Arguments**');
   markdown.push('');
@@ -213,7 +258,7 @@ function function_to_markdown(name, func, markdown) {
   if (func.arguments.length) {
     for (let i = 0; i < func.arguments.length; i++) {
       const arg = func.arguments[i];
-      const opt = arg.optional ? '**(optional)**' : '';
+      const opt = arg.optional ? ' **(optional)**' : '';
       const name = arg.name ? arg.name : '';
       markdown.push(`${i + 1}. **\`${arg.type}\`**${opt}: ${name}`)
     }
@@ -235,6 +280,21 @@ function function_to_markdown(name, func, markdown) {
   else {
     markdown.push('No Return');
   }
+
+  if (func.docs.example || func.docs.example_code) {
+    markdown.push('');
+    markdown.push('**Example**');
+    if (func.docs.example) {
+      markdown.push('');
+      markdown.push(func.docs.example);
+    }
+    if (func.docs.example_code) {
+      markdown.push('');
+      markdown.push('```lua');
+      markdown.push(func.docs.example_code);
+      markdown.push('```');
+    }
+  }
   markdown.push('\n---\n');
 
 }
@@ -245,7 +305,7 @@ export function GenerateFunctionsMarkDown(version = "v2.0", functions, output_fi
   let markdown =
 `---
 title: LUA Functions
-description: The LUA API for grandMA3 version ${version}
+description: The LUA API for grandMA3 ${version}
 version: ${version}
 ---
 import { Aside, Badge } from '@astrojs/starlight/components';

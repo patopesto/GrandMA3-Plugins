@@ -1,6 +1,6 @@
 ---
 title: LUA Functions
-description: The LUA API for grandMA3 version v2.2
+description: The LUA API for grandMA3 v2.2
 version: v2.2
 ---
 import { Aside, Badge } from '@astrojs/starlight/components';
@@ -20,6 +20,10 @@ import { Aside, Badge } from '@astrojs/starlight/components';
 AddFixtures({'mode'=light_userdata:dmx_mode, 'amount'=integer:amount[, 'undo'=string:undo_text][, 'parent'=light_userdata:handle][, 'insert_index'=integer:value][, 'idtype'=string:idtype][, 'cid'=string:cid][, 'fid'=string:fid][, 'name'=string:name][, 'layer'=string:layer][, 'class'=string:class][, 'patch'={table 1..8: string:address}]}): boolean:success or nothing
 ```
 
+**Description**
+
+The AddFixture Lua function adds fixtures to the patch. The argument for the function is a table, which must contain valid data for the function to succeed. The function returns a "true" boolean value if the addition was a success. The function must be run with the command line in the correct patch destination.
+
 **Arguments**
 
 1. **`{'mode'=light_userdata:dmx_mode, 'amount'=integer:amount[, 'undo'=string:undo_text][, 'parent'=light_userdata:handle][, 'insert_index'=integer:value][, 'idtype'=string:idtype][, 'cid'=string:cid][, 'fid'=string:fid][, 'name'=string:name][, 'layer'=string:layer][, 'class'=string:class][, 'patch'={table 1..8: string:address}]}`**: 
@@ -27,6 +31,51 @@ AddFixtures({'mode'=light_userdata:dmx_mode, 'amount'=integer:amount[, 'undo'=st
 **Returns**
 
 - **`boolean`**: success or nothing
+
+**Example**
+
+This example adds a dimmer fixture with FID and CID 301 and patch address "10.001". It is a requirement that the generic dimmer type is already added to the show, that the ID and patch address are available, and that the stage is called "Stage 1". The example does not perform any check for availability.
+
+```lua
+return function()
+    -- Change the command line destination to the root.
+    Cmd("ChangeDestination Root")
+    -- Enter the "Patch".
+    Cmd('ChangeDestination "ShowData"."Patch"')
+    -- Enter the fixture location for the "Stage 1" object.
+    Cmd('ChangeDestination "Stages"."Stage 1"."Fixtures"')
+
+    -- Create a table.
+    local myAddFixtureTable = {}
+    -- Set the mode to a 8-bit Dimmer fixture type. 
+    myAddFixtureTable.mode = Patch().FixtureTypes.Dimmer.DMXModes["Mode 0"]
+    -- Set the amount of fixtures.
+    myAddFixtureTable.amount = 1
+    -- Set the FID for the fixture.
+    myAddFixtureTable.fid = "301"
+    -- Set the IdType - it is not needed if the type is "Fixture".
+    myAddFixtureTable.idtype = "Channel"
+    -- Set the CID - Use only this when the "idtype" is different than Fixture.
+    myAddFixtureTable.cid = "301"
+    -- Set the name of the fixture.
+    myAddFixtureTable.name = "AddedDimmer 301"
+    -- Create a patch table with an address.
+    myAddFixtureTable.patch = {"10.001"}
+
+    -- Add the fixture to the patch using the table data. Store the result in a local variable.
+    local success = AddFixtures(myAddFixtureTable)
+    
+    -- Provide some feedback.
+    if success ~= nil then
+        Printf("Fixture " .. myAddFixtureTable.fid .. " is added with patch address " .. myAddFixtureTable.patch[1])
+    else
+        Printf("AddFixture failed!")
+    end
+    
+    -- Return the command line to the root destination.
+    Cmd("ChangeDestination Root")
+end
+```
 
 ---
 
@@ -37,6 +86,10 @@ AddFixtures({'mode'=light_userdata:dmx_mode, 'amount'=integer:amount[, 'undo'=st
 AddonVars(string:addon_name): light_userdata:addon_variables
 ```
 
+**Description**
+
+The AddonVars function returns a handle to the set of variables connected to a specific addon.
+
 **Arguments**
 
 1. **`string`**: addon_name
@@ -44,6 +97,25 @@ AddonVars(string:addon_name): light_userdata:addon_variables
 **Returns**
 
 - **`light_userdata`**: addon_variables
+
+**Example**
+
+This example prints information connected to the "Demo" addon variable set. It uses the Dump() function:
+
+```lua
+return function()
+    -- Stores the handle to a variable set connected to the addon named 'Demo'.
+    local variableSet = AddonVars("Demo")
+    -- Check if the return is nil and print an error message
+    if variableSet == nil then
+        ErrPrintf("The variable set does not exists")
+        return
+    end
+    Printf("=============== START OF DUMP ===============")
+    variableSet:Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -54,6 +126,10 @@ AddonVars(string:addon_name): light_userdata:addon_variables
 BuildDetails(nothing): table:build_details
 ```
 
+**Description**
+
+The BuildDetails function returns a table with key-value pairs about the software build.
+
 **Arguments**
 
 No Arguments
@@ -61,6 +137,29 @@ No Arguments
 **Returns**
 
 - **`table`**: build_details
+
+**Example**
+
+This example prints the content of the BuildDetails table:
+
+```lua
+return function()
+    --Store the build detials table
+    local myBuild = BuildDetails()
+    --Print the content of the table
+    Printf("GitDate: " .. myBuild.GitDate)
+    Printf("GitHead: " .. myBuild.GitHead)
+    Printf("GitHash: " .. myBuild.GitHash)
+    Printf("CompileDate: " .. myBuild.CompileDate)
+    Printf("CompileTime: " .. myBuild.CompileTime)
+    Printf("BigVersion: " .. myBuild.BigVersion)
+    Printf("SmallVersion: " .. myBuild.SmallVersion)
+    Printf("HostType: " .. myBuild.HostType)
+    Printf("HostSubType: " .. myBuild.HostSubType)
+    Printf("CodeType: " .. myBuild.CodeType)
+    Printf("IsRelease: " .. tostring(myBuild.IsRelease))
+end
+```
 
 ---
 
@@ -71,16 +170,63 @@ No Arguments
 CheckDMXCollision(light_userdata:dmx_mode, string:dmx_address[ ,integer:count[ ,integer:break_index]]): boolean:no_collision_found
 ```
 
+**Description**
+
+The CheckDMXCollision Lua function checks if a specific DMX address range is available or already used.
+
 **Arguments**
 
 1. **`light_userdata`**: dmx_mode
 2. **`string`**: dmx_address
-3. **`integer`****(optional)**: count
-4. **`integer`****(optional)**: break_index
+3. **`integer`** **(optional)**: count
+4. **`integer`** **(optional)**: break_index
 
 **Returns**
 
 - **`boolean`**: no_collision_found
+
+**Example**
+
+This example prints feedback to the DMX collision check based on a DMX address of "1.001" and the DMX mode of the first fixture in the current selection:
+
+```lua
+return function()
+    -- Set the DMX universe - range 1-1024.
+    local myDMXUniverse = 1
+    -- Set the DMX address in the universe - range 1-512.
+    local myDMXAddress = 1
+    -- Set the optional count for the number of fixtures (break_index channel amount) to check.
+    local myCount = 1
+    -- Set the optional break_index number for fixtures with multiple breaks. 
+    -- Default value is 0 to indicate the first break.
+    local myBreakIndex = 0
+
+    -- Creates the string used for the DMX address.
+    local startOfRange = string.format("%d.%03d", myDMXUniverse, myDMXAddress)
+
+    -- Check if there is a selection and exit if there isn't.
+    if SelectionFirst() == nil then
+        Printf("Please make a selection and try again.")
+        return
+    end
+    -- This gets the handle for the first fixture a patched generic Dimmers 8-bit mode.
+    local myDmxMode = GetSubfixture(SelectionFirst()).ModeDirect
+
+    if myDmxMode == nil then
+        -- Exit the function if the DMX mode returns nil.
+       
+    else
+        -- Do the actual collision check and provide useful feedback.
+        if CheckDMXCollision(myDmxMode, startOfRange, myCount, myBreakIndex) then
+            Printf("The DMX address " .. startOfRange .. " is available.")
+            return
+        else
+            Printf("The DMX address " .. startOfRange .. " cannot be used as a start address for this patch.")
+            return
+        end
+    end
+end
+```
 
 ---
 
@@ -91,15 +237,67 @@ CheckDMXCollision(light_userdata:dmx_mode, string:dmx_address[ ,integer:count[ ,
 CheckFIDCollision(integer:fid[, integer:count[, integer:type]]): boolean:no_collision_found
 ```
 
+**Description**
+
+The CheckFIDCollision Lua function checks if a specific (range of) ID is available or already used. It can be used to check FID and any type of CID by adding a type integer.
+
 **Arguments**
 
 1. **`integer`**: fid
-2. **`integer`****(optional)**: count
-3. **`integer`****(optional)**: type
+2. **`integer`** **(optional)**: count
+3. **`integer`** **(optional)**: type
 
 **Returns**
 
 - **`boolean`**: no_collision_found
+
+**Example**
+
+This example prints feedback to the FID check:
+
+```lua
+return function()
+    -- Create a variable with the FID you want to check.
+    local myFID = 2001
+    -- Create a variable with the number of subsequent ID's to also check.
+    local myCount = 10
+    -- Create a variable with the IDType you want to check.
+    -- Default value is 0. This is the "Fixture" type.
+    -- Valid integers are:
+    --- 0 = Fixture
+    --- 1 = Channel
+    --- 2 = Universal
+    --- 3 = Houseligths (default name)
+    --- 4 = NonDim (default name)
+    --- 5 = Media (default name)
+    --- 6 = Fog (default name)
+    --- 7 = Effect (default name)
+    --- 8 = Pyro (default name)
+    --- 9 = MArker
+    --- 10 = Multipatch
+    local myType = 0
+
+    -- Check if the count is more than one.
+    if myCount > 1 then
+        -- Check if there is a collision and print valid feedback.
+        if CheckFIDCollision(myFID, myCount, myType) then
+            Printf("The FID " .. myFID .. " to " .. (myFID + myCount) .. " is available.")
+            return
+        else
+            Printf("The FID " .. myFID .. " to " .. (myFID + myCount) .. " gives an FID collision.")
+            return
+        end
+    else
+        if CheckFIDCollision(myFID, nil, myType) then
+            Printf("The FID " .. myFID .. " is available.")
+            return
+        else
+            Printf("The FID " .. myFID .. " gives an FID collision.")
+            return
+        end
+    end
+end
+```
 
 ---
 
@@ -110,6 +308,10 @@ CheckFIDCollision(integer:fid[, integer:count[, integer:type]]): boolean:no_coll
 ClassExists(string:class_name): boolean:result
 ```
 
+**Description**
+
+The ClassExists Lua function returns a boolean indicating whether the provided string is a class.
+
 **Arguments**
 
 1. **`string`**: class_name
@@ -117,6 +319,23 @@ ClassExists(string:class_name): boolean:result
 **Returns**
 
 - **`boolean`**: result
+
+**Example**
+
+This example asks if the word "Display" is a class and returns proper feedback.
+
+```lua
+return function()
+    -- Store a string with the class name
+    local className = "Display"
+    -- Check if the class exists and then provide proper feedback
+    if ClassExists(className) then
+        Printf("The class '%s' exists", className)
+    else
+        Printf("The class '%s' does not exists", className)
+    end
+end
+```
 
 ---
 
@@ -127,6 +346,10 @@ ClassExists(string:class_name): boolean:result
 CloseAllOverlays(nothing): nothing
 ```
 
+**Description**
+
+The CloseAllOverlays function closes any pop-ups or menus (overlays) open on any screen.
+
 **Arguments**
 
 No Arguments
@@ -134,6 +357,16 @@ No Arguments
 **Returns**
 
 No Return
+
+**Example**
+
+This example simply closes any overlay.
+
+```lua
+return function()
+    CloseAllOverlays()
+end
+```
 
 ---
 
@@ -161,6 +394,10 @@ CloseMessageQueue(string:queue name): boolean:success
 CloseUndo(light_userdata:undo_handle): boolean:closed (true if was closed, false - if it's still in use)
 ```
 
+**Description**
+
+The CloseUndo Lua function closes an open undo list. The function returns a boolean indicating if the function succeeds.
+
 **Arguments**
 
 1. **`light_userdata`**: undo_handle
@@ -168,6 +405,33 @@ CloseUndo(light_userdata:undo_handle): boolean:closed (true if was closed, false
 **Returns**
 
 - **`boolean`**: closed (true if was closed, false - if it's still in use)
+
+**Example**
+
+This example creates an undo list, performs a series of commands that are added to the undo list, and closes the undo list. Now the series of commands can be oopsed with one oops command.
+
+```lua
+return function()
+    --Create the undo object 
+    local MyNewUndo = CreateUndo("MySelection")
+    --Create command actions connected to the undo object
+    Cmd("ClearAll", MyNewUndo)
+    Cmd("Fixture 1", MyNewUndo)
+    Cmd("Fixture 2", MyNewUndo)
+    Cmd("Fixture 5", MyNewUndo)
+    Cmd("Fixture 7", MyNewUndo)
+    --Close the undo group and store it's return in a variable
+    local closeSuccess = CloseUndo(MyNewUndo)
+    --Print the feedback from the closing action - 1 = Success / 0 = Failure.
+    if closeSuccess == false then
+        ErrPrintf("The CloseUndo was not successful")
+    elseif closeSuccess == true then
+        Printf("The CloseUndo was successful")
+    else
+        Printf("The CloseUndo did not return a meaningful result")
+    end
+end
+```
 
 ---
 
@@ -178,15 +442,30 @@ CloseUndo(light_userdata:undo_handle): boolean:closed (true if was closed, false
 Cmd(string:formatted_command[ ,light_userdata:undo], ...): string:command_execution_result ('Ok', 'Syntax Error', 'Illegal Command', ...)
 ```
 
+**Description**
+
+The Cmd Lua function executes a command in the grandMA3 command line. It is executed in a Lua task - not the Main task (standard typed commands are run in the Main task). It is executed synchronously, and it blocks the Lua task while executing. This means that a bad command has the potential to block the system.
+
 **Arguments**
 
 1. **`string`**: formatted_command
-2. **`light_userdata`****(optional)**: undo
+2. **`light_userdata`** **(optional)**: undo
 3. **`...`**: 
 
 **Returns**
 
 - **`string`**: command_execution_result ('Ok', 'Syntax Error', 'Illegal Command', ...)
+
+**Example**
+
+This example executes the command "ClearAll" in the command line.
+
+```lua
+return function()
+    --Execute the command directly
+    Cmd("ClearAll")
+end
+```
 
 ---
 
@@ -197,15 +476,34 @@ Cmd(string:formatted_command[ ,light_userdata:undo], ...): string:command_execut
 CmdIndirect(string:command[, light_userdata:undo[, light_userdata:target]]): nothing
 ```
 
+**Description**
+
+The CmdIndirect Lua function executes a command within the grandMA3 command line. It is executed asynchronously in the Main task. It does not block the Lua execution since it is not executed in the Lua Task.
+
 **Arguments**
 
 1. **`string`**: command
-2. **`light_userdata`****(optional)**: undo
-3. **`light_userdata`****(optional)**: target
+2. **`light_userdata`** **(optional)**: undo
+3. **`light_userdata`** **(optional)**: target
 
 **Returns**
 
 No Return
+
+**Example**
+
+This example prints "1" and "2" in the Command Line History and let the main task open the Configure Display pop-up on screen 2.
+
+```lua
+return function()
+    --Print something
+    Printf("1")
+    --Use the 'CmdIndirect' to open a pop-up
+    CmdIndirect("Menu DisplayConfig", nil, GetDisplayByIndex(2))
+    --Print something else
+    Printf("2")
+end
+```
 
 ---
 
@@ -216,15 +514,34 @@ No Return
 CmdIndirectWait(string:command[, light_userdata:undo[, light_userdata:target]]): nothing
 ```
 
+**Description**
+
+The CmdIndirectWait Lua function executes a command within the grandMA3 command line. It does not block the Lua execution and is executed synchronously in the main task. Synchronous commands wait for the command to be executed before executing any following command.
+
 **Arguments**
 
 1. **`string`**: command
-2. **`light_userdata`****(optional)**: undo
-3. **`light_userdata`****(optional)**: target
+2. **`light_userdata`** **(optional)**: undo
+3. **`light_userdata`** **(optional)**: target
 
 **Returns**
 
 No Return
+
+**Example**
+
+This example prints "1" and "2" in the Command Line History and lets the main task open the Configure Display pop-up on screen 2.
+
+```lua
+return function()
+    --Print something
+    Printf("1")
+    --Use the 'CmdIndirectWait' to open a pop-up
+    CmdIndirectWait("Menu DisplayConfig", nil, GetDisplayByIndex(2))
+    --Print something else
+    Printf("2")
+end
+```
 
 ---
 
@@ -235,6 +552,10 @@ No Return
 CmdObj(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The CmdObj Lua function returns information about the command line object.
+
 **Arguments**
 
 No Arguments
@@ -242,6 +563,30 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example uses the Dump() function on the command object. It lists all the properties and lists the children and some extra examples of how the command line object can be used:
+
+```lua
+return function()
+    --Store the handle to the command object
+    local cmd = CmdObj()
+    --Print all information about the command object
+    Printf("=============== START OF DUMP ===============")
+    cmd:Dump()
+    Printf("================ END OF DUMP ================")
+    --Print some selected elements from the command object - this is currently not in the online manual
+    Printf("Current text in the command line: " ..cmd.cmdtext)
+    Printf("Current cmd edit object: " ..tostring(cmd.editobject and cmd.editobject:ToAddr()))
+    Printf("Current cmd destination: " ..tostring(cmd.destination and cmd.destination:ToAddr()))
+    Printf("Current user of the command line: " ..tostring(cmd.user and cmd.user:ToAddr()))
+    Printf("Current profile of the command line: " ..tostring(cmd.profile and cmd.profile:ToAddr()))
+    Printf("Current DMX readout: " ..cmd.dmxreadout)
+    Printf("Current amount steps: " ..cmd.maxstep)
+    Printf("Current selected object: " ..tostring(cmd:GetSelectedObject() and cmd:GetSelectedObject():ToAddr()))
+end
+```
 
 ---
 
@@ -286,6 +631,10 @@ No Arguments
 ConfigTable(nothing): table:config_details
 ```
 
+**Description**
+
+The ConfigTable Lua function returns a table with some configuration information. This is information only. The function does not have any actual functions. The table is not sorted.
+
 **Arguments**
 
 No Arguments
@@ -293,6 +642,19 @@ No Arguments
 **Returns**
 
 - **`table`**: config_details
+
+**Example**
+
+This example prints the content of the returned table.
+
+```lua
+return function ()
+    -- Prints the content of the ConfigTable
+    for key,value in pairs(ConfigTable()) do
+        Printf(key .. " : " .. value)
+    end
+end
+```
 
 ---
 
@@ -303,16 +665,35 @@ No Arguments
 Confirm([string:title [,string:message [,integer:display_index [,boolean:showCancel]]]]): boolean:result
 ```
 
+**Description**
+
+The Confirm Lua function provides a simple confirmation pop-up for a true/false query. It is part of the user interface functions.
+
 **Arguments**
 
-1. **`string`****(optional)**: title
-2. **`string`****(optional)**: message
-3. **`integer`****(optional)**: display_index
-4. **`boolean`****(optional)**: showCancel
+1. **`string`** **(optional)**: title
+2. **`string`** **(optional)**: message
+3. **`integer`** **(optional)**: display_index
+4. **`boolean`** **(optional)**: showCancel
 
 **Returns**
 
 - **`boolean`**: result
+
+**Example**
+
+This example creates a confirmation pop-up with printed feedback in the Command Line History:
+
+```lua
+return function()
+    --Creates a pop-up asking to be confirmed and prints a useful text.
+    if Confirm("Confirm me", "Tap OK or Cancel", nil, true) then
+        Printf("Pop-up result: OK")
+    else
+        Printf("Pop-up result: Cancel")
+    end
+end
+```
 
 ---
 
@@ -358,15 +739,58 @@ CreateDirectoryRecursive(string:path): boolean:result
 CreateMultiPatch({light_userdata:fixture_handles}, integer:count[ ,string:undo_text]): integer:amount_of_multi-patch_fixtures_created
 ```
 
+**Description**
+
+The CreateMultiPatch Lua function creates a series of multi patch fixtures to a table of fixtures.
+
 **Arguments**
 
 1. **`{light_userdata:fixture_handles}`**: 
 2. **`integer`**: count
-3. **`string`****(optional)**: undo_text
+3. **`string`** **(optional)**: undo_text
 
 **Returns**
 
 - **`integer`**: amount_of_multi-patch_fixtures_created
+
+**Example**
+
+This example creates two multi patch fixtures to the first fixture (excluding the "Universal" fixture) in the patch.
+
+```lua
+return function()
+    -- Enter Patch.
+    Cmd("ChangeDestination Root");
+    -- Enter the SetupPatch.
+    Cmd("ChangeDestination 'ShowData'.'Patch'");
+
+    -- Get the handle for the first fixture in the patch.
+    local myFixture = Patch().Stages[1].Fixtures[2]
+    -- Add the handle a list element in an table.
+    local myFixtureTable = {myFixture}
+    -- Add a variable with the amount of multipatch fixtures needed.
+    local multiPatchAmount = 2
+
+    -- Count the number of elements in the fixture table and store in a variable.
+    local count = 0
+    for _ in pairs(myFixtureTable) do
+         count = count + 1
+    end
+    -- Create an unto text string.
+    local undoText = string.format("Create %d multipatch fixtures for up to %d fixtures", multiPatchAmount, count)
+
+    -- Create the multipatch fixtures to the each fixture handle in the table and store the returned value.
+    local multiPatchAmount = CreateMultiPatch(myFixtureTable, multiPatchAmount, undoText)
+    if multiPatchAmount ~= nil then
+        Printf(multiPatchAmount .. " multi patch objects was created")
+    else
+        Printf("An error occured")
+    end
+
+    -- Return the command line destination to the root.
+    Cmd("ChangeDestination Root")
+end
+```
 
 ---
 
@@ -377,6 +801,10 @@ CreateMultiPatch({light_userdata:fixture_handles}, integer:count[ ,string:undo_t
 CreateUndo(string:undo_text): light_userdata:undo_handle
 ```
 
+**Description**
+
+The CreateUndo Lua function returns a handle to a list of commands and function calls grouped in the same oops action.
+
 **Arguments**
 
 1. **`string`**: undo_text
@@ -384,6 +812,33 @@ CreateUndo(string:undo_text): light_userdata:undo_handle
 **Returns**
 
 - **`light_userdata`**: undo_handle
+
+**Example**
+
+This example creates an undo list, performs a series of commands being added to the undo list, and closes the undo list. Now, the series of commands can be oopsed with one oops command.
+
+```lua
+return function()
+    -- Create the undo group.
+    local MyNewUndo = CreateUndo("MySelection")
+    -- Make some command line actions linked to the undo.
+    Cmd("ClearAll", MyNewUndo)
+    Cmd("Fixture 1", MyNewUndo)
+    Cmd("Fixture 2", MyNewUndo)
+    Cmd("Fixture 5", MyNewUndo)
+    Cmd("Fixture 7", MyNewUndo)
+    -- Closing the undo group and store it's return in a variable.
+    local closeSuccess = CloseUndo(MyNewUndo)
+    -- Print the feedback from the closing action - 1 = Success / 0 = Failure.
+    if closeSuccess == false then
+        ErrPrintf("The CloseUndo was not successful")
+    elseif closeSuccess == true then
+        Printf("The CloseUndo was successful")
+    else
+        Printf("The CloseUndo did not return a meaningful result")
+    end
+end
+```
 
 ---
 
@@ -394,6 +849,10 @@ CreateUndo(string:undo_text): light_userdata:undo_handle
 CurrentEnvironment(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The CurrentEnvironment Lua function returns a handle to the current users' selected environment.
+
 **Arguments**
 
 No Arguments
@@ -401,6 +860,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints the data connected to the handle. It uses the Dump() function:
+
+```lua
+return function()
+    -- Dumps information about the current environment
+    Printf("=============== START OF DUMP ===============")
+    CurrentEnvironment():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -411,6 +883,10 @@ No Arguments
 CurrentExecPage(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The CurrentEnvironment Lua function returns a handle to the current users' selected executor page.
+
 **Arguments**
 
 No Arguments
@@ -418,6 +894,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints the data connected to the handle. It uses the Dump() function:
+
+```lua
+return function()
+    -- Dumps information about the current executor page
+    Printf("=============== START OF DUMP ===============")
+    CurrentExecPage():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -428,6 +917,10 @@ No Arguments
 CurrentProfile(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The CurrentProfile Lua function returns a handle to the current users' profile.
+
 **Arguments**
 
 No Arguments
@@ -435,6 +928,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints the data connected to the handle. It uses the Dump() function:
+
+```lua
+return function()
+    -- Dumps information about the current executor page
+    Printf("=============== START OF DUMP ===============")
+    CurrentProfile():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -445,6 +951,10 @@ No Arguments
 CurrentScreenConfig(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The CurrentScreenConfig Lua function returns a handle to the current users' screen configuration.
+
 **Arguments**
 
 No Arguments
@@ -452,6 +962,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints the data connected to the handle. It uses the Dump() function:
+
+```lua
+return function()
+    -- Dumps information about the current screen configuration
+    Printf("=============== START OF DUMP ===============")
+    CurrentScreenConfig():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -462,6 +985,10 @@ No Arguments
 CurrentUser(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The CurrentUser Lua function returns a handle to the current user.
+
 **Arguments**
 
 No Arguments
@@ -469,6 +996,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints the data connected to the handle. It uses the Dump() function:
+
+```lua
+return function()
+    -- Dumps information about the current user
+    Printf("=============== START OF DUMP ===============")
+    CurrentUser():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -479,6 +1019,10 @@ No Arguments
 DataPool(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The DataPool Lua function references the currently selected DataPool and is used to read or edit properties within the data pool.
+
 **Arguments**
 
 No Arguments
@@ -486,6 +1030,21 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example uses the Dump() function on the data pool object. Dump lists all the properties and lists the children. Finally, the example also prints the name of the first sequence in the data pool.
+
+```lua
+return function()
+    -- Dumps information about the datapool object.
+    Printf("=============== START OF DUMP ===============")
+    DataPool():Dump()
+    Printf("================ END OF DUMP ================")
+    -- Prints the name of the first sequence.
+    Printf("Name of sequence 1: " .. DataPool().Sequences[1].Name)
+end
+```
 
 ---
 
@@ -496,6 +1055,10 @@ No Arguments
 DefaultDisplayPositions(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The DefaultDisplayPositions Lua function returns the handle of the conventional default display positions, which contains the first seven screens as children.
+
 **Arguments**
 
 No Arguments
@@ -503,6 +1066,21 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints all the information about display 1 (child 1 of the default displays) using the Dump() function:
+
+```lua
+return function()
+    -- Store a handle to display 1 (child 1 of the default displays).
+    local display1 = DefaultDisplayPositions():Children()[1]
+    -- Dumps information about the display.
+    Printf("=============== START OF DUMP ===============")
+    display1:Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -513,6 +1091,10 @@ No Arguments
 DelVar(light_userdata:variables, string:varname): boolean:success
 ```
 
+**Description**
+
+The DelVar Lua function deletes a specific variable in a set of variables. To learn more about the variables in plugins, have a look at the Variable Functions topic.
+
 **Arguments**
 
 1. **`light_userdata`**: variables
@@ -521,6 +1103,23 @@ DelVar(light_userdata:variables, string:varname): boolean:success
 **Returns**
 
 - **`boolean`**: success
+
+**Example**
+
+This example deletes a variable called "myUserVar" in the set of user variables.
+
+```lua
+return function()
+    -- Deletes the variable called 'myUserVar' in the 'UserVars' variable set.
+    local success = DelVar(UserVars(), "myUserVar")
+    -- Prints the outcome of the deletion outcome.
+    if success then
+        Printf("Variable is deleted.")
+    else
+        Printf("Variable is NOT deleted!")
+    end
+end
+```
 
 ---
 
@@ -531,6 +1130,10 @@ DelVar(light_userdata:variables, string:varname): boolean:success
 DeskLocked(nothing): boolean:desk_is_locked
 ```
 
+**Description**
+
+The DeskLocked Lua function returns a boolean indicating if the station is locked.
+
 **Arguments**
 
 No Arguments
@@ -538,6 +1141,17 @@ No Arguments
 **Returns**
 
 - **`boolean`**: desk_is_locked
+
+**Example**
+
+This example prints the boolean number indicating the "DeskLocked" status to the Command Line History.
+
+```lua
+return function()
+    -- The DeskLocked() return is printed.
+    Printf("The desk is locked: " .. tostring(DeskLocked()))
+end
+```
 
 ---
 
@@ -548,6 +1162,10 @@ No Arguments
 DeviceConfiguration(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The DeviceConfiguration Lua function returns a handle to the DeviceConfiguration object.
+
 **Arguments**
 
 No Arguments
@@ -555,6 +1173,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints the data connected to the handle. It uses the Dump() function:
+
+```lua
+return function()
+    -- This example dumps all information about the DeviceConfiguration object.
+    Printf("=============== START OF DUMP ===============")
+    DeviceConfiguration():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -582,14 +1213,38 @@ No Arguments
 DirList(string:path[ ,string:filter]): table of {name:string, size:int, time:int}
 ```
 
+**Description**
+
+The DirList Lua function returns a table of files at a specified path. The returned list can be filtered using an optional filter argument.
+
 **Arguments**
 
 1. **`string`**: path
-2. **`string`****(optional)**: filter
+2. **`string`** **(optional)**: filter
 
 **Returns**
 
 - **`table of {name:string, size:int, time:int}`**: 
+
+**Example**
+
+This example prints the show files in the showfile directory. It uses the GetPath() function.
+
+```lua
+return function ()
+    -- Get the path to the show files.
+    local path = GetPath(Enums.PathType.Showfiles)
+    -- Make a filter to only list .show files.
+    local filter = "*show"
+    -- Use the DirList function to get a table of the files.
+    local returnTable = DirList(path, filter)
+
+    -- Print the information of the files in the returned table.
+    for _, value in pairs(returnTable) do
+        Printf(value['name'] .. " - Size: " .. value['size'] .. " bytes - Time: " .. os.date("%c", value['time']))
+    end
+end
+```
 
 ---
 
@@ -599,6 +1254,10 @@ DirList(string:path[ ,string:filter]): table of {name:string, size:int, time:int
 ```lua
 DrawPointer(integer:display_index, {x=integer:x_position,y=integer:y_position}, integer:duration in ms)): nothing
 ```
+
+**Description**
+
+The DrawPointer function draws a red pointer on the display. There can only be one pointer at a time on each station.
 
 **Arguments**
 
@@ -610,6 +1269,25 @@ DrawPointer(integer:display_index, {x=integer:x_position,y=integer:y_position}, 
 
 No Return
 
+**Example**
+
+This example draws a pointer on display 1 for 5 seconds:
+
+```lua
+return function()
+    --Set a display index
+    local displayIndex = 1
+    --Create and set the position in a table
+    local position = {}
+    position.x = 150
+    position.y = 25
+    --Set a 5 seconds duration - in milliseconds
+    local duration = 5000
+    --Draw the actual pointer
+    DrawPointer(displayIndex,position,duration)
+end
+```
+
 ---
 
 ### DumpAllHooks  <a href="https://help.malighting.com/grandMA3/2.2/HTML/lua_objectfree_dumpallhooks.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" size="medium" style="margin:20px;"/></a>
@@ -619,6 +1297,10 @@ No Return
 DumpAllHooks(nothing): nothing
 ```
 
+**Description**
+
+The DumpAllHooks function prints a list of the hooks in the system. The list is only shown in the System Monitor.
+
 **Arguments**
 
 No Arguments
@@ -626,6 +1308,19 @@ No Arguments
 **Returns**
 
 No Return
+
+**Example**
+
+This example prints the list of hooks in the system monitor.
+
+```lua
+return function()
+    -- Dumps a list of all the hooks in the System Monitor.
+    Printf("=============== START OF HOOK DUMP ===============")
+    DumpAllHooks()
+    Printf("================ END OF HOOK DUMP ================")
+end
+```
 
 ---
 
@@ -636,6 +1331,10 @@ No Return
 Echo(string:formatted_command ...): nothing
 ```
 
+**Description**
+
+The Echo Lua function prints a string in the System Monitor.
+
 **Arguments**
 
 1. **`string`**: formatted_command ...
@@ -643,6 +1342,17 @@ Echo(string:formatted_command ...): nothing
 **Returns**
 
 No Return
+
+**Example**
+
+This example prints "Hello World!" on the System Monitor:
+
+```lua
+return function()
+    -- Prints 'Hellow World!' in the system monitor in yellow text.
+    Echo("Hello World!")
+end
+```
 
 ---
 
@@ -653,6 +1363,10 @@ No Return
 ErrEcho(string:formatted_command ...): nothing
 ```
 
+**Description**
+
+The ErrEcho Lua function prints a red error message on the System Monitor.
+
 **Arguments**
 
 1. **`string`**: formatted_command ...
@@ -660,6 +1374,17 @@ ErrEcho(string:formatted_command ...): nothing
 **Returns**
 
 No Return
+
+**Example**
+
+This prints "This is a red error message!" on the system monitor:
+
+```lua
+return function()
+    -- Prints an error message in the system monitor in red text.
+    ErrEcho("This is an error message!")
+end
+```
 
 ---
 
@@ -670,6 +1395,10 @@ No Return
 ErrPrintf(string:formatted_command ...): nothing
 ```
 
+**Description**
+
+The ErrPrintf Lua function prints a red error message in the Command Line History and System Monitor.
+
 **Arguments**
 
 1. **`string`**: formatted_command ...
@@ -677,6 +1406,17 @@ ErrPrintf(string:formatted_command ...): nothing
 **Returns**
 
 No Return
+
+**Example**
+
+This example prints "This is a red error message!" in the Command Line History and System Monitor:
+
+```lua
+return function()
+    -- Prints an error message in the command line feedback in red text.
+    ErrPrintf("This is an error message!")
+end
+```
 
 ---
 
@@ -687,6 +1427,10 @@ No Return
 Export(string:file_name, table:export_data): boolean:success
 ```
 
+**Description**
+
+The object-free Export Lua function exports a Lua table in XML format.
+
 **Arguments**
 
 1. **`string`**: file_name
@@ -695,6 +1439,27 @@ Export(string:file_name, table:export_data): boolean:success
 **Returns**
 
 - **`boolean`**: success
+
+**Example**
+
+To export the build details table, create a plugin with this code:
+
+```lua
+return function()
+    -- 'BuildDetails()' creates a table with information about the software build.
+    local build = BuildDetails()
+    --The path and filename is stored in a variable.
+    local exportPath = GetPath(Enums.PathType.Library) .. "/BuildDetails.xml"
+    --The actual export (in xml format) using the path and the table - the result boolean stored in a variable.
+    local success = Export(exportPath, build)
+    --Print feedback about the export path.
+    if success then
+        Printf("The export was stored at: " .. exportPath)
+    else
+        Printf("The export failed")
+    end
+end
+```
 
 ---
 
@@ -705,6 +1470,10 @@ Export(string:file_name, table:export_data): boolean:success
 ExportCSV(string:file_name, table:export_data): boolean:success
 ```
 
+**Description**
+
+The object-free ExportCSV Lua function exports a Lua table in CSV format.
+
 **Arguments**
 
 1. **`string`**: file_name
@@ -713,6 +1482,27 @@ ExportCSV(string:file_name, table:export_data): boolean:success
 **Returns**
 
 - **`boolean`**: success
+
+**Example**
+
+To export the build details table, create a plugin with this code:
+
+```lua
+return function()
+    -- 'BuildDetails()' creates a table with information about the software build.
+    local build = BuildDetails()
+    --The path and filename is stored in a variable.
+    local exportPath = GetPath(Enums.PathType.Library) .. "/BuildDetails.csv"
+    --The actual export (in csv format) using the path and the table - the result boolean stored in a variable.
+    local success = ExportCSV(exportPath, build)
+    --Print feedback about the export path.
+    if success then
+        Printf("The export was stored at: " .. exportPath)
+    else
+        Printf("The export failed.")
+    end
+end
+```
 
 ---
 
@@ -723,6 +1513,10 @@ ExportCSV(string:file_name, table:export_data): boolean:success
 ExportJson(string:file_name, table:export_data): boolean:success
 ```
 
+**Description**
+
+The object-free ExportJson Lua function exports a Lua table in JSON format.
+
 **Arguments**
 
 1. **`string`**: file_name
@@ -731,6 +1525,27 @@ ExportJson(string:file_name, table:export_data): boolean:success
 **Returns**
 
 - **`boolean`**: success
+
+**Example**
+
+To export the build details table, create a plugin with this code:
+
+```lua
+return function()
+    -- 'BuildDetails()' creates a table with information about the software build.
+    local build = BuildDetails()
+    --The path and filename is stored in a variable.
+    local exportPath = GetPath(Enums.PathType.Library) .. "/BuildDetails.json"
+    --The actual export (in JSON format) using the path and the table - the result boolean stored in a variable.
+    local success = ExportJson(exportPath, build)
+    --Print feedback about the export path.
+    if success then
+        Printf("The export was stored at: " .. exportPath)
+    else
+        Printf("The export failed.")
+    end
+end
+```
 
 ---
 
@@ -741,6 +1556,10 @@ ExportJson(string:file_name, table:export_data): boolean:success
 FileExists(string:path): boolean:result
 ```
 
+**Description**
+
+The FileExists Lua function checks if a file exists and returns a boolean with the result.
+
 **Arguments**
 
 1. **`string`**: path
@@ -748,6 +1567,30 @@ FileExists(string:path): boolean:result
 **Returns**
 
 - **`boolean`**: result
+
+**Example**
+
+This example returns feedback for the first file in the show file folder. The example uses the GetPath() and DirList() functions.
+
+```lua
+return function ()
+    -- Get the path to the show files.
+    local path = GetPath(Enums.PathType.Showfiles)
+    -- Get a table of files at the path.
+    local dirTable = DirList(path)
+    -- Get the file name for the first file.
+    local firstFile = dirTable[1]['name']
+    -- Create a string with the path and filename.
+    local filepath = string.format("%s%s%s", path, GetPathSeparator(), firstFile)
+
+    -- Check if the file exist and return useful feedback.
+    if FileExists(filepath) then
+        Printf('The file "' .. firstFile .. '" exist at path "' .. path .. '"')
+    else
+        Printf('The file "' .. firstFile .. '" does not exist')
+    end
+end
+```
 
 ---
 
@@ -779,7 +1622,7 @@ FindBestFocus([light_userdata:handle]): nothing
 
 **Arguments**
 
-1. **`light_userdata`****(optional)**: handle
+1. **`light_userdata`** **(optional)**: handle
 
 **Returns**
 
@@ -796,8 +1639,8 @@ FindNextFocus([bool:backwards(false)[, int(Focus::Reason):reason(UserTabKey)]]):
 
 **Arguments**
 
-1. **`bool`****(optional)**: backwards(false)
-2. **`int(Focus::Reason)`****(optional)**: reason(UserTabKey)
+1. **`bool`** **(optional)**: backwards(false)
+2. **`int(Focus::Reason)`** **(optional)**: reason(UserTabKey)
 
 **Returns**
 
@@ -812,6 +1655,10 @@ No Return
 FindTexture(string:texture name): light_userdata:handle to texture found
 ```
 
+**Description**
+
+The FindTixture Lua function returns a handle to the texture matching the input text string - if the texture exists.
+
 **Arguments**
 
 1. **`string`**: texture name
@@ -819,6 +1666,27 @@ FindTexture(string:texture name): light_userdata:handle to texture found
 **Returns**
 
 - **`light_userdata`**: handle to texture found
+
+**Example**
+
+This example prints the information about the "button" texture. The example uses the Dump() function.
+
+```lua
+return function ()
+    -- Set a texture name.
+    local textureName = "button"
+    -- Get the handle of the texture.
+    local textureHandle = FindTexture(textureName)
+    -- Check if textureHandle returned something and provide feedback.
+    if textureHandle == nil then
+        ErrPrintf("Texture does not exist.")
+    else
+        Printf("=============== START OF DUMP ===============")
+        FindTexture(textureName):Dump()
+        Printf("================ END OF DUMP ================")
+    end
+end
+```
 
 ---
 
@@ -829,6 +1697,10 @@ FindTexture(string:texture name): light_userdata:handle to texture found
 FirstDmxModeFixture(light_userdata:dmxmode): light_userdata:fixture
 ```
 
+**Description**
+
+The FirstDmxModeFixture Lua function returns a handle to the first fixture matching the supplied DMX mode.
+
 **Arguments**
 
 1. **`light_userdata`**: dmxmode
@@ -836,6 +1708,35 @@ FirstDmxModeFixture(light_userdata:dmxmode): light_userdata:fixture
 **Returns**
 
 - **`light_userdata`**: fixture
+
+**Example**
+
+If it exists, this example prints the data connected to the first "Dimmer" fixture using "Mode 0" - if the fixture type exists in the show. It uses the Dump() functions:
+
+```lua
+return function ()
+    -- Get the handle for the Dimmer fixture.
+    local fixtureTypeHandle = Patch().FixtureTypes['Dimmer']
+
+    -- Check if fixture type returned something and provide feedback.
+    if fixtureTypeHandle == nil then
+        ErrPrintf("The fixture type does not exist in this show. Try adding it or edit this plugin.")
+    else
+        -- Get the handle for the DMX mode of a Dimmer fixture.
+        local fixtureDMXMode = fixtureTypeHandle.DMXModes["Mode 0"]
+
+        -- Check if fixtureDMXMode returned something and provide feedback.
+        if fixtureDMXMode == nil then
+            ErrPrintf("The fixture type does not contain a 'Mode 0' DMX mode. Try adding it or edit this plugin.")
+        else
+            -- Dumps information about the first fixture matching the DMX mode.
+            Printf("=============== START OF DUMP ===============")
+            FirstDmxModeFixture(fixtureDMXMode):Dump()
+            Printf("================ END OF DUMP ================")
+        end
+    end
+end
+```
 
 ---
 
@@ -846,6 +1747,10 @@ FirstDmxModeFixture(light_userdata:dmxmode): light_userdata:fixture
 FixtureType(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The FixtureType Lua function returns a handle to the fixture type. The function does not accept any arguments, but the function must be executed when the command line destination is at a fixture type. If the command line destination is not a valid fixture type, then the function returns "nil".
+
 **Arguments**
 
 No Arguments
@@ -853,6 +1758,26 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints the information about the second fixture type in the show:
+
+```lua
+return function ()
+    -- The function returns the handle to the fixture at the current command line destination.
+    -- Change to the "FixtureType" destination.
+    Cmd("ChangeDestination FixtureType")
+    -- Change to the second fixture type in the show.
+    Cmd("ChangeDestination 2")
+    -- Dump information about the Fixture Type handle. 
+    Printf("=============== START OF DUMP ===============")
+    FixtureType():Dump()
+    Printf("================ END OF DUMP ================")
+    -- Return the command line destination to the Root.
+    Cmd("ChangeDestination Root")
+end
+```
 
 ---
 
@@ -863,14 +1788,47 @@ No Arguments
 FromAddr(string:address[, light_userdata:base_handle]): light_userdata:handle
 ```
 
+**Description**
+
+The FromAddr Lua function converts a numbered string address into a handle that can be used in commands.
+
 **Arguments**
 
 1. **`string`**: address
-2. **`light_userdata`****(optional)**: base_handle
+2. **`light_userdata`** **(optional)**: base_handle
 
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints the address of the first sequence:
+
+```lua
+return function()
+    -- Converts the string to a handle and store in a variabel.
+    local mySequenceHandle = FromAddr("14.14.1.6.1")
+    -- Converts the handle back to a numbered string and prints it.
+    Printf("The address is: " ..mySequenceHandle:Addr())
+    -- Converts the handle to a named string and prints it.
+    Printf("The address is: " ..mySequenceHandle:AddrNative())
+    
+    -- Store the handle of the selected datapool.
+    local myDataPool = DataPool()
+    -- Prints the address of the selected datapool.
+    Printf("The datapool address is: " ..myDataPool:Addr())
+    
+    --- The follwoing example uses the name of a sequence in the sequence pool. 
+    --- Please adjust the "Default" name in the next line to match an existing named sequence.
+    -- Finds the address based on the base location and a text string with names.
+    local alsoMySequenceHandle = FromAddr("Sequences.Default", myDataPool)
+    -- Converts the handle back to a numbered string and prints it.
+    Printf("The address is: " ..alsoMySequenceHandle:Addr())
+    -- Converts the handle to a named string and prints it.
+    Printf("The address is: " ..alsoMySequenceHandle:AddrNative())
+end
+```
 
 ---
 
@@ -899,6 +1857,10 @@ FSExtendedModeHasDots(light_userdata:handle to UIGrid (or derived), {r, c}:cell)
 GetApiDescriptor(nothing): table of {string:function_name, string:arguments, string:return_values}
 ```
 
+**Description**
+
+The GetApiDescriptor Lua function returns a table with a description of all the object-free Lua functions. These are descriptions only. The function does not have any actual functions. The table is not sorted.
+
 **Arguments**
 
 No Arguments
@@ -906,6 +1868,30 @@ No Arguments
 **Returns**
 
 - **`table of {string:function_name, string:arguments, string:return_values}`**: 
+
+**Example**
+
+This example prints the content of the returned table.
+
+```lua
+return function ()
+    -- This returns information about all the Lua "object-free" functions.
+    -- GetApiDescriptor() returns a table with all the functions. 
+    -- Each table element is another table with the name, argument description, and return description.
+      for key,value in ipairs(GetApiDescriptor()) do
+        if value[1] ~= nil then
+          Printf("Api " .. key .. " is: " .. value[1])
+        end
+        if value[2] ~= nil then
+          Printf("Arguments: " .. value[2])
+        end
+        if value[3] ~= nil then
+          Printf("Returns: " .. value[3])
+        end
+        Printf("---------------------------------------")
+      end
+  end
+```
 
 ---
 
@@ -916,6 +1902,10 @@ No Arguments
 GetAttributeByUIChannel(integer:ui channel index): light_userdata:reference_to_attribute
 ```
 
+**Description**
+
+The GetAttributeByUIChannel Lua function returns the handle to an attribute based on a "UI Channel Index". The index number can be found in the Parameter List.
+
 **Arguments**
 
 1. **`integer`**: ui channel index
@@ -923,6 +1913,21 @@ GetAttributeByUIChannel(integer:ui channel index): light_userdata:reference_to_a
 **Returns**
 
 - **`light_userdata`**: reference_to_attribute
+
+**Example**
+
+This example prints the "native" address to the first attribute of the first fixture in the current selection:
+
+```lua
+return function()
+    -- Get a handle to the first fixture in the current selection
+    local fixtureIndex = SelectionFirst()
+    -- Get the UI Channel Index number for the first attribute for the fixture
+    local channelIndex = GetUIChannelIndex(fixtureIndex,0)
+    -- Print the native address for the attribute with the handle
+    Printf("The native addr for the attribute is: %s",GetAttributeByUIChannel(channelIndex):AddrNative())
+end
+```
 
 ---
 
@@ -951,6 +1956,10 @@ GetAttributeColumnId(light_userdata:handle, light_userdata:attribute): integer:c
 GetAttributeCount(nothing): integer:attribute_count
 ```
 
+**Description**
+
+The GetAttributeCount Lua function returns the total number of attribute definitions in the show.
+
 **Arguments**
 
 No Arguments
@@ -958,6 +1967,16 @@ No Arguments
 **Returns**
 
 - **`integer`**: attribute_count
+
+**Example**
+
+This example prints the returned number in the Command Line History.
+
+```lua
+return function()
+    Printf("Attribute count is %i", GetAttributeCount())
+end
+```
 
 ---
 
@@ -968,6 +1987,10 @@ No Arguments
 GetAttributeIndex(string:attribute_name): integer:attribute_index
 ```
 
+**Description**
+
+The GetAttributeIndex Lua function returns the (0 based) index number of the attribute definition based on the system name of the attribute.
+
 **Arguments**
 
 1. **`string`**: attribute_name
@@ -975,6 +1998,23 @@ GetAttributeIndex(string:attribute_name): integer:attribute_index
 **Returns**
 
 - **`integer`**: attribute_index
+
+**Example**
+
+This example prints the index number of the attribute in Command Line History if it exists:
+
+```lua
+return function()
+    -- store the returned index or nil of "Gobo1"
+    local attributeIndex = GetAttributeIndex("Gobo1")
+    -- Check if the returned value is not nil and print a useful feedback
+    if attributeIndex~=nil then
+        Printf("Attribute is index number %i", attributeIndex)
+    else
+        Printf("The attribute is not found")
+    end
+end
+```
 
 ---
 
@@ -985,6 +2025,10 @@ GetAttributeIndex(string:attribute_name): integer:attribute_index
 GetButton(light_userdata:usb_device_object_handle): table of boolean:state
 ```
 
+**Description**
+
+The GetButton Lua function returns a key-value pairs table indicating, with a boolean value, whether a button is pressed on an MA3Module.
+
 **Arguments**
 
 1. **`light_userdata`**: usb_device_object_handle
@@ -992,6 +2036,35 @@ GetButton(light_userdata:usb_device_object_handle): table of boolean:state
 **Returns**
 
 - **`table of boolean`**: state
+
+**Example**
+
+This example requests the buttons states on the master module on a grandMA3 full-size console:
+
+```lua
+return function()
+    --- grandMA3 full-size modules are:
+    --- Master Module (MM): "UsbDeviceMA3 2"
+    --- Fader Module Encoder (MFE): "UsbDeviceMA3 3"
+    --- Fader Module Crossfader (MFX): "UsbDeviceMA3 4"
+
+    -- Get a handle to the Master Module on a grandMA3 full-size.
+    local usbDeviceHandle = Root().UsbNotifier.MA3Modules["UsbDeviceMA3 2"]
+    -- Create a table with the button status.
+    local buttonTable = GetButton(usbDeviceHandle)
+    -- Check if the table is nil and then print an error.
+    if buttonTable == nil then
+        ErrPrintf("nil")
+        return
+    end
+    -- If the table is not nil, then print a usefull feedback about pressed buttons. 
+    for key,value in pairs(buttonTable) do
+        if tostring(value) == "true" then
+            Printf("The button with the index " .. key .. " is pressed.")
+        end
+    end
+end
+```
 
 ---
 
@@ -1002,6 +2075,10 @@ GetButton(light_userdata:usb_device_object_handle): table of boolean:state
 GetChannelFunction(integer:ui_channel_index, integer:attribute_index): light_userdata:handle
 ```
 
+**Description**
+
+The GetChannelFunction Lua function returns a handle to a channel function based on two index inputs.
+
 **Arguments**
 
 1. **`integer`**: ui_channel_index
@@ -1010,6 +2087,35 @@ GetChannelFunction(integer:ui_channel_index, integer:attribute_index): light_use
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints the data connected to the handle. It uses the Dump() function:
+
+```lua
+return function()
+    -- Select the first fixture in the current selection.
+    local subfixtureIndex = SelectionFirst()
+    -- End the function if there is no selection.
+    if subfixtureIndex == nil then
+        ErrPrintf("Please select a fixture with a Dimmer")
+        return
+    end
+    -- Get the Attribute index and UIChannel index.
+    local attributeIndex = GetAttributeIndex("Dimmer")
+    local uiChannelIndex = GetUIChannelIndex(subfixtureIndex,attributeIndex)
+    Printf("The UIChannel Index is: %i. The Attribute Index is: %i. ",uiChannelIndex, attributeIndex)
+    -- End the function if any of the index return nil.
+    if (attributeIndex == nil or uiChannelIndex == nil) then
+        ErrPrintf("Something wrong happened, maybe your first selected fixture don't have a Dimmer - Please try again")
+        return
+    end
+    -- The following prints the dump for the dimmer channel function.
+    Printf("=============== START OF DUMP ===============")
+    GetChannelFunction(uiChannelIndex,attributeIndex):Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -1020,6 +2126,10 @@ GetChannelFunction(integer:ui_channel_index, integer:attribute_index): light_use
 GetChannelFunctionIndex(integer:ui_channel_index, integer:attribute_index): integer:channel_function_index
 ```
 
+**Description**
+
+The GetChannelFunctionIndex Lua function returns the integer matching a channel function based on two index inputs.
+
 **Arguments**
 
 1. **`integer`**: ui_channel_index
@@ -1028,6 +2138,26 @@ GetChannelFunctionIndex(integer:ui_channel_index, integer:attribute_index): inte
 **Returns**
 
 - **`integer`**: channel_function_index
+
+**Example**
+
+This example prints the indexes based on the fixture selection and the "Dimmer" attribute.
+
+```lua
+return function()
+    -- Get the Attribute index and UIChannel index.
+    local attributeIndex = GetAttributeIndex("Dimmer")
+    local uiChannelIndex = GetUIChannelIndex(SelectionFirst(),attributeIndex)
+    -- End the function if any of the index return nil.
+    if (attributeIndex == nil or uiChannelIndex == nil) then
+        ErrPrintf("Something wrong happened, maybe your first selected fixture don't have a Dimmer - Please try again")
+        return
+    end
+    -- Get the Channel Function Index and store it in a variable.
+    local channelFunctionIndex = GetChannelFunctionIndex(uiChannelIndex,attributeIndex)
+    Printf("The UIChannel Index is: %i. The Attribute Index is: %i. The Channel Function Index is: %i", uiChannelIndex, attributeIndex, channelFunctionIndex)
+end
+```
 
 ---
 
@@ -1038,6 +2168,10 @@ GetChannelFunctionIndex(integer:ui_channel_index, integer:attribute_index): inte
 GetClassDerivationLevel(string:class_name): integer:result or nothing
 ```
 
+**Description**
+
+The GetClassDerivationLevel Lua function returns an integer indicating the derivation level index for a class based on a class name.
+
 **Arguments**
 
 1. **`string`**: class_name
@@ -1045,6 +2179,23 @@ GetClassDerivationLevel(string:class_name): integer:result or nothing
 **Returns**
 
 - **`integer`**: result or nothing
+
+**Example**
+
+This example prints the index integer for the Pool class in the Command Line History:
+
+```lua
+return function()
+    -- Get the index integer for the "Pool" class.
+    local classDerivationLevel = GetClassDerivationLevel("Pool")
+    -- Create a valid Printf return.
+    if classDerivationLevel == nil then
+        Printf("The return is nil")
+    else
+        Printf("The ClassDerivationLevel index for 'Pool' is: %i", classDerivationLevel)
+    end
+end
+```
 
 ---
 
@@ -1055,6 +2206,10 @@ GetClassDerivationLevel(string:class_name): integer:result or nothing
 GetCurrentCue(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The GetCurrentCue Lua function returns a handle to the last activated cue in the selected sequence.
+
 **Arguments**
 
 No Arguments
@@ -1062,6 +2217,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints the data connected to the handle. It uses the Dump() function:
+
+```lua
+return function()
+    -- Dumps information about the last activated cue in the selected sequence
+    Printf("=============== START OF DUMP ===============")
+    GetCurrentCue():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -1072,6 +2240,10 @@ No Arguments
 GetDebugFPS(nothing): float:fps
 ```
 
+**Description**
+
+The GetDebugFPS Lua function returns a float number with the frames per second.
+
 **Arguments**
 
 No Arguments
@@ -1079,6 +2251,17 @@ No Arguments
 **Returns**
 
 - **`float`**: fps
+
+**Example**
+
+This example prints the FPS number:
+
+```lua
+return function ()
+    -- Prints the current frames per second.
+    Printf("Current FPS: " .. GetDebugFPS())
+end
+```
 
 ---
 
@@ -1089,6 +2272,10 @@ No Arguments
 GetDisplayByIndex(integer:display_index): light_userdata:display_handle
 ```
 
+**Description**
+
+The GetDisplayByIndex Lua function returns a handle to the display object matching the provided index number.
+
 **Arguments**
 
 1. **`integer`**: display_index
@@ -1096,6 +2283,26 @@ GetDisplayByIndex(integer:display_index): light_userdata:display_handle
 **Returns**
 
 - **`light_userdata`**: display_handle
+
+**Example**
+
+This example prints the data connected to the handle. It uses the Dump() function:
+
+```lua
+return function()
+    -- Get the index number for "Display 1"
+    local displayIndex = GetDisplayCollect()["Display 1"].INDEX
+    -- return error text in case the index number is nil
+    if displayIndex == nil then
+        ErrPrintf('Something went wrong. It appears that there is no "display 1"')
+        return
+    end
+    -- Dump all information about the display with the index number
+    Printf("=============== START OF DUMP ===============")
+    GetDisplayByIndex(displayIndex):Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -1106,6 +2313,10 @@ GetDisplayByIndex(integer:display_index): light_userdata:display_handle
 GetDisplayCollect(nothing): light_userdata:handle to DisplayCollect
 ```
 
+**Description**
+
+The GetDisplayCollect Lua function returns a handle to the DisplayCollect object.
+
 **Arguments**
 
 No Arguments
@@ -1113,6 +2324,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle to DisplayCollect
+
+**Example**
+
+This example prints the data connected to the handle. It uses the Dump() function:
+
+```lua
+return function()
+    -- This example dumps all information about the DisplayCollect object.
+    Printf("=============== START OF DUMP ===============")
+    GetDisplayCollect():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -1123,14 +2347,38 @@ No Arguments
 GetDMXUniverse(integer:universe[ ,boolean:modePercent]): {integer:dmx_values}
 ```
 
+**Description**
+
+The GetDMXUniverse Lua function returns a table with the DMX channels and their current value.
+
 **Arguments**
 
 1. **`integer`**: universe
-2. **`boolean`****(optional)**: modePercent
+2. **`boolean`** **(optional)**: modePercent
 
 **Returns**
 
 - **`{integer:dmx_values}`**: 
+
+**Example**
+
+This example prints the table in a list for DMX universe 1 (if it is granted):
+
+```lua
+return function()
+    -- This gets a table for universe 1 with the returned value in percent.
+    local tableDMXUniverse = GetDMXUniverse(1,true)
+    -- Check the returned table and print information if nil.
+    if tableDMXUniverse == nil then
+        Printf("No value is returned. The univer is not granted or input is out of range")
+        return
+    end
+    -- Prints the table if not nil.
+    for addr, value in ipairs(tableDMXUniverse) do
+        Printf("DMX Addr: %i - DMX value : %i", addr, value)
+    end
+end
+```
 
 ---
 
@@ -1141,15 +2389,38 @@ GetDMXUniverse(integer:universe[ ,boolean:modePercent]): {integer:dmx_values}
 GetDMXValue(integer:address[ ,integer:universe, boolean:mode_percent]): integer:dmx_value
 ```
 
+**Description**
+
+The GetDMXValue Lua function returns a number indicating the DMX value of a specified DMX address.
+
 **Arguments**
 
 1. **`integer`**: address
-2. **`integer`****(optional)**: universe
-3. **`boolean`****(optional)**: mode_percent
+2. **`integer`** **(optional)**: universe
+3. **`boolean`** **(optional)**: mode_percent
 
 **Returns**
 
 - **`integer`**: dmx_value
+
+**Example**
+
+This example prints the value for DMX address 2 in Universe 1 (if it is granted):
+
+```lua
+return function()
+    -- This prints the value of DMX address 2 in universe 1 in a range of 0 to 255
+    local address = 2       -- The DMX address
+    local universe = 1      -- The DMX universe
+    local percent = false   -- Readout in percent or DMX value
+    local value = GetDMXValue(address, universe, percent)
+    if value == nil then
+        Printf("The DMX address did not return a valid value")
+    else
+        Printf("DMX address %i.%03d has a value of %03d", universe, address, value)
+    end
+end
+```
 
 ---
 
@@ -1160,6 +2431,10 @@ GetDMXValue(integer:address[ ,integer:universe, boolean:mode_percent]): integer:
 GetExecutor(integer:executor): light_userdata:executor, light_userdata:page
 ```
 
+**Description**
+
+The GetExecutor Lua function returns the handles of the executor and the page based on the executor number.
+
 **Arguments**
 
 1. **`integer`**: executor
@@ -1168,6 +2443,29 @@ GetExecutor(integer:executor): light_userdata:executor, light_userdata:page
 
 - **`light_userdata`**: executor
 - **`light_userdata`**: page
+
+**Example**
+
+This example stores the handles for executor number 201. It then uses the Dump() function to show the data for the two handles.
+
+```lua
+return function ()
+    -- This saves the handles for executor 201 on the selected page.
+    local executorHandle, pageHandle = GetExecutor(201)
+    -- exit the function and print an error message if any of the handles are nil.
+    if executorHandle == nil or pageHandle == nil then
+        ErrPrintf("There is not a valid object on executor 201, please assign something and try again.")
+        return
+    end
+    -- The following prints the dumps of the two handles.
+    Printf("============ START OF EXEC DUMP =============")
+    executorHandle:Dump()
+    Printf("================ END OF DUMP ================")
+    Printf("============ START OF PAGE DUMP =============")
+    pageHandle:Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -1178,6 +2476,10 @@ GetExecutor(integer:executor): light_userdata:executor, light_userdata:page
 GetFocus(nothing): light_userdata:display_handle
 ```
 
+**Description**
+
+The GetFocus Lua function returns a handle to the object that currently has focus in the UI.
+
 **Arguments**
 
 No Arguments
@@ -1185,6 +2487,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: display_handle
+
+**Example**
+
+This example prints the data connected to the handle. It uses the Dump() function:
+
+```lua
+return function()
+    -- This example dumps all information about the object who currently got focus.
+    Printf("=============== START OF DUMP ===============")
+    GetFocus():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -1195,6 +2510,10 @@ No Arguments
 GetFocusDisplay(nothing): light_userdata:display_handle
 ```
 
+**Description**
+
+The GetFocusDisplay Lua function returns a handle to the display object that currently has focus in the UI.
+
 **Arguments**
 
 No Arguments
@@ -1202,6 +2521,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: display_handle
+
+**Example**
+
+This example prints the data connected to the handle. It uses the Dump() function:
+
+```lua
+return function()
+    -- This example dumps all information about the display object who currently got focus.
+    Printf("=============== START OF DUMP ===============")
+    GetFocusDisplay():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -1212,6 +2544,10 @@ No Arguments
 GetObjApiDescriptor(nothing): table of {string:function_name, string:arguments, string:return_values}
 ```
 
+**Description**
+
+The GetObjApiDescriptor Lua function returns a table with a description of all the object Lua functions. These are descriptions only. The function does not have any actual functions. The table is not sorted.
+
 **Arguments**
 
 No Arguments
@@ -1219,6 +2555,30 @@ No Arguments
 **Returns**
 
 - **`table of {string:function_name, string:arguments, string:return_values}`**: 
+
+**Example**
+
+This example prints the content of the returned table.
+
+```lua
+return function ()
+  -- This returns information about all the Lua "object" functions.
+  -- GetObjApiDescriptor() returns a table with all the functions. 
+  -- Each table element is another table with the name, argument description, and return description.
+    for key,value in ipairs(GetObjApiDescriptor()) do
+      if value[1] ~= nil then
+        Printf("Api " .. key .. " is: " .. value[1])
+      end
+      if value[2] ~= nil then
+        Printf("Arguments: " .. value[2])
+      end
+      if value[3] ~= nil then
+        Printf("Returns: " .. value[3])
+      end
+      Printf("---------------------------------------")
+      end
+end
+```
 
 ---
 
@@ -1246,14 +2606,31 @@ GetObject(string:address): light_userdata:handle
 GetPath(string:path_type or integer:path_type(Enums.PathType)[ ,boolean:create]): string:path
 ```
 
+**Description**
+
+The GetPath Lua function returns a string with the path of a grandMA3 folder.
+
 **Arguments**
 
 1. **`string`**: path_type or integer:path_type(Enums.PathType)
-2. **`boolean`****(optional)**: create
+2. **`boolean`** **(optional)**: create
 
 **Returns**
 
 - **`string`**: path
+
+**Example**
+
+This example prints the paths of the show folder on the system monitor twice. It demonstrates the two different input types:
+
+```lua
+return function()
+    -- This prints a path based on a string input and it creates the folder if it does not exists.
+    Printf("Path of show files (string) is: " .. GetPath("shows", true))
+    -- This prints the path based on an integer. The integer is looked-up using the 'PathType' enum.
+    Printf("Path of show files (integer) is: " .. GetPath(Enums.PathType.Showfiles))
+end
+```
 
 ---
 
@@ -1264,15 +2641,52 @@ GetPath(string:path_type or integer:path_type(Enums.PathType)[ ,boolean:create])
 GetPathOverrideFor(string:path_type or integer:path_type(Enums.PathType), string:path[ ,boolean:create]): string:overwritten_path
 ```
 
+**Description**
+
+The GetPathOverrideFor Lua function delivers a string with the path of a grandMA3 folder. The function is relevant when the path should be on a removable drive connected to a console.
+
 **Arguments**
 
 1. **`string`**: path_type or integer:path_type(Enums.PathType)
 2. **`string`**: path
-3. **`boolean`****(optional)**: create
+3. **`boolean`** **(optional)**: create
 
 **Returns**
 
 - **`string`**: overwritten_path
+
+**Example**
+
+This example prints the override path of the macro folder on the system monitor. It should be run on a console with a removable drive connected.
+
+```lua
+return function ()
+    -- Set a path for the first removable media.
+    -- Set the initial value to nil.
+    local myBasePath = nil
+    -- Itereate the drives and find the first 'Removeable' drive and store the path.
+    for _, value in ipairs(Root().Temp.DriveCollect) do
+        local driveType = value.drivetype
+        if driveType == "Removeable" then
+            myBasePath = value.path
+            break
+        end
+    end
+    -- If no removeable drive was found, then provide feedback and exit the function.
+    if myBasePath == nil then
+        ErrPrintf("No removeable drive could be found. Please insert one and try again")
+        return
+    end
+
+    -- Get the integer for the UserMacros path type.
+    local myPathType = Enums.PathType.UserMacros
+
+    -- Gey the string for the path override.
+    local myOverridePath = GetPathOverrideFor(myPathType, myBasePath)
+    -- Print the returned string.
+    Printf("The path is: " .. myOverridePath)
+end
+```
 
 ---
 
@@ -1300,14 +2714,49 @@ No Arguments
 GetPathType(light_userdata:target_object[ ,integer:content_type (Enums.PathContentType)]): string:path_type_name
 ```
 
+**Description**
+
+The GetPathType Lua function returns a string with a name for the path type. This function can be useful when importing objects.
+
 **Arguments**
 
 1. **`light_userdata`**: target_object
-2. **`integer`****(optional)**: content_type (Enums.PathContentType)
+2. **`integer`** **(optional)**: content_type (Enums.PathContentType)
 
 **Returns**
 
 - **`string`**: path_type_name
+
+**Example**
+
+This example prints the path type name for the first macro object - if it exists:
+
+```lua
+return function ()
+    -- Get a handle to the first Macro.
+    local myMacro = DataPool().Macros[1]
+    if myMacro == nil then
+        ErrPrintf("An error occurred, possibly because the first macro does not exist.")
+        ErrPrintf("Please create one and try again.")
+        return
+    end
+    -- Get the user name of the path type.
+    local myPathTypeNameUser = GetPathType(myMacro, Enums.PathContentType.User)
+    if myPathTypeNameUser ~= nil then
+        Printf("The user name of the path type is: " .. myPathTypeNameUser)
+    else
+        ErrPrintf("There was an error getting the path type.")
+    end
+
+    -- Get the system name of the path type.
+    local myPathTypeNameSystem = GetPathType(myMacro, Enums.PathContentType.System)
+    if myPathTypeNameSystem ~= nil then
+        Printf("The system name of the path type is: " .. myPathTypeNameSystem)
+    else
+        ErrPrintf("There was an error getting the path type.")
+    end
+end
+```
 
 ---
 
@@ -1318,15 +2767,71 @@ GetPathType(light_userdata:target_object[ ,integer:content_type (Enums.PathConte
 GetPresetData(light_userdata:preset_handle[, boolean:phasers_only(default=false)[, boolean:by_fixtures(default=true)]]): table:phaser_data
 ```
 
+**Description**
+
+The GetPresetData Lua function returns a table with the preset data based on the preset handle.
+
 **Arguments**
 
 1. **`light_userdata`**: preset_handle
-2. **`boolean`****(optional)**: phasers_only(default=false)
-3. **`boolean`****(optional)**: by_fixtures(default=true)
+2. **`boolean`** **(optional)**: phasers_only(default=false)
+3. **`boolean`** **(optional)**: by_fixtures(default=true)
 
 **Returns**
 
 - **`table`**: phaser_data
+
+**Example**
+
+This example prints information about the first level table in the preset data and the first level of the first fixture in the preset. It uses dimmer preset 1, which must exist.
+
+```lua
+return function()
+    -- Get the handle for the first Dimmer preset.
+    local myPreset = DataPool().PresetPools[1][1]
+    -- Get the Preset Data of the handle.
+    local myPresetData = GetPresetData(myPreset, false, false)
+    -- Check if the GetPresetData returns something. 
+    if myPresetData == nil then
+        ErrPrintf("Dimmer preset 1 does not exist. Please create one and try again.")
+        return
+    end
+
+    -- Print the myPresetData table.
+    for Key, value in pairs(myPresetData) do
+      if type(value) == "table" then
+        Printf("Key: " .. Key .. " ; Value type is: " .. type(value))
+      else
+        Printf("Key: " .. Key .. " ; Value type is: " .. type(value) .. " ; Value: " .. value)
+      end
+    end
+
+    -- Create a table object to hold all the integer keys in the myPresetData table.
+    local myIntegerTableKeys = {}
+    -- Fill the table.
+    for key,_ in pairs(myPresetData) do
+        if type(key) == "number" then
+            table.insert(myIntegerTableKeys, key)
+        end
+    end
+    -- Sort the table
+    table.sort(myIntegerTableKeys)
+
+    -- Print the elements of the fixture with the lowest ui_channel_index in the preset.
+    local tableIndex = myIntegerTableKeys[1]
+    if tableIndex ~= nil then
+        Printf("=============== TABLE CONTENT START - Table Key: " .. tableIndex .." ===============")
+        for Key, value in pairs(myPresetData[tableIndex]) do
+          if type(value) == "table" then
+            Printf("Key: " .. Key .. " ; Value type is: " .. type(value))
+          else
+            Printf("Key: " .. Key .. " ; Value type is: " .. type(value) .. " ; Value: " .. tostring(value))
+          end
+        end
+        Printf("================ TABLE CONTENT END - Table Key: " .. tableIndex .." ================")
+    end
+end
+```
 
 ---
 
@@ -1409,6 +2914,10 @@ No Arguments
 GetRTChannel(integer:rt_channel_index): table:rt_channel_descriptor
 ```
 
+**Description**
+
+The GetRTChannel Lua function returns a table with information about the related RT Channel.
+
 **Arguments**
 
 1. **`integer`**: rt_channel_index
@@ -1416,6 +2925,54 @@ GetRTChannel(integer:rt_channel_index): table:rt_channel_descriptor
 **Returns**
 
 - **`table`**: rt_channel_descriptor
+
+**Example**
+
+This example prints all information related to the first RT Channel for the first fixture in the selection:
+
+```lua
+return function()
+    -- Get the index number for the first RT Channel for the first fixture in the current selection 
+    local channelRTIndex = GetRTChannels(SelectionFirst())[1]
+    -- Print an error message if returnd index is nil
+    if channelRTIndex == nil then
+        ErrPrintf("Please select a fixture and try again")
+        return
+    end
+    -- Print all information about the RT Channel if it does not return nil
+    local rtChannel = GetRTChannel(channelRTIndex)
+    if rtChannel == nil then
+        Printf("An RTChannel could not be found. Please try to selct a different fixture and try again.")
+        return
+    end
+    Printf("================= RT CHANNEL =================")
+    Printf("ui_index_first = " .. rtChannel["ui_index_first"])
+    Printf("dmx_lowlight = " .. rtChannel["dmx_lowlight"])
+    Printf("dmx_highlight = " .. rtChannel["dmx_highlight"])
+    Printf("dmx_default = " .. rtChannel["dmx_default"])
+    Printf("freq = " .. rtChannel["freq"])
+    Printf("rt_index = " .. rtChannel["rt_index"])
+    Printf("========== RELATED DMX CHANNEL DUMP ==========")
+    rtChannel["dmx_channel"]:Dump() -- Handle for relevant DMX channel
+    Printf("============ RELATED FIXTURE DUMP ============")
+    rtChannel["fixture"]:Dump() -- Handle for relevant fixture
+    Printf("========== RELATED SUBFIXTURE DUMP ===========")
+    rtChannel["subfixture"]:Dump() -- Handle for relevant subfixture
+    Printf("=================== INFO =====================")
+    Printf("normed_phaser_time = " .. rtChannel["info"]["normed_phaser_time"])
+    Printf("================ INFO FLAGS ==================")
+    Printf("group_master = " .. rtChannel["info"]["flags"]["group_master"])
+    Printf("additive_master = " .. rtChannel["info"]["flags"]["additive_master"])
+    Printf("solo = " .. rtChannel["info"]["flags"]["solo"])
+    Printf("highlight = " .. rtChannel["info"]["flags"]["highlight"])
+    Printf("lowlight = " .. rtChannel["info"]["flags"]["lowlight"])
+    Printf("=================== PATCH ====================")
+    Printf("break = " .. rtChannel["patch"]["break"])
+    Printf("coarse = " .. rtChannel["patch"]["coarse"])
+    Printf("fine = " .. rtChannel["patch"]["fine"])
+    Printf("ultra = " .. rtChannel["patch"]["ultra"])
+end
+```
 
 ---
 
@@ -1426,6 +2983,10 @@ GetRTChannel(integer:rt_channel_index): table:rt_channel_descriptor
 GetRTChannelCount(nothing): integer:rt_channel_count
 ```
 
+**Description**
+
+The GetRTChannelCount Lua function returns a number indicating the total amount of RT channels.
+
 **Arguments**
 
 No Arguments
@@ -1433,6 +2994,16 @@ No Arguments
 **Returns**
 
 - **`integer`**: rt_channel_count
+
+**Example**
+
+This example prints the number of RT channels to the Command Line History:
+
+```lua
+return function()
+    Printf("The number of RT channels is " .. GetRTChannelCount())
+end
+```
 
 ---
 
@@ -1443,14 +3014,38 @@ No Arguments
 GetRTChannels(integer:fixture index or light_userdata: reference_to_fixture_object[, boolean:return_as_handles]): {integer:rt_channels} or {light_userdata:rt_channels}
 ```
 
+**Description**
+
+The GetRTChannels Lua function returns a table with RT Channel indexes or a table with handles to the RT Channel objects. There are two different types of arguments for this function.
+
 **Arguments**
 
 1. **`integer`**: fixture index or light_userdata: reference_to_fixture_object
-2. **`boolean`****(optional)**: return_as_handles
+2. **`boolean`** **(optional)**: return_as_handles
 
 **Returns**
 
 - **`{integer:rt_channels} or {light_userdata:rt_channels}`**: 
+
+**Example**
+
+```lua
+return function()
+    -- Get the index number for the first fixture in the current selection 
+    local fixtureIndex = SelectionFirst()
+    -- Get the indexes of the RT channels
+    local rtChannels = GetRTChannels(fixtureIndex, false)
+    -- Print an error message if returnd table is nil
+    if rtChannels == nil then
+        ErrPrintf("Please select a fixture and try again")
+        return
+    end
+    -- Print the table content
+    for key,value in ipairs(rtChannels) do
+        Printf("List index number ".. key .." : RTChannel index number = ".. value)
+    end
+end
+```
 
 ---
 
@@ -1461,6 +3056,10 @@ GetRTChannels(integer:fixture index or light_userdata: reference_to_fixture_obje
 GetSample(string:type('MEMORY', 'CPU', 'CPUTEMP', 'GPUTEMP', 'SYSTEMP', 'FANRPM')): integer:current_value_in_percent
 ```
 
+**Description**
+
+The GetSample Lua function returns a number representing a percentage usage based on a string input.
+
 **Arguments**
 
 1. **`string`**: type('MEMORY', 'CPU', 'CPUTEMP', 'GPUTEMP', 'SYSTEMP', 'FANRPM')
@@ -1468,6 +3067,30 @@ GetSample(string:type('MEMORY', 'CPU', 'CPUTEMP', 'GPUTEMP', 'SYSTEMP', 'FANRPM'
 **Returns**
 
 - **`integer`**: current_value_in_percent
+
+**Example**
+
+This example stores the different samples in a table and then prints the content of the table:
+
+```lua
+return function()
+    -- Gather the sample information in a table
+    local sample = {}
+    sample["MEMORY"] = GetSample("MEMORY")
+    sample["CPU"] = GetSample("CPU")
+    sample["CPUTEMP"] = GetSample("CPUTEMP")
+    sample["GPUTEMP"] = GetSample("GPUTEMP")
+    sample["SYSTEMP"] = GetSample("SYSTEMP")
+    sample["FANRPM"] = GetSample("FANRPM")
+    -- Print the collected data
+    Printf("Memory ; ".. sample["MEMORY"])
+    Printf("CPU ; ".. sample["CPU"])
+    Printf("CPU temperature ; ".. sample["CPUTEMP"])
+    Printf("GPU temperature ; ".. sample["GPUTEMP"])
+    Printf("System temperature ; ".. sample["SYSTEMP"])
+    Printf("Fan RPM ; ".. sample["FANRPM"])
+end
+```
 
 ---
 
@@ -1478,6 +3101,10 @@ GetSample(string:type('MEMORY', 'CPU', 'CPUTEMP', 'GPUTEMP', 'SYSTEMP', 'FANRPM'
 GetScreenContent(light_userdata:handle to ScreenConfig): light_userdata:handle
 ```
 
+**Description**
+
+The GetScreenContent Lua function returns a handle to the screen content based on a provided handle to a screen configuration.
+
 **Arguments**
 
 1. **`light_userdata`**: handle to ScreenConfig
@@ -1485,6 +3112,23 @@ GetScreenContent(light_userdata:handle to ScreenConfig): light_userdata:handle
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints the data connected to the screen content handle. It uses the CurrentScreenConfig() and Dump() functions:
+
+```lua
+return function()
+    -- Create a handle for the current screen configuration.
+    local myCurrentScreenConfig = CurrentScreenConfig()
+    -- Create a handle for the screen content based on the screen configuration.
+    local myScreenContent = GetScreenContent(myCurrentScreenConfig)
+    -- Print the Dump of the handle.
+    Printf("=============== START OF DUMP ===============")
+    myScreenContent:Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -1495,6 +3139,10 @@ GetScreenContent(light_userdata:handle to ScreenConfig): light_userdata:handle
 GetSelectedAttribute(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The GetSelectedAttribute Lua function returns a handle to the currently selected attribute.
+
 **Arguments**
 
 No Arguments
@@ -1502,6 +3150,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints the data connected to the handle. It uses the Dump() function:
+
+```lua
+return function()
+    -- This example dumps all information about the currently selected attribute
+    Printf("=============== START OF DUMP ===============")
+    GetSelectedAttribute():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -1512,6 +3173,10 @@ No Arguments
 GetShowFileStatus(nothing): string:showfile_status
 ```
 
+**Description**
+
+The GetShowFileStatus Lua function returns a string with the current device's show file status, for example, "NoShow", "ShowLoaded", "ShowDownloaded", "ShowSaving", and "DataNegotiationActive".
+
 **Arguments**
 
 No Arguments
@@ -1519,6 +3184,17 @@ No Arguments
 **Returns**
 
 - **`string`**: showfile_status
+
+**Example**
+
+This example prints the current device's show file status in the Command Line History:
+
+```lua
+return function ()
+    -- Prints the current showfile status
+    Printf("ShowfileStatus: "..GetShowFileStatus())
+end
+```
 
 ---
 
@@ -1529,6 +3205,10 @@ No Arguments
 GetSubfixture(integer:subfixture_index): light_userdata:subfixture
 ```
 
+**Description**
+
+The GetSubfixture Lua function returns the handle of the fixture specified by its patch index number.
+
 **Arguments**
 
 1. **`integer`**: subfixture_index
@@ -1536,6 +3216,27 @@ GetSubfixture(integer:subfixture_index): light_userdata:subfixture
 **Returns**
 
 - **`light_userdata`**: subfixture
+
+**Example**
+
+This example uses a fixture selection to print all the information (in the Command Line History) about the first fixture in the selection using the Dump() function:
+
+```lua
+return function ()
+    -- Check for a fixture selection, by returning an index for the first fixture
+    if (SelectionFirst()) then
+        -- There is a fixture selection, store the index for the first fixture 
+        local fixtureIndex = SelectionFirst()
+        -- Dump all information about the fixture
+        Printf("=============== START OF DUMP ===============")
+        GetSubfixture(fixtureIndex):Dump()
+        Printf("================ END OF DUMP ================")
+    else
+        -- There needs to be a selection of at least one fixture
+        Printf("Please select a fixture")
+    end
+end
+```
 
 ---
 
@@ -1546,6 +3247,10 @@ GetSubfixture(integer:subfixture_index): light_userdata:subfixture
 GetSubfixtureCount(nothing): integer:subfixture_count
 ```
 
+**Description**
+
+The GetSubfixtureCount Lua function returns the total number of fixtures that are patched within the show file.
+
 **Arguments**
 
 No Arguments
@@ -1553,6 +3258,16 @@ No Arguments
 **Returns**
 
 - **`integer`**: subfixture_count
+
+**Example**
+
+This example prints the total number of patched fixtures in the Command Line History:
+
+```lua
+return function ()
+    Printf('Total number of patched fixtures: %i', GetSubfixtureCount())
+end
+```
 
 ---
 
@@ -1582,7 +3297,7 @@ GetTextScreenLineCount([integer:starting internal line number]): integer:line co
 
 **Arguments**
 
-1. **`integer`****(optional)**: starting internal line number
+1. **`integer`** **(optional)**: starting internal line number
 
 **Returns**
 
@@ -1597,6 +3312,10 @@ GetTextScreenLineCount([integer:starting internal line number]): integer:line co
 GetTokenName(string:short_name): string:full_name
 ```
 
+**Description**
+
+The GetTokenName Lua function returns a string with the full keyword based on the short version string input or nil if there is no corresponding keyword.
+
 **Arguments**
 
 1. **`string`**: short_name
@@ -1604,6 +3323,23 @@ GetTokenName(string:short_name): string:full_name
 **Returns**
 
 - **`string`**: full_name
+
+**Example**
+
+This example returns the full keyword matching the short "seq" string:
+
+```lua
+return function()
+    -- Store a short string to be used as input
+    local shortToken = 'seq'
+    -- Get the full token name
+    local tokenName = GetTokenName(shortToken)
+    -- Print useful output if nil is not returned
+    if tokenName ~= nil then
+        Printf("The full version of '".. shortToken .. "' is '" .. tokenName .. "'")
+    end
+end
+```
 
 ---
 
@@ -1614,6 +3350,10 @@ GetTokenName(string:short_name): string:full_name
 GetTokenNameByIndex(integer:token_index): string:full_name
 ```
 
+**Description**
+
+The GetTokenNameByIndex Lua function returns a string with the keyword based on the index number provided.
+
 **Arguments**
 
 1. **`integer`**: token_index
@@ -1621,6 +3361,24 @@ GetTokenNameByIndex(integer:token_index): string:full_name
 **Returns**
 
 - **`string`**: full_name
+
+**Example**
+
+If the keyword exists, this example returns the keywords matching the first 443 index numbers:
+
+```lua
+return function()
+    -- Create a variable to hold the keyword string
+    local tokenName = ""
+    -- Print the keywords to the first 443 indexes if possible
+    for index = 1, 443, 1 do
+        tokenName = GetTokenNameByIndex(index)
+        if tokenName ~= nil then
+            Printf("Token index " .. index .. " = " .. tokenName)
+        end
+    end
+end
+```
 
 ---
 
@@ -1631,6 +3389,10 @@ GetTokenNameByIndex(integer:token_index): string:full_name
 GetTopModal(nothing): light_userdata:handle to top modal overlay
 ```
 
+**Description**
+
+The GetTopModal Lua function returns a handle for the modal at the top. Modal is the internal name for pop-ups that interrupt the system's normal operation. A modal blocks other UI elements from being used while it is open.
+
 **Arguments**
 
 No Arguments
@@ -1638,6 +3400,32 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle to top modal overlay
+
+**Example**
+
+This example uses the Dump() function to show information about the StagePopup selection pop-up.
+
+```lua
+return function()
+    -- Open a Modal / Pop-up.
+    Cmd('Menu "StagePopup"')
+    -- Add a small wait.
+    coroutine.yield(0.5)
+    -- Get the handle for the modal / pop-up. 
+    local modalHandle = GetTopModal()
+    -- If there is a handle then dump all information else print en error feedback.
+    if modalHandle ~= nil then
+        Printf("=============== START OF DUMP ===============")
+        modalHandle:Dump()
+        Printf("================ END OF DUMP ================")
+    else
+        ErrPrintf("The Modal UI object could not be found.")
+    end
+    -- Close the modal / pop-up by pressing the Escape key.
+    Keyboard(1,'press','Escape')
+    Keyboard(1,'release','Escape')
+end
+```
 
 ---
 
@@ -1648,6 +3436,10 @@ No Arguments
 GetTopOverlay(integer:display_index): light_userdata:handle to top overlay on the display
 ```
 
+**Description**
+
+The GetTopOverlay Lua function returns a handle for the overlay at the top of the display with the provided index number. Overlay is the internal name for what is called pop-ups or menus in the rest of this manual.
+
 **Arguments**
 
 1. **`integer`**: display_index
@@ -1655,6 +3447,33 @@ GetTopOverlay(integer:display_index): light_userdata:handle to top overlay on th
 **Returns**
 
 - **`light_userdata`**: handle to top overlay on the display
+
+**Example**
+
+This example uses the Dump() function to show information about the MenuSelector pop-up - it is the one opening when pressing the Menu key.
+
+```lua
+return function()
+    -- Open the MenuSelector overlay.
+    Cmd('Menu "MenuSelector')
+    -- Add a small delay.
+    coroutine.yield(0.5)
+    -- Get the handle for the overlay on the display with index 1.
+    local overlayHandle = GetTopOverlay(1)
+    -- Add a small delay.
+    coroutine.yield(0.5)
+    -- Close the MenuSelector overlay.
+    Cmd('Menu "MenuSelector')
+    -- Check if there is a handle and print appropriate feedback.
+    if overlayHandle ~= nil then
+        Printf("=============== START OF DUMP ===============")
+        overlayHandle:Dump()
+        Printf("================ END OF DUMP ================")
+    else
+        ErrPrintf("The Overlay UI object could not be found.")
+    end
+end
+```
 
 ---
 
@@ -1683,6 +3502,10 @@ GetUIChannel(integer:ui_channel_index or light_userdata: subfixture_reference, i
 GetUIChannelCount(nothing): integer:ui_channel_count
 ```
 
+**Description**
+
+The GetUIChannelCount Lua function returns a number indicating the total amount of UI channels.
+
 **Arguments**
 
 No Arguments
@@ -1690,6 +3513,16 @@ No Arguments
 **Returns**
 
 - **`integer`**: ui_channel_count
+
+**Example**
+
+This example prints the number of UI channels to the Command Line History:
+
+```lua
+return function()
+    Printf("The number of UI channels is " .. GetUIChannelCount())
+end
+```
 
 ---
 
@@ -1700,6 +3533,10 @@ No Arguments
 GetUIChannelIndex(integer:subfixture_index, integer:attribute_index): integer:ui_channel_index
 ```
 
+**Description**
+
+The GetUIChannelIndex Lua function returns the index integer matching a UI channel based on two index inputs.
+
 **Arguments**
 
 1. **`integer`**: subfixture_index
@@ -1708,6 +3545,24 @@ GetUIChannelIndex(integer:subfixture_index, integer:attribute_index): integer:ui
 **Returns**
 
 - **`integer`**: ui_channel_index
+
+**Example**
+
+This example prints the UI channel index of the "Dimmer" attribute of the first fixture in the current selection:
+
+```lua
+return function()
+    -- Get the Attribute index and UIChannel indexes
+    local attributeIndex = GetAttributeIndex("Dimmer")
+    local uiChannelIndex = GetUIChannelIndex(SelectionFirst(),attributeIndex)
+    -- End the function if any of the index return nil
+    if (attributeIndex == nil or uiChannelIndex == nil) then
+        ErrPrintf("Something went wrong, maybe your first selected fixture don't have a Dimmer - Please try again")
+        return
+    end
+    Printf("The UI Channel Index is " .. uiChannelIndex)
+end
+```
 
 ---
 
@@ -1718,14 +3573,34 @@ GetUIChannelIndex(integer:subfixture_index, integer:attribute_index): integer:ui
 GetUIChannels(integer:subfixture_index or light_userdata: subfixture_handle[, boolean:return_as_handles]): {integer:ui_channels} or {light_userdata:ui_channels}
 ```
 
+**Description**
+
+The GetUIChannels Lua function returns a table with UI Channel indexes or a table with handles to the UI Channel objects. There are two different types of arguments for this function.
+
 **Arguments**
 
 1. **`integer`**: subfixture_index or light_userdata: subfixture_handle
-2. **`boolean`****(optional)**: return_as_handles
+2. **`boolean`** **(optional)**: return_as_handles
 
 **Returns**
 
 - **`{integer:ui_channels} or {light_userdata:ui_channels}`**: 
+
+**Example**
+
+```lua
+return function()
+    -- Creates a table of indexes of the UI channels of the first selected fixture.
+    local uiChannels = GetUIChannels(SelectionFirst())
+    if uiChannels == nil then
+        ErrPrintf("Please select a fixture and try again")
+        return
+    end
+    for key,value in ipairs(uiChannels) do
+        Printf("List index number ".. key .. " :  UIChannel Index = " .. value)
+    end
+end
+```
 
 ---
 
@@ -1736,6 +3611,10 @@ GetUIChannels(integer:subfixture_index or light_userdata: subfixture_handle[, bo
 GetUIObjectAtPosition(integer:display_index, {x=integer:x_position,y=integer:y_position}): light_userdata:handle to UI object or nil
 ```
 
+**Description**
+
+The GetUIObjectAtPosition Lua function returns the handle of the UI Object at a specified position on a specified display.
+
 **Arguments**
 
 1. **`integer`**: display_index
@@ -1744,6 +3623,34 @@ GetUIObjectAtPosition(integer:display_index, {x=integer:x_position,y=integer:y_p
 **Returns**
 
 - **`light_userdata`**: handle to UI object or nil
+
+**Example**
+
+This example prints the Dump of the UIObject at a specific position on display 1. It also uses the DrawPointer function to draw a red pointer at the position.
+
+```lua
+return function()
+    -- Get the index number for "Display 1"
+    local displayIndex = GetDisplayCollect()["Display 1"].INDEX
+    -- Create a table with X and Y position
+    local positionTable = {}
+    positionTable.x = 1000
+    positionTable.y = 500
+    -- Get the UI object handle
+    local uiObjectAtPositionHandle = GetUIObjectAtPosition(displayIndex,positionTable)
+    -- Dump all information about the display with the index number if not nil
+    if uiObjectAtPositionHandle == nil then
+        Printf("The returned value was not a valid handle.")
+        return
+    end
+    -- Draw a pointer at the posiiton for 5 seconds
+    DrawPointer(displayIndex,positionTable,5000)
+    --Dump of the UIObject
+    Printf("=============== START OF DUMP ===============")
+    uiObjectAtPositionHandle:Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -1754,6 +3661,10 @@ GetUIObjectAtPosition(integer:display_index, {x=integer:x_position,y=integer:y_p
 GetVar(light_userdata:variables, string:varname): value
 ```
 
+**Description**
+
+The GetVar Lua function returns the value of a specific variable in a set of variables. To learn more about the variables in plugins, look at the Variable Functions topic.
+
 **Arguments**
 
 1. **`light_userdata`**: variables
@@ -1762,6 +3673,23 @@ GetVar(light_userdata:variables, string:varname): value
 **Returns**
 
 - **`value`**: 
+
+**Example**
+
+This example returns the value of a variable called "myUserVar" in the set of user variables if it exists:
+
+```lua
+return function()
+    -- Get the value from a user variable called "myUserVar" - assuming it already exists
+    local varValue = GetVar(UserVars(), "myUserVar")
+    -- Print en error feedback or the value of the variable
+    if varValue == nil then
+        Printf("Variable returns nothing!")
+    else
+        Printf("Variable value is: " .. varValue)
+    end
+end
+```
 
 ---
 
@@ -1772,6 +3700,10 @@ GetVar(light_userdata:variables, string:varname): value
 GlobalVars(nothing): light_userdata:global_variables
 ```
 
+**Description**
+
+The GlobalVars function returns a handle to the set of global variables. Read more about these in the Variables topic in the Macro section.
+
 **Arguments**
 
 No Arguments
@@ -1779,6 +3711,23 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: global_variables
+
+**Example**
+
+This example sets, gets, and deletes a global variable:
+
+```lua
+return function()
+    -- Stores a local Lua variable with the handle for the global variable set.
+    local variableSet = GlobalVars()
+    -- Sets a global variable with an integer value using the SetVar() function.
+    SetVar(variableSet, "myGlobalVar", 42)
+    -- Prints the global variable using the GetVar() function.
+    Printf("The value  of myGlobalVar is: " .. GetVar(variableSet, "myGlobalVar"))
+    -- Deletes the global variable using the DelVar() function.
+    DelVar(variableSet, "myGlobalVar")
+end
+```
 
 ---
 
@@ -1789,6 +3738,10 @@ No Arguments
 HandleToInt(light_userdata:handle): integer:handle
 ```
 
+**Description**
+
+The HandleToInt Lua function converts a handle into an integer format.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
@@ -1796,6 +3749,16 @@ HandleToInt(light_userdata:handle): integer:handle
 **Returns**
 
 - **`integer`**: handle
+
+**Example**
+
+This example prints the handle integer number for the selected sequence. It also converts the integer back to a handle and uses this to print the name of the sequence:
+
+```lua
+return function()
+    Printf("The integer number for the handle of the selected sequence: %i", HandleToInt(SelectedSequence()))
+end
+```
 
 ---
 
@@ -1823,16 +3786,47 @@ HandleToStr(light_userdata:handle): string:handle(in H#... format)
 HookObjectChange(function:callback, light_userdata:handle, light_userdata:plugin_handle[, light_userdata:target]): integer:hook_id
 ```
 
+**Description**
+
+The HookObjectChange Lua function automatically calls a function when a grandMA3 object changes.
+
 **Arguments**
 
 1. **`function`**: callback
 2. **`light_userdata`**: handle
 3. **`light_userdata`**: plugin_handle
-4. **`light_userdata`****(optional)**: target
+4. **`light_userdata`** **(optional)**: target
 
 **Returns**
 
 - **`integer`**: hook_id
+
+**Example**
+
+To call a function every time the content of the sequence pool changes, create a plugin with this code:
+
+```lua
+-- Get the handle to this Lua component.
+local luaComponentHandle = select(4,...)
+
+function Main()
+    -- Get a handle to the sequence pool.
+    local hookObject = DataPool().Sequences
+    -- Get a handle to this plugin.
+    local pluginHandle = luaComponentHandle:Parent()
+    -- Create the hook and save the Hook ID.
+    SequenceHookId = HookObjectChange(MySequencePoolCallback, hookObject, pluginHandle)
+    -- Print the returned Hook ID.
+    Printf("HookId: " .. SequenceHookId)
+end
+
+-- This function is called when there are changes in the sequence pool.
+function MySequencePoolCallback(obj)
+    Printf(tostring(obj.name) .. " changed!")
+end
+
+return Main
+```
 
 ---
 
@@ -1843,6 +3837,10 @@ HookObjectChange(function:callback, light_userdata:handle, light_userdata:plugin
 HostOS(nothing): string:ostype
 ```
 
+**Description**
+
+The HostOS Lua function returns a string with the type of operating system of the device where the plugin is executed (for instance, "Windows", "Linux", or "Mac").
+
 **Arguments**
 
 No Arguments
@@ -1850,6 +3848,16 @@ No Arguments
 **Returns**
 
 - **`string`**: ostype
+
+**Example**
+
+This example prints the operating system of the device in the Command Line History:
+
+```lua
+return function()
+    Printf("The HostOS is "..HostOS())
+end
+```
 
 ---
 
@@ -1860,6 +3868,10 @@ No Arguments
 HostSubType(nothing): string:hostsubtype
 ```
 
+**Description**
+
+The HostSubType Lua function returns a string with the host sub type of the station where the plugin is executed (for example, "FullSize", "Light", "RPU", "onPCRackUnit", "Undefined").
+
 **Arguments**
 
 No Arguments
@@ -1867,6 +3879,16 @@ No Arguments
 **Returns**
 
 - **`string`**: hostsubtype
+
+**Example**
+
+This example prints the host sub-type of the station in the Command Line History:
+
+```lua
+return function()
+    Printf("The HostSubType is "..HostSubType())
+end
+```
 
 ---
 
@@ -1877,6 +3899,10 @@ No Arguments
 HostType(nothing): string:hosttype
 ```
 
+**Description**
+
+The HostType Lua function returns a string with the host type of the device where the plugin is executed (for example, "Console" or "onPC").
+
 **Arguments**
 
 No Arguments
@@ -1884,6 +3910,16 @@ No Arguments
 **Returns**
 
 - **`string`**: hosttype
+
+**Example**
+
+This example prints the host type of the device in the Command Line History:
+
+```lua
+return function()
+    Printf("The HostType is "..HostType())
+end
+```
 
 ---
 
@@ -1894,6 +3930,10 @@ No Arguments
 Import(string:file_name): table:content
 ```
 
+**Description**
+
+The object-free Import Lua function imports a Lua table in XML format.
+
 **Arguments**
 
 1. **`string`**: file_name
@@ -1901,6 +3941,38 @@ Import(string:file_name): table:content
 **Returns**
 
 - **`table`**: content
+
+**Example**
+
+This example imports the table exported using the example in the Export() function topic - please run that example before running this example.
+
+```lua
+return function ()
+    -- Get the path for the exported table.
+    local importPath = GetPath(Enums.PathType.Library) .. "/BuildDetails.xml"
+    -- Check if the file exist and print relevant feedback.
+    if importPath == nil then
+        -- File does not exist.
+        ErrPrintf("The desired file does not exist. Please add it or adjust the requested file name.")
+    else
+        -- Import the table.
+        local importedTable = Import(importPath)
+        -- Check if the import returned something and print relevant feedback.
+        if importedTable == nil then
+            -- Import didn't return anything.
+            ErrPrintf("The import failed.")
+        else
+        -- Print some of the table content.
+        Printf("CompileDate: " .. importedTable.CompileDate)
+        Printf("CompileTime: " .. importedTable.CompileTime)
+        Printf("BigVersion: " .. importedTable.BigVersion)
+        Printf("HostType: " .. importedTable.HostType)
+        Printf("HostSubType: " .. importedTable.HostSubType)
+        Printf("CodeType: " .. importedTable.CodeType)
+        end
+    end
+end
+```
 
 ---
 
@@ -1911,14 +3983,29 @@ Import(string:file_name): table:content
 IncProgress(integer:progressbar_index[, integer:delta]): nothing
 ```
 
+**Description**
+
+The IncProgress Lua function changes the value on the range for a progress bar using an integer input. A handle input argument defines the progress bar. The progress bar needs to be created using the StartProgress() function.
+
 **Arguments**
 
 1. **`integer`**: progressbar_index
-2. **`integer`****(optional)**: delta
+2. **`integer`** **(optional)**: delta
 
 **Returns**
 
 No Return
+
+**Example**
+
+These two examples increase and decrease the range value for the progress bar created using the example in the StartProgress topic (link above):
+
+```lua
+return function()
+    -- Increase the current value for a progress bar with the matching handle.
+    IncProgress(progressHandle, 1)
+end
+```
 
 ---
 
@@ -1937,6 +4024,21 @@ IntToHandle(integer:handle): light_userdata:handle
 
 - **`light_userdata`**: handle
 
+**Example**
+
+This example prints the handle integer number for the selected sequence. It also converts the integer back to a handle and uses this to print the name of the sequence:
+
+```lua
+return function()
+    -- Convert the handle of the currently selected sequence to an integer
+    local handleInt = HandleToInt(SelectedSequence())
+    -- Print the handle integer
+    Printf("The handle integer number of the selected sequence: %i", HandleToInt(SelectedSequence()))
+    -- Convter the integer back to a hanndle and use it to get the sequence name
+    Printf("The name of the selected sequence is: %s", IntToHandle(handleInt).name)
+end
+```
+
 ---
 
 ### IsClassDerivedFrom  <a href="https://help.malighting.com/grandMA3/2.2/HTML/lua_objectfree_isclassderivedfrom.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" size="medium" style="margin:20px;"/></a>
@@ -1945,6 +4047,10 @@ IntToHandle(integer:handle): light_userdata:handle
 ```lua
 IsClassDerivedFrom(string:derived_name, string:base_name): boolean:result
 ```
+
+**Description**
+
+The IsClassDerivedFrom Lua function returns a boolean indicating if a class is derived from a different class.
 
 **Arguments**
 
@@ -1955,6 +4061,26 @@ IsClassDerivedFrom(string:derived_name, string:base_name): boolean:result
 
 - **`boolean`**: result
 
+**Example**
+
+This example checks if a class is derived from a different class and returns useful feedback.
+
+```lua
+return function()
+    -- Set the value of the two strings.
+    local derivedName = "World"
+    local baseName = "Group"
+    -- Check if the derivedName is the name of a class derived from the baseName class.
+    local isDerived = IsClassDerivedFrom(derivedName, baseName)
+    -- Provide feedback.
+    if isDerived then
+        Printf(derivedName .. " is derived from " .. baseName)
+    else
+        Printf(derivedName .. " is not derived from " .. baseName)
+    end
+end
+```
+
 ---
 
 ### IsObjectValid  <a href="https://help.malighting.com/grandMA3/2.2/HTML/lua_objectfree_isobjectvalid.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" size="medium" style="margin:20px;"/></a>
@@ -1964,6 +4090,10 @@ IsClassDerivedFrom(string:derived_name, string:base_name): boolean:result
 IsObjectValid(light_userdata:handle): boolean:valid
 ```
 
+**Description**
+
+The IsObjectValid function returns a boolean true or nil depending on whether the supplied argument is a valid object.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
@@ -1971,6 +4101,25 @@ IsObjectValid(light_userdata:handle): boolean:valid
 **Returns**
 
 - **`boolean`**: valid
+
+**Example**
+
+This example below examines if "Root()" is a valid object and prints meaningful feedback:
+
+```lua
+return function()
+    --Create a variable with the possible object
+    local myObject = Root()
+    --Check if it is an object
+    local myReturn = IsObjectValid(myObject)
+    --Print the result
+    if myReturn == nil then
+        ErrPrintf("It is not a valid object")
+    else
+        Printf("It is an object")
+    end
+end
+```
 
 ---
 
@@ -1985,11 +4134,11 @@ Keyboard(integer:display_index, string:type('press', 'char', 'release')[ ,string
 
 1. **`integer`**: display_index
 2. **`string`**: type('press', 'char', 'release')
-3. **`string`****(optional)**: char(for type 'char') or string:keycode
+3. **`string`** **(optional)**: char(for type 'char') or string:keycode
 4. **`boolean`**: shift
 5. **`boolean`**: ctrl
 6. **`boolean`**: alt
-7. **`boolean`****(optional)**: numlock
+7. **`boolean`** **(optional)**: numlock
 
 **Returns**
 
@@ -2004,6 +4153,10 @@ No Return
 KeyboardObj(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The KeyboardObj function returns the handle to the first found keyboard object.
+
 **Arguments**
 
 No Arguments
@@ -2011,6 +4164,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints the information of the keyboard object. It uses the Dump() function:
+
+```lua
+return function()
+    -- Print all informatin about the KeyboardObj object
+    Printf("=============== START OF DUMP ===============")
+    KeyboardObj():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -2038,6 +4204,10 @@ No Return
 MasterPool(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The MasterPool Lua function returns the handle to the masters.
+
 **Arguments**
 
 No Arguments
@@ -2045,6 +4215,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints the information of the MasterPool object. It uses the Dump() function:
+
+```lua
+return function()
+    -- Print all informatin about the MasterPool object
+    Printf("=============== START OF DUMP ===============")
+    MasterPool():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -2055,6 +4238,10 @@ No Arguments
 MessageBox({title:string,[, string:backColor][, integer:timeout (ms)][, boolean:timeoutResultCancel][, integer:timeoutResultID][, string:icon][, string:titleTextColor][, string:messageTextColor] [, boolean:autoCloseOnInput] string:message[, integer:message_align_h(Enums.AlignmentH)][, integer:message_align_v(Enums.AlignmentV)][, integer|lightuserdata:display], commands:{array of {integer:value, string:name[, integer:order]}}, inputs:{array of {string:name, string:value, string:blackFilter, string:whiteFilter, string:vkPlugin, integer:maxTextLength[, integer:order]}}, states:{array of {string:name, boolean:state[, integer:order]}, selectors:{array of {name:string, integer:selectedValue, values:table[, type:integer 0-swipe, 1-radio][, integer:order]} }): {boolean:success, integer:result, inputs:{array of [string:name] = string:value}, states:{array of [string:name] = boolean:state}, selectors:{array of [string:name] = integer:selected-value}}
 ```
 
+**Description**
+
+The MessageBox Lua function is used to create pop-up message boxes. These can be simple or complex information pop-ups with many different options and user inputs.
+
 **Arguments**
 
 1. **`{title:string,[, string:backColor][, integer:timeout (ms)][, boolean:timeoutResultCancel][, integer:timeoutResultID][, string:icon][, string:titleTextColor][, string:messageTextColor] [, boolean:autoCloseOnInput] string:message[, integer:message_align_h(Enums.AlignmentH)][, integer:message_align_v(Enums.AlignmentV)][, integer|lightuserdata:display], commands:{array of {integer:value, string:name[, integer:order]}}, inputs:{array of {string:name, string:value, string:blackFilter, string:whiteFilter, string:vkPlugin, integer:maxTextLength[, integer:order]}}, states:{array of {string:name, boolean:state[, integer:order]}, selectors:{array of {name:string, integer:selectedValue, values:table[, type:integer 0-swipe, 1-radio][, integer:order]} }`**: 
@@ -2062,6 +4249,26 @@ MessageBox({title:string,[, string:backColor][, integer:timeout (ms)][, boolean:
 **Returns**
 
 - **`{boolean:success, integer:result, inputs:{array of [string:name] = string:value}, states:{array of [string:name] = boolean:state}, selectors:{array of [string:name] = integer:selected-value}}`**: 
+
+**Example**
+
+There are six different examples demonstrating different elements of the message box. The elements can be combined, but the examples highlight different functions.
+
+```lua
+return function ()
+    -- This creates a small pop-up with a single button.
+    local returnTable = MessageBox(
+        {
+            title = "Please confirm This",
+            commands = {{value = 1, name = "Confirm"}}
+        }
+    )
+
+    -- Print the content of the returned table. 
+    Printf("Success = "..tostring(returnTable.success))
+    Printf("Result = "..returnTable.result)
+end
+```
 
 ---
 
@@ -2076,8 +4283,8 @@ Mouse(integer:display_index, string:type('press', 'move', 'release')[ ,string:bu
 
 1. **`integer`**: display_index
 2. **`string`**: type('press', 'move', 'release')
-3. **`string`****(optional)**: button('Left', 'Middle', 'Right' for 'press', 'release') or integer:abs_x
-4. **`integer`****(optional)**: abs_y)
+3. **`string`** **(optional)**: button('Left', 'Middle', 'Right' for 'press', 'release') or integer:abs_x
+4. **`integer`** **(optional)**: abs_y)
 
 **Returns**
 
@@ -2092,6 +4299,10 @@ No Return
 MouseObj(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The MouseObj function returns the handle to the first found mouse object.
+
 **Arguments**
 
 No Arguments
@@ -2099,6 +4310,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints the information of the mouse object. Is uses the Dump() function:
+
+```lua
+return function()
+    -- Print all informatin about the MouseObj object
+    Printf("=============== START OF DUMP ===============")
+    MouseObj():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -2109,6 +4333,10 @@ No Arguments
 NeedShowSave(nothing): boolean:need_show_save
 ```
 
+**Description**
+
+The NeedShowSave Lua function returns a boolean indicating if there are unsaved changes to the showfile.
+
 **Arguments**
 
 No Arguments
@@ -2116,6 +4344,21 @@ No Arguments
 **Returns**
 
 - **`boolean`**: need_show_save
+
+**Example**
+
+This example prints feedback indicating if the show file should be saved or not.
+
+```lua
+return function ()
+    -- Check if the show should be saved.
+    if NeedShowSave() then
+        Printf("You should save your showfile.")
+    else
+        Printf("You do not need to save your showfile.")
+    end
+end
+```
 
 ---
 
@@ -2143,14 +4386,37 @@ NextDmxModeFixture(light_userdata:fixture): light_userdata:fixture
 ObjectList(string:address[, {['selected_as_default'=boolean:enabled], ['reverse_order'=boolean:enabled]}): {light_userdata:handles}
 ```
 
+**Description**
+
+The ObjectList Lua function returns a table with handles. The table is created based on a string input that should create a selection.
+
 **Arguments**
 
 1. **`string`**: address
-2. **`{['selected_as_default'=boolean:enabled], ['reverse_order'=boolean:enabled]}`****(optional)**: 
+2. **`{['selected_as_default'=boolean:enabled], ['reverse_order'=boolean:enabled]}`** **(optional)**: 
 
 **Returns**
 
 - **`{light_userdata:handles}`**: 
+
+**Example**
+
+This example returns the names and patch addresses of fixtures 1 through 10. It assumes these fixtures exist - if they do not, then it returns an error text.
+
+```lua
+return function()
+    -- Create a list of handles based on the "Fixture 1 Thru 10" selection and store it in a table. 
+    local myObjects = ObjectList("Fixture 1 Thru 10", {reverse_order=true})
+    -- If the selection returned a table, then go through all elements and print information of the object.
+    if myObjects~= nil then
+        for i in pairs(myObjects) do
+            Printf("Fixture: " .. myObjects[i].name .. " - Patch: " ..myObjects[i].patch)
+        end
+    else
+        ErrPrintf("An error occured. Does Fixture 1 Thru 10 exist?")
+    end
+end
+```
 
 ---
 
@@ -2195,6 +4461,10 @@ No Arguments
 Patch(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The Patch Lua function returns a handle to the patch object.
+
 **Arguments**
 
 No Arguments
@@ -2202,6 +4472,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints the data connected to the handle. It uses the Dump() function:
+
+```lua
+return function()
+    -- This example dumps all information about the patch object
+    Printf("=============== START OF DUMP ===============")
+    Patch():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -2214,7 +4497,7 @@ PluginVars([string:plugin_name]): light_userdata:plugin_preferences
 
 **Arguments**
 
-1. **`string`****(optional)**: plugin_name
+1. **`string`** **(optional)**: plugin_name
 
 **Returns**
 
@@ -2250,7 +4533,7 @@ PrepareWaitObjectChange(light_userdata:handle[ ,integer:change_level_threshold])
 **Arguments**
 
 1. **`light_userdata`**: handle
-2. **`integer`****(optional)**: change_level_threshold
+2. **`integer`** **(optional)**: change_level_threshold
 
 **Returns**
 
@@ -2265,6 +4548,10 @@ PrepareWaitObjectChange(light_userdata:handle[ ,integer:change_level_threshold])
 Printf(string:formatted_command ...): nothing
 ```
 
+**Description**
+
+The Printf Lua function prints a string in the Command Line History and System Monitor.
+
 **Arguments**
 
 1. **`string`**: formatted_command ...
@@ -2272,6 +4559,16 @@ Printf(string:formatted_command ...): nothing
 **Returns**
 
 No Return
+
+**Example**
+
+This example prints "Hello World!" in the Command Line History:
+
+```lua
+return function()
+    Printf("Hello World!")
+end
+```
 
 ---
 
@@ -2282,6 +4579,10 @@ No Return
 Programmer(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The Programmer Lua function references the current programmer object.
+
 **Arguments**
 
 No Arguments
@@ -2289,6 +4590,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example uses the Dump() function on the programmer object:
+
+```lua
+return function ()
+    -- Dumps information about the programmer object.
+    Printf("=============== START OF DUMP ===============")
+    Programmer():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -2299,6 +4613,10 @@ No Arguments
 ProgrammerPart(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The ProgrammerPart Lua function references the current programmer part object.
+
 **Arguments**
 
 No Arguments
@@ -2306,6 +4624,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example uses the Dump() function on the programmer part object:
+
+```lua
+return function ()
+    -- Dumps information about the current programmer part object.
+    Printf("=============== START OF DUMP ===============")
+    ProgrammerPart():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -2316,6 +4647,10 @@ No Arguments
 Pult(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The Pult Lua function returns a handle to the current "Pult" object at position Root/GraphicsRoot/PultCollect. The "Pult" object contains display and device information.
+
 **Arguments**
 
 No Arguments
@@ -2323,6 +4658,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints the data connected to the handle. It uses the Dump() function:
+
+```lua
+return function()
+    -- The following prints the dump for the pult object
+    Printf("=============== START OF DUMP ===============")
+    Pult():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -2350,6 +4698,10 @@ No Return
 ReleaseType(nothing): string:releasetype
 ```
 
+**Description**
+
+The ReleaseType Lua function returns a string with the type of release for the MA software. All the software versions available from MA Lighting will return "Release". Internally and during development, there can be other release types.
+
 **Arguments**
 
 No Arguments
@@ -2357,6 +4709,16 @@ No Arguments
 **Returns**
 
 - **`string`**: releasetype
+
+**Example**
+
+This example prints the release type in the Command Line History:
+
+```lua
+return function()
+    Printf("The ReleaseType is "..ReleaseType())
+end
+```
 
 ---
 
@@ -2384,6 +4746,10 @@ RemoteCommand(string:ip, string:command): boolean:success
 ```lua
 Root(nothing): light_userdata:handle
 ```
+
+**Description**
+
+The Root Lua function returns a handle to the object at the root position.
 
 **Arguments**
 
@@ -2454,6 +4820,10 @@ No Arguments
 SelectedFeature(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The SelectedFeature Lua function returns the handle of the selected feature.
+
 **Arguments**
 
 No Arguments
@@ -2461,6 +4831,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints all information about the selected feature in the Command Line History using the Dump() function:
+
+```lua
+return function ()
+    -- The following prints the dump for the selected feature object
+    Printf("=============== START OF DUMP ===============")
+    SelectedFeature():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -2471,6 +4854,10 @@ No Arguments
 SelectedLayout(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The SelectedLayout Lua function returns the handle of the selected layout.
+
 **Arguments**
 
 No Arguments
@@ -2478,6 +4865,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints all information about the selected layout in the Command Line History using the Dump() function:
+
+```lua
+return function ()
+    -- The following prints the dump for the selected layout object
+    Printf("=============== START OF DUMP ===============")
+    SelectedLayout():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -2488,6 +4888,10 @@ No Arguments
 SelectedSequence(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The SelectedSequence Lua function returns the handle of the selected sequence.
+
 **Arguments**
 
 No Arguments
@@ -2495,6 +4899,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints all information about the selected sequence in the Command Line History using the Dump() function:
+
+```lua
+return function ()
+    -- The following prints the dump for the selected sequence object
+    Printf("=============== START OF DUMP ===============")
+    SelectedSequence():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -2505,6 +4922,10 @@ No Arguments
 SelectedTimecode(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The SelectedTimecode Lua function returns the handle of the selected timecode object.
+
 **Arguments**
 
 No Arguments
@@ -2512,6 +4933,22 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints all information about the selected timecode show in the Command Line History using the Dump() function:
+
+```lua
+return function ()
+    -- The following prints the dump for the selected timecode object
+    local myTimecodeShow = SelectedTimecode()
+    if myTimecodeShow ~= nil then
+        Printf("=============== START OF DUMP ===============")
+        myTimecodeShow:Dump()
+        Printf("================ END OF DUMP ================")
+    end
+end
+```
 
 ---
 
@@ -2522,6 +4959,10 @@ No Arguments
 SelectedTimer(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The SelectedTimer Lua function returns the handle of the selected timer object.
+
 **Arguments**
 
 No Arguments
@@ -2529,6 +4970,22 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints all information about the selected timer in the Command Line History using the Dump() function:
+
+```lua
+return function ()
+    -- The following prints the dump for the selected timer object
+    local myTimer = SelectedTimer()
+    if myTimer ~= nil then
+        Printf("=============== START OF DUMP ===============")
+        myTimer:Dump()
+        Printf("================ END OF DUMP ================")
+    end
+end
+```
 
 ---
 
@@ -2539,6 +4996,10 @@ No Arguments
 Selection(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The Selection Lua function returns a handle to the object holding the current selection of fixtures.
+
 **Arguments**
 
 No Arguments
@@ -2546,6 +5007,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints the information of the Selection object in the Command Line History using the Dump() function:
+
+```lua
+return function ()
+    -- The following prints the dump for the object for the selection
+    Printf("=============== START OF DUMP ===============")
+    Selection():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -2619,6 +5093,10 @@ No Arguments
 SelectionCount(nothing): integer:amount_of_selected_subfixtures
 ```
 
+**Description**
+
+The SelectionCount Lua function returns a number indicating the total amount of currently selected fixtures.
+
 **Arguments**
 
 No Arguments
@@ -2626,6 +5104,16 @@ No Arguments
 **Returns**
 
 - **`integer`**: amount_of_selected_subfixtures
+
+**Example**
+
+This example prints the number of fixtures in the current selection to the Command Line History:
+
+```lua
+return function()
+    Printf('Number of fixtures in the current selection: %i', SelectionCount())
+end
+```
 
 ---
 
@@ -2635,6 +5123,10 @@ No Arguments
 ```lua
 SelectionFirst(nothing): integer:first_subfixture_index, integer:x, integer:y, integer:z
 ```
+
+**Description**
+
+The SelectionFirst Lua function returns a set of integers for the selection's first fixture. It is the patch index number and the XYZ grid values in the selection grid.
 
 **Arguments**
 
@@ -2647,6 +5139,26 @@ No Arguments
 - **`integer`**: y
 - **`integer`**: z
 
+**Example**
+
+This example prints the returned numbers of the first fixture in the selection, to the Command Line History:
+
+```lua
+return function()
+    -- Store the return in a local variable
+    local fixtureIndex, gridX, gridY, gridZ = SelectionFirst();
+
+    -- Cancel the plugin if no fixture is selected
+    assert(fixtureIndex,"Please select a fixture and try again.");
+
+    -- Print the index number of the first fixture in the selection
+    Printf("First selected fixture has index number: "..fixtureIndex
+        .." and gridX value: "..gridX
+        .." and gridY value: "..gridY
+        .." and gridZ value: "..gridZ);
+end
+```
+
 ---
 
 ### SelectionNext  <a href="https://help.malighting.com/grandMA3/2.2/HTML/lua_objectfree_selectionnext.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" size="medium" style="margin:20px;"/></a>
@@ -2655,6 +5167,10 @@ No Arguments
 ```lua
 SelectionNext(integer:current_subfixture_index): integer:next_subfixture_index, integer:x, integer:y, integer:z
 ```
+
+**Description**
+
+The SelectionNext function returns a set of integers for the next fixture in a selection based on the index number input as an argument. It is the index number in the patch and the XYZ grid values in the selection grid.
 
 **Arguments**
 
@@ -2666,6 +5182,29 @@ SelectionNext(integer:current_subfixture_index): integer:next_subfixture_index, 
 - **`integer`**: x
 - **`integer`**: y
 - **`integer`**: z
+
+**Example**
+
+This example prints the patch index number and grid positions of all the fixtures in the current selection:
+
+```lua
+return function()
+    -- Store the return in a local variable
+    local fixtureIndex, gridX, gridY, gridZ = SelectionFirst()
+
+    -- Cancel the plugin if no fixture is selected
+    assert(fixtureIndex,"Please select a (range of) fixture(s) and try again.")
+    
+    -- Loop that prints the index and gridpositions of all the fixtures in the selection 
+    while fixtureIndex do
+        Printf('The fixture has index number: %i and gridposition %i / %i / %i',
+          fixtureIndex, gridX, gridY, gridZ);
+        
+        -- Here is SelectionNext actually used to find the next fixture in the selection
+        fixtureIndex, gridX, gridY, gridZ = SelectionNext(fixtureIndex)
+    end
+end
+```
 
 ---
 
@@ -2746,6 +5285,10 @@ SendLuaMessage(string:ip/station, string:channel name, table:data): boolean:succ
 SerialNumber(nothing): string:serialnumber
 ```
 
+**Description**
+
+The SerialNumber Lua function returns the serial number of the grandMA3 hardware or grandMA3 onPC.
+
 **Arguments**
 
 No Arguments
@@ -2753,6 +5296,16 @@ No Arguments
 **Returns**
 
 - **`string`**: serialnumber
+
+**Example**
+
+This example prints the serial number in the Command Line History:
+
+```lua
+return function()
+    Printf("Serial number: " .. SerialNumber())
+end
+```
 
 ---
 
@@ -2763,6 +5316,10 @@ No Arguments
 SetBlockInput(boolean:block): nothing
 ```
 
+**Description**
+
+The SetBlockInput function is an internal function used during the system tests. It stops input from USB-connected keyboards and mouse. The built-in keyboard on some models is internally connected using a USB connection, which is also blocked by this function. The block affects the station where the function is executed.
+
 **Arguments**
 
 1. **`boolean`**: block
@@ -2770,6 +5327,23 @@ SetBlockInput(boolean:block): nothing
 **Returns**
 
 No Return
+
+**Example**
+
+This example blocks mouse and keyboard input for 10 seconds:
+
+```lua
+return function()
+    -- Set a variable for yield time in seconds
+    yieldTime = 10
+    -- Set the block to true
+    SetBlockInput(true)
+    -- Wait the [yieldtime]
+    coroutine.yield(yieldTime)
+    -- Unblock the station
+    SetBlockInput(false)
+end
+```
 
 ---
 
@@ -2803,6 +5377,10 @@ SetColor(string:color_model('RGB', 'xyY', 'Lab', 'XYZ', 'HSB'), float:tripel1, f
 SetLED(light_userdata:usb_device_object_handle, table:led_values): nothing
 ```
 
+**Description**
+
+The SetLED Lua function sends a table with a set of LED brightness values to an MA3Module. After around two seconds, the system automatically sets the LED values to what it believes it should be.
+
 **Arguments**
 
 1. **`light_userdata`**: usb_device_object_handle
@@ -2811,6 +5389,34 @@ SetLED(light_userdata:usb_device_object_handle, table:led_values): nothing
 **Returns**
 
 No Return
+
+**Example**
+
+This example sets the LEDs on encoder 1 to green on a full-size console:
+
+```lua
+return function()
+    -- Create the LED table
+    local myLedTable = {}
+    -- Fill the table with default "release" value
+    for index=1,256 do
+        myLedTable[index] = -1;
+    end
+    -- Set values in the table
+    -- Encoder_inside1 = green
+    myLedTable[7] = 0
+    myLedTable[10] = 255
+    myLedTable[22] = 0
+    -- Encoder_outside1 = green
+    myLedTable[8] = 0
+    myLedTable[11] = 255
+    myLedTable[23] = 0
+    -- Get the handle for the MasterModule on a console
+    local usbDeviceHandle = Root().UsbNotifier.MA3Modules["UsbDeviceMA3 2"]
+    -- Set the values for the LEDs
+    SetLED(usbDeviceHandle, myLedTable)
+end
+```
 
 ---
 
@@ -2858,6 +5464,10 @@ No Return
 SetProgress(integer:progressbar_index, integer:value): nothing
 ```
 
+**Description**
+
+The SetProgress Lua function defines a value on the range for a progress bar. A handle input argument defines the progress bar. The progress bar needs have been created using the StartProgress function.
+
 **Arguments**
 
 1. **`integer`**: progressbar_index
@@ -2867,6 +5477,17 @@ SetProgress(integer:progressbar_index, integer:value): nothing
 
 No Return
 
+**Example**
+
+This example sets a range value for the progress bar created using the example in the StartProgress topic (link above):
+
+```lua
+return function()
+    -- Sets the current value to 5 for a progress bar with the matching handle
+    SetProgress(progressHandle, 5)
+end
+```
+
 ---
 
 ### SetProgressRange  <a href="https://help.malighting.com/grandMA3/2.2/HTML/lua_objectfree_setprogressrange.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" size="medium" style="margin:20px;"/></a>
@@ -2875,6 +5496,10 @@ No Return
 ```lua
 SetProgressRange(integer:progressbar_index, integer:start, integer:end): nothing
 ```
+
+**Description**
+
+The SetProgressRange Lua function defines a range for a progress bar.
 
 **Arguments**
 
@@ -2886,6 +5511,17 @@ SetProgressRange(integer:progressbar_index, integer:start, integer:end): nothing
 
 No Return
 
+**Example**
+
+This example sets a range for the progress bar created using the example in the StartProgress topic (link above):
+
+```lua
+return function()
+    -- Sets the range of a progress bar with the matching handle
+    SetProgressRange(progressHandle, 1, 10)
+end
+```
+
 ---
 
 ### SetProgressText  <a href="https://help.malighting.com/grandMA3/2.2/HTML/lua_objectfree_setprogresstext.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" size="medium" style="margin:20px;"/></a>
@@ -2894,6 +5530,10 @@ No Return
 ```lua
 SetProgressText(integer:progressbar_index, string:text): nothing
 ```
+
+**Description**
+
+The SetProgressText Lua function defines a text string to be displayed in a progress bar next to the progress bar title text. The title cannot be changed after creation, but this text can be changed. It could be used to describe the current step in the progress.
 
 **Arguments**
 
@@ -2904,6 +5544,17 @@ SetProgressText(integer:progressbar_index, string:text): nothing
 
 No Return
 
+**Example**
+
+This example sets a text string for the progress bar created using the example in the StartProgress topic (link above):
+
+```lua
+return function()
+    -- Sets the text next to progress title
+    SetProgressText(progressHandle, "- This is text next to the progress title")
+end
+```
+
 ---
 
 ### SetVar  <a href="https://help.malighting.com/grandMA3/2.2/HTML/lua_objectfree_setvar.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" size="medium" style="margin:20px;"/></a>
@@ -2912,6 +5563,10 @@ No Return
 ```lua
 SetVar(light_userdata:variables, string:varname, value): boolean:success
 ```
+
+**Description**
+
+The SetVar Lua function sets a value to a specific variable in a set of variables. To learn more about the variables in plugins, look at the Variable Functions topic.
 
 **Arguments**
 
@@ -2923,6 +5578,23 @@ SetVar(light_userdata:variables, string:varname, value): boolean:success
 
 - **`boolean`**: success
 
+**Example**
+
+This example sets a value to the variable called "myUserVar" in the set of user variables if it exists.
+
+```lua
+return function()
+    -- Sets the value of user variable "myUserVar" to "Hello World" and store the returned boolean in a Lua variable
+    local success = SetVar(UserVars(), "myUserVar", "Hello World")
+    -- Prints the ressult
+    if success then
+        Printf("Variable is stored.")
+    else
+        Printf("Variable is NOT stored!")
+    end
+end
+```
+
 ---
 
 ### ShowData  <a href="https://help.malighting.com/grandMA3/2.2/HTML/lua_objectfree_showdata.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" size="medium" style="margin:20px;"/></a>
@@ -2931,6 +5603,10 @@ SetVar(light_userdata:variables, string:varname, value): boolean:success
 ```lua
 ShowData(nothing): light_userdata:handle
 ```
+
+**Description**
+
+ShowData is an object-free function that returns a handle to the object at position Root/ShowData.
 
 **Arguments**
 
@@ -2949,6 +5625,10 @@ No Arguments
 ShowSettings(nothing): light_userdata:handle
 ```
 
+**Description**
+
+ShowSettings is an object-free function that returns a handle to the object at Root/ShowData/ShowSettings.
+
 **Arguments**
 
 No Arguments
@@ -2956,6 +5636,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This simple example prints the information of the ShowSettings object using the Dump() function:
+
+```lua
+return function ()
+    -- The following prints the dump for the object for the show settings
+    Printf("=============== START OF DUMP ===============")
+    ShowSettings():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -2966,6 +5659,10 @@ No Arguments
 StartProgress(string:name): integer:progressbar_index
 ```
 
+**Description**
+
+The StartProgress Lua function creates and displays a progress bar on all screens. A string input argument creates a title for the progress bar. The function returns a handle that is used to further interact with the progress bar.
+
 **Arguments**
 
 1. **`string`**: name
@@ -2973,6 +5670,18 @@ StartProgress(string:name): integer:progressbar_index
 **Returns**
 
 - **`integer`**: progressbar_index
+
+**Example**
+
+This creates and displays a progress bar on all screens. The progress bar does not disappear using this example - see the example in the StopProgress (link above) function to remove:
+
+```lua
+return function()
+    -- Create and display a progress bar with a title
+    -- IMPORTANT: The Lua variable 'progressHandle' is needed to remove the progressbar again - StopProgress()
+    progressHandle = StartProgress("ProgressBar Title")
+end
+```
 
 ---
 
@@ -2983,6 +5692,10 @@ StartProgress(string:name): integer:progressbar_index
 StopProgress(integer:progressbar_index): nothing
 ```
 
+**Description**
+
+The StopProgress Lua function removes a progress bar. A handle input argument defines which progress bar it removes. The progress bar must exist before it can be removed. Progress bars are created using the StartProgress function.
+
 **Arguments**
 
 1. **`integer`**: progressbar_index
@@ -2990,6 +5703,17 @@ StopProgress(integer:progressbar_index): nothing
 **Returns**
 
 No Return
+
+**Example**
+
+This example stops the progress bar created using the example in the StartProgress topic (link above):
+
+```lua
+return function()
+    -- Stops and closes the progress bar with the matching handle
+    StopProgress(progressHandle)
+end
+```
 
 ---
 
@@ -3007,6 +5731,21 @@ StrToHandle(string:handle(in H#... format)): light_userdata:handle
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints the handle hex number for the selected sequence. It also converts the string back to a handle and uses this to print the name of the sequence:
+
+```lua
+return function()
+    -- Store a variable with the string of the handle converted to hex
+    local mySeqStr = HandleToStr(SelectedSequence())
+    -- Print some feedback with the handle in a string version
+    Printf("The handle for the selected sequence (string version): %s", mySeqStr)
+    -- Print some feedback where the string is converted back to a handle
+    Printf("The name of the selected sequence is: %s", StrToHandle(mySeqStr).name)
+end
+```
 
 ---
 
@@ -3070,12 +5809,16 @@ TestPlaybackOutputSteps(table:expectations): boolean:success, string:result text
 TextInput([string:title[, string:value[, integer:x[, integer:y]]]]): string:value
 ```
 
+**Description**
+
+The TextInput Lua function opens a text input pop-up and returns the typed input as a string. It is part of the user interface functions.
+
 **Arguments**
 
-1. **`string`****(optional)**: title
-2. **`string`****(optional)**: value
-3. **`integer`****(optional)**: x
-4. **`integer`****(optional)**: y
+1. **`string`** **(optional)**: title
+2. **`string`** **(optional)**: value
+3. **`integer`** **(optional)**: x
+4. **`integer`** **(optional)**: y
 
 **Returns**
 
@@ -3090,6 +5833,10 @@ TextInput([string:title[, string:value[, integer:x[, integer:y]]]]): string:valu
 Time(nothing): integer:time
 ```
 
+**Description**
+
+The Time function returns the time (in seconds) the station has been on, as a number (float). It is basically a stopwatch that starts when the grandMA3 application starts. It is not the current time of day or the session online time.
+
 **Arguments**
 
 No Arguments
@@ -3097,6 +5844,26 @@ No Arguments
 **Returns**
 
 - **`integer`**: time
+
+**Example**
+
+This example finds, formats, and prints the time.
+
+```lua
+return function()
+    -- Get the current time
+    local time = Time()
+
+    --Calculate the different elements
+    local days = math.floor(time/86400)
+    local hours = math.floor((time % 86400)/3600)
+    local minutes = math.floor((time % 3600)/60)
+    local seconds = math.floor(time % 60)
+
+    --Print the result
+    Printf("The time is %d:%02d:%02d:%02d", days, hours, minutes, seconds)
+end
+```
 
 ---
 
@@ -3107,17 +5874,61 @@ No Arguments
 Timer(function:timer_function, integer:delay_time, integer:max_count[, function:cleanup][, light_userdata:context object]): nothing
 ```
 
+**Description**
+
+The Timer Lua function call a different function using a timer. The other function can be called multiple times using the timer interval.
+
 **Arguments**
 
 1. **`function`**: timer_function
 2. **`integer`**: delay_time
 3. **`integer`**: max_count
-4. **`function`****(optional)**: cleanup]
-5. **`light_userdata`****(optional)**: context object
+4. **`function`** **(optional)**: cleanup]
+5. **`light_userdata`** **(optional)**: context object
 
 **Returns**
 
 No Return
+
+**Example**
+
+This example prints a greeting three times and then calls a clean up function:
+
+```lua
+-- Function that will be called several times.
+function TimedFunction()
+    -- Check the value of RunAmount and print something.
+    if RunAmount 1 then
+        Printf("Hello")
+    else
+        Printf("Hello again")
+    end
+    -- Add 1 to the RunAmount variable.
+    RunAmount = RunAmount + 1
+end
+
+-- Cleanup function.
+function TimerCleanup()
+    Printf("Goodbye")
+    -- Delete the RunAmount variable.
+    RunAmount = nil
+end
+
+-- Function with the Timer call.
+function Main()
+    -- Set a wait variable.
+    local waitSeconds = 1
+    -- Set a variable with the number of iterations.
+    local iterations = 3
+    -- Create a counter variable and set it to 0.
+    RunAmount = 0
+    -- Call the timer function.
+    Timer(TimedFunction, waitSeconds, iterations, TimerCleanup);
+end
+
+-- call the main function.
+return Main
+```
 
 ---
 
@@ -3128,15 +5939,32 @@ No Return
 ToAddr(light_userdata:handle, boolean:with_name[, boolean:use_visible_addr]): string:address
 ```
 
+**Description**
+
+The ToAddr Lua object-free function converts a handle to an address string that can be used in commands.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
 2. **`boolean`**: with_name
-3. **`boolean`****(optional)**: use_visible_addr
+3. **`boolean`** **(optional)**: use_visible_addr
 
 **Returns**
 
 - **`string`**: address
+
+**Example**
+
+This example prints the address of the selected sequence in both the numbered and named versions.
+
+```lua
+return function ()
+    local mySequence = SelectedSequence()
+    -- Print the address to the selected sequence in number and name format.
+    Printf(ToAddr(mySequence))
+    Printf(ToAddr(mySequence, true))
+end
+```
 
 ---
 
@@ -3168,6 +5996,10 @@ No Return
 TouchObj(nothing): light_userdata:handle
 ```
 
+**Description**
+
+The TouchObj function returns the handle to the first found touch object.
+
 **Arguments**
 
 No Arguments
@@ -3175,6 +6007,19 @@ No Arguments
 **Returns**
 
 - **`light_userdata`**: handle
+
+**Example**
+
+This example prints information about the touch object using the Dump() function:
+
+```lua
+return function()
+    -- Print all informatin about the TouchObj object
+    Printf("=============== START OF DUMP ===============")
+    TouchObj():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -3185,6 +6030,10 @@ No Arguments
 Unhook(integer:hook_id): nothing
 ```
 
+**Description**
+
+The Unhook Lua function removes a hook.
+
 **Arguments**
 
 1. **`integer`**: hook_id
@@ -3192,6 +6041,17 @@ Unhook(integer:hook_id): nothing
 **Returns**
 
 No Return
+
+**Example**
+
+This example unhooks the hook created using the example in the HookObjectChange - please run that example before this one.
+
+```lua
+return function()
+    -- Unhooks the specific Hook integer ID.
+    Unhook(SequenceHookId)
+end
+```
 
 ---
 
@@ -3202,6 +6062,10 @@ No Return
 UnhookMultiple(function:callback(can be nil), light_userdata:handle to target(can be nil), light_userdata:handle to context (can be nil)): integer:amount of removed hooks
 ```
 
+**Description**
+
+The UnhookMultiple Lua function unhooks multiple hooks based on an input. This input acts like a filter to identify all the hooks that should be unhooked.
+
 **Arguments**
 
 1. **`function`**: callback(can be nil)
@@ -3211,6 +6075,19 @@ UnhookMultiple(function:callback(can be nil), light_userdata:handle to target(ca
 **Returns**
 
 - **`integer`**: amount of removed hooks
+
+**Example**
+
+This example unhooks all hooked related to the function created in the example for the HookObjectChange - please run the example from that topic before running this one.
+
+```lua
+return function ()
+    -- Unhooks all hooks related to the "MySequencePoolCallback" function.
+    local amount = UnhookMultiple(MySequencePoolCallback)
+    -- Print how many hooks that were unhooked.
+    Printf(amount .. " hook(s) were unhooked.")
+end
+```
 
 ---
 
@@ -3229,6 +6106,26 @@ No Arguments
 
 - **`light_userdata`**: user_variables
 
+**Example**
+
+This example sets, gets, and deletes a user variable:
+
+```lua
+return function()
+    -- Stores a local Lua variable with the handle for the user variables.
+    local variableSection = UserVars()
+
+    -- Sets a user variable with an integer value using the SetVar function.
+    SetVar(variableSection, "myUserVar", 42)
+
+    -- Prints the user variable using the GetVar function.
+    Printf("The value  of myUserVar is: " .. GetVar(variableSection, "myUserVar"))
+
+    -- Deletes the user variable using the DelVar function.
+    DelVar(variableSection, "myUserVar")
+end
+```
+
 ---
 
 ### Version  <a href="https://help.malighting.com/grandMA3/2.2/HTML/lua_objectfree_version.html" target="_blank" rel="noopener noreferrer"><Badge text="Official Docs" variant="note" size="medium" style="margin:20px;"/></a>
@@ -3238,6 +6135,10 @@ No Arguments
 Version(nothing): string:version
 ```
 
+**Description**
+
+The Version Lua function returns the software version.
+
 **Arguments**
 
 No Arguments
@@ -3245,6 +6146,16 @@ No Arguments
 **Returns**
 
 - **`string`**: version
+
+**Example**
+
+This example prints the software version in the Command Line History:
+
+```lua
+return function()
+    Printf("Software version: %s", Version())
+end
+```
 
 ---
 
@@ -3257,7 +6168,7 @@ WaitModal([number:seconds to wait]): handle to modal overlay or nil on failure(t
 
 **Arguments**
 
-1. **`number`****(optional)**: seconds to wait
+1. **`number`** **(optional)**: seconds to wait
 
 **Returns**
 
@@ -3275,7 +6186,7 @@ WaitObjectDelete(light_userdata:handle to UIObject[, number:seconds to wait]): b
 **Arguments**
 
 1. **`light_userdata`**: handle to UIObject
-2. **`number`****(optional)**: seconds to wait
+2. **`number`** **(optional)**: seconds to wait
 
 **Returns**
 
@@ -3296,8 +6207,8 @@ Acquire(light_userdata:handle[, string:class[, light_userdata:undo]]): light_use
 **Arguments**
 
 1. **`light_userdata`**: handle
-2. **`string`****(optional)**: class
-3. **`light_userdata`****(optional)**: undo
+2. **`string`** **(optional)**: class
+3. **`light_userdata`** **(optional)**: undo
 
 **Returns**
 
@@ -3316,7 +6227,7 @@ AddListChildren(light_userdata:handle, light_userdata:parent[, enum{Roles}:role]
 
 1. **`light_userdata`**: handle
 2. **`light_userdata`**: parent
-3. **`enum{Roles}`****(optional)**: role
+3. **`enum{Roles}`** **(optional)**: role
 
 **Returns**
 
@@ -3335,7 +6246,7 @@ AddListChildrenNames(light_userdata:handle, light_userdata:parent[, enum{Roles}:
 
 1. **`light_userdata`**: handle
 2. **`light_userdata`**: parent
-3. **`enum{Roles}`****(optional)**: role
+3. **`enum{Roles}`** **(optional)**: role
 
 **Returns**
 
@@ -3356,8 +6267,8 @@ AddListLuaItem(light_userdata:handle, string:name, string:value/function name, l
 2. **`string`**: name
 3. **`string`**: value/function name
 4. **`lua_function`**: callback reference
-5. **`<any lua type>`****(optional)**: argument to pass to callback
-6. **`{[left={...}][right={...}]}`****(optional)**: appearance
+5. **`<any lua type>`** **(optional)**: argument to pass to callback
+6. **`{[left={...}][right={...}]}`** **(optional)**: appearance
 
 **Returns**
 
@@ -3395,8 +6306,8 @@ AddListNumericItem(light_userdata:handle, string:name, number:value[,light_userd
 1. **`light_userdata`**: handle
 2. **`string`**: name
 3. **`number`**: value
-4. **`light_userdata`****(optional)**: base handle
-5. **`{[left={...}][right={...}]}`****(optional)**: appearance
+4. **`light_userdata`** **(optional)**: base handle
+5. **`{[left={...}][right={...}]}`** **(optional)**: appearance
 
 **Returns**
 
@@ -3433,7 +6344,7 @@ AddListObjectItem(light_userdata:handle, light_userdata:target object[, (string:
 
 1. **`light_userdata`**: handle
 2. **`light_userdata`**: target object
-3. **`(string: explicit name[, {[boolean:appearance],[left={...}][right={...}]}:appearance] | enum{Roles}: role [, :boolean: extended_name[, {[left={...}][right={...}]}:appearance]])`****(optional)**: 
+3. **`(string: explicit name[, {[boolean:appearance],[left={...}][right={...}]}:appearance] | enum{Roles}: role [, :boolean: extended_name[, {[left={...}][right={...}]}:appearance]])`** **(optional)**: 
 
 **Returns**
 
@@ -3454,7 +6365,7 @@ AddListPropertyItem(light_userdata:handle, string:name, string:value, light_user
 2. **`string`**: name
 3. **`string`**: value
 4. **`light_userdata`**: target handle
-5. **`{[left={...}][right={...}]}`****(optional)**: appearance
+5. **`{[left={...}][right={...}]}`** **(optional)**: appearance
 
 **Returns**
 
@@ -3491,7 +6402,7 @@ AddListRecursiveNames(light_userdata:handle, light_userdata:parent[, enum{Roles}
 
 1. **`light_userdata`**: handle
 2. **`light_userdata`**: parent
-3. **`enum{Roles}`****(optional)**: role
+3. **`enum{Roles}`** **(optional)**: role
 
 **Returns**
 
@@ -3511,7 +6422,7 @@ AddListStringItem(light_userdata:handle, string:name, string:value[, {[left={...
 1. **`light_userdata`**: handle
 2. **`string`**: name
 3. **`string`**: value
-4. **`{[left={...}][right={...}]}`****(optional)**: appearance
+4. **`{[left={...}][right={...}]}`** **(optional)**: appearance
 
 **Returns**
 
@@ -3544,16 +6455,40 @@ No Return
 Addr(light_userdata:handle[, light_userdata:base_handle[, boolean:force_parent-based_address[, boolean:force_commandline_index-based_address]]]): string:numeric_root_address
 ```
 
+**Description**
+
+The Addr Lua object function converts a handle to an address string that can be used in commands.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
-2. **`light_userdata`****(optional)**: base_handle
-3. **`boolean`****(optional)**: force_parent-based_address
-4. **`boolean`****(optional)**: force_commandline_index-based_address
+2. **`light_userdata`** **(optional)**: base_handle
+3. **`boolean`** **(optional)**: force_parent-based_address
+4. **`boolean`** **(optional)**: force_commandline_index-based_address
 
 **Returns**
 
 - **`string`**: numeric_root_address
+
+**Example**
+
+This example prints different versions of the address to a cue in a sequence:
+
+```lua
+return function()
+    -- Creates a cue in sequence 1
+    Cmd("Store Sequence 1 Cue 100 /Merge /NoConfirmation")
+    --Store a handle to the created cue
+    local cueObject = ObjectList("Sequence 1 Cue 100")[1]
+    --Print different version of the handle address
+    Printf("ToAddr:              " .. cueObject:ToAddr())
+    Printf("Addr:                " .. cueObject:Addr())
+    Printf("Addr(Parent, false, false): " .. cueObject:Addr(cueObject:Parent(), false, false))
+    Printf("Addr(Parent, true, false):  " .. cueObject:Addr(cueObject:Parent(), true, false))
+    Printf("Addr(Parent, false, true): " .. cueObject:Addr(cueObject:Parent(), false, true))
+    Printf("Addr(Parent, true, true):  " .. cueObject:Addr(cueObject:Parent(), true, true))
+end
+```
 
 ---
 
@@ -3564,15 +6499,38 @@ Addr(light_userdata:handle[, light_userdata:base_handle[, boolean:force_parent-b
 AddrNative(light_userdata:handle, light_userdata:base_handle[, boolean:escape_names]]): string:numeric_root_address
 ```
 
+**Description**
+
+The AddrNative Lua object function converts a handle to an address string that can be used in commands.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
 2. **`light_userdata`**: base_handle
-3. **`boolean`****(optional)**: escape_names
+3. **`boolean`** **(optional)**: escape_names
 
 **Returns**
 
 - **`string`**: numeric_root_address
+
+**Example**
+
+This example prints the address of the first sequence:
+
+```lua
+return function()
+    -- Stores the handle to the first sequence.
+    local mySequence = DataPool().Sequences[1]
+    -- Print the native address.
+    Printf("The full address is: " .. mySequence:AddrNative())
+    -- Stores a handle to the default DataPool.
+    local myDataPool = DataPool()
+    -- Print the native address to the datapool using the default datapool as a base.
+    Printf("The address in the datapool is: " .. mySequence:AddrNative(myDataPool))
+    -- Print the native address to the datapool, using the default datapool as a base, with names as strings.
+    Printf("The address in the datapool with quotes around the names is: " .. mySequence:AddrNative(myDataPool, true))
+end
+```
 
 ---
 
@@ -3586,9 +6544,9 @@ Append(light_userdata:handle[, string:class[, light_userdata:undo[, integer:coun
 **Arguments**
 
 1. **`light_userdata`**: handle
-2. **`string`****(optional)**: class
-3. **`light_userdata`****(optional)**: undo
-4. **`integer`****(optional)**: count
+2. **`string`** **(optional)**: class
+3. **`light_userdata`** **(optional)**: undo
+4. **`integer`** **(optional)**: count
 
 **Returns**
 
@@ -3606,8 +6564,8 @@ Aquire(light_userdata:handle[, string:class[, light_userdata:undo]]): light_user
 **Arguments**
 
 1. **`light_userdata`**: handle
-2. **`string`****(optional)**: class
-3. **`light_userdata`****(optional)**: undo
+2. **`string`** **(optional)**: class
+3. **`light_userdata`** **(optional)**: undo
 
 **Returns**
 
@@ -3640,6 +6598,10 @@ No Return
 Children(light_userdata:handle): {light_userdata:child_handles}
 ```
 
+**Description**
+
+The Children Lua function creates a table of handles for the children of an object.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
@@ -3647,6 +6609,28 @@ Children(light_userdata:handle): {light_userdata:child_handles}
 **Returns**
 
 - **`{light_userdata:child_handles}`**: 
+
+**Example**
+
+This example returns the name of the cues in the first sequence of the selected data pool:
+
+```lua
+return function()
+    -- Stores the handle for sequence 1 in a variable.
+    local mySequence = DataPool().Sequences[1]
+    if mySequence ~= nil then
+            -- Use the "Children()" funciton to store a table with all the children in a new variable.
+        local cues = mySequence:Children()
+        -- For loop that uses the length operator on the cue variable.
+        for i = 1, #cues do
+            -- Text is printed for each child.
+            Printf("Sequence 1 Child " .. i .. " = " .. cues[i].name)
+        end
+    else
+        ErrPrintf("Sequence could not be found.")
+    end
+end
+```
 
 ---
 
@@ -3836,7 +6820,7 @@ Copy(light_userdata:dst_handle, light_userdata:src_handle[, light_userdata:undo]
 
 1. **`light_userdata`**: dst_handle
 2. **`light_userdata`**: src_handle
-3. **`light_userdata`****(optional)**: undo
+3. **`light_userdata`** **(optional)**: undo
 
 **Returns**
 
@@ -3851,6 +6835,10 @@ No Return
 Count(light_userdata:handle): integer:child_count
 ```
 
+**Description**
+
+The Count function returns an integer number indicating the number of child objects.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
@@ -3858,6 +6846,17 @@ Count(light_userdata:handle): integer:child_count
 **Returns**
 
 - **`integer`**: child_count
+
+**Example**
+
+This example prints the selected sequence's number of children (cues).
+
+```lua
+return function()
+    local numberChildren = SelectedSequence():Count()
+    Printf("The selected Sequence has " .. numberChildren .. " cues.")
+end
+```
 
 ---
 
@@ -3872,8 +6871,8 @@ Create(light_userdata:handle, integer:child_index(1-based)[, string:class[, ligh
 
 1. **`light_userdata`**: handle
 2. **`integer`**: child_index(1-based)
-3. **`string`****(optional)**: class
-4. **`light_userdata`****(optional)**: undo
+3. **`string`** **(optional)**: class
+4. **`light_userdata`** **(optional)**: undo
 
 **Returns**
 
@@ -3909,7 +6908,7 @@ Delete(light_userdata:handle, integer:child_index(1-based)[, light_userdata:undo
 
 1. **`light_userdata`**: handle
 2. **`integer`**: child_index(1-based)
-3. **`light_userdata`****(optional)**: undo
+3. **`light_userdata`** **(optional)**: undo
 
 **Returns**
 
@@ -3924,6 +6923,10 @@ No Return
 Dump(light_userdata:handle): string:information
 ```
 
+**Description**
+
+The Dump function returns a string with information about the object, for instance, the name, class, path of the object, its properties, and children.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
@@ -3931,6 +6934,19 @@ Dump(light_userdata:handle): string:information
 **Returns**
 
 - **`string`**: information
+
+**Example**
+
+These examples all print information about the selected sequence in the Command Line History.
+
+```lua
+return function ()
+    -- Dump() is called on a function
+    Printf("=============== START OF DUMP ===============")
+    SelectedSequence():Dump()
+    Printf("================ END OF DUMP ================")
+end
+```
 
 ---
 
@@ -3941,6 +6957,10 @@ Dump(light_userdata:handle): string:information
 Export(light_userdata:handle, string:file_path, string:file_name): boolean:success
 ```
 
+**Description**
+
+The Export object Lua function exports an object into an XML file.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
@@ -3950,6 +6970,31 @@ Export(light_userdata:handle, string:file_path, string:file_name): boolean:succe
 **Returns**
 
 - **`boolean`**: success
+
+**Example**
+
+This example exports the selected sequence into an XML file:
+
+```lua
+return function()
+    --SelectedSequence() creates a handle to the selected sequence.
+    local selectedSequence = SelectedSequence()
+    if selectedSequence == nil then
+        ErrPrintf("The selected sequence could not be found.")
+        return
+    end
+    --The path is stored in a variable.
+    local exportPath = GetPath(Enums.PathType.UserSequences)
+    --The actual export function.
+    local success = selectedSequence:Export(exportPath, "mySelectedSequence.xml")
+    --Print some feedback. 
+    if success then
+        Printf("The sequence is exported to: " .. exportPath)
+    else
+        ErrPrintf("The sequence could not be exported.")
+    end
+end
+```
 
 ---
 
@@ -3964,7 +7009,7 @@ Find(light_userdata:search_start_handle, string:search_name[, string:search_clas
 
 1. **`light_userdata`**: search_start_handle
 2. **`string`**: search_name
-3. **`string`****(optional)**: search_class_name
+3. **`string`** **(optional)**: search_class_name
 
 **Returns**
 
@@ -4037,7 +7082,7 @@ FindRecursive(light_userdata:search_start_handle, string:search_name[, string:se
 
 1. **`light_userdata`**: search_start_handle
 2. **`string`**: search_name
-3. **`string`****(optional)**: search_class_name
+3. **`string`** **(optional)**: search_class_name
 
 **Returns**
 
@@ -4088,15 +7133,46 @@ FSExtendedModeHasDots(light_userdata:handle to UIGrid (or derived), {r, c}:cell)
 Get(light_userdata:handle, string:property_name[, integer:role(Enums.Roles)]): light:userdata:child or string:property (if 'role' provided - always string)
 ```
 
+**Description**
+
+The Get function returns a string with information about a specified property of the object, for instance, the object's name, class, or path.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
 2. **`string`**: property_name
-3. **`integer`****(optional)**: role(Enums.Roles)
+3. **`integer`** **(optional)**: role(Enums.Roles)
 
 **Returns**
 
 - **`light`**: userdata:child or string:property (if 'role' provided - always string)
+
+**Example**
+
+This example prints information about the "Tracking" property of the selected sequence.
+
+```lua
+return function ()
+    -- SelectedSequence() creates a handle to the selected sequence.
+    local selectedSequence = SelectedSequence()
+    -- Check if there is a selected sequence. If not, then exit the function.
+    if selectedSequence == nil then
+        ErrPrintf("The selected sequence could not be found.")
+        return
+    end
+    -- Set a variable with the property name.
+    local propertyName = "Tracking"
+    -- Get the value of the property. 
+    local propertyValue = selectedSequence:Get(propertyName)
+    local propertyValueString = selectedSequence:Get(propertyName, Enums.Roles.Edit)
+    -- Return some feedback.
+    if propertyValue ~= nil then
+        Printf("The selected sequence's property " .. propertyName.. " has the value '" .. propertyValue .. "' and a string value of '" .. propertyValueString .. "'.")
+    else
+        ErrPrintf("The property could not be found.")
+    end
+end
+```
 
 ---
 
@@ -4124,6 +7200,10 @@ GetAssignedObj(light_userdata:handle): light_userdata:handle
 GetChildClass(light_userdata:handle): string:class_name
 ```
 
+**Description**
+
+The GetChildClass function returns a string with the name of the class of the object's children.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
@@ -4131,6 +7211,17 @@ GetChildClass(light_userdata:handle): string:class_name
 **Returns**
 
 - **`string`**: class_name
+
+**Example**
+
+This example prints the class name of the selected sequences' children.
+
+```lua
+return function()
+    -- Gets the class name of children of the selected sequence.
+    Printf("The class name is " .. SelectedSequence():GetChildClass())
+end
+```
 
 ---
 
@@ -4141,6 +7232,10 @@ GetChildClass(light_userdata:handle): string:class_name
 GetClass(light_userdata:handle): string:class_name
 ```
 
+**Description**
+
+The GetClass function returns a string with information about the class for the object.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
@@ -4148,6 +7243,17 @@ GetClass(light_userdata:handle): string:class_name
 **Returns**
 
 - **`string`**: class_name
+
+**Example**
+
+This example prints the class name of the selected sequence.
+
+```lua
+return function()
+    -- Gets the class name of the selected sequence.
+    Printf("The class name is " .. SelectedSequence():GetClass())
+end
+```
 
 ---
 
@@ -4158,6 +7264,10 @@ GetClass(light_userdata:handle): string:class_name
 GetDependencies(light_userdata:handle): {light_userdata:handle}
 ```
 
+**Description**
+
+The GetDependencies function returns a table with the objects' dependencies.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
@@ -4165,6 +7275,28 @@ GetDependencies(light_userdata:handle): {light_userdata:handle}
 **Returns**
 
 - **`{light_userdata:handle}`**: 
+
+**Example**
+
+This example prints a dump of the selected sequence's first object in the returned table.
+
+```lua
+return function()
+    -- SelectedSequence() creates a handle to the selected sequence.
+    local selectedSequence = SelectedSequence()
+    -- Get the dependcies for the sequence.
+    local seqDependencies = selectedSequence:GetDependencies()
+    -- Check if there are any dependicies and output a relevant feedback.
+    if seqDependencies ~= nil then
+        -- There is a dependency table returned. Print a dump of the first table element.
+        Printf("=============== START OF DUMP ===============")
+        seqDependencies[1]:Dump()
+        Printf("================ END OF DUMP ================")
+    else
+        Printf("No dependencies found")
+    end
+end
+```
 
 ---
 
@@ -4212,7 +7344,7 @@ GetExportFileName(light_userdata:handle[, boolean:camel_case_to_file_name]): str
 **Arguments**
 
 1. **`light_userdata`**: handle
-2. **`boolean`****(optional)**: camel_case_to_file_name
+2. **`boolean`** **(optional)**: camel_case_to_file_name
 
 **Returns**
 
@@ -4227,6 +7359,10 @@ GetExportFileName(light_userdata:handle[, boolean:camel_case_to_file_name]): str
 GetFader(light_userdata:handle, {[string:token(Fader*)], [integer:index]}): float:value[0..100]
 ```
 
+**Description**
+
+The GetFader function returns a float number indicating a fader position for the object.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
@@ -4235,6 +7371,24 @@ GetFader(light_userdata:handle, {[string:token(Fader*)], [integer:index]}): floa
 **Returns**
 
 - **`float`**: value[0..100
+
+**Example**
+
+This example prints the fader positions of the Master and Rate faders for the selected sequence.
+
+```lua
+return function()
+    -- SelectedSequence() creates a handle to the selected sequence.
+    local selectedSequence = SelectedSequence()
+    -- Get the value for the Master fader.
+    local faderMasterValue = selectedSequence:GetFader({})
+    -- Get the value for the Rate fader.
+    local faderRateValue = selectedSequence:GetFader({token="FaderRate"})
+    -- Print feedback with the values.
+    Printf("The selected sequence Master fader value is: ".. tostring(faderMasterValue))
+    Printf("The selected sequence Rate fader value is: ".. tostring(faderRateValue))
+end
+```
 
 ---
 
@@ -4245,6 +7399,10 @@ GetFader(light_userdata:handle, {[string:token(Fader*)], [integer:index]}): floa
 GetFaderText(light_userdata:handle, {[string:token(Fader*)], [integer:index]}): string:text
 ```
 
+**Description**
+
+The GetFaderText function returns a text string indicating a fader value for the object.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
@@ -4253,6 +7411,24 @@ GetFaderText(light_userdata:handle, {[string:token(Fader*)], [integer:index]}): 
 **Returns**
 
 - **`string`**: text
+
+**Example**
+
+This example prints the fader value text of the Master and Rate faders for the selected sequence.
+
+```lua
+return function()
+    -- SelectedSequence() creates a handle to the selected sequence.
+    local selectedSequence = SelectedSequence()
+    -- Get the value for the Master fader. Since it is the default, no token needs to be defined.
+    local faderMasterText = selectedSequence:GetFaderText({})
+    -- Get the value for the Rate fader.
+    local faderRateText = selectedSequence:GetFaderText({token="FaderRate"})
+    -- Print feedback with the values.
+    Printf("The selected sequence Master fader value text is: ".. tostring(faderMasterText))
+    Printf("The selected sequence Rate fader value text is: ".. tostring(faderRateText))
+end
+```
 
 ---
 
@@ -4439,6 +7615,10 @@ GetOverlay(light_userdata:handle to UIObject): light_userdata:overlay_handle
 GetReferences(light_userdata:handle): {light_userdata:handle}
 ```
 
+**Description**
+
+The GetReferences function returns a table with handles for the objects referencing this object.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
@@ -4446,6 +7626,28 @@ GetReferences(light_userdata:handle): {light_userdata:handle}
 **Returns**
 
 - **`{light_userdata:handle}`**: 
+
+**Example**
+
+This example prints a dump of the selected sequence's first object in the returned table.
+
+```lua
+return function()
+    -- SelectedSequence() creates a handle to the selected sequence.
+    local selectedSequence = SelectedSequence()
+    -- Get the references for the sequence.
+    local seqReferences = selectedSequence:GetReferences()
+    -- Check if there are any references and output a relevant feedback.
+    if seqReferences ~= nil then
+        -- There is a reference table returned. Print a dump of the first table element.
+        Printf("=============== START OF DUMP ===============")
+        seqReferences[1]:Dump()
+        Printf("================ END OF DUMP ================")
+    else
+        Printf("No references found")
+    end
+end
+```
 
 ---
 
@@ -4508,6 +7710,10 @@ GetUIChildrenCount(light_userdata:handle to UIObject): integer:count
 GetUIEditor(light_userdata:handle): string:ui_editor_name
 ```
 
+**Description**
+
+The GetUIEditor function returns a text string with the name of the UI editor for the object.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
@@ -4515,6 +7721,25 @@ GetUIEditor(light_userdata:handle): string:ui_editor_name
 **Returns**
 
 - **`string`**: ui_editor_name
+
+**Example**
+
+This example prints the name of the selected sequence's editor.
+
+```lua
+return function()
+    -- SelectedSequence() creates a handle to the selected sequence.
+    local selectedSequence = SelectedSequence()
+    -- Get the name of the editor for the sequence object. 
+    local seqEditor = selectedSequence:GetUIEditor()
+    -- Print some feedback.
+    if seqEditor ~= nil then
+        Printf("The name of the editor is: " .. seqEditor)
+    else
+        Printf("The object doesn not appear to have an editor.")
+    end
+end
+```
 
 ---
 
@@ -4525,6 +7750,10 @@ GetUIEditor(light_userdata:handle): string:ui_editor_name
 GetUISettings(light_userdata:handle): string:ui_settings_name
 ```
 
+**Description**
+
+The GetUISettings function returns a text string with the name of the UI settings for the object.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
@@ -4532,6 +7761,25 @@ GetUISettings(light_userdata:handle): string:ui_settings_name
 **Returns**
 
 - **`string`**: ui_settings_name
+
+**Example**
+
+This example prints the name of the selected sequence's settings.
+
+```lua
+return function()
+    -- SelectedSequence() creates a handle to the selected sequence.
+    local selectedSequence = SelectedSequence()
+    -- Get the name of the editor for the sequence object. 
+    local seqSettings = selectedSequence:GetUISettings()
+    -- Print some feedback.
+    if seqSettings ~= nil then
+        Printf("The name of the settings is: " .. seqSettings)
+    else
+        Printf("The object doesn not appear to have an editor.")
+    end
+end
+```
 
 ---
 
@@ -4930,6 +8178,10 @@ GridsGetRowById(light_userdata:handle to UIGrid (or derived), integer: rowId): r
 HasActivePlayback(light_userdata:handle): boolean:result
 ```
 
+**Description**
+
+The HasActivePlayback Lua function returns a boolean indicating if an object has a currently active playback, for instance, if a sequence has an active cue.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
@@ -4937,6 +8189,24 @@ HasActivePlayback(light_userdata:handle): boolean:result
 **Returns**
 
 - **`boolean`**: result
+
+**Example**
+
+To return the information if the selected sequence has an active playback, create a plugin with this code:
+
+```lua
+return function()
+    -- Stores the handle of the selected sequence.
+    local selectedSequence = SelectedSequence()
+
+    -- The following 'if' gives different feedback based on the playback status.
+    if selectedSequence:HasActivePlayback() then
+        Printf("Sequence '" ..selectedSequence.name.. "' has active playback.")
+    else
+        Printf("Sequence '" ..selectedSequence.name.. "' has NO active playback.")
+    end
+end
+```
 
 ---
 
@@ -5037,7 +8307,7 @@ HookDelete(light_userdata:handle to UIObject, function:callback to invoke on del
 
 1. **`light_userdata`**: handle to UIObject
 2. **`function`**: callback to invoke on deletion
-3. **`any`****(optional)**: argument to pass by
+3. **`any`** **(optional)**: argument to pass by
 
 **Returns**
 
@@ -5053,6 +8323,10 @@ HookDelete(light_userdata:handle to UIObject, function:callback to invoke on del
 Import(light_userdata:handle, string:file_path, string:file_name): boolean:success
 ```
 
+**Description**
+
+The Import object  Lua function imports an object written in XML format.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
@@ -5062,6 +8336,33 @@ Import(light_userdata:handle, string:file_path, string:file_name): boolean:succe
 **Returns**
 
 - **`boolean`**: success
+
+**Example**
+
+This example imports the content of an XML file into the selected sequence. The file is called "MySelectedSequence", and it is located at "../gma3_library/datapools/sequences". The file can be created using the example in the Export object function.
+
+```lua
+return function()
+    --SelectedSequence() creates a handle to the selected sequence.
+    -- The imported object will be merged into this sequence.
+    local selectedSequence = SelectedSequence()
+    -- Check if there is a selected sequence - if not then exit the function.
+    if selectedSequence == nil then
+        ErrPrintf("The selected sequence could not be found.")
+        return
+    end
+    --The path is stored in a variable.
+    local path = GetPath(Enums.PathType.UserSequences)
+    --The actual import function.
+    local success = selectedSequence:Import(path, "mySelectedSequence.xml")
+    --Print some feedback. 
+    if success then
+        Printf("The sequence is imported from: " .. path .. GetPathSeparator() .. "mySelectedSequence.xml")
+    else
+        ErrPrintf("The object could not be imported.")
+    end
+end
+```
 
 ---
 
@@ -5093,7 +8394,7 @@ InputCallFunction(light_userdata:handle, string:function name[, ...parameters to
 
 1. **`light_userdata`**: handle
 2. **`string`**: function name
-3. **`...parameters to function`****(optional)**: 
+3. **`...parameters to function`** **(optional)**: 
 
 **Returns**
 
@@ -5238,9 +8539,9 @@ Insert(light_userdata:handle, integer:child_index(1-based)[, string:class[, ligh
 
 1. **`light_userdata`**: handle
 2. **`integer`**: child_index(1-based)
-3. **`string`****(optional)**: class
-4. **`light_userdata`****(optional)**: undo
-5. **`integer`****(optional)**: count
+3. **`string`** **(optional)**: class
+4. **`light_userdata`** **(optional)**: undo
+5. **`integer`** **(optional)**: count
 
 **Returns**
 
@@ -5433,7 +8734,7 @@ OverlaySetCloseCallback(light_userdata:handle to Overlay, callbackName:string[, 
 
 1. **`light_userdata`**: handle to Overlay
 2. **`callbackName`**: string
-3. **`ctx`****(optional)**: anything
+3. **`ctx`** **(optional)**: anything
 
 **Returns**
 
@@ -5553,6 +8854,10 @@ PropertyType(light_userdata:handle, integer:property_index): string:property_typ
 Ptr(light_userdata:handle, integer:index(1-based)): light_userdata:child_handle
 ```
 
+**Description**
+
+The Ptr Lua function returns the handle to a child object.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
@@ -5561,6 +8866,32 @@ Ptr(light_userdata:handle, integer:index(1-based)): light_userdata:child_handle
 **Returns**
 
 - **`light_userdata`**: child_handle
+
+**Example**
+
+This example prints the data connected to the first child of the selected sequence. It uses the Dump() function.
+
+```lua
+return function()
+    -- SelectedSequence() creates a handle to the selected sequence.
+    local selectedSequence = SelectedSequence()
+    -- Check that a handle was returned - if not then exit function.
+    if selectedSequence == nil then
+        ErrPrintf("There is no selected sequence.")
+        return
+    end
+    -- Get a handle to the first child object.
+    local firstChild = selectedSequence:Ptr(1)
+    -- Print some feedback.
+    if firstChild ~= nil then
+        Printf("=============== START OF DUMP ===============")
+        firstChild:Dump()
+        Printf("================ END OF DUMP ================")
+    else
+        ErrPrintf("The object do not have a child object.")
+    end
+end
+```
 
 ---
 
@@ -5575,7 +8906,7 @@ Remove(light_userdata:handle, integer:child_index(1-based)[, light_userdata:undo
 
 1. **`light_userdata`**: handle
 2. **`integer`**: child_index(1-based)
-3. **`light_userdata`****(optional)**: undo
+3. **`light_userdata`** **(optional)**: undo
 
 **Returns**
 
@@ -5819,7 +9150,7 @@ Set(light_userdata:handle, string:property_name, string:property_value[, integer
 1. **`light_userdata`**: handle
 2. **`string`**: property_name
 3. **`string`**: property_value
-4. **`integer`****(optional)**: override_change_level(Enums.ChangeLevel)
+4. **`integer`** **(optional)**: override_change_level(Enums.ChangeLevel)
 
 **Returns**
 
@@ -5839,7 +9170,7 @@ SetChildren(light_userdata:handle_of_parent, string:property_name, string:proper
 1. **`light_userdata`**: handle_of_parent
 2. **`string`**: property_name
 3. **`string`**: property_value
-4. **`boolean`****(optional)**: recursive (default: false)
+4. **`boolean`** **(optional)**: recursive (default: false)
 
 **Returns**
 
@@ -5859,7 +9190,7 @@ SetChildrenRecursive(light_userdata:handle_of_parent, string:property_name, stri
 1. **`light_userdata`**: handle_of_parent
 2. **`string`**: property_name
 3. **`string`**: property_value
-4. **`boolean`****(optional)**: recursive (default: false)
+4. **`boolean`** **(optional)**: recursive (default: false)
 
 **Returns**
 
@@ -5896,7 +9227,7 @@ SetEmptyListItem(light_userdata:handle, integer:index[, bool:empty(default:true)
 
 1. **`light_userdata`**: handle
 2. **`integer`**: index
-3. **`bool`****(optional)**: empty(default:true)
+3. **`bool`** **(optional)**: empty(default:true)
 
 **Returns**
 
@@ -5915,7 +9246,7 @@ SetEnabledListItem(light_userdata:handle, integer:index[, bool:enable(default:tr
 
 1. **`light_userdata`**: handle
 2. **`integer`**: index
-3. **`bool`****(optional)**: enable(default:true)
+3. **`bool`** **(optional)**: enable(default:true)
 
 **Returns**
 
@@ -5930,6 +9261,10 @@ No Return
 SetFader(light_userdata:handle, {[float:value[0..100]], [boolean:faderEnabled], [string:token(Fader*)]}): nothing
 ```
 
+**Description**
+
+The SetFader function sets a fader to a specified level. It must be used on an object that has faders.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
@@ -5938,6 +9273,21 @@ SetFader(light_userdata:handle, {[float:value[0..100]], [boolean:faderEnabled], 
 **Returns**
 
 No Return
+
+**Example**
+
+This example changes the selected sequences' Master fader to 100% and the Time fader to 5 seconds and enables the time fader.
+
+```lua
+return function()
+    -- SelectedSequence() creates a handle to the selected sequence.
+    local selectedSequence = SelectedSequence()
+    -- Set the master fader to 100. The FaderMaster is the default token, so it can be omitted.
+    selectedSequence:SetFader({value=100.0})
+    -- Set the time fader to 5 seconds and enable the fader.
+    selectedSequence:SetFader({value=50.0, faderEnabled=1, token="FaderTime"})
+end
+```
 
 ---
 
@@ -6042,15 +9392,42 @@ No Return
 ToAddr(light_userdata:handle,boolean:with_name[, boolean:use_visible_addr]): string:address
 ```
 
+**Description**
+
+The ToAddr Lua object function converts a handle to an address string that can be used in commands.
+
 **Arguments**
 
 1. **`light_userdata`**: handle
 2. **`boolean`**: with_name
-3. **`boolean`****(optional)**: use_visible_addr
+3. **`boolean`** **(optional)**: use_visible_addr
 
 **Returns**
 
 - **`string`**: address
+
+**Example**
+
+This example returns the address of the first sequence of the selected data pool, prints the address in the Command Line History, and creates a grandMA3 command with a "Go" keyword in front of the address. This command is sent to the grandMA3 command line.
+
+```lua
+return function()
+    -- Stores the handle in a variable.
+    local mySequence = DataPool().Sequences[1]
+    if mySequence ~= nil then
+        -- Converts the handle to the address and store in variable.
+        local mySequenceAddressName = mySequence:ToAddr(true)
+        local mySequenceAddress = mySequence:ToAddr(false)
+        -- Print the address to the Command Line History.
+        Printf("The named address of the sequence is: " .. mySequenceAddressName)
+        Printf("The system address of the sequence is: " .. mySequenceAddress)
+        -- Send a 'Go' command with the address appended.
+        Cmd("Go %s", mySequenceAddress)
+    else
+        ErrPrintf("The sequence could not be found")
+    end
+end
+```
 
 ---
 
@@ -6190,7 +9567,7 @@ WaitChildren(light_userdata:handle to UIObject, integer:expected amount of child
 
 1. **`light_userdata`**: handle to UIObject
 2. **`integer`**: expected amount of children
-3. **`number`****(optional)**: seconds to wait
+3. **`number`** **(optional)**: seconds to wait
 
 **Returns**
 
@@ -6209,9 +9586,9 @@ WaitInit(light_userdata:handle to UIObject[, number:seconds to wait[, bool:force
 **Arguments**
 
 1. **`light_userdata`**: handle to UIObject
-2. **`number`****(optional)**: seconds to wait
-3. **`bool`****(optional)**: force to re-init
-4. **`default - false`****(optional)**: 
+2. **`number`** **(optional)**: seconds to wait
+3. **`bool`** **(optional)**: force to re-init
+4. **`default - false`** **(optional)**: 
 
 **Returns**
 

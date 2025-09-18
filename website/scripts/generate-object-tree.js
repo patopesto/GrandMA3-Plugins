@@ -94,7 +94,7 @@ export function GenerateTreeMarkDown(version = "v2.0", tree, output_file) {
   let markdown = 
 `---
 title: Data Tree
-description: The Data Tree for grandMA3 version ${version}
+description: The Data Tree for grandMA3 ${version}
 version: ${version}
 tableOfContents:
   minHeadingLevel: 1

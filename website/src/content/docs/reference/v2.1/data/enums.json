@@ -22,7 +22,6 @@
     "items": {
       "Speed": 38,
       "Temp": 36,
-      "unnamed": 0,
       "Empty": 0,
       "X": 33,
       "XB": 35,
@@ -96,7 +95,6 @@
       "1": 1,
       "No": 0,
       "on": 1,
-      "unnamed": 1,
       "off": 0,
       "false": 0,
       "true": 1,
@@ -635,7 +633,6 @@
   },
   "AssignmentFaderFunctionsMasterOnly": {
     "items": {
-      "unnamed": 0,
       "Empty": 0,
       "Master": 32
     }
@@ -836,7 +833,6 @@
   },
   "RDMPidValueResetDevice": {
     "items": {
-      "unnamed": 0,
       "Warm": 1,
       "Cold": 255
     }
@@ -1323,7 +1319,6 @@
   },
   "LockTypes": {
     "items": {
-      "unnamed": 0,
       "UL": 1,
       "PL": 2,
       "SL": 3
@@ -1439,7 +1434,6 @@
       "Speed10": 9,
       "Speed11": 10,
       "Speed13": 12,
-      "unnamed": 255,
       "Speed6": 5,
       "Speed15": 14,
       "Speed8": 7,
@@ -1553,7 +1547,6 @@
   "RDMNotificationThresholdOperator": {
     "items": {
       "IsNot": 2,
-      "unnamed": 0,
       "Less": 4,
       "Is": 1,
       "Greate": 3
@@ -1609,7 +1602,6 @@
       "1": 1,
       "No": 0,
       "on": 1,
-      "unnamed": 1,
       "off": 0,
       "false": 0,
       "true": 1,
@@ -1650,7 +1642,6 @@
   },
   "AssignmentButtonFunctionsUser": {
     "items": {
-      "unnamed": 0,
       "Empty": 0,
       "LogIn": 70
     }
@@ -1677,7 +1668,6 @@
       "On": 7,
       "Toggle": 14,
       "Temp": 13,
-      "unnamed": 0,
       "Empty": 0,
       "Black": 2,
       "Off": 8
@@ -1742,7 +1732,6 @@
       ">>>": 5,
       "Pause": 18,
       "Kill": 29,
-      "unnamed": 0,
       "Off": 8,
       "Black": 2,
       "Temp": 13,
@@ -1767,7 +1756,6 @@
       "Sound": 3,
       "Follow": 2,
       "BPM": 4,
-      "unnamed": 5,
       "No Trigger": 5,
       "Time": 1,
       "Go": 0
@@ -1807,7 +1795,6 @@
       ">>>": 5,
       "Pause": 18,
       "Kill": 29,
-      "unnamed": 0,
       "Off": 8,
       "Black": 2,
       "Speed1": 12,
@@ -2138,7 +2125,6 @@
       "None": 0,
       "Free": 1,
       "Proportional": 2,
-      "unnamed": 0,
       "Undefined": 3
     }
   },
@@ -2172,7 +2158,6 @@
   },
   "AssignmentButtonFunctionsScreenConfig": {
     "items": {
-      "unnamed": 0,
       "Call": 106,
       "Empty": 0
     }
@@ -2261,7 +2246,6 @@
       "On": 7,
       "Pause": 18,
       "Temp": 13,
-      "unnamed": 0,
       "Off": 8,
       "Black": 2,
       "GoStep": 23,
@@ -2323,7 +2307,6 @@
       "E": 24,
       "P": 23,
       "z": 9,
-      "unnamed": 0,
       "k": 19,
       "n": 5,
       "m": 3,
@@ -2400,7 +2383,6 @@
       "cd": 24,
       "m³": 14,
       "Ω": 9,
-      "unnamed": 0,
       "m/s": 16,
       "N": 18,
       "Hz": 8,
@@ -2444,7 +2426,6 @@
       ">>>": 5,
       "Pause": 18,
       "Temp": 13,
-      "unnamed": 0,
       "Off": 8,
       "Black": 2,
       "Toggle": 14,
@@ -2459,7 +2440,6 @@
   },
   "Yes": {
     "items": {
-      "unnamed": 0,
       "Yes": 1,
       "<Blank>": 0
     }
@@ -2737,7 +2717,6 @@
       "On": 7,
       "Pause": 18,
       "Temp": 13,
-      "unnamed": 0,
       "Off": 8,
       "Black": 2,
       "DoubleSpeed": 27,
@@ -2761,7 +2740,6 @@
     "items": {
       "Critical": 184,
       "FlashOverride": 152,
-      "unnamed": 0,
       "Priority": 56,
       "Flash": 120,
       "Immediate": 88
@@ -2985,7 +2963,6 @@
       "On": 7,
       "Toggle": 14,
       "Temp": 13,
-      "unnamed": 0,
       "Empty": 0,
       "Black": 2,
       "Off": 8
@@ -3041,7 +3018,6 @@
   },
   "PatchType": {
     "items": {
-      "unnamed": 0,
       "Fine": 2,
       "Ultra": 3,
       "Coarse": 1
@@ -3221,7 +3197,6 @@
       "1": 1,
       "Inverted": 1,
       "<Blank>": 0,
-      "unnamed": 0,
       "off": 0,
       "false": 0,
       "true": 1,
@@ -3270,7 +3245,6 @@
   },
   "ExtraStatusInfo": {
     "items": {
-      "unnamed": 0,
       "Create": 2,
       "Join": 1
     }
@@ -3289,7 +3263,6 @@
   },
   "IgnoreFT": {
     "items": {
-      "unnamed": -1,
       "Ignore FT": -2,
       "Follow FT": -1
     }
@@ -3299,7 +3272,6 @@
       "Flash": 1,
       "Pause": 18,
       "Temp": 13,
-      "unnamed": 0,
       "Off": 8,
       "Black": 2,
       "Top": 15,
@@ -3316,9 +3288,7 @@
     }
   },
   "DmxSheetHeaderType": {
-    "items": {
-      "unnamed": 0
-    }
+    "items": {}
   },
   "MibTiming": {
     "items": {
@@ -3379,7 +3349,6 @@
   },
   "AssignmentFaderFunctionsNone": {
     "items": {
-      "unnamed": 0,
       "Empty": 0
     }
   },
@@ -3403,7 +3372,6 @@
     "items": {
       "Flash": 1,
       "Temp": 13,
-      "unnamed": 0,
       "Empty": 0,
       "Black": 2,
       "SelectFixtures": 117
@@ -3505,7 +3473,6 @@
   "AssignmentProgExecButtonFunctions": {
     "items": {
       "On": 7,
-      "unnamed": 0,
       "Empty": 0,
       "Toggle": 14,
       "Off": 8
@@ -3745,7 +3712,6 @@
       ">>>": 5,
       "Pause": 18,
       "Kill": 29,
-      "unnamed": 0,
       "Off": 8,
       "Black": 2,
       "Speed1": 12,
@@ -3994,7 +3960,6 @@
   },
   "EmptyAsZeroFID": {
     "items": {
-      "unnamed": 0,
       "None": 0
     }
   },
@@ -4005,9 +3970,7 @@
     }
   },
   "EmptyAsZero": {
-    "items": {
-      "unnamed": 0
-    }
+    "items": {}
   },
   "PresetDisplayMode": {
     "items": {
@@ -4062,7 +4025,6 @@
   "AssignmentSoundMasterButtonFunctions": {
     "items": {
       "On": 7,
-      "unnamed": 0,
       "Empty": 0,
       "Toggle": 14,
       "Off": 8
@@ -4327,7 +4289,6 @@
       "On": 7,
       "Pause": 18,
       "Toggle": 14,
-      "unnamed": 0,
       "Empty": 0,
       "Go+": 3,
       "Off": 8
@@ -4374,7 +4335,6 @@
       "Flash": 1,
       "SelectFixtures": 117,
       "Temp": 13,
-      "unnamed": 0,
       "Empty": 0,
       "Black": 2,
       "Select": 24
@@ -4402,7 +4362,6 @@
     "items": {
       "Flash": 1,
       "Temp": 13,
-      "unnamed": 0,
       "Empty": 0,
       "Black": 2
     }
@@ -4465,7 +4424,6 @@
       "DownGoing": 4,
       "Blocked": 2,
       "UpGoing": 3,
-      "unnamed": 0,
       "Tracked": 1,
       "MIBFade": 6,
       "MIB": 5
@@ -4552,7 +4510,6 @@
       "SelectedEdge": 6,
       "Selected": 1,
       "InvalidGridPosition": 4,
-      "unnamed": 0,
       "SelectedInverted": 2,
       "PartlySelected": 3,
       "MainMultiPatchSelected": 5
@@ -4560,7 +4517,6 @@
   },
   "FixtureSheetHeaderType": {
     "items": {
-      "unnamed": 0,
       "Selected": 1,
       "PartlySelected": 3,
       "SelectedInverted": 2
@@ -4572,7 +4528,6 @@
       ">>>": 5,
       "Pause": 18,
       "<<<": 6,
-      "unnamed": 0,
       "Empty": 0,
       "Go+": 3,
       "Go-": 4
@@ -4626,7 +4581,6 @@
       "NUM8": 75,
       "GOTO": 55,
       "THRU": 78,
-      "unnamed": 0,
       "SEQUENCE": 59,
       "FULL": 85,
       "UPDATE": 65,
@@ -4806,7 +4760,6 @@
   },
   "ValueNoneEmpty": {
     "items": {
-      "unnamed": 2147483647,
       "Release": 1107296256,
       "None": 2147483647,
       "Hold": 1107296257
@@ -4844,7 +4797,6 @@
   },
   "None": {
     "items": {
-      "unnamed": -1,
       "None": -1
     }
   },
@@ -4880,7 +4832,7 @@
     }
   },
   "NoName": {
-    "items": []
+    "items": {}
   },
   "WindowCategories": {
     "items": {
@@ -4976,13 +4928,11 @@
   },
   "MatricksInvert": {
     "items": {
-      "unnamed": 0,
       "On": 1
     }
   },
   "TimeNoneEmpty": {
     "items": {
-      "unnamed": -1,
       "None": -1
     }
   },
@@ -5399,7 +5349,6 @@
   },
   "CueAssert": {
     "items": {
-      "unnamed": 0,
       "X-Assert": 2,
       "Assert": 1,
       "None": 0
@@ -5604,13 +5553,10 @@
     }
   },
   "Patched": {
-    "items": {
-      "unnamed": -1
-    }
+    "items": {}
   },
   "EC_NoGrid": {
     "items": {
-      "unnamed": 2147483647,
       "None": 2147483647
     }
   },
@@ -5664,7 +5610,6 @@
       ">>>": 5,
       "Pause": 18,
       "Kill": 29,
-      "unnamed": 0,
       "Off": 8,
       "Black": 2,
       "At": 45,
@@ -6485,7 +6430,6 @@
       "Flash": 1,
       "On": 7,
       "Kill": 29,
-      "unnamed": 0,
       "Off": 8,
       "Black": 2,
       "Toggle": 14,
@@ -6496,7 +6440,6 @@
   },
   "AssignmentButtonFunctionsView": {
     "items": {
-      "unnamed": 0,
       "Empty": 0,
       "Go+": 3
     }
@@ -6524,7 +6467,6 @@
   },
   "AssignmentQuickeyFunctions": {
     "items": {
-      "unnamed": 0,
       "Empty": 0,
       "Go+": 3
     }
@@ -6719,7 +6661,6 @@
       "NUM8": 75,
       "GOTO": 55,
       "THRU": 78,
-      "unnamed": 0,
       "SEQUENCE": 59,
       "FULL": 85,
       "UPDATE": 65,

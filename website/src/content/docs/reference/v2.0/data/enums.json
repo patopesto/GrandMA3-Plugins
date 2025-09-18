@@ -26,7 +26,6 @@
   },
   "AssignmentSpeedButtonFunctions": {
     "items": {
-      "unnamed": 0,
       "Pause": 18,
       "LearnSpeed": 10,
       "Temp": 13,
@@ -220,8 +219,7 @@
   },
   "MatricksInvert": {
     "items": {
-      "On": 1,
-      "unnamed": 0
+      "On": 1
     }
   },
   "ValueReadoutMode": {
@@ -389,7 +387,6 @@
       "IsNot": 2,
       "Greate": 3,
       "Less": 4,
-      "unnamed": 0,
       "Is": 1
     }
   },
@@ -418,7 +415,6 @@
       "0": 0,
       "1": 1,
       "true": 1,
-      "unnamed": 1,
       "No": 0,
       "false": 0,
       "Yes": 1,
@@ -560,7 +556,6 @@
   },
   "AssignmentButtonFunctionsSequence": {
     "items": {
-      "unnamed": 0,
       "Go-": 4,
       "Select": 24,
       "Goto": 16,
@@ -646,7 +641,6 @@
   },
   "IgnoreFT": {
     "items": {
-      "unnamed": -1,
       "Ignore FT": -2,
       "Follow FT": -1
     }
@@ -878,7 +872,6 @@
   "FixtureSheetFixedColumnType": {
     "items": {
       "InvalidGridPosition": 4,
-      "unnamed": 0,
       "MainMultiPatchSelected": 5,
       "SelectedEdge": 6,
       "Selected": 1,
@@ -1015,7 +1008,6 @@
   },
   "AssignmentButtonFunctionsSoundFile": {
     "items": {
-      "unnamed": 0,
       "Empty": 0,
       "Go+": 3,
       "Toggle": 14,
@@ -1315,7 +1307,6 @@
       "On": 7,
       "Empty": 0,
       "Toggle": 14,
-      "unnamed": 0,
       "Off": 8
     }
   },
@@ -1358,7 +1349,6 @@
   },
   "AssignmentFaderFunctionsMasterOnly": {
     "items": {
-      "unnamed": 0,
       "Empty": 0,
       "Master": 32
     }
@@ -1461,7 +1451,6 @@
   },
   "Pretty RDMSensorUnit": {
     "items": {
-      "unnamed": 0,
       "Ω": 9,
       "V (DC)": 2,
       "kg": 11,
@@ -1726,7 +1715,6 @@
       "Temp": 13,
       "Toggle": 14,
       "On": 7,
-      "unnamed": 0,
       "Off": 8
     }
   },
@@ -1782,7 +1770,6 @@
   "RDMPidValueResetDevice": {
     "items": {
       "Cold": 255,
-      "unnamed": 0,
       "Warm": 1
     }
   },
@@ -1810,8 +1797,7 @@
       "Black": 2,
       "Empty": 0,
       "Temp": 13,
-      "SelectFixtures": 116,
-      "unnamed": 0
+      "SelectFixtures": 116
     }
   },
   "RDMSensorUnitPrefix": {
@@ -1849,8 +1835,7 @@
   },
   "AssignmentFaderFunctionsNone": {
     "items": {
-      "Empty": 0,
-      "unnamed": 0
+      "Empty": 0
     }
   },
   "BuildType": {
@@ -1979,8 +1964,7 @@
   },
   "None": {
     "items": {
-      "None": -1,
-      "unnamed": -1
+      "None": -1
     }
   },
   "RealtimeSection": {
@@ -2164,7 +2148,6 @@
   "AssignmentFaderFunctions": {
     "items": {
       "Speed": 38,
-      "unnamed": 0,
       "XA": 34,
       "Time": 42,
       "Rate": 37,
@@ -2218,7 +2201,6 @@
   "PlaybackSourceSubTypes": {
     "items": {
       "DownGoing": 4,
-      "unnamed": 0,
       "UpGoing": 3,
       "Tracked": 1,
       "Blocked": 2,
@@ -2375,7 +2357,6 @@
       "NEXT_Z": 121,
       "FADER": 36,
       "PAGE": 143,
-      "unnamed": 0,
       "DEF_GO": 37,
       "X3": 21,
       "HALF_SPEED": 112,
@@ -2549,7 +2530,6 @@
   },
   "Yes": {
     "items": {
-      "unnamed": 0,
       "<Blank>": 0,
       "Yes": 1
     }
@@ -2678,7 +2658,6 @@
   "PatchType": {
     "items": {
       "Fine": 2,
-      "unnamed": 0,
       "Ultra": 3,
       "Coarse": 1
     }
@@ -2857,9 +2836,7 @@
     }
   },
   "DmxSheetHeaderType": {
-    "items": {
-      "unnamed": 0
-    }
+    "items": {}
   },
   "CellGrouping": {
     "items": {
@@ -3303,8 +3280,7 @@
   },
   "EC_NoGrid": {
     "items": {
-      "None": 134217727,
-      "unnamed": 134217727
+      "None": 134217727
     }
   },
   "ValueReadoutModeNatural": {
@@ -3356,8 +3332,7 @@
       "Flash": 1,
       "Black": 2,
       "Empty": 0,
-      "Temp": 13,
-      "unnamed": 0
+      "Temp": 13
     }
   },
   "ECRec": {
@@ -3365,7 +3340,6 @@
       "0": 0,
       "1": 1,
       "true": 1,
-      "unnamed": 1,
       "No": 0,
       "false": 0,
       "Yes": 1,
@@ -3544,7 +3518,6 @@
       "Undefined": 3,
       "Proportional": 2,
       "Free": 1,
-      "unnamed": 0,
       "None": 0
     }
   },
@@ -3569,7 +3542,6 @@
   },
   "PrettyRDMSensorUnitPrefix": {
     "items": {
-      "unnamed": 0,
       "Z": 25,
       "a": 8,
       "c": 2,
@@ -3778,7 +3750,6 @@
   "AssignmentButtonFunctionsMacro": {
     "items": {
       "Pause": 18,
-      "unnamed": 0,
       "Empty": 0,
       "Go+": 3,
       "Off": 8,
@@ -3819,7 +3790,6 @@
   "AssignmentButtonFunctionsScreenConfig": {
     "items": {
       "Call": 106,
-      "unnamed": 0,
       "Empty": 0
     }
   },
@@ -3841,7 +3811,6 @@
       "On": 7,
       "Empty": 0,
       "Toggle": 14,
-      "unnamed": 0,
       "Off": 8
     }
   },
@@ -3873,14 +3842,11 @@
   },
   "EmptyAsZeroFID": {
     "items": {
-      "None": 0,
-      "unnamed": 0
+      "None": 0
     }
   },
   "EmptyAsZero": {
-    "items": {
-      "unnamed": 0
-    }
+    "items": {}
   },
   "SequenceCountdown": {
     "items": {
@@ -4611,7 +4577,6 @@
   "AssignmentButtonFunctionsUser": {
     "items": {
       "LogIn": 70,
-      "unnamed": 0,
       "Empty": 0
     }
   },
@@ -4657,8 +4622,7 @@
       "Black": 2,
       "Empty": 0,
       "Temp": 13,
-      "SelectFixtures": 116,
-      "unnamed": 0
+      "SelectFixtures": 116
     }
   },
   "AttriebuteEncoderResolutionDefault": {
@@ -4673,7 +4637,6 @@
   "OffCueTrigger": {
     "items": {
       "BPM": 4,
-      "unnamed": 5,
       "Time": 1,
       "Sound": 3,
       "Go": 0,
@@ -4850,7 +4813,6 @@
   },
   "ValueNoneEmpty": {
     "items": {
-      "unnamed": 2147483647,
       "Hold": 1107296257,
       "Release": 1107296256,
       "None": 2147483647
@@ -4914,9 +4876,7 @@
     }
   },
   "Patched": {
-    "items": {
-      "unnamed": -1
-    }
+    "items": {}
   },
   "ImageResolution": {
     "items": {
@@ -4939,7 +4899,6 @@
   },
   "AssignmentButtonFunctionsView": {
     "items": {
-      "unnamed": 0,
       "Empty": 0,
       "Go+": 3
     }
@@ -5143,13 +5102,12 @@
       "Empty": 0,
       "Temp": 13,
       "Toggle": 14,
-      "unnamed": 0,
       "Kill": 29,
       "Off": 8
     }
   },
   "NoName": {
-    "items": []
+    "items": {}
   },
   "LayoutElementAlignmentV": {
     "items": {
@@ -5198,7 +5156,6 @@
       "0": 0,
       "1": 1,
       "true": 1,
-      "unnamed": 0,
       "<Blank>": 0,
       "No": 1,
       "on": 1,
@@ -5210,7 +5167,6 @@
   },
   "AssignmentButtonFunctions": {
     "items": {
-      "unnamed": 0,
       "Go-": 4,
       "Select": 24,
       "Goto": 16,
@@ -5315,7 +5271,6 @@
   },
   "AssignmentRateButtonFunctions": {
     "items": {
-      "unnamed": 0,
       "Pause": 18,
       "GoStep": 23,
       "Toggle": 14,
@@ -5371,7 +5326,6 @@
       "Temp": 13,
       "Toggle": 14,
       "On": 7,
-      "unnamed": 0,
       "Off": 8
     }
   },
@@ -5570,7 +5524,6 @@
   "DSCPLevel": {
     "items": {
       "Flash": 120,
-      "unnamed": 0,
       "FlashOverride": 152,
       "Critical": 184,
       "Priority": 56,
@@ -5579,7 +5532,6 @@
   },
   "ExtraStatusInfo": {
     "items": {
-      "unnamed": 0,
       "Create": 2,
       "Join": 1
     }
@@ -5788,7 +5740,6 @@
   },
   "AssignmentButtonFunctionsPlugin": {
     "items": {
-      "unnamed": 0,
       "Go-": 4,
       "Goto": 16,
       "LearnSpeed": 10,
@@ -5913,7 +5864,6 @@
   },
   "AssignmentQuickeyFunctions": {
     "items": {
-      "unnamed": 0,
       "Empty": 0,
       "Go+": 3
     }
@@ -6091,7 +6041,6 @@
   },
   "AssignmentTimecodeFunctions": {
     "items": {
-      "unnamed": 0,
       "Go-": 4,
       "Select": 24,
       "Goto": 16,
@@ -6134,8 +6083,7 @@
   },
   "TimeNoneEmpty": {
     "items": {
-      "None": -1,
-      "unnamed": -1
+      "None": -1
     }
   },
   "CuePartTextures": {
@@ -6226,7 +6174,6 @@
       "NEXT_Z": 121,
       "FADER": 36,
       "PAGE": 143,
-      "unnamed": 0,
       "DEF_GO": 37,
       "X3": 21,
       "HALF_SPEED": 112,
@@ -6310,7 +6257,6 @@
   "SpeedMaster": {
     "items": {
       "BPM": 15,
-      "unnamed": 255,
       "Speed1": 0,
       "Speed9": 8,
       "Speed7": 6,
@@ -6361,7 +6307,6 @@
   },
   "CueAssert": {
     "items": {
-      "unnamed": 0,
       "Assert": 1,
       "X-Assert": 2,
       "None": 0
@@ -6473,7 +6418,6 @@
   "FixtureSheetHeaderType": {
     "items": {
       "Selected": 1,
-      "unnamed": 0,
       "SelectedInverted": 2,
       "PartlySelected": 3
     }
@@ -6497,7 +6441,6 @@
   },
   "AssignmentButtonFunctionsPreset": {
     "items": {
-      "unnamed": 0,
       "Pause": 18,
       "At": 45,
       "Flash": 1,
@@ -6533,7 +6476,6 @@
   },
   "AssignmentTimerFunctions": {
     "items": {
-      "unnamed": 0,
       "Pause": 18,
       "Go+": 3,
       "Flash": 1,
