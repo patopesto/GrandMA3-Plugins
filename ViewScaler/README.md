@@ -14,7 +14,7 @@ This plugin came as a need to handle the views on different screen sizes when us
 
 ## Usage
 
-When called, the plugin will scale the content of the currently focused display.
+When called, select the display to scale on the UI popup.
 
 ```lua
 Plugin "ViewScaler"
@@ -22,7 +22,7 @@ Plugin "ViewScaler"
 
 ### Arguments:
 
-- `/Screen X`: Run on specified display
+- `/Screen X`: Run directly on specified display (optional, does not trigger the UI)
 
 ### Examples:
 

@@ -10,7 +10,7 @@ local handle = select(4, ...)
 
 
 -- Parameters
-local DEBUG_FILE = true
+local DEBUG_FILE = false
 
 
 -- Helpers
