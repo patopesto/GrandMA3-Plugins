@@ -6,8 +6,9 @@ A collection of GrandMA3 plugins, documentation, user-guides and experiments
 
 Plugins:
 
-- [ViewScaler](#viewscaler): Scale a display's content to fit the available space.
+- [ViewScaler](#viewscaler): Scale a display's content to fit the available space
 - [ScreenSwap](#screenswap): Swap the ViewButtons between 2 displays
+- [TimecodeExporter](#timecodeexporter): Export Timecode Pool objects to CSV
 - [APIDump](#apidump): Export the LUA API (used for the [reference documentation](https://grandma3.bambinito.net) generation)
 - [PluginTemplate](#plugintemplate): A template for a new plugin
 - Other small examples and templates found in the [examples](./examples) directory
@@ -59,6 +60,18 @@ Swap `ViewButtons` between 2 screens.
 - Access views stored on unavailable displays in your showfile. ex: Showfile was built on Full Console but currently running on Lite Console and missing Display 3.
 
 ![ScreenSwap Demo Video](./website/src/assets/ScreenSwap_demo.gif)
+
+
+
+### [TimecodeExporter](./TimecodeExporter)
+
+[![plugin version](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fgitlab.com%2Fpatopest%2Fgrandma3-plugins%2F-%2Fraw%2Fmaster%TimecodeExporter%TimecodeExporter.xml%3Fref_type%3Dheads&query=%2FGMA3%2FUserPlugin%2F%40Version&prefix=v&label=Plugin)](https://gitlab.com/patopest/grandma3-plugins/-/packages)
+[![grandMA3 version](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fgitlab.com%2Fpatopest%2Fgrandma3-plugins%2F-%2Fraw%2Fmaster%TimecodeExporter%TimecodeExporter.xml%3Fref_type%3Dheads&query=%2FGMA3%2F%40DataVersion&prefix=v&label=grandMA3)](https://www.malighting.com/grandma3/)
+
+
+Export Timecode Pool objects to CSV.
+
+- Support multiple objects in a single export
 
 
 

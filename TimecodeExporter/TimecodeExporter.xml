@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GMA3 DataVersion="2.0.2.0">
-  <UserPlugin Name="TimecodeExporter" Author="Alban Moreon" Version="0.0.0.0" Path="TimecodeExporter">
+  <UserPlugin Name="TimecodeExporter" Author="Alban Moreon" Version="0.1.0.0" Path="TimecodeExporter">
     <ComponentLua Name="TimecodeExporter" FileName="TimecodeExporter.lua"/>
   </UserPlugin>
 </GMA3>
