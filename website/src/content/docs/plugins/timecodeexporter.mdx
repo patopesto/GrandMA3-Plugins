@@ -1,0 +1,91 @@
+---
+title: TimecodeExporter
+description: &desc Export Timecode Pool objects to CSV.
+template: splash
+prev: true
+next: true
+hero:
+  tagline: *desc
+  # image:
+  #   file: '@assets/ViewScaler-menu.png'
+  #   alt: ViewScaler UI menu
+  # image_attrs:
+  #   style: 'rotate: 3deg; filter: drop-shadow(0px 0px 75px rgba(255, 255, 255, 0.2));'
+  actions:
+    - text: Download
+      link: '#installation'
+    - text: Help
+      link: '#usage'
+      variant: secondary
+    - text: Release Notes
+      link: '#release-notes'
+      variant: secondary
+---
+
+import { Badge, Aside } from '@astrojs/starlight/components';
+import ReadMore from '@components/ReadMore.astro';
+import Installation from './_components/Installation.astro';
+import ReleaseNotes from './_components/ReleaseNotes.astro';
+
+
+Export Timecode Pool objects to CSV.
+
+- Support multiple objects in a single export
+
+
+### Exported file format
+
+The exported CSV file has the following format:
+
+| Timecode    | Type | Track      | Trackgroup   | Pool
+| :---------: | :--- | :--------- | :----------- | :---
+| HH:MM:SS:FF | Go+  | MySequence | TrackGroup 1 | MyPoolObject
+| HH:MM:SS:FF | Off  | MySequence | TrackGroup 1 | MyPoolObject
+| HH:MM:SS:FF | Go+  | OtherSeq   | TrackGroup 2 | PoolObject2
+| HH:MM:SS:FF | Off  | OtherSeq   | TrackGroup 2 | PoolObject2
+
+
+---
+
+## Usage
+
+```lua
+Plugin "TimecodeExporter"
+```
+
+### Arguments:
+
+- `Timecode X`: Timecode Pool object(s)
+- `/File abc.csv`: The export filename (optional, default: `TimecodeExport.csv`)
+
+### Examples:
+
+- Export Timecode object by index:
+
+    ```lua
+    Plugin "TimecodeExporter" "Timecode 2"
+    ```
+
+- Export Timecode object by name and set exported file name:
+
+    ```lua
+    Plugin "TimecodeExporter" "Timecode MySong /File MySong.csv"
+    ```
+
+- Export multiple Timecode objects:
+
+    ```lua
+    Plugin "TimecodeExporter" "Timecode 1 thru 5"
+    ```
+
+
+
+## Installation
+
+<Installation name={frontmatter.title} />
+
+
+## Release Notes
+
+<ReleaseNotes name={frontmatter.title} />
+
